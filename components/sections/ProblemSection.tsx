@@ -23,7 +23,7 @@ export function ProblemSection() {
       icon: AlertTriangle,
       title: "Compliance work difficult to track",
       description:
-        "Tracking monthly GST, quarterly TDS, and annual ITR deadlines across dozens of clients leads to last-minute rushes and missed filings.",
+        "Tracking monthly GST, quarterly TDS, and annual ITR deadlines across multiple clients leads to last-minute rushes and missed filings.",
     },
     {
       icon: FolderSync,
@@ -58,7 +58,7 @@ export function ProblemSection() {
           badge="The Practice Bottleneck"
           badgeVariant="navy"
           title="Your practice shouldn't run across spreadsheets, WhatsApp and scattered files."
-          description="Tax practitioners spend up to 40% of their day managing administrative friction rather than delivering high-value tax advisory."
+          description="Tax professionals spend valuable time managing administrative work instead of focusing on clients and advisory."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

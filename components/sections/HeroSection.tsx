@@ -42,7 +42,6 @@ export function HeroSection() {
               size="lg"
               icon={ArrowRight}
               className="w-full sm:w-auto px-8 py-3.5 text-base font-bold shadow-md shadow-[#00D1A3]/20"
-              external
             >
               Start Free
             </Button>
@@ -59,19 +58,19 @@ export function HeroSection() {
             </Button>
           </div>
 
-          {/* Trust Guarantees */}
+          {/* Trust Indicators */}
           <div className="pt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#64748B] font-medium">
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-[#00D1A3]" />
-              No Credit Card Required
+              Purpose-Built for Indian Tax Practices
             </span>
             <span className="flex items-center gap-1.5">
               <Shield className="w-4 h-4 text-[#082E5B]" />
-              Isolated Practice Workspace
+              Tenant-Aware Data Isolation
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-[#00D1A3]" />
-              Instant Cloud Setup
+              Cloud-Native Workspace
             </span>
           </div>
         </div>

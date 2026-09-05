@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
+import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/common/Button";
 import { mainNavItems } from "@/lib/config/navigation";
@@ -13,23 +13,58 @@ import { cn } from "@/components/common/Container";
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
 
   // Close on route change
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  // Lock body scroll and handle ESC key
+  // Handle focus trapping, Escape key, and body scroll lock
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+      if (!isOpen) return;
+
+      if (e.key === "Escape") {
         setIsOpen(false);
+        triggerRef.current?.focus();
+        return;
+      }
+
+      if (e.key === "Tab" && drawerRef.current) {
+        const focusableElements = drawerRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (!firstElement || !lastElement) return;
+
+        if (e.shiftKey) {
+          // Backward tab
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          // Forward tab
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
       }
     };
 
     if (isOpen) {
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
+      // Move focus into the drawer
+      setTimeout(() => {
+        closeBtnRef.current?.focus();
+      }, 50);
     } else {
       document.body.style.overflow = "";
     }
@@ -40,9 +75,15 @@ export function MobileNav() {
     };
   }, [isOpen]);
 
+  const handleClose = () => {
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  };
+
   return (
     <div className="lg:hidden">
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close main navigation" : "Open main navigation"}
@@ -56,13 +97,14 @@ export function MobileNav() {
       {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-[#07152B]/60 backdrop-blur-sm transition-opacity"
-          onClick={() => setIsOpen(false)}
+          onClick={handleClose}
           aria-hidden="true"
         />
       )}
 
-      {/* Drawer */}
+      {/* Focus-trapped Drawer */}
       <div
+        ref={drawerRef}
         className={cn(
           "fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white shadow-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out transform",
           isOpen ? "translate-x-0" : "translate-x-full"
@@ -72,10 +114,11 @@ export function MobileNav() {
         aria-label="Mobile Navigation"
       >
         <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-          <Logo variant="horizontal" size="sm" />
+          <Logo variant="horizontal" size="sm" linkHref="/" onClick={handleClose} />
           <button
+            ref={closeBtnRef}
             type="button"
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
             aria-label="Close navigation"
             className="p-2 -mr-2 text-slate-500 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg"
           >
@@ -85,7 +128,7 @@ export function MobileNav() {
 
         <div className="flex-1 overflow-y-auto px-6 py-6 space-y-1">
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 px-3">
-            Menu
+            Navigation
           </p>
           {mainNavItems.map((item) => {
             const isActive = pathname === item.href;
@@ -93,6 +136,7 @@ export function MobileNav() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={handleClose}
                 className={cn(
                   "flex items-center justify-between px-3 py-3 rounded-lg text-base font-medium transition-colors",
                   isActive
@@ -110,7 +154,7 @@ export function MobileNav() {
         <div className="p-6 border-t border-slate-100 bg-slate-50/50 space-y-3">
           <div className="flex items-center gap-2 text-xs text-slate-500 mb-2 px-1">
             <ShieldCheck className="w-4 h-4 text-[#00D1A3]" />
-            <span>Encrypted & Practice-Isolated SaaS</span>
+            <span>Tenant-Aware Practice Workspace</span>
           </div>
 
           <Button
@@ -118,7 +162,6 @@ export function MobileNav() {
             variant="primary"
             size="lg"
             className="w-full justify-center shadow-md font-bold"
-            external
           >
             Start Free
           </Button>
@@ -128,9 +171,8 @@ export function MobileNav() {
             variant="outline"
             size="md"
             className="w-full justify-center"
-            external
           >
-            Client / Practice Login
+            Practice / Client Login
           </Button>
         </div>
       </div>

@@ -12,6 +12,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-[#E2E8F0]/80 transition-all">
       <Container className="flex items-center justify-between h-20">
+        {/* Brand Logo */}
         <div className="flex items-center gap-8">
           <Logo variant="horizontal" size="md" />
           
@@ -41,7 +42,6 @@ export function Header() {
             icon={Lock}
             iconPosition="left"
             className="text-[#0F172A] font-semibold hover:text-[#082E5B]"
-            external
           >
             Login
           </Button>
@@ -52,7 +52,6 @@ export function Header() {
             size="md"
             icon={ArrowRight}
             className="font-bold shadow-sm"
-            external
           >
             Start Free
           </Button>

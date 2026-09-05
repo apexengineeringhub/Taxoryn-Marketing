@@ -32,13 +32,13 @@ export function ShowcaseSection() {
               Real-Time Compliance Tracking Without the Chaos
             </h3>
             <p className="text-base text-[#475569] leading-relaxed">
-              Never wonder if a client&apos;s GSTR-3B was submitted or an ITR-V was verified. Taxoryn gives you a consolidated view of every pending return with real-time status updates.
+              Never wonder if a client&apos;s GSTR-3B was submitted or an ITR computation was signed off. Taxoryn gives you a consolidated view of pending returns with real-time status tracking.
             </p>
             <ul className="space-y-3 pt-2">
               {[
                 "Automated due-date triggers for monthly GST and quarterly TDS",
-                "Instant identification of ITC mismatches and portal delays",
-                "Filing acknowledgment storage attached directly to client records",
+                "Instant identification of ITC mismatches and return delays",
+                "Filing acknowledgment records attached directly to client files",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-[#0F172A] font-medium">
                   <CheckCircle2 className="w-5 h-5 text-[#00D1A3] shrink-0 mt-0.5" />
@@ -52,7 +52,6 @@ export function ShowcaseSection() {
                 variant="secondary"
                 size="md"
                 icon={ArrowRight}
-                external
               >
                 Experience Live Demo
               </Button>
@@ -68,7 +67,7 @@ export function ShowcaseSection() {
                   <span className="font-bold text-sm">GST Practice Command</span>
                 </div>
                 <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono">
-                  98% On-Time SLA
+                  Statutory Tracking
                 </span>
               </div>
 
@@ -101,7 +100,7 @@ export function ShowcaseSection() {
                   <Users className="w-5 h-5 text-sky-400" />
                   <span className="font-bold text-sm">Practice Workload Matrix</span>
                 </div>
-                <span className="text-xs text-slate-400 font-mono">Auto-Balanced</span>
+                <span className="text-xs text-slate-400 font-mono">Role Partitioned</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
@@ -130,13 +129,13 @@ export function ShowcaseSection() {
               Empower Your Team Without Losing Oversight
             </h3>
             <p className="text-base text-[#475569] leading-relaxed">
-              Assign returns, audits, and notice responses to specific team members. Maintain full audit logs of who reviewed computations, verified documents, and approved filings.
+              Assign returns, audits, and notice responses to specific team members. Maintain internal audit logs of who reviewed computations, verified documents, and approved filings.
             </p>
             <ul className="space-y-3 pt-2">
               {[
-                "Strict role permissions prevent accidental data exposure",
-                "Internal audit trails for every client record modification",
-                "Automated task reassignment when team members are on leave",
+                "Strict role permissions protect unauthorized data access",
+                "Internal audit trails for client record changes",
+                "Structured task assignments across partner and associate scopes",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-[#0F172A] font-medium">
                   <CheckCircle2 className="w-5 h-5 text-[#00D1A3] shrink-0 mt-0.5" />

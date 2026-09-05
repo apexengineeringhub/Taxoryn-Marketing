@@ -11,45 +11,46 @@ import {
   UserCheck2,
   DatabaseZap,
   ArrowRight,
+  ShieldAlert,
 } from "lucide-react";
 
 export function SecuritySection() {
   const securityPillars = [
     {
       icon: DatabaseZap,
-      title: "Strict Multi-Tenant Isolation",
+      title: "Tenant-Aware Data Isolation",
       description:
-        "Every tax practice operates within an isolated data boundary. Practice records, client files, and computation logs are strictly partitioned.",
+        "Every tax practice operates within dedicated logical data boundaries. Client records and practice files are strictly partitioned by practice account.",
     },
     {
       icon: KeyRound,
-      title: "Role-Based Access Controls (RBAC)",
+      title: "Role-Based Access Control (RBAC)",
       description:
-        "Define granular access policies for Partners, Managers, and Article Assistants. Restrict client visibility based on active assignments.",
+        "Define granular access policies for Partners, Managers, and Staff to ensure team members only access their assigned client records.",
     },
     {
       icon: FileLock2,
-      title: "Encrypted Document Storage",
+      title: "Secure Document Storage",
       description:
-        "Sensitive client financial statements, ITR computations, and PAN/GST credentials are encrypted both in transit and at rest.",
+        "Client files and tax computation sheets are stored in secure cloud infrastructure with strict access verification.",
     },
     {
       icon: History,
-      title: "Tamper-Evident Audit Logging",
+      title: "Audit Logging",
       description:
-        "Comprehensive audit trails record all document views, computation revisions, return downloads, and user login activity.",
+        "Audit trails record document views, computation revisions, return approvals, and user session activity across the practice.",
     },
     {
       icon: UserCheck2,
-      title: "Secure Session Management",
+      title: "Authentication & Session Controls",
       description:
-        "Robust session expiration, cryptographic token validation, and multi-factor authentication protect practice accounts from unauthorized access.",
+        "Secure session tokens, password policies, and credential protection help safeguard practice accounts against unauthorized access.",
     },
     {
       icon: ShieldCheck,
-      title: "Controlled Client Data Sharing",
+      title: "Controlled Client Access",
       description:
-        "Clients can only view authorized acknowledgments and computation sheets explicitly shared through the verified client portal.",
+        "Clients can only access specific tax returns, acknowledgments, and upload requests explicitly shared through the verified client portal.",
     },
   ];
 
@@ -59,14 +60,14 @@ export function SecuritySection() {
 
       <Container className="relative z-10">
         <SectionHeading
-          badge="Enterprise-Grade Security"
+          badge="Security Architecture"
           badgeVariant="teal"
           theme="dark"
           title="Built with security in mind."
-          description="Your practice handles confidential client finances and tax credentials. Taxoryn is architected from day one to keep practice data strictly isolated and protected."
+          description="Your practice handles confidential client finances and tax credentials. Taxoryn is architected with security and controlled access at the core."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {securityPillars.map((item, idx) => {
             const Icon = item.icon;
             return (
@@ -86,6 +87,11 @@ export function SecuritySection() {
           })}
         </div>
 
+        {/* Informative Disclaimer */}
+        <p className="text-center text-xs text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+          Security capabilities described here reflect the current Taxoryn architecture and may evolve as the platform develops.
+        </p>
+
         <div className="text-center">
           <Button
             href={siteConfig.links.security}
@@ -93,7 +99,7 @@ export function SecuritySection() {
             size="lg"
             icon={ArrowRight}
           >
-            Explore Taxoryn Security Architecture
+            Explore Taxoryn Security
           </Button>
         </div>
       </Container>

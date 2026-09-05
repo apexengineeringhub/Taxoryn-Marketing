@@ -3,7 +3,6 @@ import { constructMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
-import { siteConfig } from "@/lib/config/site";
 import { Target, Users, Shield } from "lucide-react";
 
 export const metadata = constructMetadata({
@@ -15,7 +14,7 @@ export const metadata = constructMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="py-12 sm:py-20">
+    <div className="py-12 sm:py-20 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
           badge="Our Mission"
@@ -30,10 +29,10 @@ export default function AboutPage() {
               Why We Built Taxoryn
             </h3>
             <p>
-              India&apos;s tax landscape is dynamic and compliance-heavy. Between GST monthly filings, quarterly TDS reconciliations, Advance Tax schedules, and annual Income Tax return surges, tax practitioners carry enormous responsibility with rigid deadlines.
+              India&apos;s tax landscape is dynamic and compliance-heavy. Between GST monthly filings, quarterly TDS reconciliations, Advance Tax schedules, and annual Income Tax return surges, tax practitioners carry significant operational responsibility with rigid statutory deadlines.
             </p>
             <p>
-              Traditional generic software failed to bridge the gap between team task coordination, document collection, and actual tax computation workflows. Taxoryn was created to bring everything into one unified, secure, and beautiful operating system.
+              Traditional generic software often fails to bridge the gap between team task coordination, document collection, and actual tax computation workflows. Taxoryn brings practice management into one unified, secure, and focused workspace.
             </p>
           </div>
 
@@ -46,12 +45,12 @@ export default function AboutPage() {
             <div className="p-6 rounded-xl bg-white border border-slate-200 text-center space-y-2">
               <Users className="w-6 h-6 text-[#00D1A3] mx-auto" />
               <h4 className="font-bold text-[#07152B]">Practitioner First</h4>
-              <p className="text-xs text-slate-500">Designed around real CA firm workflows.</p>
+              <p className="text-xs text-slate-500">Designed around real practice workflows.</p>
             </div>
             <div className="p-6 rounded-xl bg-white border border-slate-200 text-center space-y-2">
               <Shield className="w-6 h-6 text-sky-600 mx-auto" />
               <h4 className="font-bold text-[#07152B]">Security</h4>
-              <p className="text-xs text-slate-500">End-to-end data isolation and privacy.</p>
+              <p className="text-xs text-slate-500">Tenant data isolation and confidentiality.</p>
             </div>
           </div>
         </div>

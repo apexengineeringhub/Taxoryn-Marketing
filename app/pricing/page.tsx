@@ -6,61 +6,60 @@ import { Card } from "@/components/common/Card";
 import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
 import { siteConfig } from "@/lib/config/site";
-import { Check, ArrowRight, ShieldCheck, HelpCircle } from "lucide-react";
+import { Check, ArrowRight, Info, Calendar } from "lucide-react";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 
 export const metadata = constructMetadata({
-  title: "Taxoryn Pricing | Transparent Practice Management Plans",
+  title: "Taxoryn Pricing | Plans Designed for Practice Growth",
   description:
-    "Simple, predictable pricing built for solo practitioners, small tax firms, and growing practices.",
+    "Explore Taxoryn practice tiers designed for solo practitioners, small tax firms, and growing practices. Join Taxoryn early access.",
   path: "/pricing",
 });
 
 export default function PricingPage() {
-  const plans = [
+  const practiceTiers = [
     {
-      name: "Starter / Solo",
-      tagline: "For individual tax practitioners & independent CAs",
-      priceDescription: "Free tier available to get started",
+      name: "Solo Practitioner",
+      tagline: "For independent tax consultants and Chartered Accountants",
+      status: "Early Access",
       features: [
-        "Up to 50 active clients",
+        "Consolidated client management directory",
         "GST, ITR & TDS tracking pipelines",
-        "Document repository & upload links",
-        "Standard client portal access",
-        "Email & community support",
+        "Document collection checklists",
+        "Client portal self-service access",
+        "Statutory compliance calendar",
       ],
-      ctaText: "Start Free",
+      ctaText: "Join Early Access",
       ctaHref: siteConfig.links.startFree,
       featured: false,
     },
     {
-      name: "Practice Pro",
-      tagline: "For growing firms needing team coordination & review queues",
-      priceDescription: "Designed for 3–15 team members",
+      name: "Small Tax Firm",
+      tagline: "For boutique firms needing team coordination and partner review queues",
+      status: "Early Access",
       features: [
-        "Unlimited client profiles",
-        "Role-based staff & article assistant access",
-        "Partner sign-off & computation review queues",
-        "Automated WhatsApp & Email notifications",
-        "Taxoryn Marketplace verified practice listing",
-        "Priority technical support",
+        "Structured client and entity management",
+        "Role permissions for staff and article assistants",
+        "Partner sign-off and computation review queues",
+        "Automated filing status updates",
+        "Taxoryn Marketplace practice profile",
       ],
-      ctaText: "Start Pro Trial",
+      ctaText: "Join Early Access",
       ctaHref: siteConfig.links.startFree,
       featured: true,
     },
     {
-      name: "Enterprise Firm",
-      tagline: "For multi-branch practices & large tax consultancies",
-      priceDescription: "Custom practice scoping",
+      name: "Growing Practice",
+      tagline: "For multi-branch practices and corporate tax advisory firms",
+      status: "Early Access / Custom",
       features: [
         "Multi-branch practice consolidation",
-        "Dedicated account manager & SLA",
-        "Custom data migration from legacy software",
-        "Advanced team productivity analytics",
-        "Custom integrations & compliance hooks",
+        "Comprehensive firm productivity visibility",
+        "Practice-wide workload coordination",
+        "Multi-entity corporate compliance workflows",
+        "Dedicated onboarding assistance",
       ],
-      ctaText: "Contact Practice Advisory",
+      ctaText: "Speak with Practice Advisory",
       ctaHref: siteConfig.links.contact,
       featured: false,
     },
@@ -70,26 +69,34 @@ export default function PricingPage() {
     <div className="py-12 sm:py-20 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
-          badge="Simple & Transparent"
+          badge="Practice Tiers"
           badgeVariant="teal"
-          title="Predictable Plans for Practices of Every Size"
-          description="Start for free with no credit card required. Upgrade as your client roster and practice team expand."
+          title="Plans Designed for Practices of Different Sizes"
+          description="Pricing plans are being finalized. Explore the planned practice tiers below and join Taxoryn early access."
         />
 
+        {/* Informative Status Banner */}
+        <div className="max-w-3xl mx-auto p-4 rounded-xl bg-white border border-slate-200 shadow-sm text-xs sm:text-sm text-slate-700 text-center flex items-center justify-center gap-2 mb-12">
+          <Info className="w-4 h-4 text-[#00D1A3] shrink-0" />
+          <span>
+            Commercial plans are currently being finalized for official launch. Early access users receive full platform capabilities during onboarding.
+          </span>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-          {plans.map((plan) => (
+          {practiceTiers.map((tier) => (
             <Card
-              key={plan.name}
-              variant={plan.featured ? "elevated" : "default"}
+              key={tier.name}
+              variant={tier.featured ? "elevated" : "default"}
               padding="lg"
               className={`flex flex-col justify-between relative ${
-                plan.featured
+                tier.featured
                   ? "border-[#00D1A3] ring-2 ring-[#00D1A3]/20 shadow-xl bg-white"
                   : "bg-white border-[#E2E8F0]"
               }`}
             >
               <div>
-                {plan.featured && (
+                {tier.featured && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                     <Badge variant="teal" size="sm">
                       Recommended for Firms
@@ -98,21 +105,22 @@ export default function PricingPage() {
                 )}
 
                 <h3 className="text-xl font-bold text-[#07152B] mb-1">
-                  {plan.name}
+                  {tier.name}
                 </h3>
                 <p className="text-xs text-[#64748B] mb-4 min-h-[32px]">
-                  {plan.tagline}
+                  {tier.tagline}
                 </p>
 
-                <div className="py-3 px-4 rounded-xl bg-slate-50 border border-slate-100 mb-6 text-sm font-semibold text-[#082E5B]">
-                  {plan.priceDescription}
+                <div className="py-2.5 px-3.5 rounded-lg bg-slate-50 border border-slate-200/80 mb-6 text-xs font-semibold text-[#082E5B] flex items-center justify-between">
+                  <span>Status:</span>
+                  <span className="text-[#009E77]">{tier.status}</span>
                 </div>
 
                 <div className="space-y-3 pt-2 mb-8">
                   <p className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                    Included Features:
+                    Core Capabilities:
                   </p>
-                  {plan.features.map((feat, i) => (
+                  {tier.features.map((feat, i) => (
                     <div key={i} className="flex items-start gap-2.5 text-xs text-[#0F172A]">
                       <Check className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
                       <span>{feat}</span>
@@ -122,14 +130,13 @@ export default function PricingPage() {
               </div>
 
               <Button
-                href={plan.ctaHref}
-                variant={plan.featured ? "primary" : "outline"}
+                href={tier.ctaHref}
+                variant={tier.featured ? "primary" : "outline"}
                 size="md"
-                icon={ArrowRight}
+                icon={tier.ctaHref.includes("contact") ? Calendar : ArrowRight}
                 className="w-full justify-center font-bold"
-                external={plan.ctaHref.startsWith("http")}
               >
-                {plan.ctaText}
+                {tier.ctaText}
               </Button>
             </Card>
           ))}

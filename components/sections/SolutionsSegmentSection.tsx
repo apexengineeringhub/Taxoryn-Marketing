@@ -19,12 +19,12 @@ export function SolutionsSegmentSection() {
       title: "Solo Practitioner",
       badge: "Individual CA & Tax Advisor",
       description:
-        "For independent tax consultants who want a clean, single-pane command center without complex enterprise setup.",
+        "For independent tax consultants who want a focused, single-pane command center without complex IT overhead.",
       benefits: [
         "Consolidated GST, ITR & TDS tracking",
-        "Automated document collection checklists",
-        "Direct client portal access",
-        "No IT overhead or server maintenance",
+        "Structured document collection checklists",
+        "Self-service client portal access",
+        "Fully managed cloud-native workspace",
       ],
       ctaText: "Solo Practitioner Solution",
       ctaHref: "/solutions/solo-practitioner",
@@ -32,12 +32,12 @@ export function SolutionsSegmentSection() {
     },
     {
       title: "Small Tax Firm",
-      badge: "3 – 15 Team Members",
+      badge: "Practice Teams",
       description:
-        "For boutique firms needing structured task delegation, partner review gates, and team workload balancing.",
+        "For boutique firms needing structured task delegation, partner review gates, and team workload coordination.",
       benefits: [
         "Role permissions for staff & article assistants",
-        "Workload balancing across client assignments",
+        "Workload coordination across client assignments",
         "Partner sign-off & computation review queues",
         "Practice-wide statutory deadline calendar",
       ],
@@ -48,14 +48,14 @@ export function SolutionsSegmentSection() {
     },
     {
       title: "Growing Tax Practice",
-      badge: "Multi-Branch / Scaled Advisory",
+      badge: "Multi-Branch / Corporate Advisory",
       description:
-        "For high-volume advisory practices managing multi-entity corporate clients, multiple offices, and firm expansion.",
+        "For expanding advisory practices managing multi-entity corporate clients, multiple offices, and firm expansion.",
       benefits: [
         "Multi-location practice management",
-        "Taxoryn Marketplace client acquisition",
-        "Comprehensive firm productivity analytics",
-        "Custom compliance workflow controls",
+        "Taxoryn Marketplace practice discovery",
+        "Consolidated firm productivity reporting",
+        "Multi-entity corporate compliance workflows",
       ],
       ctaText: "Growing Practice Solution",
       ctaHref: "/solutions/growing-practice",
@@ -91,7 +91,7 @@ export function SolutionsSegmentSection() {
                   {seg.featured && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                       <Badge variant="teal" size="sm">
-                        Most Popular
+                        Team Focused
                       </Badge>
                     </div>
                   )}
@@ -116,7 +116,7 @@ export function SolutionsSegmentSection() {
 
                   <div className="space-y-3 pt-4 border-t border-slate-100 mb-8">
                     <p className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                      Key Practice Benefits:
+                      Key Practice Capabilities:
                     </p>
                     {seg.benefits.map((benefit, i) => (
                       <div key={i} className="flex items-start gap-2 text-xs text-[#0F172A]">

@@ -74,6 +74,7 @@ export function constructMetadata({
 }
 
 export function generateSoftwareApplicationSchema() {
+  // Pure SoftwareApplication schema without fake offers, fake ratings, or unverified pricing
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -81,11 +82,6 @@ export function generateSoftwareApplicationSchema() {
     headline: siteConfig.tagline,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "INR",
-    },
     description: siteConfig.description,
     url: siteConfig.url,
   };

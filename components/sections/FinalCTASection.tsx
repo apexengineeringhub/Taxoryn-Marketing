@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
 import { siteConfig } from "@/lib/config/site";
-import { ArrowRight, Calendar, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Calendar, ShieldCheck } from "lucide-react";
 
 export function FinalCTASection() {
   return (
@@ -32,7 +32,6 @@ export function FinalCTASection() {
               size="lg"
               icon={ArrowRight}
               className="w-full sm:w-auto px-8 py-3.5 font-bold shadow-lg shadow-[#00D1A3]/25"
-              external
             >
               Start Free
             </Button>
@@ -52,10 +51,10 @@ export function FinalCTASection() {
           <div className="pt-4 flex items-center justify-center gap-6 text-xs text-slate-400">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-[#00D1A3]" />
-              Multi-Tenant Data Isolation
+              Tenant-Aware Data Isolation
             </span>
             <span>•</span>
-            <span>No Credit Card Required</span>
+            <span>Role-Based Permissions</span>
           </div>
         </div>
       </Container>

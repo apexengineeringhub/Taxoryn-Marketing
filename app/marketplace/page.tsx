@@ -5,13 +5,13 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { WorkflowDiagram } from "@/components/marketing/WorkflowDiagram";
 import { Button } from "@/components/common/Button";
 import { siteConfig } from "@/lib/config/site";
-import { ArrowRight, CheckCircle2, ShieldCheck, ShoppingBag } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShoppingBag, Info } from "lucide-react";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 
 export const metadata = constructMetadata({
-  title: "Taxoryn Marketplace | Practice Growth & Client Matching",
+  title: "Taxoryn Marketplace | Practice Discovery & Matching",
   description:
-    "Grow your tax practice beyond your existing network. Connect with businesses and individuals seeking verified Indian tax advisors.",
+    "Taxoryn Marketplace is designed to help businesses and individuals discover relevant Indian tax professionals and practices.",
   path: "/marketplace",
 });
 
@@ -22,9 +22,17 @@ export default function MarketplacePage() {
         <SectionHeading
           badge="Taxoryn Marketplace"
           badgeVariant="emerald"
-          title="Connect with Businesses Needing Verified Tax Advisory"
-          description="A structured matching platform that connects business tax requirements with specialized tax consultants and Chartered Accountants across India."
+          title="Connect Practices with Customers Looking for Tax Services"
+          description="Taxoryn Marketplace is designed to facilitate discovery between businesses seeking specialized tax advisory and verified tax practices across India."
         />
+
+        {/* Informative Status Banner */}
+        <div className="max-w-3xl mx-auto p-4 rounded-xl bg-white border border-slate-200 shadow-sm text-xs sm:text-sm text-slate-700 text-center flex items-center justify-center gap-2 mb-12">
+          <Info className="w-4 h-4 text-[#009E77] shrink-0" />
+          <span>
+            Taxoryn Marketplace is currently in early onboarding for registered tax practices and consultants.
+          </span>
+        </div>
 
         <div className="mb-16">
           <WorkflowDiagram />
@@ -37,7 +45,7 @@ export default function MarketplacePage() {
             </div>
             <div>
               <h2 className="text-xl font-bold text-[#07152B]">
-                How Practice Listing Works
+                Practice Profile & Discovery
               </h2>
               <p className="text-xs text-slate-500">
                 Verified practice credentials • Geographical jurisdiction • Industry specialization
@@ -46,15 +54,15 @@ export default function MarketplacePage() {
           </div>
 
           <p className="text-sm text-slate-600 leading-relaxed">
-            When you register your practice on Taxoryn, you can create a public verified profile highlighting your certifications, expertise (e.g. GST litigation, Transfer Pricing, Corporate Income Tax, Start-up Compliances), and service location. Businesses searching for specialized advisors can submit structured inquiries directly into your practice inbox.
+            Registered practices can configure a profile highlighting their service capabilities (such as GST compliances, Corporate Income Tax, Audit support, TDS management) and operational jurisdictions. Prospective clients searching for qualified advisory can submit structured project inquiries directly to the practice.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             {[
-              "Structured enquiries with preliminary business context",
-              "Direct conversion into active client in one click",
-              "No cold calls or unstructured leads",
-              "Integrated onboarding and document checklist",
+              "Structured requirement context from prospective clients",
+              "Practice-controlled engagement acceptance",
+              "Streamlined client intake workflow",
+              "Direct connection into practice management portal",
             ].map((pt, i) => (
               <div key={i} className="flex items-start gap-2.5 text-xs font-medium text-slate-800">
                 <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
@@ -65,16 +73,15 @@ export default function MarketplacePage() {
 
           <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
             <span className="text-xs text-slate-500">
-              Listing is available for all registered Taxoryn practices.
+              Practice profile creation is included with Taxoryn registration.
             </span>
             <Button
               href={siteConfig.links.startFree}
               variant="primary"
               size="md"
               icon={ArrowRight}
-              external
             >
-              List Your Practice
+              Register Your Practice
             </Button>
           </div>
         </div>

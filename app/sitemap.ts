@@ -3,8 +3,8 @@ import { siteConfig } from "@/lib/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
-  const currentDate = new Date();
 
+  // Complete list of public indexable marketing routes
   const routes = [
     "",
     "/product",
@@ -16,14 +16,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/marketplace",
     "/pricing",
     "/security",
+    "/resources",
     "/about",
     "/contact",
+    "/privacy",
+    "/terms",
   ];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: currentDate,
     changeFrequency: route === "" ? "daily" : "weekly",
-    priority: route === "" ? 1.0 : 0.8,
+    priority: route === "" ? 1.0 : route.startsWith("/solutions") ? 0.8 : 0.7,
   }));
 }
