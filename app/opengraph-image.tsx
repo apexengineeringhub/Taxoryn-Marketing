@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/config/site";
 
-export const runtime = "edge";
-
 export const alt = "Taxoryn - Simplifying Tax Practice Management";
 export const size = {
   width: 1200,
