@@ -53,7 +53,7 @@ export default function SmallFirmPage() {
             <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700 space-y-1.5">
               <div className="text-slate-400 text-[11px]">Tax Managers</div>
               <div className="text-xl font-bold text-white">18 In Review</div>
-              <div className="text-sky-400 text-[10px]">Reconciliation Verified</div>
+              <div className="text-sky-400 text-[10px]">Reconciliation Reviewed</div>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700 space-y-1.5">
               <div className="text-slate-400 text-[11px]">Article Assistants</div>
@@ -70,7 +70,7 @@ export default function SmallFirmPage() {
               "Granular role permissions for Partners, Tax Managers, and Article Assistants to protect client confidentiality",
               "Client assignment scoping so staff access only their designated files and compliance queues",
               "Mandatory partner sign-off stages before filing completions, preventing accidental submissions",
-              "Practice-wide statutory deadline dashboard to track filing progress across all clients in real-time",
+              "Practice-wide statutory deadline dashboard to track filing progress across all clients",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-sm text-[#0F172A]">
                 <CheckCircle2 className="w-5 h-5 text-[#00D1A3] shrink-0 mt-0.5" />

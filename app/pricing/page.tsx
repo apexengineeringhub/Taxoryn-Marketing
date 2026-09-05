@@ -80,7 +80,7 @@ export default function PricingPage() {
         <div className="max-w-3xl mx-auto p-4 rounded-xl bg-white border border-slate-200 shadow-sm text-xs sm:text-sm text-slate-700 text-center flex items-center justify-center gap-2 mb-12">
           <Info className="w-4 h-4 text-[#00D1A3] shrink-0" />
           <span>
-            Commercial plans are currently being finalized for official launch. Early access users receive full platform capabilities during onboarding.
+            Early Access is intended for selected practices that want to evaluate Taxoryn and provide product feedback. Availability and commercial terms will be communicated separately.
           </span>
         </div>
 

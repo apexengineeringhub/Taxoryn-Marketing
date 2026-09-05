@@ -129,7 +129,7 @@ export function ShowcaseSection() {
               Empower Your Team Without Losing Oversight
             </h3>
             <p className="text-base text-[#475569] leading-relaxed">
-              Assign returns, audits, and notice responses to specific team members. Maintain internal audit logs of who reviewed computations, verified documents, and approved filings.
+              Assign returns, audits, and notice responses to specific team members. Maintain internal audit logs of who reviewed computations, checked documents, and approved filings.
             </p>
             <ul className="space-y-3 pt-2">
               {[

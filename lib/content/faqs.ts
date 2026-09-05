@@ -39,7 +39,7 @@ export const faqsData: FAQItem[] = [
     category: "features",
     question: "How does the Client Portal work for our clients?",
     answer:
-      "Clients receive secure, web-based portal access where they can upload required financial documents against structured checklists, track the real-time filing status of their returns, and download computation summaries and official acknowledgments on-demand—reducing repetitive WhatsApp messages and phone calls.",
+      "Clients receive secure, web-based portal access where they can upload required financial documents against structured checklists, track filing and document status, and download computation summaries and official acknowledgments on-demand—reducing repetitive WhatsApp messages and phone calls.",
   },
   {
     id: "data-migration",
@@ -67,21 +67,21 @@ export const faqsData: FAQItem[] = [
     category: "general",
     question: "How does the Taxoryn Marketplace work for tax professionals?",
     answer:
-      "The Taxoryn Marketplace provides verified practitioners with a public profile to showcase their statutory specializations, jurisdictional focus, and practice credentials. Prospective business clients searching for tax advisory or filing assistance can discover your practice and submit structured service enquiries.",
+      "The Taxoryn Marketplace provides practitioners with a public profile to showcase their statutory specializations, jurisdictional focus, and practice credentials. Prospective business clients searching for tax advisory or compliance assistance can discover your practice profile and submit structured service enquiries.",
   },
   {
     id: "pricing-early-access",
     category: "pricing",
     question: "What are the pricing plans and how does the Early Access program work?",
     answer:
-      "Commercial pricing tiers are being finalized based on practice size and team seats. During the Early Access phase, approved practices receive complimentary access to all core platform features, personalized onboarding guidance, and direct product team support in exchange for feedback.",
+      "Commercial pricing tiers are being finalized based on practice size and team seats. Early Access is intended for selected practices that want to evaluate Taxoryn and provide product feedback. Availability and commercial terms will be communicated separately.",
   },
   {
     id: "data-ownership",
     category: "security",
     question: "Where is our practice data stored and who owns it?",
     answer:
-      "Your practice data and client records remain the 100% exclusive property of your firm. Taxoryn does not sell, monetize, or share your proprietary client records with third parties. Practice administrators can export their data at any time.",
+      "Your practice retains ownership of the data you provide to Taxoryn, subject to the applicable terms and agreements. Taxoryn does not sell, monetize, or share your proprietary client records with third parties. Practice administrators can export their data at any time.",
   },
   {
     id: "multi-branch-practices",
@@ -95,14 +95,14 @@ export const faqsData: FAQItem[] = [
     category: "general",
     question: "Do our clients need to install special software to use the portal?",
     answer:
-      "No. The Taxoryn client portal is 100% web-based and fully responsive on desktop browsers, tablets, and smartphones. Clients do not need to download or install any native software to view filings or upload documents.",
+      "No. The Taxoryn client portal is web-based and fully responsive on desktop browsers, tablets, and smartphones. Clients do not need to download or install any native software to view filings or upload documents.",
   },
   {
     id: "early-access-onboarding",
     category: "pricing",
     question: "What happens after submitting an Early Access request?",
     answer:
-      "Our onboarding team reviews your practice profile and reaches out via email or phone within 1–2 business days with your dedicated workspace setup link, configuration instructions, and complimentary onboarding support.",
+      "Our team will review your practice profile and contact you with next steps, workspace setup instructions, and onboarding details.",
   },
   {
     id: "book-demo-team",

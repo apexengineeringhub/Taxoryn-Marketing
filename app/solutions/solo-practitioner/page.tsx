@@ -53,7 +53,7 @@ export default function SoloPractitionerPage() {
             <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700 space-y-1.5">
               <div className="text-slate-400 text-[11px]">Direct Clients</div>
               <div className="text-xl font-bold text-white">45 Profiles</div>
-              <div className="text-emerald-400 text-[10px]">All KYC Verified</div>
+              <div className="text-emerald-400 text-[10px]">KYC Uploads Organized</div>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700 space-y-1.5">
               <div className="text-slate-400 text-[11px]">Monthly GST Returns</div>

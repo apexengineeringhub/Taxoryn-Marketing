@@ -26,7 +26,7 @@ export function ArticleCTA({
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
           {description ||
-            "Discover verified Chartered Accountants and tax consultants across India on the Taxoryn Marketplace."}
+            "Discover qualified Chartered Accountants and tax consultants across India on the Taxoryn Marketplace."}
         </p>
         <div className="pt-2 flex flex-col sm:flex-row gap-3">
           <Button

@@ -259,7 +259,7 @@ function BookDemoContent() {
             <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
               <div className="flex items-center gap-2 text-sm font-bold text-[#07152B]">
                 <ShieldCheck className="w-5 h-5 text-[#00D1A3]" />
-                <span>Confidentiality Guaranteed</span>
+                <span>Practice Privacy & Confidentiality</span>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
                 We only discuss practice structure and software workflows. We do not inspect or collect confidential client tax files during product demonstrations.
@@ -295,7 +295,7 @@ function BookDemoContent() {
                     <strong>{siteConfig.supportEmail}</strong>.
                   </p>
                   <p className="text-xs text-slate-500 max-w-md mx-auto">
-                    Once you send the email, our team will follow up to confirm a convenient demonstration slot.
+                    Once you send the email, our team will review your request and contact you with next steps.
                   </p>
 
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left space-y-2">

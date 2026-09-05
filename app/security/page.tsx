@@ -52,25 +52,25 @@ export default function SecurityPage() {
     {
       title: "Authenticated Document Access",
       description:
-        "Client tax documents, Form 16s, bank statements, and computation sheets are served through signed, time-limited access tokens rather than public URLs.",
+        "Document access can be controlled through authenticated and time-limited access mechanisms rather than public URLs.",
       icon: FileLock2,
     },
     {
-      title: "Secure Cloud Storage Infrastructure",
+      title: "Controlled Cloud Storage Infrastructure",
       description:
-        "Practice documents, returns, and computation records are housed in high-availability cloud storage facilities with access control enforcement and disaster recovery safeguards.",
+        "Taxoryn is designed around private document storage, authenticated access and controlled document permissions.",
       icon: HardDrive,
     },
     {
-      title: "Comprehensive Audit Logging",
+      title: "Auditable Activity Logging",
       description:
-        "Immutable event logs record document uploads, computation updates, partner review sign-offs, and user session activity across the entire practice.",
+        "Auditable activity logs track document uploads, computation updates, partner review sign-offs, and user session activity across the practice.",
       icon: FileCheck,
     },
     {
-      title: "Zero Third-Party Data Monetization",
+      title: "Practice Data Ownership & Privacy",
       description:
-        "Practice data remains the 100% exclusive property of your firm. Client financial records, PAN details, and compliance workpapers are never sold, analyzed for ads, or shared with third parties.",
+        "Your practice retains ownership of the data you provide to Taxoryn, subject to the applicable terms and agreements. Client financial records, PAN details, and compliance workpapers are never sold, analyzed for ads, or shared with third parties.",
       icon: ShieldCheck,
     },
     {

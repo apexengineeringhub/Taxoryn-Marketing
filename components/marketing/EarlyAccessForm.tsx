@@ -230,7 +230,7 @@ function EarlyAccessContent() {
               <ul className="space-y-3 pt-2 text-xs text-slate-200">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
-                  <span>Full access to client directory, task boards & compliance calendar</span>
+                  <span>Access to evaluate client directory, task boards & compliance calendar</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
@@ -286,7 +286,7 @@ function EarlyAccessContent() {
                     <strong>{siteConfig.supportEmail}</strong>.
                   </p>
                   <p className="text-xs text-slate-500 max-w-md mx-auto">
-                    Once you send the email, our team will follow up with your practice onboarding instructions.
+                    Once you send the email, our team will review your request and contact you with next steps.
                   </p>
 
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left space-y-2">

@@ -64,7 +64,7 @@ export default function ProductPage() {
       stage: "04",
       name: "GROW",
       tagline: "Marketplace & Enquiries",
-      description: "Publish your verified practice credentials on the Taxoryn Marketplace to connect with businesses seeking professional tax advisory in your jurisdiction.",
+      description: "Publish your practice profile and credentials on the Taxoryn Marketplace to connect with businesses seeking professional tax advisory in your jurisdiction.",
       icon: ShoppingBag,
       badgeColor: "emerald" as const,
     },
@@ -72,7 +72,7 @@ export default function ProductPage() {
       stage: "05",
       name: "RETAIN",
       tagline: "Audit History & Archives",
-      description: "Maintain complete multi-year compliance histories, computation workpapers, and immutable activity logs that stay secure regardless of team turnover.",
+      description: "Maintain complete multi-year compliance histories, computation workpapers, and auditable activity logs that stay organized regardless of team turnover.",
       icon: History,
       badgeColor: "navy" as const,
     },
@@ -206,7 +206,7 @@ export default function ProductPage() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
-                  <span>Immutable audit logging and historical return archives preserved</span>
+                  <span>Auditable activity logging and historical return archives preserved</span>
                 </li>
               </ul>
             </div>

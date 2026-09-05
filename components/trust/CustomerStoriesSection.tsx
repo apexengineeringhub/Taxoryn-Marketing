@@ -73,7 +73,7 @@ export function CustomerStoriesSection({ stories = [] }: CustomerStoriesSectionP
         <SectionHeading
           badge="Practitioner Stories"
           badgeVariant="teal"
-          title="Verified Experiences from Indian Tax Practitioners"
+          title="Practitioner Experiences from Indian Tax Firms"
           description="Read how tax consultants and Chartered Accountants streamline compliance and client service with Taxoryn."
         />
 

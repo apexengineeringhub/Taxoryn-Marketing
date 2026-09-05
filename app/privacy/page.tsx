@@ -41,7 +41,7 @@ export default function PrivacyPage() {
               <h2>2. Practice Data Ownership & Sovereignty</h2>
             </div>
             <p>
-              All client directories, entity masters, tax computations, GSTIN records, uploaded return acknowledgments, workpapers, and internal notes entered into Taxoryn remain the 100% exclusive property of your tax practice.
+              Your practice retains ownership of the data you provide to Taxoryn, subject to the applicable terms and agreements. All client directories, entity masters, tax computations, GSTIN records, uploaded return acknowledgments, workpapers, and internal notes entered into Taxoryn remain your firm&apos;s property.
             </p>
             <ul className="space-y-2 text-xs sm:text-sm text-slate-600 pl-4 border-l-2 border-[#00D1A3]">
               <li>We never sell, rent, monetize, or broker your practice or client data.</li>
@@ -91,7 +91,7 @@ export default function PrivacyPage() {
               <h2>4. Information Security & Technical Safeguards</h2>
             </div>
             <p>
-              We implement industry-standard safeguards including HTTPS encryption in transit, logical tenant isolation, role-based permission scoping, token-authenticated document access, and immutable practice event logs.
+              We implement industry-standard safeguards including HTTPS encryption in transit, logical tenant isolation, role-based permission scoping, token-authenticated document access, and auditable activity logs.
             </p>
           </section>
 

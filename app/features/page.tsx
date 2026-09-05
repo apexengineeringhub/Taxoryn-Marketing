@@ -84,8 +84,8 @@ export default function FeaturesPage() {
       category: "GROW",
       title: "Taxoryn Marketplace & Practice Expansion",
       badge: "Practice Discovery",
-      problem: "Tax practices rely strictly on local word-of-mouth with no verified online discovery channel.",
-      solution: "Showcase verified practice credentials and receive structured service requests from prospective business clients.",
+      problem: "Tax practices often rely on informal word-of-mouth without a dedicated online discovery profile.",
+      solution: "Showcase practice credentials and specializations to receive structured service requests from prospective business clients.",
       highlights: [
         "Practice profile showcasing industry specializations, credentials, and jurisdictions",
         "Structured client intake inquiries with clear scope definitions",

@@ -71,7 +71,7 @@ export default function GrowingPracticePage() {
               "Multi-office hierarchy and consolidated firm-level reporting across partners and regional branches",
               "Taxoryn Marketplace integration for qualified prospective client discovery and intake",
               "Team workload distribution, bottleneck monitoring, and compliance analytics across corporate portfolios",
-              "Tenant-aware data partitioning, role-based access control, and immutable audit logging",
+              "Tenant-aware data partitioning, role-based access control, and auditable activity logging",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3 text-sm text-[#0F172A]">
                 <CheckCircle2 className="w-5 h-5 text-[#00D1A3] shrink-0 mt-0.5" />

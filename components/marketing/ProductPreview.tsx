@@ -550,7 +550,7 @@ export function ProductPreview({
                 </p>
               </div>
               <span className="text-xs text-emerald-300 font-medium bg-emerald-500/10 px-3 py-1 rounded border border-emerald-500/30 self-start sm:self-auto">
-                Profile: Verified Practice
+                Profile: Active Practice
               </span>
             </div>
 

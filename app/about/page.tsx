@@ -67,7 +67,7 @@ export default function AboutPage() {
         "A structured document collection portal that eliminates messy WhatsApp chats and email attachments",
         "An internal review and sign-off engine ensuring multi-tier quality control before filings",
         "A multi-year compliance repository that preserves institutional memory despite staff turnover",
-        "A discovery marketplace for verified practitioners to connect with quality business clients",
+        "A discovery marketplace for tax practitioners to connect with quality business clients",
       ],
     },
     {
