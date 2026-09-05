@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-navy-primary: #082E5B;
+    --brand-navy-dark: #07152B;
+    --brand-obsidian: #070C1A;
+    --brand-teal-primary: #00D1A3;
+    --brand-teal-dark: #00B388;
+    --brand-emerald: #059669;
+    --brand-cyan: #0EA5E9;
+    --brand-cyan-light: #38BDF8;
+    --brand-bg: #F8FAFC;
+    --brand-text-primary: #0F172A;
+    --brand-text-secondary: #475569;
+    --brand-text-muted: #64748B;
+    --brand-border: #E2E8F0;
+    --brand-border-strong: #CBD5E1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    @apply bg-[#F8FAFC] text-[#0F172A] antialiased selection:bg-[#00D1A3]/30 selection:text-[#07152B];
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Accessibility: Visible, high-contrast focus rings */
+  :focus-visible {
+    outline: 2px solid #00D1A3;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Subtle background grid pattern for high-tech SaaS feel */
+  .bg-grid-pattern {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+  }
+
+  .bg-grid-pattern-dark {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

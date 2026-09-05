@@ -1,0 +1,449 @@
+import React from "react";
+import Link from "next/link";
+import { cn } from "@/components/common/Container";
+
+export type LogoVariant = "full" | "horizontal" | "symbol" | "compact" | "app-icon";
+export type LogoTheme = "light" | "dark" | "auto";
+export type LogoSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "custom";
+
+export interface LogoProps {
+  variant?: LogoVariant;
+  theme?: LogoTheme;
+  size?: LogoSize;
+  framed?: boolean;
+  className?: string;
+  showMotto?: boolean;
+  linkHref?: string;
+  onClick?: () => void;
+}
+
+export const Logo: React.FC<LogoProps> = ({
+  variant = "horizontal",
+  theme = "light",
+  size = "md",
+  framed = true,
+  className,
+  showMotto = true,
+  linkHref = "/",
+  onClick,
+}) => {
+  // Size mappings matching app
+  const sizeMap: Record<
+    LogoSize,
+    { symbol: number; textClass: string; mottoClass: string }
+  > = {
+    xs: {
+      symbol: 28,
+      textClass: "text-sm tracking-wide",
+      mottoClass: "text-[7px]",
+    },
+    sm: {
+      symbol: 34,
+      textClass: "text-base tracking-wide",
+      mottoClass: "text-[8px]",
+    },
+    md: {
+      symbol: 42,
+      textClass: "text-xl tracking-wider",
+      mottoClass: "text-[8.5px]",
+    },
+    lg: {
+      symbol: 52,
+      textClass: "text-2xl tracking-wider",
+      mottoClass: "text-[10px]",
+    },
+    xl: {
+      symbol: 64,
+      textClass: "text-3xl tracking-widest",
+      mottoClass: "text-xs",
+    },
+    "2xl": {
+      symbol: 88,
+      textClass: "text-4xl tracking-widest",
+      mottoClass: "text-sm",
+    },
+    custom: {
+      symbol: 42,
+      textClass: "text-xl",
+      mottoClass: "text-[8.5px]",
+    },
+  };
+
+  const currentSize = sizeMap[size];
+  const isFramed = framed || variant === "app-icon";
+
+  // Theme color resolutions
+  const textColor =
+    theme === "dark" ? "#FFFFFF" : theme === "light" ? "#07152B" : "currentColor";
+  const subtextColor =
+    theme === "dark" ? "#94A3B8" : theme === "light" ? "#475569" : "currentColor";
+
+  // Architectural SVG TR Symbol: Deep Emerald R, Bright Cyan Swoop Arrow & Sharp TAX Document
+  const renderSymbol = (dimension: number) => {
+    return (
+      <svg
+        width={dimension}
+        height={dimension}
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="shrink-0 drop-shadow-md select-none"
+        aria-label="Taxoryn Symbol"
+      >
+        <defs>
+          {/* Deep Rich Emerald Gradient for Letter 'R' */}
+          <linearGradient
+            id="tax_r_deep_grad"
+            x1="45"
+            y1="20"
+            x2="88"
+            y2="85"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#00C495" />
+            <stop offset="40%" stopColor="#009E77" />
+            <stop offset="100%" stopColor="#046A4E" />
+          </linearGradient>
+
+          {/* Bright Electric Cyan/Mint Gradient for Dynamic Swooping Arrow */}
+          <linearGradient
+            id="tax_arrow_grad"
+            x1="16"
+            y1="36"
+            x2="84"
+            y2="84"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#38BDF8" />
+            <stop offset="45%" stopColor="#00FFC2" />
+            <stop offset="100%" stopColor="#00E5B3" />
+          </linearGradient>
+
+          {/* Growth Bars Gradient */}
+          <linearGradient
+            id="tax_bars_grad"
+            x1="18"
+            y1="46"
+            x2="38"
+            y2="80"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#00FFC2" />
+            <stop offset="100%" stopColor="#00B388" />
+          </linearGradient>
+
+          {/* Deep Midnight Obsidian Squircle Background */}
+          <linearGradient
+            id="tax_squircle_3d"
+            x1="0"
+            y1="0"
+            x2="100"
+            y2="100"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#0E274D" />
+            <stop offset="50%" stopColor="#07152B" />
+            <stop offset="100%" stopColor="#030914" />
+          </linearGradient>
+
+          {/* 3D Drop Shadow for T */}
+          <filter
+            id="tax_t_3d_shadow"
+            x="8"
+            y="8"
+            width="65"
+            height="60"
+            filterUnits="userSpaceOnUse"
+          >
+            <feDropShadow
+              dx="2"
+              dy="4"
+              stdDeviation="3"
+              floodColor="#000000"
+              floodOpacity="0.55"
+            />
+          </filter>
+
+          {/* 3D Drop Shadow for TAX Document */}
+          <filter
+            id="tax_doc_3d_shadow"
+            x="36"
+            y="16"
+            width="50"
+            height="65"
+            filterUnits="userSpaceOnUse"
+          >
+            <feDropShadow
+              dx="0"
+              dy="5"
+              stdDeviation="3.5"
+              floodColor="#000000"
+              floodOpacity="0.55"
+            />
+          </filter>
+
+          {/* Ambient Shadow for R */}
+          <filter
+            id="tax_r_3d_shadow"
+            x="42"
+            y="16"
+            width="52"
+            height="74"
+            filterUnits="userSpaceOnUse"
+          >
+            <feDropShadow
+              dx="1.5"
+              dy="2.5"
+              stdDeviation="2.5"
+              floodColor="#000000"
+              floodOpacity="0.35"
+            />
+          </filter>
+        </defs>
+
+        {/* LAYER 0: Squircle Background Container */}
+        {isFramed && (
+          <rect
+            width="100"
+            height="100"
+            rx="22"
+            fill="url(#tax_squircle_3d)"
+            stroke="rgba(255, 255, 255, 0.16)"
+            strokeWidth="1.2"
+          />
+        )}
+
+        {/* LAYER 1: Dynamic Encircling Swoop Arrow Arc */}
+        <path
+          d="M 18 36 C 10 54, 14 82, 42 88 C 58 91, 70 84, 76 74"
+          stroke="url(#tax_arrow_grad)"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <polygon points="71,66 84,72 75,82" fill="#00FFC2" />
+
+        {/* LAYER 2: Deep Emerald Letter 'R' */}
+        <g filter="url(#tax_r_3d_shadow)">
+          <path
+            d="M 50 23 H 68 C 80 23, 88 30, 88 41 C 88 51, 79 57, 65 57 H 52 M 65 57 L 83 83"
+            stroke="url(#tax_r_deep_grad)"
+            strokeWidth="11.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </g>
+
+        {/* LAYER 3: Ascending Growth Chart Bars */}
+        <rect
+          x="20"
+          y="66"
+          width="5"
+          height="14"
+          rx="2"
+          fill="url(#tax_bars_grad)"
+        />
+        <rect
+          x="27.5"
+          y="56"
+          width="5"
+          height="24"
+          rx="2"
+          fill="url(#tax_bars_grad)"
+        />
+        <rect
+          x="35"
+          y="46"
+          width="5"
+          height="34"
+          rx="2"
+          fill="url(#tax_bars_grad)"
+        />
+
+        {/* LAYER 4: Bold & Sharp Modern 'T' (Solid White) */}
+        <g filter="url(#tax_t_3d_shadow)">
+          <path
+            d="M 14 14 L 64 14 L 58 26 L 43 26 L 33 58 L 18 58 L 28 26 L 14 26 Z"
+            fill="#FFFFFF"
+            stroke="#FFFFFF"
+            strokeWidth="0.6"
+            strokeLinejoin="round"
+          />
+          <line
+            x1="14"
+            y1="14"
+            x2="64"
+            y2="14"
+            stroke="#FFFFFF"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            opacity="0.9"
+          />
+        </g>
+
+        {/* LAYER 5: Ultra-Sharp Razor-Crisp 'TAX' Document with Checkmark Badge */}
+        <g filter="url(#tax_doc_3d_shadow)">
+          <path
+            d="M 44 24 H 67 L 76 33 V 66 C 76 68.8 73.8 71 71 71 H 49 C 46.2 71 44 68.8 44 66 Z"
+            fill="#FFFFFF"
+            stroke="#CBD5E1"
+            strokeWidth="1.2"
+          />
+          <path d="M 67 24 V 33 H 76 Z" fill="#94A3B8" />
+
+          {/* RAZOR-SHARP GEOMETRIC VECTOR "TAX" GLYPHS */}
+          <g fill="#07152B">
+            <path d="M 49.2 32.5 H 55.4 V 34.7 H 53.4 V 42.5 H 51.2 V 34.7 H 49.2 Z" />
+            <path d="M 59.2 32.5 H 60.8 L 63.8 42.5 H 61.6 L 61.0 40.3 H 59.0 L 58.4 42.5 H 56.2 Z M 59.5 38.5 H 60.5 L 60.0 35.3 Z" />
+            <path d="M 64.5 32.5 H 66.7 L 68.2 36.0 L 69.7 32.5 H 71.9 L 69.3 37.5 L 72.0 42.5 H 69.8 L 68.2 38.9 L 66.6 42.5 H 64.4 L 67.1 37.5 Z" />
+          </g>
+
+          {/* Clean Rounded Teal Accent Lines */}
+          <line
+            x1="50"
+            y1="46.5"
+            x2="68"
+            y2="46.5"
+            stroke="#00D1A3"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+          <line
+            x1="50"
+            y1="51"
+            x2="65"
+            y2="51"
+            stroke="#00D1A3"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+
+          {/* Circular Verified Checkmark Badge */}
+          <circle cx="59" cy="59.5" r="5.5" fill="#00D1A3" />
+          <path
+            d="M 56.2 59.5 L 58.2 61.5 L 62.2 57.5"
+            stroke="#FFFFFF"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </g>
+      </svg>
+    );
+  };
+
+  // Symbol only variant
+  if (variant === "symbol" || variant === "compact" || variant === "app-icon") {
+    const symbolContent = (
+      <div
+        onClick={onClick}
+        className={cn(
+          "inline-flex items-center justify-center shrink-0 select-none",
+          onClick && "cursor-pointer hover:opacity-90 transition-opacity",
+          className
+        )}
+      >
+        {renderSymbol(currentSize.symbol)}
+      </div>
+    );
+
+    if (linkHref) {
+      return (
+        <Link
+          href={linkHref}
+          aria-label="Taxoryn Homepage"
+          className="inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg"
+        >
+          {symbolContent}
+        </Link>
+      );
+    }
+    return symbolContent;
+  }
+
+  // Full or Horizontal Brand Variant
+  const logoContent = (
+    <div
+      onClick={onClick}
+      className={cn(
+        "inline-flex items-center gap-3 shrink-0 select-none",
+        variant === "full"
+          ? "flex-col items-center text-center"
+          : "flex-row items-center",
+        onClick && "cursor-pointer hover:opacity-95 transition-opacity",
+        className
+      )}
+    >
+      {/* TR Symbol */}
+      {renderSymbol(currentSize.symbol)}
+
+      {/* Brand Text Block */}
+      <div
+        className={cn(
+          "flex flex-col min-w-0 justify-center",
+          variant === "full"
+            ? "items-center text-center"
+            : "items-start text-left"
+        )}
+      >
+        {/* Wordmark: TAXORYN */}
+        <div className="flex items-center tracking-wider leading-none">
+          <span
+            className={cn(
+              "font-black tracking-[0.14em]",
+              currentSize.textClass
+            )}
+            style={{ color: textColor }}
+          >
+            TAXO
+          </span>
+          <span
+            className={cn(
+              "font-black tracking-[0.14em] text-[#00D1A3]",
+              currentSize.textClass
+            )}
+          >
+            RYN
+          </span>
+        </div>
+
+        {/* Official Brand Motto: SIMPLIFYING TAX PRACTICE MANAGEMENT */}
+        {(variant === "full" ||
+          (variant === "horizontal" &&
+            showMotto &&
+            size !== "xs" &&
+            size !== "sm")) && (
+          <div className="flex items-center gap-1.5 mt-1">
+            <span className="w-2 h-[1.5px] bg-[#00D1A3] opacity-80" />
+            <span
+              className={cn(
+                "font-bold tracking-[0.16em] uppercase whitespace-nowrap opacity-90",
+                currentSize.mottoClass
+              )}
+              style={{ color: subtextColor }}
+            >
+              SIMPLIFYING TAX PRACTICE MANAGEMENT
+            </span>
+            <span className="w-2 h-[1.5px] bg-[#00D1A3] opacity-80" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  if (linkHref) {
+    return (
+      <Link
+        href={linkHref}
+        aria-label="Taxoryn Homepage"
+        className="inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg"
+      >
+        {logoContent}
+      </Link>
+    );
+  }
+
+  return logoContent;
+};
