@@ -59,10 +59,10 @@ export const Button = React.forwardRef<
   };
 
   const sizes = {
-    sm: "text-xs px-3 py-1.5 gap-1.5",
-    md: "text-sm px-4 py-2.5 gap-2",
-    lg: "text-base px-6 py-3 gap-2.5 font-medium",
-    xl: "text-lg px-8 py-3.5 gap-3 font-semibold",
+    sm: "text-xs px-3 py-2 gap-1.5 min-h-[36px]",
+    md: "text-sm px-4 py-2.5 gap-2 min-h-[42px]",
+    lg: "text-base px-6 py-3 gap-2.5 font-medium min-h-[48px]",
+    xl: "text-lg px-8 py-3.5 gap-3 font-semibold min-h-[52px]",
   };
 
   const content = (

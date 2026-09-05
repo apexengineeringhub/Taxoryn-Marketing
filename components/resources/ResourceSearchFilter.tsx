@@ -62,7 +62,7 @@ export function ResourceSearchFilter({
             <button
               type="button"
               onClick={() => handleCategorySelect("all")}
-              className={`px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-all ${
                 selectedCategory === "all"
                   ? "bg-[#082E5B] text-white shadow-sm"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -77,7 +77,7 @@ export function ResourceSearchFilter({
                   key={cat.slug}
                   type="button"
                   onClick={() => handleCategorySelect(cat.slug)}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
+                  className={`px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap shrink-0 transition-all ${
                     selectedCategory === cat.slug
                       ? "bg-[#082E5B] text-white shadow-sm"
                       : "bg-slate-100 text-slate-600 hover:bg-slate-200"

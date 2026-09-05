@@ -67,7 +67,7 @@ export function ArticleContentRenderer({
           {/* Table if present */}
           {sec.table && (
             <div className="pt-2 overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm border-collapse rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+              <table className="w-full min-w-[480px] text-left text-xs sm:text-sm border-collapse rounded-xl overflow-hidden border border-slate-200 shadow-sm">
                 <thead className="bg-[#07152B] text-white">
                   <tr>
                     {sec.table.headers.map((h, hIdx) => (

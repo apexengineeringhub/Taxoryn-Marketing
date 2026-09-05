@@ -108,7 +108,7 @@ export function ProductPreview({
           <div
             role="tablist"
             aria-label="Product Preview Modules"
-            className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-0.5 scrollbar-none"
+            className="order-last sm:order-none w-full sm:w-auto flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-1 scrollbar-none"
           >
             {tabs.map((tab) => (
               <button
@@ -119,7 +119,7 @@ export function ProductPreview({
                 aria-controls={`tabpanel-${tab.id}`}
                 onClick={() => handleTabChange(tab.id)}
                 className={cn(
-                  "px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]",
+                  "px-3 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]",
                   activeTab === tab.id
                     ? "bg-[#00D1A3] text-[#07152B] shadow-sm font-bold"
                     : "text-slate-300 hover:text-white hover:bg-slate-800/80"
@@ -182,39 +182,39 @@ export function ProductPreview({
 
             {/* Metric KPI Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1.5">
+              <div className="p-3 sm:p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1.5">
                 <div className="flex items-center justify-between text-slate-400">
                   <span className="text-xs font-semibold">Active Clients</span>
                   <Users className="w-4 h-4 text-blue-400" />
                 </div>
-                <div className="text-2xl font-black text-white">142</div>
+                <div className="text-xl sm:text-2xl font-black text-white">142</div>
                 <div className="text-[11px] text-emerald-400 font-medium">100% Onboarded</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1.5">
+              <div className="p-3 sm:p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1.5">
                 <div className="flex items-center justify-between text-slate-400">
                   <span className="text-xs font-semibold">GST Compliance</span>
                   <FileSpreadsheet className="w-4 h-4 text-[#00D1A3]" />
                 </div>
-                <div className="text-2xl font-black text-white">96.4%</div>
+                <div className="text-xl sm:text-2xl font-black text-white">96.4%</div>
                 <div className="text-[11px] text-slate-400">Monthly 3B/1 Cycle</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1.5">
+              <div className="p-3 sm:p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1.5">
                 <div className="flex items-center justify-between text-slate-400">
                   <span className="text-xs font-semibold">ITR Pipelines</span>
                   <FileCheck2 className="w-4 h-4 text-emerald-400" />
                 </div>
-                <div className="text-2xl font-black text-white">78</div>
+                <div className="text-xl sm:text-2xl font-black text-white">78</div>
                 <div className="text-[11px] text-emerald-400 font-medium">AY 2025-26 Active</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1.5">
+              <div className="p-3 sm:p-4 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1.5">
                 <div className="flex items-center justify-between text-slate-400">
                   <span className="text-xs font-semibold">Review Gates</span>
                   <AlertCircle className="w-4 h-4 text-amber-400" />
                 </div>
-                <div className="text-2xl font-black text-white">8 Pending</div>
+                <div className="text-xl sm:text-2xl font-black text-white">8 Pending</div>
                 <div className="text-[11px] text-amber-300 font-medium">Partner Sign-off Needed</div>
               </div>
             </div>
@@ -320,7 +320,7 @@ export function ProductPreview({
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs border-collapse rounded-xl overflow-hidden border border-slate-800 bg-slate-900/60">
+              <table className="w-full min-w-[560px] text-left text-xs border-collapse rounded-xl overflow-hidden border border-slate-800 bg-slate-900/60">
                 <thead className="bg-[#070C1A] text-slate-300 border-b border-slate-800">
                   <tr>
                     <th className="p-3 font-semibold">Client / Entity Name</th>

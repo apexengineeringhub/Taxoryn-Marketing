@@ -88,7 +88,7 @@ export function MobileNav() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close main navigation" : "Open main navigation"}
         aria-expanded={isOpen}
-        className="p-2 -mr-2 text-[#0F172A] hover:text-[#082E5B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg transition-colors"
+        className="min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 text-[#0F172A] hover:text-[#082E5B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg transition-colors"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
@@ -120,7 +120,7 @@ export function MobileNav() {
             type="button"
             onClick={handleClose}
             aria-label="Close navigation"
-            className="p-2 -mr-2 text-slate-500 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 text-slate-500 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg"
           >
             <X className="w-6 h-6" />
           </button>

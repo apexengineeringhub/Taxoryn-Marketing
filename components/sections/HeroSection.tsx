@@ -22,7 +22,7 @@ export function HeroSection() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#07152B] tracking-tight leading-[1.1] text-balance">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#07152B] tracking-tight leading-[1.15] text-balance">
             Run Your Tax Practice. <br />
             <span className="text-[#082E5B] underline decoration-[#00D1A3] decoration-4 underline-offset-8">
               Not Your Spreadsheets.
