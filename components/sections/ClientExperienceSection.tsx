@@ -34,9 +34,9 @@ export function ClientExperienceSection() {
     },
     {
       icon: BellRing,
-      title: "Automated Status Alerts",
+      title: "Status & Compliance Alerts",
       description:
-        "Clients receive automated WhatsApp & Email notifications when returns are filed, challans generated, or queries resolved.",
+        "Clients receive status updates through email and the client portal when returns are acknowledged, challans generated, or queries resolved.",
     },
     {
       icon: Eye,

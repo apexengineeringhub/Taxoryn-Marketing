@@ -47,8 +47,8 @@ const marketplaceSteps: WorkflowStep[] = [
   },
   {
     stepNumber: "05",
-    title: "Instant Onboarding",
-    description: "Seamlessly converts lead into active client on Taxoryn portal.",
+    title: "Guided Onboarding",
+    description: "Converts prospective enquiry into active client on Taxoryn portal.",
     icon: UserCheck2,
   },
   {

@@ -46,7 +46,7 @@ export default function PrivacyPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-[#07152B]">4. Contact Us</h2>
             <p>
-              For privacy-related inquiries, please contact our data governance team at support@taxoryn.com.
+              For privacy-related inquiries, please contact Taxoryn Support at support@taxoryn.com.
             </p>
           </section>
         </div>

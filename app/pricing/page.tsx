@@ -41,7 +41,7 @@ export default function PricingPage() {
         "Structured client and entity management",
         "Role permissions for staff and article assistants",
         "Partner sign-off and computation review queues",
-        "Automated filing status updates",
+        "Filing acknowledgement and status tracking",
         "Taxoryn Marketplace practice profile",
       ],
       ctaText: "Join Early Access",

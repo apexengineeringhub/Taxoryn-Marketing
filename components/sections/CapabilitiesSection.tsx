@@ -65,7 +65,7 @@ const capabilities: CapabilityItem[] = [
     id: "doc-mgmt",
     title: "Document Management",
     shortDescription:
-      "Encrypted cloud repository categorized by financial year, client, and tax type with instant search.",
+      "Secure document repository categorized by financial year, client, and tax type with quick search.",
     category: "Serve",
     iconName: "FolderLock",
   },
@@ -73,7 +73,7 @@ const capabilities: CapabilityItem[] = [
     id: "doc-requests",
     title: "Document Requests",
     shortDescription:
-      "Automated document collection checklists sent directly to clients via email and WhatsApp links.",
+      "Document collection checklists sent directly to clients via email and client portal.",
     category: "Serve",
     iconName: "Send",
   },

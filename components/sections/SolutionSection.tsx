@@ -52,8 +52,8 @@ export function SolutionSection() {
       badgeColor: "cyan" as const,
       highlights: [
         "Dedicated client portal with protected access",
-        "One-click structured document requests via WhatsApp/Email",
-        "Automated filing confirmations & status updates",
+        "Structured document collection requests via email and client portal",
+        "Filing acknowledgement tracking & status updates",
       ],
     },
     {

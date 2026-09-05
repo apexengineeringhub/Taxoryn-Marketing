@@ -130,7 +130,7 @@ export function ProductPreview() {
                   Executive Practice Dashboard
                 </h2>
                 <p className="text-xs text-slate-400 mt-0.5">
-                  Real-time compliance health, client workload allocation, and billing realization metrics.
+                  Unified compliance health, client workload allocation, and billing realization metrics.
                 </p>
               </div>
               <div className="inline-flex items-center gap-2 self-start sm:self-auto bg-slate-900/90 border border-slate-800 rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-300">
@@ -262,7 +262,7 @@ export function ProductPreview() {
                     Workflow & Task Overview
                   </h3>
                   <p className="text-[11px] text-slate-400">
-                    Real-time operational task load across organization
+                    Operational task load across organization
                   </p>
                 </div>
 
@@ -498,7 +498,7 @@ export function ProductPreview() {
                   Income Tax Return (ITR) Command Center
                 </h3>
                 <p className="text-xs text-slate-400 mt-0.5">
-                  AY 2025-26 & AY 2024-25 computation pipelines, AIS/TIS ingestion, and e-filing
+                  AY 2025-26 & AY 2024-25 computation pipelines, AIS/TIS data organization, and filing tracking
                 </p>
               </div>
               <span className="text-xs font-semibold px-3 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -557,7 +557,7 @@ export function ProductPreview() {
                 Team Workload & Compliance Tasks
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
-                Assign tasks across partners, managers, and article assistants with real-time audit trail
+                Assign tasks across partners, managers, and article assistants with practice audit logging
               </p>
             </div>
 
@@ -613,10 +613,10 @@ export function ProductPreview() {
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
                   <FolderLock className="w-5 h-5 text-[#00D1A3]" />
-                  Encrypted Client Document Repository
+                  Secure Client Document Repository
                 </h3>
                 <p className="text-xs text-slate-400 mt-0.5">
-                  Organized by Financial Year, Client, and Tax Category with automated client upload requests
+                  Organized by Financial Year, Client, and Tax Category with structured client upload requests
                 </p>
               </div>
               <span className="text-xs text-[#00D1A3] font-medium bg-[#00D1A3]/10 px-3 py-1 rounded border border-[#00D1A3]/30">

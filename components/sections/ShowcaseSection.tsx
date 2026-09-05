@@ -18,7 +18,7 @@ export function ShowcaseSection() {
     <section className="py-16 sm:py-24 bg-white border-y border-[#E2E8F0]">
       <Container>
         <SectionHeading
-          badge="Live Practice Experience"
+          badge="See Taxoryn in Action"
           badgeVariant="teal"
           title="See Taxoryn in action"
           description="A purpose-built interface designed around how Indian tax practitioners review computations, track compliance, and coordinate teams."
@@ -29,15 +29,15 @@ export function ShowcaseSection() {
           <div className="lg:col-span-5 space-y-5">
             <Badge variant="teal">Control & Compliance</Badge>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#07152B]">
-              Real-Time Compliance Tracking Without the Chaos
+              Compliance Tracking Without the Chaos
             </h3>
             <p className="text-base text-[#475569] leading-relaxed">
-              Never wonder if a client&apos;s GSTR-3B was submitted or an ITR computation was signed off. Taxoryn gives you a consolidated view of pending returns with real-time status tracking.
+              Never wonder if a client&apos;s GSTR-3B was submitted or an ITR computation was signed off. Taxoryn gives you a consolidated view of pending returns with organized status tracking.
             </p>
             <ul className="space-y-3 pt-2">
               {[
-                "Automated due-date triggers for monthly GST and quarterly TDS",
-                "Instant identification of ITC mismatches and return delays",
+                "Due-date tracking for monthly GST and quarterly TDS",
+                "Visibility into ITC mismatches and return delays",
                 "Filing acknowledgment records attached directly to client files",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-[#0F172A] font-medium">
@@ -53,7 +53,7 @@ export function ShowcaseSection() {
                 size="md"
                 icon={ArrowRight}
               >
-                Experience Live Demo
+                Join Early Access
               </Button>
             </div>
           </div>
