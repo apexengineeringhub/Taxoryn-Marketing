@@ -1,76 +1,141 @@
 import React from "react";
+import Link from "next/link";
 import { constructMetadata } from "@/lib/seo/metadata";
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Card } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
+import { Button } from "@/components/common/Button";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
-import { BookOpen, FileSpreadsheet, FileCheck2, Receipt } from "lucide-react";
+import { ResourceSearchFilter } from "@/components/resources/ResourceSearchFilter";
+import { ArticleCard } from "@/components/resources/ArticleCard";
+import {
+  RESOURCE_CATEGORIES,
+  RESOURCE_ARTICLES,
+} from "@/lib/content/resources";
+import {
+  BookOpen,
+  FileSpreadsheet,
+  FileCheck2,
+  Receipt,
+  FolderLock,
+  Building2,
+  Sparkles,
+  ArrowRight,
+  ShieldCheck,
+} from "lucide-react";
 
 export const metadata = constructMetadata({
-  title: "Tax Practice Resources & Compliance Guides | Taxoryn",
+  title: "Tax Practice Resources, GST & ITR Compliance Guides | Taxoryn",
   description:
-    "Educational guides, compliance calendars, and practice workflows for Indian tax professionals.",
+    "Free actionable tax compliance checklists, GST reconciliation guides, TDS calendars, and practice management SOPs for Indian CAs and tax consultants.",
   path: "/resources",
 });
 
 export default function ResourcesPage() {
-  const categories = [
-    {
-      icon: FileSpreadsheet,
-      title: "GST Practice Guides",
-      description: "Step-by-step guides for GSTR-1, GSTR-3B reconciliation, 2B ITC matching, and annual GSTR-9 audits.",
-    },
-    {
-      icon: FileCheck2,
-      title: "Income Tax Computations",
-      description: "Analysis of New vs Old tax regimes, deductions under Chapter VI-A, capital gains computations, and ITR schedules.",
-    },
-    {
-      icon: Receipt,
-      title: "TDS Compliance Handbook",
-      description: "Quarterly return filing workflows for Forms 24Q, 26Q, and 27Q, plus Lower Deduction Certificate guidelines.",
-    },
-    {
-      icon: BookOpen,
-      title: "Practice Management Best Practices",
-      description: "How modern Indian CA firms organize client document repositories, staff permissions, and client billing.",
-    },
-  ];
+  const featuredArticles = RESOURCE_ARTICLES.filter((a) => a.featured);
+
+  const getCategoryIcon = (iconName: string) => {
+    switch (iconName) {
+      case "FileSpreadsheet":
+        return <FileSpreadsheet className="w-5 h-5 text-[#082E5B]" />;
+      case "FileCheck2":
+        return <FileCheck2 className="w-5 h-5 text-[#082E5B]" />;
+      case "Receipt":
+        return <Receipt className="w-5 h-5 text-[#082E5B]" />;
+      case "FolderLock":
+        return <FolderLock className="w-5 h-5 text-[#082E5B]" />;
+      case "Building2":
+        return <Building2 className="w-5 h-5 text-[#082E5B]" />;
+      default:
+        return <BookOpen className="w-5 h-5 text-[#082E5B]" />;
+    }
+  };
 
   return (
     <div className="py-12 sm:py-20 bg-[#F8FAFC]">
       <Container>
+        {/* Knowledge Hub Header */}
         <SectionHeading
-          badge="Knowledge Hub"
-          badgeVariant="navy"
-          title="Tax Practice Resources & Operational Guides"
-          description="Actionable insights, statutory calendars, and management strategies curated for Indian tax practitioners."
+          badge="Knowledge Hub & SOPs"
+          badgeVariant="teal"
+          title="Tax Compliance Guides & Practice Management Resources"
+          description="Actionable operational checklists, statutory due dates, and standard operating procedures curated for Indian Chartered Accountants, Tax Consultants, and corporate tax teams."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16">
-          {categories.map((cat, idx) => {
-            const Icon = cat.icon;
-            return (
-              <Card
-                key={idx}
-                variant="interactive"
-                padding="lg"
-                className="bg-white border-slate-200 hover:border-[#00D1A3] transition-all duration-200"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B] mb-4">
-                  <Icon className="w-5 h-5" />
+        {/* Featured Cornerstone Guides Carousel/Grid */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#00D1A3]" />
+              <h2 className="text-xl font-bold text-[#07152B]">
+                Featured Cornerstone Guides
+              </h2>
+            </div>
+            <span className="text-xs text-slate-400 font-medium">
+              Curated for Practice Excellence
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredArticles.slice(0, 3).map((article) => (
+              <ArticleCard key={article.id} article={article} />
+            ))}
+          </div>
+        </div>
+
+        {/* Topic Categories Overview */}
+        <div className="mb-16">
+          <h2 className="text-xl font-bold text-[#07152B] mb-6">
+            Explore Compliance Disciplines
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {RESOURCE_CATEGORIES.map((cat) => {
+              const articleCount = RESOURCE_ARTICLES.filter(
+                (a) => a.category === cat.slug
+              ).length;
+
+              return (
+                <div
+                  key={cat.id}
+                  id={cat.slug}
+                  className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3 flex flex-col justify-between hover:border-[#00D1A3] transition-colors"
+                >
+                  <div className="space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <div className="w-9 h-9 rounded-xl bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center">
+                        {getCategoryIcon(cat.iconName)}
+                      </div>
+                      <Badge variant="navy" size="sm">
+                        {articleCount} {articleCount === 1 ? "Guide" : "Guides"}
+                      </Badge>
+                    </div>
+                    <h3 className="text-base font-bold text-[#07152B]">
+                      {cat.name}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {cat.shortDescription}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-[#07152B] mb-2">
-                  {cat.title}
-                </h3>
-                <p className="text-sm text-[#475569] leading-relaxed">
-                  {cat.description}
-                </p>
-              </Card>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Interactive Search & Filterable Library */}
+        <div className="mb-16">
+          <h2 className="text-xl font-bold text-[#07152B] mb-6">
+            All Practice Resources & Operational Checklists
+          </h2>
+          <ResourceSearchFilter
+            categories={RESOURCE_CATEGORIES}
+            articles={RESOURCE_ARTICLES}
+          />
         </div>
       </Container>
+
+      {/* Conversion Final CTA */}
       <FinalCTASection />
     </div>
   );
