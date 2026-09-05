@@ -9,6 +9,8 @@ import { MarketplaceSection } from "@/components/sections/MarketplaceSection";
 import { ClientExperienceSection } from "@/components/sections/ClientExperienceSection";
 import { SecuritySection } from "@/components/sections/SecuritySection";
 import { SolutionsSegmentSection } from "@/components/sections/SolutionsSegmentSection";
+import { FAQSection } from "@/components/trust/FAQSection";
+import { CustomerStoriesSection } from "@/components/trust/CustomerStoriesSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 
 export default function HomePage() {
@@ -44,7 +46,13 @@ export default function HomePage() {
       {/* 10. Solutions by Practice Scale */}
       <SolutionsSegmentSection />
 
-      {/* 11. Final Conversion CTA */}
+      {/* 11. Early Access Cohort Note (Authentic Social Proof Architecture) */}
+      <CustomerStoriesSection />
+
+      {/* 12. Frequently Asked Questions */}
+      <FAQSection />
+
+      {/* 13. Final Conversion CTA */}
       <FinalCTASection />
     </div>
   );

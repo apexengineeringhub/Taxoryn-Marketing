@@ -8,6 +8,7 @@ import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
 import { ProductPreview } from "@/components/marketing/ProductPreview";
 import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
+import { FAQSection } from "@/components/trust/FAQSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 import { siteConfig } from "@/lib/config/site";
 import {
@@ -216,7 +217,14 @@ export default function ProductPage() {
       {/* 4. Complete Feature Capabilities Section */}
       <CapabilitiesSection />
 
-      {/* 5. Final Conversion CTA */}
+      {/* 5. Product & Workflow FAQs */}
+      <FAQSection
+        initialCategory="features"
+        title="Product & Workflow FAQs"
+        description="Clear answers about how Taxoryn manages client intake, compliance pipelines, and partner reviews."
+      />
+
+      {/* 6. Final Conversion CTA */}
       <FinalCTASection />
     </div>
   );

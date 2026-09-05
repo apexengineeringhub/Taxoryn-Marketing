@@ -7,6 +7,7 @@ import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
 import { siteConfig } from "@/lib/config/site";
 import { Check, ArrowRight, Info, Calendar } from "lucide-react";
+import { FAQSection } from "@/components/trust/FAQSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 
 export const metadata = constructMetadata({
@@ -142,6 +143,14 @@ export default function PricingPage() {
           ))}
         </div>
       </Container>
+
+      {/* Pricing & Early Access FAQs */}
+      <FAQSection
+        initialCategory="pricing"
+        title="Pricing & Early Access FAQs"
+        description="Everything you need to know about practice tiers, early access onboarding, and firm customization."
+      />
+
       <FinalCTASection />
     </div>
   );
