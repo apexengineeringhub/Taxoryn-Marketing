@@ -39,7 +39,7 @@ export default function PrivacyPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-[#07152B]">3. Information Security</h2>
             <p>
-              We implement industry-standard encryption protocols (TLS in transit, AES-256 at rest) and strict logical tenant isolation to prevent unauthorized access across accounts.
+              We implement industry-standard encryption protocols in transit and at rest alongside strict logical tenant isolation to prevent unauthorized access across accounts.
             </p>
           </section>
 

@@ -486,7 +486,7 @@ export function ProductPreview() {
                 </p>
               </div>
               <span className="text-xs text-[#00D1A3] font-medium bg-[#00D1A3]/10 px-3 py-1 rounded border border-[#00D1A3]/30">
-                End-to-End Practice Isolation
+                Tenant-Aware Practice Isolation
               </span>
             </div>
 

@@ -81,11 +81,33 @@ export default function ContactPage() {
 
     if (validateForm()) {
       setIsSubmitting(true);
-      // Client-side recorded demo request
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setSubmitted(true);
-      }, 600);
+
+      const subject = encodeURIComponent(
+        `Taxoryn Practice Consultation Request - ${formData.firmName}`
+      );
+      const body = encodeURIComponent(
+        `Name: ${formData.fullName}
+Firm / Practice: ${formData.firmName}
+Work Email: ${formData.email}
+Phone: ${formData.phone}
+Practice Size: ${formData.practiceSize}
+
+Context / Message:
+${formData.message || "None provided"}
+
+---
+Sent via Taxoryn Practice Consultation Form`
+      );
+
+      const mailtoUrl = `mailto:support@taxoryn.com?subject=${subject}&body=${body}`;
+
+      // Open user's default email client
+      if (typeof window !== "undefined") {
+        window.location.href = mailtoUrl;
+      }
+
+      setIsSubmitting(false);
+      setSubmitted(true);
     }
   };
 
@@ -165,43 +187,52 @@ export default function ContactPage() {
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#07152B]">
-                  Demo Request Received
+                  Opening Email Client
                 </h3>
                 <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                  Thank you for your interest, <strong>{formData.fullName}</strong>. Our practice advisory team will review your practice requirements for <strong>{formData.firmName}</strong> and contact you via email ({formData.email}) or phone.
+                  Your inquiry for <strong>{formData.firmName}</strong> has been formatted for our advisory team. Your default mail application should open automatically.
                 </p>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left space-y-2">
                   <p className="font-semibold text-slate-800">
-                    Need immediate assistance?
+                    Did your email client not open?
                   </p>
                   <p>
-                    You can email our team directly at{" "}
+                    Send your inquiry directly to:{" "}
                     <a
-                      href={`mailto:support@taxoryn.com?subject=Taxoryn Demo Request - ${encodeURIComponent(formData.firmName)}&body=Name: ${encodeURIComponent(formData.fullName)}%0D%0APhone: ${encodeURIComponent(formData.phone)}%0D%0APractice Size: ${encodeURIComponent(formData.practiceSize)}`}
+                      href={`mailto:support@taxoryn.com?subject=Taxoryn Practice Consultation - ${encodeURIComponent(formData.firmName)}&body=Name: ${encodeURIComponent(formData.fullName)}%0D%0APractice: ${encodeURIComponent(formData.firmName)}%0D%0AEmail: ${encodeURIComponent(formData.email)}%0D%0APhone: ${encodeURIComponent(formData.phone)}%0D%0APractice Size: ${encodeURIComponent(formData.practiceSize)}%0D%0AMessage: ${encodeURIComponent(formData.message)}`}
                       className="text-[#082E5B] underline font-medium hover:text-[#00D1A3]"
                     >
                       support@taxoryn.com
                     </a>
                   </p>
                 </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({
-                      fullName: "",
-                      firmName: "",
-                      email: "",
-                      phone: "",
-                      practiceSize: "Solo Practitioner (1 Person)",
-                      message: "",
-                    });
-                  }}
-                >
-                  Submit Another Inquiry
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                  <a
+                    href={`mailto:support@taxoryn.com?subject=Taxoryn Practice Consultation - ${encodeURIComponent(formData.firmName)}&body=Name: ${encodeURIComponent(formData.fullName)}%0D%0APractice: ${encodeURIComponent(formData.firmName)}%0D%0AEmail: ${encodeURIComponent(formData.email)}%0D%0APhone: ${encodeURIComponent(formData.phone)}%0D%0APractice Size: ${encodeURIComponent(formData.practiceSize)}%0D%0AMessage: ${encodeURIComponent(formData.message)}`}
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-[#00D1A3] text-[#07152B] hover:bg-[#00D1A3]/90 transition-colors"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    Open Email Directly
+                  </a>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({
+                        fullName: "",
+                        firmName: "",
+                        email: "",
+                        phone: "",
+                        practiceSize: "Solo Practitioner (1 Person)",
+                        message: "",
+                      });
+                    }}
+                  >
+                    Edit Inquiry
+                  </Button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>

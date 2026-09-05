@@ -30,7 +30,7 @@ export function ClientExperienceSection() {
       icon: Lock,
       title: "Secure Document Access",
       description:
-        "End-to-end encrypted storage ensures sensitive financial records and computations are never transmitted through insecure channels.",
+        "Protected document storage with tenant-aware authorization ensures sensitive financial records and computations are never transmitted through insecure channels.",
     },
     {
       icon: BellRing,

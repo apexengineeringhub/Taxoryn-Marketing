@@ -24,7 +24,7 @@ export function Footer() {
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-slate-400">
               <Shield className="w-4 h-4 text-[#00D1A3]" />
-              <span>Multi-tenant practice data isolation & encryption</span>
+              <span>Multi-tenant practice data isolation & role-based access</span>
             </div>
           </div>
 

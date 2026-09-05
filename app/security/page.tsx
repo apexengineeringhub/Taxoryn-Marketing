@@ -63,7 +63,7 @@ export default function SecurityPage() {
     {
       title: "Production Security",
       description:
-        "Web traffic is encrypted in transit via TLS protocols. Platform services follow least-privilege principles and environment separation.",
+        "Web traffic is protected in transit using standard HTTPS encryption. Platform services follow least-privilege principles and environment separation.",
       icon: Server,
     },
     {

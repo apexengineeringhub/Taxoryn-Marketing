@@ -25,7 +25,7 @@ const capabilities: CapabilityItem[] = [
     id: "gst-mgmt",
     title: "GST Management",
     shortDescription:
-      "End-to-end tracking for GSTR-1, GSTR-3B, GSTR-9, ITC matching, 2B reconciliation, and filing acknowledgments.",
+      "Complete lifecycle tracking for GSTR-1, GSTR-3B, GSTR-9, ITC matching, 2B reconciliation, and filing acknowledgments.",
     category: "Control",
     iconName: "FileSpreadsheet",
   },
