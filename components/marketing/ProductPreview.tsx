@@ -21,6 +21,9 @@ import {
   Search,
   Percent,
   Receipt,
+  Bell,
+  Plus,
+  ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/components/common/Container";
 import { Badge } from "@/components/common/Badge";
@@ -32,22 +35,40 @@ export function ProductPreview() {
 
   return (
     <div className="relative mx-auto w-full max-w-5xl rounded-2xl border border-slate-700/60 bg-[#07152B] shadow-2xl shadow-[#082E5B]/20 overflow-hidden text-slate-100">
-      {/* Window Mockup Header */}
-      <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-slate-800 bg-[#070C1A]/80">
+      {/* 1. Window Browser Chrome Bar */}
+      <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 border-b border-slate-800 bg-[#070C1A] text-xs">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-rose-500/80" />
           <div className="w-3 h-3 rounded-full bg-amber-500/80" />
           <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-          <span className="ml-3 text-xs font-semibold text-slate-200 hidden sm:inline-block">
-            Sample Taxoryn Workspace
-          </span>
-          <span className="text-[11px] text-slate-400 hidden md:inline-block">
-            • Illustrative interface with sample data
+          <span className="ml-3 font-mono text-[11px] text-slate-400 hidden sm:inline-block">
+            https://app.taxoryn.com/dashboard
           </span>
         </div>
+        <div className="flex items-center gap-2 text-[11px] text-slate-400">
+          <span className="font-semibold text-slate-300">Sample Taxoryn Workspace</span>
+          <span className="hidden md:inline text-slate-500">• Illustrative interface with sample data</span>
+        </div>
+      </div>
 
-        {/* View Switcher Tabs */}
-        <div className="flex items-center gap-1 sm:gap-2">
+      {/* 2. Authentic Taxoryn Product Header & Navigation Bar */}
+      <div className="px-4 sm:px-6 py-3 border-b border-slate-800/90 bg-[#07152B]/95 backdrop-blur-sm flex flex-wrap items-center justify-between gap-3">
+        {/* Left: Global Search Bar */}
+        <div className="relative w-44 sm:w-56 min-w-0">
+          <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            readOnly
+            placeholder="Search... (Ctrl+K)"
+            className="w-full pl-8 pr-7 py-1.5 text-xs bg-slate-900/90 border border-slate-700/70 rounded-lg text-slate-200 placeholder:text-slate-400 cursor-default focus:outline-none"
+          />
+          <kbd className="hidden sm:inline-block absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.5 text-[9px] font-semibold text-slate-400 bg-slate-800 border border-slate-700 rounded">
+            ⌘K
+          </kbd>
+        </div>
+
+        {/* Center: Module Switcher Tabs */}
+        <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-0.5">
           {(
             [
               { id: "overview", label: "Dashboard" },
@@ -61,15 +82,40 @@ export function ProductPreview() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                "px-2.5 sm:px-3 py-1 text-xs font-medium rounded-md transition-all",
+                "px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap",
                 activeTab === tab.id
-                  ? "bg-[#00D1A3] text-[#07152B] font-semibold shadow-sm"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800"
+                  ? "bg-[#00D1A3] text-[#07152B] shadow-sm"
+                  : "text-slate-300 hover:text-white hover:bg-slate-800/80"
               )}
             >
               {tab.label}
             </button>
           ))}
+        </div>
+
+        {/* Right: Quick Action, Notification Bell, User Avatar & Role Badge */}
+        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <button className="hidden xl:inline-flex items-center gap-1 text-[11px] font-bold bg-[#00D1A3]/15 text-[#00D1A3] border border-[#00D1A3]/30 px-2.5 py-1.5 rounded-lg">
+            <Plus className="w-3.5 h-3.5" />
+            <span>New Action</span>
+          </button>
+
+          <div className="relative p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+            <Bell className="w-4 h-4" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3] absolute top-1 right-1" />
+          </div>
+
+          <div className="h-4 w-px bg-slate-800 hidden sm:block" />
+
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-full bg-[#00D1A3] text-[#07152B] font-black text-xs flex items-center justify-center shadow-sm">
+              RS
+            </div>
+            <div className="hidden md:flex items-center gap-1.5 bg-slate-900/80 border border-slate-700/70 rounded-full px-2.5 py-1 text-[11px] font-semibold text-slate-200">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#00D1A3]" />
+              <span>Practice Admin</span>
+            </div>
+          </div>
         </div>
       </div>
 
