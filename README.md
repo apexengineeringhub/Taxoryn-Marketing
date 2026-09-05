@@ -25,6 +25,48 @@ Visitor → Understand Taxoryn → Explore Product / Solutions → Choose CTA �
 
 ---
 
+## 1.2 Analytics & Measurement Architecture (W6)
+
+Taxoryn Marketing implements a **privacy-conscious, fail-safe analytics measurement layer** designed to understand aggregate marketing traffic and conversion intent without tracking personal identity, tax records, or financial information.
+
+### Core Privacy Principles:
+1. **Zero Personal Identifiers**: Analytics NEVER collects or transmits visitor names, email addresses, phone numbers, or firm names.
+2. **Zero Statutory / Financial Data**: We strictly avoid collecting PAN, GSTIN, Aadhaar, return computations, or documents.
+3. **No Invasive Tracking**: Zero session recording (no Hotjar/Clarity), zero keystroke tracking, and zero fingerprinting.
+4. **User Consent**: Transparent, non-manipulative consent banner (`AnalyticsConsentBanner.tsx`) storing preferences in `localStorage`.
+5. **Fail-Safe Execution**: Analytics failures never interrupt page rendering, block navigation, or fail form submissions.
+
+### Supported Events Catalog (`lib/analytics/events.ts`):
+- `page_view`: Route path, page title, referrer, sanitized UTM parameters.
+- `cta_click`: CTA name, location, destination, audience segment.
+- `navigation_click`: Navigation link destination and header/footer location.
+- `resource_open`: Resource slug and category.
+- `resource_category_select`: Category filter switch on `/resources`.
+- `product_preview_select`: Tab selection in the 6-module interactive product preview.
+- `marketplace_cta_click`: Marketplace interest click (audience: customer vs practice).
+- `early_access_view`: Visitor view of `/early-access`.
+- `early_access_form_start`: First interaction with the early access form.
+- `early_access_submit_intent`: Mailto intent triggered (sends only aggregate practice size & primary interest).
+- `book_demo_view`: Visitor view of `/book-demo`.
+- `book_demo_form_start`: First interaction with the demo booking form.
+- `book_demo_submit_intent`: Mailto intent triggered (sends only practice size, demo focus, contact method).
+- `external_app_click`: Links navigating to `app.taxoryn.com` (login/register).
+
+### Environment Configuration:
+Configure analytics via `.env.local` (see `.env.example`):
+```bash
+# Enable analytics (disabled by default in development)
+NEXT_PUBLIC_ANALYTICS_ENABLED=false
+
+# Provider abstraction ('custom', 'plausible', 'google-analytics', 'none')
+NEXT_PUBLIC_ANALYTICS_PROVIDER=custom
+
+# Development debugging (logs sanitized payloads to console when true)
+NEXT_PUBLIC_ANALYTICS_DEBUG=false
+```
+
+---
+
 ## 2. Technology Stack
 
 - **Framework**: Next.js 15+ (App Router, Server Components by default)
@@ -32,7 +74,7 @@ Visitor → Understand Taxoryn → Explore Product / Solutions → Choose CTA �
 - **Styling**: Tailwind CSS v3 with centralized Taxoryn design tokens
 - **Icons**: Lucide React
 - **Typography**: Inter (Google Fonts via `next/font/google`)
-- **SEO & Metadata**: Next.js Metadata API, dynamic Open Graph, Twitter Cards, `robots.ts`, `sitemap.ts`, Schema.org SoftwareApplication JSON-LD
+- **SEO & Metadata**: Next.js Metadata API, dynamic Open Graph, Twitter Cards, `robots.ts`, `sitemap.ts`, Schema.org SoftwareApplication, FAQPage & Article JSON-LD
 
 ---
 
@@ -53,33 +95,42 @@ All external links (e.g., `Start Free`, `Login`) are centralized in `lib/config/
 ```
 taxoryn-marketing/
 ├── app/
-│   ├── layout.tsx                # Root layout with Inter font, SEO & Header/Footer
-│   ├── page.tsx                  # Complete Homepage with all 11 core sections
+│   ├── layout.tsx                # Root layout with Inter font, SEO, AnalyticsTracker, ConsentBanner & Header/Footer
+│   ├── page.tsx                  # Complete Homepage with all core sections, FAQ, and Cohort Notice
 │   ├── globals.css               # Design tokens, custom utilities, animation classes
 │   ├── robots.ts                 # Dynamic robots.txt
 │   ├── sitemap.ts                # Dynamic sitemap.xml
-│   ├── product/page.tsx          # Product overview scaffold
-│   ├── features/page.tsx         # Features overview scaffold
+│   ├── product/page.tsx          # Product overview & 5-stage practice lifecycle
+│   ├── features/page.tsx         # Features overview & 4 problem-solution pillars
 │   ├── solutions/
-│   │   ├── page.tsx              # Solutions overview scaffold
+│   │   ├── page.tsx              # Solutions overview
 │   │   ├── solo-practitioner/    # Solo practitioner solution
 │   │   ├── small-firm/           # Small tax firm solution
 │   │   └── growing-practice/     # Growing practice solution
 │   ├── marketplace/page.tsx      # Taxoryn Marketplace page
-│   ├── pricing/page.tsx          # Pricing page
-│   ├── security/page.tsx         # Security architecture page
-│   ├── about/page.tsx            # About mission page
+│   ├── pricing/page.tsx          # Pricing practice tiers & FAQ
+│   ├── security/page.tsx         # Security architecture & boundaries page
+│   ├── about/page.tsx            # About mission, principles & boundaries page
 │   ├── contact/page.tsx          # Book a Demo / Contact page
-│   ├── resources/page.tsx        # Tax resources & knowledge hub
-│   ├── privacy/page.tsx          # Privacy policy
+│   ├── resources/
+│   │   ├── page.tsx              # Resources hub with search & category filters
+│   │   └── [slug]/page.tsx       # Cornerstone tax guides with Article schema
+│   ├── early-access/page.tsx     # Early access onboarding flow
+│   ├── book-demo/page.tsx        # Book a demo flow
+│   ├── privacy/page.tsx          # Privacy policy with analytics disclosure
 │   └── terms/page.tsx            # Terms of service
 ├── components/
+│   ├── analytics/                # AnalyticsTracker, AnalyticsConsentBanner
 │   ├── common/                   # Reusable UI primitives (Button, Container, SectionHeading, Badge, Card)
 │   ├── navigation/               # Header, MobileNav, Footer, Logo
-│   ├── marketing/                # ProductPreview, CapabilityCard, WorkflowDiagram, TrustStrip
-│   └── sections/                 # 11 homepage sections (Hero, Trust, Problem, Solution, Capabilities, Showcase, Marketplace, ClientExperience, Security, SolutionsSegment, FinalCTA)
+│   ├── marketing/                # ProductPreview, CapabilityCard, WorkflowDiagram, TrustStrip, EarlyAccessForm, BookDemoForm
+│   ├── resources/                # ResourceSearchFilter, ArticleCard, ArticleContentRenderer, TaxDisclaimer
+│   ├── trust/                    # FAQSection, CustomerStoriesSection
+│   └── sections/                 # Marketing sections (Hero, Problem, Solution, Capabilities, Showcase, Marketplace, ClientExperience, Security, SolutionsSegment, FinalCTA)
 ├── lib/
-│   ├── config/                   # Centralized configuration (site.ts, navigation.ts, brand.ts)
+│   ├── analytics/                # Privacy-safe analytics abstraction & event catalog
+│   ├── config/                   # Centralized configuration (site.ts, navigation.ts, brand.ts, analytics.ts)
+│   ├── content/                  # Cornerstone resources & centralized FAQ datasets
 │   └── seo/                      # SEO metadata & JSON-LD generators (metadata.ts)
 ├── public/
 │   ├── brand/                    # Official SVG brand assets (logo.svg, logo-symbol.svg, favicon.svg)
@@ -94,28 +145,7 @@ taxoryn-marketing/
 
 ---
 
-## 5. Design Tokens & Brand System
-
-| Design Token | Hex Code | Purpose |
-| :--- | :--- | :--- |
-| **Primary Navy** | `#082E5B` | Primary brand color, hero accents, main headings |
-| **Dark Navy** | `#07152B` | Dark section backgrounds, header accents |
-| **Obsidian** | `#070C1A` | Dark cards, deep contrast backgrounds |
-| **Primary Teal** | `#00D1A3` | Primary brand accent, primary CTA highlight, active states |
-| **Teal Dark** | `#00B388` | Teal hover states, borders |
-| **Emerald** | `#059669` | Success badges, verified indicators |
-| **Cyan** | `#0EA5E9` | Secondary accents, gradient highlights |
-| **Light Cyan** | `#38BDF8` | Glows, subtle highlights |
-| **Background** | `#F8FAFC` | Main page background |
-| **Primary Text** | `#0F172A` | High contrast headings and primary body text |
-| **Secondary Text**| `#475569` | Body text, subheadings |
-| **Muted Text** | `#64748B` | Footnotes, captions, small labels |
-| **Border** | `#E2E8F0` | Default clean borders |
-| **Strong Border** | `#CBD5E1` | Interactive borders |
-
----
-
-## 6. Local Development Setup
+## 5. Local Development Setup
 
 ### Prerequisites
 - Node.js 18.18+ or 20+ (Node.js 22+ recommended)
@@ -138,7 +168,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 7. Build and Verification Commands
+## 6. Build and Verification Commands
 
 ```bash
 # Type check TypeScript without emitting files
@@ -156,24 +186,7 @@ npm run lint
 
 ---
 
-## 8. Deployment Instructions (Vercel)
-
-1. Push this repository to GitHub / GitLab / Bitbucket.
-2. In the Vercel Dashboard, click **Add New Project** and import `taxoryn-marketing`.
-3. Framework Preset: **Next.js**
-4. Root Directory: `./`
-5. Build Command: `npm run build`
-6. Output Directory: `.next`
-7. Click **Deploy**.
-
-### Custom Domain Configuration (Vercel):
-- Add domain `taxoryn.com` and `www.taxoryn.com`.
-- Configure DNS A Record pointing `taxoryn.com` to `76.76.21.21` (or Vercel CNAME `cname.vercel-dns.com` for `www`).
-- Ensure `app.taxoryn.com` points to your core SaaS application infrastructure independently.
-
----
-
-## 9. Security & Governance
+## 7. Security & Governance
 
 - This is a static/SSR marketing application with **zero exposed secrets or database credentials**.
 - Authentication, customer databases, and sensitive APIs reside exclusively on `app.taxoryn.com` and `api.taxoryn.com`.

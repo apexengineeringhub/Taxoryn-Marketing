@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/components/common/Container";
 import { Badge } from "@/components/common/Badge";
+import { trackEvent } from "@/lib/analytics";
 
 export type ProductTabKey =
   | "overview"
@@ -62,6 +63,11 @@ export function ProductPreview({
     { id: "portal" as const, label: "Client Portal", badge: "Client View" },
     { id: "marketplace" as const, label: "Marketplace", badge: "Practice Growth" },
   ];
+
+  const handleTabChange = (tabId: ProductTabKey) => {
+    setActiveTab(tabId);
+    trackEvent("product_preview_select", { area: tabId });
+  };
 
   return (
     <div className="relative mx-auto w-full max-w-5xl rounded-2xl border border-slate-700/60 bg-[#07152B] shadow-2xl shadow-[#082E5B]/20 overflow-hidden text-slate-100">
@@ -111,7 +117,7 @@ export function ProductPreview({
                 id={`tab-${tab.id}`}
                 aria-selected={activeTab === tab.id}
                 aria-controls={`tabpanel-${tab.id}`}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => handleTabChange(tab.id)}
                 className={cn(
                   "px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]",
                   activeTab === tab.id

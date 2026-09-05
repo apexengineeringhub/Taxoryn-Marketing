@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Container } from "@/components/common/Container";
@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { Button } from "@/components/common/Button";
 import { Card } from "@/components/common/Card";
 import { siteConfig } from "@/lib/config/site";
+import { trackEvent } from "@/lib/analytics";
 import {
   Calendar,
   Mail,
@@ -76,6 +77,7 @@ function BookDemoContent() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPrepared, setIsPrepared] = useState(false);
+  const formStartedRef = useRef(false);
 
   // Capture optional campaign parameters safely
   const source = searchParams?.get("source") || "";
@@ -84,6 +86,13 @@ function BookDemoContent() {
   const utmCampaign = searchParams?.get("utm_campaign") || "";
   const utmContent = searchParams?.get("utm_content") || "";
   const utmTerm = searchParams?.get("utm_term") || "";
+
+  useEffect(() => {
+    trackEvent("book_demo_view", {
+      source: utmSource || source || undefined,
+      campaign: utmCampaign || undefined,
+    });
+  }, [utmSource, source, utmCampaign]);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -163,6 +172,15 @@ function BookDemoContent() {
 
     if (validate()) {
       setIsSubmitting(true);
+
+      // Track submit intent without ANY personal details
+      trackEvent("book_demo_submit_intent", {
+        practice_size: formData.practiceSize,
+        demo_focus: formData.demoFocus,
+        contact_method: formData.contactMethod,
+        has_timing: Boolean(formData.preferredTiming.trim()),
+      });
+
       const mailtoUrl = constructMailtoUrl();
 
       if (typeof window !== "undefined") {
@@ -179,6 +197,14 @@ function BookDemoContent() {
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
+    if (!formStartedRef.current) {
+      formStartedRef.current = true;
+      trackEvent("book_demo_form_start", {
+        practice_size: formData.practiceSize,
+        demo_focus: formData.demoFocus,
+      });
+    }
+
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {

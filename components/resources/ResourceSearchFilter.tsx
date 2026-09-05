@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import { ResourceArticle, ResourceCategory } from "@/types/content";
 import { ArticleCard } from "./ArticleCard";
 import { Search, Filter, BookOpen } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface ResourceSearchFilterProps {
   categories: ResourceCategory[];
@@ -16,6 +17,11 @@ export function ResourceSearchFilter({
 }: ResourceSearchFilterProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    trackEvent("resource_category_select", { category, page: "/resources" });
+  };
 
   const filteredArticles = useMemo(() => {
     return articles.filter((article) => {
@@ -55,7 +61,7 @@ export function ResourceSearchFilter({
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
             <button
               type="button"
-              onClick={() => setSelectedCategory("all")}
+              onClick={() => handleCategorySelect("all")}
               className={`px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                 selectedCategory === "all"
                   ? "bg-[#082E5B] text-white shadow-sm"
@@ -70,7 +76,7 @@ export function ResourceSearchFilter({
                 <button
                   key={cat.slug}
                   type="button"
-                  onClick={() => setSelectedCategory(cat.slug)}
+                  onClick={() => handleCategorySelect(cat.slug)}
                   className={`px-3.5 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
                     selectedCategory === cat.slug
                       ? "bg-[#082E5B] text-white shadow-sm"

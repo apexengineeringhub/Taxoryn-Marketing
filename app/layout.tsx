@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/navigation/Header";
 import { Footer } from "@/components/navigation/Footer";
+import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
+import { AnalyticsConsentBanner } from "@/components/analytics/AnalyticsConsentBanner";
 import { constructMetadata, generateSoftwareApplicationSchema } from "@/lib/seo/metadata";
 
 const inter = Inter({
@@ -29,9 +31,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-[#0F172A] antialiased">
+        <AnalyticsTracker />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <AnalyticsConsentBanner />
       </body>
     </html>
   );

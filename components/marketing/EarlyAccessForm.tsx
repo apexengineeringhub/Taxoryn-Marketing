@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Container } from "@/components/common/Container";
@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { Button } from "@/components/common/Button";
 import { Card } from "@/components/common/Card";
 import { siteConfig } from "@/lib/config/site";
+import { trackEvent } from "@/lib/analytics";
 import {
   Send,
   Mail,
@@ -68,6 +69,7 @@ function EarlyAccessContent() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPrepared, setIsPrepared] = useState(false);
+  const formStartedRef = useRef(false);
 
   // Capture optional campaign parameters safely
   const source = searchParams?.get("source") || "";
@@ -76,6 +78,13 @@ function EarlyAccessContent() {
   const utmCampaign = searchParams?.get("utm_campaign") || "";
   const utmContent = searchParams?.get("utm_content") || "";
   const utmTerm = searchParams?.get("utm_term") || "";
+
+  useEffect(() => {
+    trackEvent("early_access_view", {
+      source: utmSource || source || undefined,
+      campaign: utmCampaign || undefined,
+    });
+  }, [utmSource, source, utmCampaign]);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -154,6 +163,15 @@ function EarlyAccessContent() {
 
     if (validate()) {
       setIsSubmitting(true);
+
+      // Track submit intent without ANY personal details
+      trackEvent("early_access_submit_intent", {
+        practice_size: formData.practiceSize,
+        primary_interest: formData.primaryInterest,
+        has_city: Boolean(formData.city.trim()),
+        has_phone: Boolean(formData.phone.trim()),
+      });
+
       const mailtoUrl = constructMailtoUrl();
 
       if (typeof window !== "undefined") {
@@ -170,6 +188,14 @@ function EarlyAccessContent() {
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
+    if (!formStartedRef.current) {
+      formStartedRef.current = true;
+      trackEvent("early_access_form_start", {
+        practice_size: formData.practiceSize,
+        primary_interest: formData.primaryInterest,
+      });
+    }
+
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
