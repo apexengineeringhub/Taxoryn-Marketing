@@ -7,7 +7,7 @@ import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
 import {
   User,
-  Users2,
+  Users,
   Building2,
   Check,
   ArrowRight,
@@ -43,7 +43,7 @@ export function SolutionsSegmentSection() {
       ],
       ctaText: "Small Firm Solution",
       ctaHref: "/solutions/small-firm",
-      icon: Users2,
+      icon: Users,
       featured: true,
     },
     {
