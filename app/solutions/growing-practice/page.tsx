@@ -38,7 +38,10 @@ export default function GrowingPracticePage() {
           <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
             <div className="flex items-center gap-2">
               <Building2 className="w-5 h-5 text-emerald-400" />
-              <span className="font-bold text-sm">Multi-Branch Practice Hierarchy & Marketplace Hub</span>
+              <div>
+                <span className="font-bold text-sm block">Multi-Branch Practice Hierarchy & Marketplace Hub</span>
+                <span className="text-[10px] text-slate-400">Illustrative interface with sample practice data</span>
+              </div>
             </div>
             <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono">
               Enterprise Scale

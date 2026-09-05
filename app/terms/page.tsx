@@ -17,7 +17,7 @@ export default function TermsPage() {
           badge="Legal & Terms"
           badgeVariant="navy"
           title="Terms of Service"
-          description="Last updated: September 2026"
+          description="Terms and conditions governing the use of Taxoryn practice management and marketing services."
           align="left"
         />
 

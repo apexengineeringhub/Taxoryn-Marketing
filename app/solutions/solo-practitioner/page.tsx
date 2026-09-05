@@ -42,7 +42,10 @@ export default function SoloPractitionerPage() {
           <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
             <div className="flex items-center gap-2">
               <User className="w-5 h-5 text-[#00D1A3]" />
-              <span className="font-bold text-sm">Solo Practitioner Workspace View</span>
+              <div>
+                <span className="font-bold text-sm block">Solo Practitioner Workspace View</span>
+                <span className="text-[10px] text-slate-400">Illustrative interface with sample practice data</span>
+              </div>
             </div>
             <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#00D1A3]/20 text-[#00D1A3] font-mono">
               Single-Pane Focus

@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           badge="Legal & Trust"
           badgeVariant="navy"
           title="Privacy Policy"
-          description="Last updated: September 2026"
+          description="Practice data privacy, confidentiality, and data minimization principles."
           align="left"
         />
 
