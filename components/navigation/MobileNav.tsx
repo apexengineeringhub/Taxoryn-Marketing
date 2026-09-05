@@ -163,7 +163,7 @@ export function MobileNav() {
             size="lg"
             className="w-full justify-center shadow-md font-bold"
           >
-            Start Free
+            Join Early Access
           </Button>
 
           <Button

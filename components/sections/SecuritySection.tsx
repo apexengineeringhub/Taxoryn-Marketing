@@ -50,7 +50,7 @@ export function SecuritySection() {
       icon: ShieldCheck,
       title: "Controlled Client Access",
       description:
-        "Clients can only access specific tax returns, acknowledgments, and upload requests explicitly shared through the verified client portal.",
+        "Clients can only access specific tax returns, acknowledgments, and upload requests explicitly shared through their secure client portal.",
     },
   ];
 

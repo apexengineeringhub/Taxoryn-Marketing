@@ -43,7 +43,7 @@ export function HeroSection() {
               icon={ArrowRight}
               className="w-full sm:w-auto px-8 py-3.5 text-base font-bold shadow-md shadow-[#00D1A3]/20"
             >
-              Start Free
+              Join Early Access
             </Button>
 
             <Button

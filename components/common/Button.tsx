@@ -79,17 +79,27 @@ export const Button = React.forwardRef<
 
   if ("href" in props && props.href) {
     const { href, external, ...linkProps } = props;
-    const isExternal =
-      external || href.startsWith("http://") || href.startsWith("https://");
+    const isAppDomain =
+      href.startsWith("https://app.taxoryn.com") ||
+      href.startsWith("http://app.taxoryn.com");
 
-    if (isExternal) {
+    const isHttpLink = href.startsWith("http://") || href.startsWith("https://");
+    const isThirdParty = isHttpLink && !isAppDomain;
+
+    const shouldOpenNewTab =
+      props.target === "_blank" ||
+      external === true ||
+      (isThirdParty && props.target !== "_self" && external !== false);
+
+    if (isHttpLink || external) {
       return (
         <a
           ref={ref as React.ForwardedRef<HTMLAnchorElement>}
           href={href}
           className={cn(baseStyles, variants[variant], sizes[size], "group", className)}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(shouldOpenNewTab
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
           {...linkProps}
         >
           {content}

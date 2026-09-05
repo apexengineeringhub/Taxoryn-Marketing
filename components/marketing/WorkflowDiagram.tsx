@@ -36,7 +36,7 @@ const marketplaceSteps: WorkflowStep[] = [
   {
     stepNumber: "03",
     title: "Practice Matching",
-    description: "Verified tax consultant or firm profile receives targeted enquiry.",
+    description: "Tax practice receives inquiry matched to their credentials and service scope.",
     icon: GitMerge,
   },
   {

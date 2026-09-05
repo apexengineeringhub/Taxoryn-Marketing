@@ -10,7 +10,6 @@ import {
   Calendar,
   CheckCircle2,
   AlertCircle,
-  Clock,
   Send,
   Sparkles,
 } from "lucide-react";
@@ -147,10 +146,6 @@ Sent via Taxoryn Practice Consultation Form`
                   <Mail className="w-4 h-4 text-[#00D1A3]" />
                   <span>support@taxoryn.com</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Clock className="w-4 h-4 text-[#00D1A3]" />
-                  <span>Mon – Sat: 9:30 AM – 6:30 PM IST</span>
-                </div>
               </div>
             </div>
 
@@ -187,10 +182,10 @@ Sent via Taxoryn Practice Consultation Form`
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#07152B]">
-                  Opening Email Client
+                  Preparing Email Message
                 </h3>
                 <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                  Your inquiry for <strong>{formData.firmName}</strong> has been formatted for our advisory team. Your default mail application should open automatically.
+                  Your email client will open with a message prepared for Taxoryn Support (<strong>support@taxoryn.com</strong>). You can review and send the consultation details directly from your email client.
                 </p>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left space-y-2">
                   <p className="font-semibold text-slate-800">

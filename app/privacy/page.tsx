@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           badge="Legal & Trust"
           badgeVariant="navy"
           title="Privacy Policy"
-          description="Last updated: January 2025"
+          description="Last updated: September 2026"
           align="left"
         />
 
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-[#07152B]">1. Overview & Commitment</h2>
             <p>
-              Taxoryn (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) operates the practice management platform and marketing website. We treat your practice data and your clients&apos; tax records with absolute confidentiality and security.
+              Taxoryn (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) operates the practice management platform and marketing website. We treat your practice data and your clients&apos; tax records with rigorous confidentiality and strict access controls.
             </p>
           </section>
 
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-[#07152B]">3. Information Security</h2>
             <p>
-              We implement industry-standard encryption protocols in transit and at rest alongside strict logical tenant isolation to prevent unauthorized access across accounts.
+              Taxoryn applies security controls designed to protect customer accounts, business data and documents, including access controls, tenant isolation and secure data transmission.
             </p>
           </section>
 

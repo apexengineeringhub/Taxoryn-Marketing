@@ -17,7 +17,7 @@ export default function TermsPage() {
           badge="Legal & Terms"
           badgeVariant="navy"
           title="Terms of Service"
-          description="Last updated: January 2025"
+          description="Last updated: September 2026"
           align="left"
         />
 

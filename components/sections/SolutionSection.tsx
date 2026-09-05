@@ -51,7 +51,7 @@ export function SolutionSection() {
       icon: HeartHandshake,
       badgeColor: "cyan" as const,
       highlights: [
-        "Dedicated client portal with encrypted access",
+        "Dedicated client portal with protected access",
         "One-click structured document requests via WhatsApp/Email",
         "Automated filing confirmations & status updates",
       ],
@@ -61,7 +61,7 @@ export function SolutionSection() {
       tagline: "Expansion Engine",
       title: "Marketplace, enquiries, onboarding and practice growth.",
       description:
-        "Attract new business clients seeking verified tax expertise in your geography, and onboard them smoothly into your practice workflow.",
+        "Attract new business clients seeking professional tax expertise in your geography, and onboard them smoothly into your practice workflow.",
       icon: TrendingUp,
       badgeColor: "emerald" as const,
       highlights: [

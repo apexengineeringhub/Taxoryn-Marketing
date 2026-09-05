@@ -36,8 +36,11 @@ export function ProductPreview() {
           <div className="w-3 h-3 rounded-full bg-rose-500/80" />
           <div className="w-3 h-3 rounded-full bg-amber-500/80" />
           <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-          <span className="ml-3 text-xs font-mono text-slate-400 hidden sm:inline-block">
-            app.taxoryn.com/dashboard
+          <span className="ml-3 text-xs font-semibold text-slate-200 hidden sm:inline-block">
+            Sample Taxoryn Workspace
+          </span>
+          <span className="text-[11px] text-slate-400 hidden md:inline-block">
+            • Illustrative interface with sample data
           </span>
         </div>
 
@@ -515,12 +518,12 @@ export function ProductPreview() {
       <div className="px-6 py-3 bg-[#070C1A] border-t border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
         <div className="flex items-center gap-2">
           <Shield className="w-3.5 h-3.5 text-[#00D1A3]" />
-          <span>Tenant Isolated Practice Data</span>
+          <span>Tenant-Aware Practice Isolation</span>
         </div>
-        <div className="flex items-center gap-4">
-          <span>Role-Based Access Control</span>
+        <div className="flex items-center gap-4 text-[11px] text-slate-400">
+          <span>Role-Based Permissions</span>
           <span>•</span>
-          <span>Instant Client Portal Sync</span>
+          <span>Illustrative interface with sample data</span>
         </div>
       </div>
     </div>

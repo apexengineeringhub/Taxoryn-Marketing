@@ -14,7 +14,7 @@ export function FinalCTASection() {
       <Container className="relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <span className="text-xs font-mono font-bold tracking-widest text-[#00D1A3] uppercase inline-block">
-            GET STARTED TODAY
+            EARLY ACCESS AVAILABLE
           </span>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white text-balance leading-tight">
@@ -33,7 +33,7 @@ export function FinalCTASection() {
               icon={ArrowRight}
               className="w-full sm:w-auto px-8 py-3.5 font-bold shadow-lg shadow-[#00D1A3]/25"
             >
-              Start Free
+              Join Early Access
             </Button>
 
             <Button

@@ -110,10 +110,10 @@ const capabilities: CapabilityItem[] = [
     iconName: "BarChart3",
   },
   {
-    id: "marketplace",
-    title: "Taxoryn Marketplace",
+    id: "marketplace-profile",
+    title: "Marketplace Practice Profile",
     shortDescription:
-      "Connect with new business and individual clients seeking verified tax practice expertise in your region.",
+      "Connect with new business and individual clients seeking professional tax practice expertise in your region.",
     category: "Grow",
     iconName: "ShoppingBag",
     badge: "Growth Engine",

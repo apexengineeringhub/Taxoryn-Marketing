@@ -23,7 +23,7 @@ export default function MarketplacePage() {
           badge="Taxoryn Marketplace"
           badgeVariant="emerald"
           title="Connect Practices with Customers Looking for Tax Services"
-          description="Taxoryn Marketplace is designed to facilitate discovery between businesses seeking specialized tax advisory and verified tax practices across India."
+          description="Taxoryn Marketplace is designed to facilitate discovery between businesses seeking tax advisory and qualified tax practices across India. Practice profiles can include professional credentials and verification information, where applicable."
         />
 
         {/* Informative Status Banner */}
@@ -48,7 +48,7 @@ export default function MarketplacePage() {
                 Practice Profile & Discovery
               </h2>
               <p className="text-xs text-slate-500">
-                Verified practice credentials • Geographical jurisdiction • Industry specialization
+                Professional credentials & specializations • Geographical jurisdiction • Industry expertise
               </p>
             </div>
           </div>

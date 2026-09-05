@@ -53,7 +53,7 @@ export function Header() {
             icon={ArrowRight}
             className="font-bold shadow-sm"
           >
-            Start Free
+            Join Early Access
           </Button>
         </div>
 
