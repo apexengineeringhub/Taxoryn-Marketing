@@ -39,7 +39,7 @@ export default function SmallFirmPage() {
               <Users2 className="w-5 h-5 text-sky-400" />
               <div>
                 <span className="font-bold text-sm block">Small Firm Team Workflow & Review Queue</span>
-                <span className="text-[10px] text-slate-400">Illustrative interface with sample practice data</span>
+                <span className="text-xs text-slate-400">Illustrative interface — fictional demo data</span>
               </div>
             </div>
             <span className="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-mono">

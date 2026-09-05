@@ -44,7 +44,7 @@ export default function SoloPractitionerPage() {
               <User className="w-5 h-5 text-[#00D1A3]" />
               <div>
                 <span className="font-bold text-sm block">Solo Practitioner Workspace View</span>
-                <span className="text-[10px] text-slate-400">Illustrative interface with sample practice data</span>
+                <span className="text-xs text-slate-400">Illustrative interface — fictional demo data</span>
               </div>
             </div>
             <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#00D1A3]/20 text-[#00D1A3] font-mono">

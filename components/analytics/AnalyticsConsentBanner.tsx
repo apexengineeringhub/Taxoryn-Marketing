@@ -61,13 +61,13 @@ export function AnalyticsConsentBanner() {
       <div className="flex items-center gap-2.5 pt-1">
         <button
           onClick={handleAccept}
-          className="flex-1 py-2 px-3.5 rounded-lg bg-[#00D1A3] text-[#07152B] font-bold text-xs hover:bg-[#00B388] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]"
+          className="flex-1 min-h-[40px] py-2 px-3.5 rounded-lg bg-[#00D1A3] text-[#07152B] font-bold text-xs hover:bg-[#00B388] transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]"
         >
           Accept Analytics
         </button>
         <button
           onClick={handleDecline}
-          className="flex-1 py-2 px-3.5 rounded-lg bg-slate-800 text-slate-200 font-semibold text-xs hover:bg-slate-700 transition-colors border border-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+          className="flex-1 min-h-[40px] py-2 px-3.5 rounded-lg bg-slate-800 text-slate-200 font-semibold text-xs hover:bg-slate-700 transition-colors border border-slate-700 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
         >
           Decline
         </button>

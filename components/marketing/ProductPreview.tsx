@@ -81,9 +81,8 @@ export function ProductPreview({
             https://app.taxoryn.com/{activeTab}
           </span>
         </div>
-        <div className="flex items-center gap-2 text-[11px] text-slate-400">
-          <span className="font-semibold text-[#00D1A3]">Sample Taxoryn Workspace</span>
-          <span className="hidden md:inline text-slate-500">• Illustrative interface with sample data</span>
+        <div className="flex items-center gap-2 text-xs text-slate-400">
+          <span className="font-semibold text-[#00D1A3]">Illustrative interface — fictional demo data</span>
         </div>
       </div>
 
@@ -386,9 +385,9 @@ export function ProductPreview({
 
             <div className="space-y-2">
               {[
-                { gstin: "29AABCU9603R1ZM", vendor: "Cloud Hosting Services Ltd", inv: "INV-8491", books: "₹1,44,000", gstr2b: "₹1,44,000", itc: "₹25,920", reco: "Matched (100%)", statusColor: "text-emerald-400" },
-                { gstin: "27AABCT2819Q1ZN", vendor: "Western Logistics Corp", inv: "WL-20412", books: "₹88,500", gstr2b: "₹88,500", itc: "₹15,930", reco: "Matched (100%)", statusColor: "text-emerald-400" },
-                { gstin: "07AAACR4019K1ZS", vendor: "Delta Office Solutions", inv: "DS-9011", books: "₹42,000", gstr2b: "Missing in 2B", itc: "₹7,560 (On Hold)", reco: "Vendor Pending", statusColor: "text-amber-400" },
+                { gstin: "DEMO-GSTIN-01", vendor: "Cloud Hosting Services Ltd", inv: "DEMO-INV-001", books: "₹1,44,000", gstr2b: "₹1,44,000", itc: "₹25,920", reco: "Matched (100%)", statusColor: "text-emerald-400" },
+                { gstin: "DEMO-GSTIN-02", vendor: "Western Logistics Corp", inv: "DEMO-INV-002", books: "₹88,500", gstr2b: "₹88,500", itc: "₹15,930", reco: "Matched (100%)", statusColor: "text-emerald-400" },
+                { gstin: "DEMO-GSTIN-03", vendor: "Delta Office Solutions", inv: "DEMO-INV-003", books: "₹42,000", gstr2b: "Missing in 2B", itc: "₹7,560 (On Hold)", reco: "Vendor Pending", statusColor: "text-amber-400" },
               ].map((row, i) => (
                 <div key={i} className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
                   <div>
@@ -396,7 +395,7 @@ export function ProductPreview({
                       <span>{row.vendor}</span>
                       <span className="text-[10px] font-mono text-slate-400">({row.gstin})</span>
                     </div>
-                    <div className="text-[11px] text-slate-400">Invoice: {row.inv} • Value: {row.books} • Eligible ITC: {row.itc}</div>
+                    <div className="text-xs text-slate-400">Invoice: {row.inv} • Value: {row.books} • Eligible ITC: {row.itc}</div>
                   </div>
                   <div className="self-start sm:self-auto">
                     <span className={`font-semibold ${row.statusColor}`}>{row.reco}</span>
@@ -499,28 +498,28 @@ export function ProductPreview({
                   <span className="text-[10px] text-emerald-400 font-semibold">Acknowledged</span>
                 </div>
                 <div className="font-bold text-white">GSTR-3B (July 2026)</div>
-                <div className="text-[11px] text-slate-400">ARN: AA290726019281Z</div>
-                <div className="text-[11px] text-[#00D1A3] font-semibold underline cursor-default">Download Return PDF</div>
+                <div className="text-xs text-slate-400">ARN: DEMO-ARN-001</div>
+                <div className="text-xs text-[#00D1A3] font-semibold underline cursor-default">Download Return PDF</div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
                 <div className="flex items-center justify-between">
                   <FileCheck2 className="w-5 h-5 text-sky-400" />
-                  <span className="text-[10px] text-sky-400 font-semibold">AY 2025-26</span>
+                  <span className="text-xs text-sky-400 font-semibold">AY 2025-26</span>
                 </div>
                 <div className="font-bold text-white">ITR-5 Computation</div>
-                <div className="text-[11px] text-slate-400">Signed off by Partner</div>
-                <div className="text-[11px] text-sky-400 font-semibold underline cursor-default">Download Computation</div>
+                <div className="text-xs text-slate-400">Signed off by Partner</div>
+                <div className="text-xs text-sky-400 font-semibold underline cursor-default">Download Computation</div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
                 <div className="flex items-center justify-between">
                   <Receipt className="w-5 h-5 text-emerald-400" />
-                  <span className="text-[10px] text-emerald-400 font-semibold">Challan CIN</span>
+                  <span className="text-xs text-emerald-400 font-semibold">CIN: DEMO-CIN-001</span>
                 </div>
                 <div className="font-bold text-white">TDS Challan ITNS 281</div>
-                <div className="text-[11px] text-slate-400">Section 194C / 194J</div>
-                <div className="text-[11px] text-emerald-400 font-semibold underline cursor-default">Download Challan</div>
+                <div className="text-xs text-slate-400">Section 194C / 194J</div>
+                <div className="text-xs text-emerald-400 font-semibold underline cursor-default">Download Challan</div>
               </div>
             </div>
           </div>
@@ -609,10 +608,10 @@ export function ProductPreview({
           <Shield className="w-3.5 h-3.5 text-[#00D1A3]" />
           <span>Tenant-Aware Practice Isolation</span>
         </div>
-        <div className="flex items-center gap-4 text-[11px] text-slate-400">
+        <div className="flex items-center gap-4 text-xs text-slate-400">
           <span>Role-Based Permissions</span>
           <span>•</span>
-          <span>Illustrative interface with sample data</span>
+          <span>Illustrative interface — fictional demo data</span>
         </div>
       </div>
     </div>

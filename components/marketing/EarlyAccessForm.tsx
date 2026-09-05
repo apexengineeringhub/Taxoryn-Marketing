@@ -580,7 +580,7 @@ function EarlyAccessContent() {
                     </Button>
                   </div>
 
-                  <p className="text-[11px] text-slate-500 text-center pt-2 leading-normal">
+                  <p className="text-xs text-slate-500 text-center pt-2 leading-relaxed">
                     Please do not submit sensitive tax or financial information through this form. By submitting, your email client will open addressed to{" "}
                     <span className="font-semibold text-slate-700">{siteConfig.supportEmail}</span>.
                   </p>

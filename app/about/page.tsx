@@ -39,7 +39,7 @@ export default function AboutPage() {
       icon: Shield,
       title: "Data Sovereignty & Privacy",
       description:
-        "Your practice records and client financials are your firm's exclusive property. We enforce strict logical tenant isolation and never monetize or share your client intelligence.",
+        "Your practice retains ownership of the data you provide to Taxoryn, subject to the applicable terms and agreements. We enforce strict logical tenant isolation and practice privacy controls.",
     },
     {
       icon: Target,

@@ -40,7 +40,7 @@ export default function GrowingPracticePage() {
               <Building2 className="w-5 h-5 text-emerald-400" />
               <div>
                 <span className="font-bold text-sm block">Multi-Branch Practice Hierarchy & Marketplace Hub</span>
-                <span className="text-[10px] text-slate-400">Illustrative interface with sample practice data</span>
+                <span className="text-xs text-slate-400">Illustrative interface — fictional demo data</span>
               </div>
             </div>
             <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono">

@@ -1,5 +1,12 @@
 export interface AnalyticsConfig {
   enabled: boolean;
+  /**
+   * Analytics provider mode:
+   * - "none": No analytics initialized or dispatched.
+   * - "custom": Internal browser-event abstraction (`taxoryn_analytics` CustomEvent on `window`); no external server or third-party collector.
+   * - "plausible": Self-hosted or cloud Plausible instance (requires measurementId, initialized only upon explicit consent).
+   * - "google-analytics": Google Analytics 4 (requires measurementId, initialized only upon explicit consent).
+   */
   provider: "custom" | "none" | "plausible" | "google-analytics";
   debug: boolean;
   measurementId?: string;

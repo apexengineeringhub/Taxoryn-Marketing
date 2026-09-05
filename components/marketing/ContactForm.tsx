@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
 import { Container } from "@/components/common/Container";
@@ -454,7 +454,7 @@ export function ContactForm() {
                   </Button>
                 </div>
 
-                <p className="text-[11px] text-slate-400 text-center pt-1">
+                <p className="text-xs text-slate-500 text-center pt-1 leading-relaxed">
                   We respect your confidentiality. We do not ask for PAN, GST credentials, or financial documents on marketing inquiries.
                 </p>
               </form>
