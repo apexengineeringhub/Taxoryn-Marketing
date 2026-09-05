@@ -1,18 +1,27 @@
 "use client";
 
-import { useEffect, Suspense } from "react";
+import { useEffect, Suspense, useCallback } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { trackPageView } from "@/lib/analytics";
+import {
+  trackPageView,
+  getAnalyticsConsent,
+  initAnalyticsProvider,
+} from "@/lib/analytics";
 
 function AnalyticsTrackerContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  useEffect(() => {
+  const handleTrack = useCallback(() => {
     if (!pathname) return;
+    if (!getAnalyticsConsent()) return;
 
-    // Extract non-sensitive campaign parameters
-    const utm_source = searchParams?.get("utm_source") || searchParams?.get("source") || undefined;
+    // Initialize provider if needed upon explicit consent
+    initAnalyticsProvider();
+
+    // Extract non-sensitive campaign parameters safely
+    const utm_source =
+      searchParams?.get("utm_source") || searchParams?.get("source") || undefined;
     const utm_medium = searchParams?.get("utm_medium") || undefined;
     const utm_campaign = searchParams?.get("utm_campaign") || undefined;
     const utm_content = searchParams?.get("utm_content") || undefined;
@@ -21,7 +30,8 @@ function AnalyticsTrackerContent() {
     trackPageView({
       path: pathname,
       title: typeof document !== "undefined" ? document.title : "",
-      referrer: typeof document !== "undefined" ? document.referrer || undefined : undefined,
+      referrer:
+        typeof document !== "undefined" ? document.referrer || undefined : undefined,
       utm_source,
       utm_medium,
       utm_campaign,
@@ -29,6 +39,29 @@ function AnalyticsTrackerContent() {
       utm_term,
     });
   }, [pathname, searchParams]);
+
+  useEffect(() => {
+    handleTrack();
+  }, [handleTrack]);
+
+  useEffect(() => {
+    const handleConsentChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ state: string }>;
+      if (customEvent.detail?.state === "granted") {
+        handleTrack();
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("taxoryn_consent_changed", handleConsentChange);
+      return () => {
+        window.removeEventListener(
+          "taxoryn_consent_changed",
+          handleConsentChange
+        );
+      };
+    }
+  }, [handleTrack]);
 
   return null;
 }

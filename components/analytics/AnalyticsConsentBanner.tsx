@@ -3,19 +3,15 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Shield, X } from "lucide-react";
-import { setAnalyticsConsent } from "@/lib/analytics";
+import { getConsentState, setAnalyticsConsent } from "@/lib/analytics";
 
 export function AnalyticsConsentBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    try {
-      const consent = localStorage.getItem("taxoryn_analytics_consent");
-      if (!consent) {
-        setIsVisible(true);
-      }
-    } catch {
-      // Fail silently
+    // Only display banner if consent state is explicitly unknown
+    if (getConsentState() === "unknown") {
+      setIsVisible(true);
     }
   }, []);
 

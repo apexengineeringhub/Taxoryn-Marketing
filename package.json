@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "test": "node --test ./test/run-tests.mjs",
     "clean": "node -e \"const fs=require('fs'); ['.next', 'node_modules', '.turbo', 'out'].forEach(d=>{try{fs.rmSync(d,{recursive:true,force:true})}catch(e){}});\""
   },
   "dependencies": {
