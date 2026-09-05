@@ -20,10 +20,13 @@ export interface SiteConfig {
   description: string;
   url: string;
   appUrl: string;
+  supportEmail: string;
   links: {
+    joinEarlyAccess: string;
+    bookDemo: string;
     startFree: string;
     login: string;
-    bookDemo: string;
+    register: string;
     contactSales: string;
     marketplace: string;
     security: string;

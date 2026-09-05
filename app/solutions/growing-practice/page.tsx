@@ -40,9 +40,12 @@ export default function GrowingPracticePage() {
               </li>
             ))}
           </ul>
-          <div className="pt-4 flex gap-4">
-            <Button href={siteConfig.links.startFree} variant="primary" size="lg" icon={ArrowRight}>
-              Get Started
+          <div className="pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <Button href={siteConfig.links.joinEarlyAccess} variant="primary" size="lg" icon={ArrowRight}>
+              Join Early Access
+            </Button>
+            <Button href={siteConfig.links.bookDemo} variant="outline" size="lg">
+              Book a Demo
             </Button>
           </div>
         </div>

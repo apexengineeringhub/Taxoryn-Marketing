@@ -158,7 +158,7 @@ export function MobileNav() {
           </div>
 
           <Button
-            href={siteConfig.links.startFree}
+            href={siteConfig.links.joinEarlyAccess}
             variant="primary"
             size="lg"
             className="w-full justify-center shadow-md font-bold"

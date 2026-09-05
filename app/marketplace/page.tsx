@@ -76,12 +76,12 @@ export default function MarketplacePage() {
               Practice profile creation is included with Taxoryn registration.
             </span>
             <Button
-              href={siteConfig.links.startFree}
+              href={siteConfig.links.joinEarlyAccess}
               variant="primary"
               size="md"
               icon={ArrowRight}
             >
-              Register Your Practice
+              Join Early Access
             </Button>
           </div>
         </div>

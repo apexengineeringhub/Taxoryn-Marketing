@@ -30,7 +30,7 @@ export default function PricingPage() {
         "Statutory compliance calendar",
       ],
       ctaText: "Join Early Access",
-      ctaHref: siteConfig.links.startFree,
+      ctaHref: siteConfig.links.joinEarlyAccess,
       featured: false,
     },
     {
@@ -45,7 +45,7 @@ export default function PricingPage() {
         "Taxoryn Marketplace practice profile",
       ],
       ctaText: "Join Early Access",
-      ctaHref: siteConfig.links.startFree,
+      ctaHref: siteConfig.links.joinEarlyAccess,
       featured: true,
     },
     {
@@ -59,8 +59,8 @@ export default function PricingPage() {
         "Multi-entity corporate compliance workflows",
         "Dedicated onboarding assistance",
       ],
-      ctaText: "Speak with Practice Advisory",
-      ctaHref: siteConfig.links.contact,
+      ctaText: "Book a Demo",
+      ctaHref: siteConfig.links.bookDemo,
       featured: false,
     },
   ];

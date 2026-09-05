@@ -10,8 +10,18 @@ This repository powers the high-performance public marketing website for Taxoryn
 
 ### Primary Conversion Journey:
 ```
-Visitor → Understand Taxoryn → Explore Product → See Features → See Marketplace → See Pricing → Start Free / Book Demo → Taxoryn Application
+Visitor → Understand Taxoryn → Explore Product / Solutions → Choose CTA → Join Early Access (/early-access) OR Book Demo (/book-demo) → Qualified Lead → Sales Follow-up / Onboarding
 ```
+
+---
+
+## 1.1 Conversion Architecture (W2)
+
+- **Centralized CTA Configuration**: All conversion links and application endpoints are configured in `lib/config/site.ts` (`siteConfig.links.joinEarlyAccess`, `siteConfig.links.bookDemo`, `siteConfig.links.login`, `siteConfig.supportEmail`).
+- **Early Access Route** (`/early-access`): Practice onboarding form collecting professional contact and practice scale details without demanding sensitive tax credentials.
+- **Book a Demo Route** (`/book-demo`): 20-minute tailored practice walkthrough request form.
+- **Truthful Submission Architecture**: In the current phase without a marketing CRM backend, forms prepare structured inquiries and open the visitor's default email client addressed to `support@taxoryn.com` with clear user feedback and fallback mechanisms. This frontend architecture provides clean drop-in points for future API/CRM lead capture endpoints.
+- **Marketing Campaign Context & UTM Support**: Both conversion forms support optional campaign parameters (`source`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`) and sanitize inputs without storing private data.
 
 ---
 

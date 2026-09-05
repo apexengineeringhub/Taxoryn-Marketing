@@ -18,6 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/security",
     "/resources",
     "/about",
+    "/early-access",
+    "/book-demo",
     "/contact",
     "/privacy",
     "/terms",

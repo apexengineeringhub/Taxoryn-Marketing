@@ -47,7 +47,7 @@ export function Header() {
           </Button>
 
           <Button
-            href={siteConfig.links.startFree}
+            href={siteConfig.links.joinEarlyAccess}
             variant="primary"
             size="md"
             icon={ArrowRight}

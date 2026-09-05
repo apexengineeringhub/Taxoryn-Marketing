@@ -27,7 +27,7 @@ export function FinalCTASection() {
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
-              href={siteConfig.links.startFree}
+              href={siteConfig.links.joinEarlyAccess}
               variant="primary"
               size="lg"
               icon={ArrowRight}

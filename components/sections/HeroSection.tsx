@@ -37,7 +37,7 @@ export function HeroSection() {
           {/* Call to Actions */}
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Button
-              href={siteConfig.links.startFree}
+              href={siteConfig.links.joinEarlyAccess}
               variant="primary"
               size="lg"
               icon={ArrowRight}

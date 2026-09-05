@@ -64,8 +64,9 @@ export const footerNavigation = {
     title: "Company",
     items: [
       { label: "About Us", href: "/about" },
-      { label: "Contact Us", href: siteConfig.links.contact },
+      { label: "Join Early Access", href: siteConfig.links.joinEarlyAccess },
       { label: "Book a Demo", href: siteConfig.links.bookDemo },
+      { label: "Contact Us", href: siteConfig.links.contact },
     ],
   },
   trust: {

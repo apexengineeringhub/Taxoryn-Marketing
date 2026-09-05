@@ -48,7 +48,7 @@ export function ShowcaseSection() {
             </ul>
             <div className="pt-3">
               <Button
-                href={siteConfig.links.startFree}
+                href={siteConfig.links.joinEarlyAccess}
                 variant="secondary"
                 size="md"
                 icon={ArrowRight}
