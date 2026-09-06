@@ -81,7 +81,7 @@ export const faqsData: FAQItem[] = [
     category: "security",
     question: "Where is our practice data stored and who owns it?",
     answer:
-      "Your practice retains ownership of the data you provide to Taxoryn, subject to the applicable terms and agreements. Taxoryn does not sell, monetize, or share your proprietary client records with third parties. Practice administrators can export their data at any time.",
+      "Your practice retains ownership of the data you provide to Taxoryn, subject to the applicable terms and agreements. Taxoryn does not sell practice or client data or use it for advertising. Data may be processed by service providers where necessary to operate the platform, subject to applicable privacy terms and agreements. Practice administrators can export supported practice records and documents.",
   },
   {
     id: "multi-branch-practices",

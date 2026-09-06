@@ -61,10 +61,13 @@ export function ShowcaseSection() {
           {/* Screenshot Container */}
           <div className="lg:col-span-7">
             <div className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-[#082E5B] to-[#07152B] border border-slate-700 shadow-xl text-white space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700/80 pb-3">
                 <div className="flex items-center gap-2">
                   <FileSpreadsheet className="w-5 h-5 text-[#00D1A3]" />
-                  <span className="font-bold text-sm">GST Practice Command</span>
+                  <div>
+                    <span className="font-bold text-sm block">GST Practice Command</span>
+                    <span className="text-[11px] text-slate-400">Illustrative interface — fictional demo data</span>
+                  </div>
                 </div>
                 <span className="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono">
                   Statutory Tracking
@@ -95,10 +98,13 @@ export function ShowcaseSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="lg:col-span-7 order-2 lg:order-1">
             <div className="p-4 sm:p-6 rounded-2xl bg-[#07152B] border border-slate-700 shadow-xl text-white space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-700/80 pb-3">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700/80 pb-3">
                 <div className="flex items-center gap-2">
                   <Users className="w-5 h-5 text-sky-400" />
-                  <span className="font-bold text-sm">Practice Workload Matrix</span>
+                  <div>
+                    <span className="font-bold text-sm block">Practice Workload Matrix</span>
+                    <span className="text-[11px] text-slate-400">Illustrative interface — fictional demo data</span>
+                  </div>
                 </div>
                 <span className="text-xs text-slate-400 font-mono">Role Partitioned</span>
               </div>

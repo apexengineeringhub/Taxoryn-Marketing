@@ -70,7 +70,7 @@ export default function SecurityPage() {
     {
       title: "Practice Data Ownership & Privacy",
       description:
-        "Your practice retains ownership of the data you provide to Taxoryn, subject to the applicable terms and agreements. Client financial records, PAN details, and compliance workpapers are never sold, analyzed for ads, or shared with third parties.",
+        "Your practice retains ownership of the data you provide to Taxoryn, subject to the applicable terms and agreements. Taxoryn does not sell practice or client data or use it for advertising. Data may be processed by service providers where necessary to operate the platform, subject to applicable privacy terms and agreements.",
       icon: ShieldCheck,
     },
     {
@@ -103,7 +103,7 @@ export default function SecurityPage() {
         "Statutory digital signatures (DSC) and portal credentials remain in practitioner control",
         "Final computation verification and statutory liability advisory is provided by the CA/Tax Consultant",
         "Practitioners retain full authority over team member permissions and client access grants",
-        "Data backup exports remain available to practice administrators at all times",
+        "Practice administrators can export supported practice records and documents",
       ],
     },
   ];
