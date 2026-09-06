@@ -1,6 +1,7 @@
 import { SiteConfig } from "@/types";
 
-export const APP_URL = "https://app.taxoryn.com";
+export const APP_URL =
+  process.env.NEXT_PUBLIC_APP_URL || "https://app.taxoryn.com";
 
 export const APP_ROUTES = {
   login: `${APP_URL}/login`,
