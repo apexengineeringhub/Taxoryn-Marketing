@@ -3,9 +3,9 @@ import { constructMetadata } from "@/lib/seo/metadata";
 import { EarlyAccessForm } from "@/components/marketing/EarlyAccessForm";
 
 export const metadata = constructMetadata({
-  title: "Join Early Access | Taxoryn Tax Practice Software",
+  title: "Get Started | Taxoryn Tax Practice Software",
   description:
-    "Join Taxoryn Early Access to experience a connected workspace for clients, compliance, documents, and tax practice operations.",
+    "Get started with Taxoryn to experience a connected workspace for clients, compliance, documents, and tax practice operations.",
   path: "/early-access",
 });
 

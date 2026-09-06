@@ -1,8 +1,14 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Info } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function TaxDisclaimer() {
+  const { t } = useLanguage();
+  const d = t.pages.disclaimer;
+
   return (
     <aside
       aria-label="Statutory Tax Information Disclaimer"
@@ -10,10 +16,10 @@ export function TaxDisclaimer() {
     >
       <div className="flex items-center gap-2 font-bold text-slate-800">
         <Info className="w-4 h-4 text-[#009E77] shrink-0" aria-hidden="true" />
-        <span>Important Tax & Statutory Notice</span>
+        <span>{d.title}</span>
       </div>
       <p className="leading-relaxed">
-        Tax rules, filing procedures, and statutory deadlines in India are subject to periodic circulars and notifications issued by the Central Board of Direct Taxes (CBDT), Central Board of Indirect Taxes and Customs (CBIC), and the Ministry of Finance. Information provided on Taxoryn is for educational and practice-management operational guidance and should not be considered formal legal or tax advisory. Always verify current requirements with official government portals or a qualified Chartered Accountant / Tax Practitioner.
+        {d.content}
       </p>
     </aside>
   );

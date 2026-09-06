@@ -1,7 +1,5 @@
 import React from "react";
 import { constructMetadata } from "@/lib/seo/metadata";
-import { Container } from "@/components/common/Container";
-import { SectionHeading } from "@/components/common/SectionHeading";
 import { SolutionsSegmentSection } from "@/components/sections/SolutionsSegmentSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 
@@ -14,15 +12,7 @@ export const metadata = constructMetadata({
 
 export default function SolutionsPage() {
   return (
-    <div className="py-12 sm:py-16">
-      <Container>
-        <SectionHeading
-          badge="Practice Scale Solutions"
-          badgeVariant="navy"
-          title="Solutions Tailored To Your Firm's Growth Stage"
-          description="Whether you are an independent CA or a 30-person tax practice, Taxoryn fits your operational model."
-        />
-      </Container>
+    <div className="py-2 sm:py-6 bg-[#F8FAFC]">
       <SolutionsSegmentSection />
       <FinalCTASection />
     </div>

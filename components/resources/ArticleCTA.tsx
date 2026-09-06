@@ -73,7 +73,7 @@ export function ArticleCTA({
           icon={ArrowRight}
           className="font-bold shadow-md shadow-[#00D1A3]/20"
         >
-          Join Early Access
+          Get Started
         </Button>
         <Button
           href={siteConfig.links.bookDemo}

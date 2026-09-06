@@ -16,6 +16,7 @@ import {
   AlertCircle,
   ShieldCheck,
 } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface EarlyAccessFormState {
   fullName: string;
@@ -34,26 +35,9 @@ interface FormErrors {
   phone?: string;
 }
 
-const PRACTICE_SIZES = [
-  "Solo Practitioner",
-  "2–10 Team Members",
-  "11–25 Team Members",
-  "26–50 Team Members",
-  "50+ Team Members",
-];
-
-const PRIMARY_INTERESTS = [
-  "Practice Management",
-  "GST Workflows & 2B/3B Reconciliation",
-  "ITR Computation & Pipelines",
-  "TDS Tracking & Generation",
-  "Client Portal & Document Requests",
-  "Secure Document Repository",
-  "Taxoryn Marketplace Practice Profile",
-  "Other",
-];
-
 function EarlyAccessContent() {
+  const { t } = useLanguage();
+  const ef = t.forms.earlyAccess;
   const searchParams = useSearchParams();
 
   const [formData, setFormData] = useState<EarlyAccessFormState>({
@@ -62,8 +46,8 @@ function EarlyAccessContent() {
     firmName: "",
     phone: "",
     city: "",
-    practiceSize: "Solo Practitioner",
-    primaryInterest: "Practice Management",
+    practiceSize: ef.firmTypeOptions[0]?.value || "Solo Practitioner",
+    primaryInterest: ef.primaryInterestOptions[0]?.value || "Practice Management",
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -90,24 +74,24 @@ function EarlyAccessContent() {
     const newErrors: FormErrors = {};
 
     if (!formData.fullName.trim()) {
-      newErrors.fullName = "Please enter your full name.";
+      newErrors.fullName = ef.nameError;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = "Please enter your work email address.";
+      newErrors.email = ef.emailError;
     } else if (!emailRegex.test(formData.email.trim())) {
-      newErrors.email = "Please enter a valid work email address.";
+      newErrors.email = ef.emailInvalid;
     }
 
     if (!formData.firmName.trim()) {
-      newErrors.firmName = "Please enter your practice or firm name.";
+      newErrors.firmName = ef.firmError;
     }
 
     if (formData.phone.trim()) {
       const phoneRegex = /^[+]?[\d\s-]{8,15}$/;
       if (!phoneRegex.test(formData.phone.trim().replace(/\s+/g, ""))) {
-        newErrors.phone = "Please enter a valid contact phone number.";
+        newErrors.phone = ef.phoneInvalid;
       }
     }
 
@@ -204,16 +188,16 @@ function EarlyAccessContent() {
   };
 
   return (
-    <div className="py-12 sm:py-20 bg-[#F8FAFC]">
+    <div className="py-10 sm:py-16 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
-          badge="Early Access Onboarding"
+          badge="Practice Onboarding"
           badgeVariant="teal"
-          title="Join Taxoryn Early Access"
-          description="Be among the first practices to experience a connected workspace for clients, compliance, documents and practice growth."
+          title="Get Started with Taxoryn"
+          description="Connect your practice workflows — clients, compliance, documents and growth in one structured workspace."
         />
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Left Context & Trust Column */}
           <div className="lg:col-span-5 space-y-6">
             <Card variant="default" padding="lg" className="bg-[#07152B] text-white space-y-4">
@@ -221,7 +205,7 @@ function EarlyAccessContent() {
                 PRACTICE PROGRAM
               </span>
               <h3 className="text-xl font-bold text-white">
-                What Early Access Includes
+                What Practice Onboarding Includes
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
                 We are actively working with Indian Chartered Accountants, Tax Consultants, and boutique firms to refine practice workflows.
@@ -279,10 +263,10 @@ function EarlyAccessContent() {
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold text-[#07152B]">
-                    Thanks for your interest in Taxoryn
+                    {ef.successTitle}
                   </h3>
                   <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                    Your email client is being opened with your request prepared for our team at{" "}
+                    {ef.successDesc}{" "}
                     <strong>{siteConfig.supportEmail}</strong>.
                   </p>
                   <p className="text-xs text-slate-500 max-w-md mx-auto">
@@ -310,7 +294,7 @@ function EarlyAccessContent() {
                       className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold rounded-lg bg-[#00D1A3] text-[#07152B] hover:bg-[#00D1A3]/90 transition-colors shadow-sm"
                     >
                       <Mail className="w-4 h-4" />
-                      Open Email Client
+                      {ef.openEmailClient}
                     </a>
                     <Button
                       type="button"
@@ -318,7 +302,7 @@ function EarlyAccessContent() {
                       size="sm"
                       onClick={() => setIsPrepared(false)}
                     >
-                      Edit Information
+                      {ef.editInquiry}
                     </Button>
                   </div>
 
@@ -340,7 +324,7 @@ function EarlyAccessContent() {
                 <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                   <div className="space-y-1">
                     <h3 className="text-lg font-bold text-[#07152B]">
-                      Practice Registration Form
+                      {ef.submitButton}
                     </h3>
                     <p className="text-xs text-slate-500">
                       Please enter your professional details. Your email client will open with the information prepared for Taxoryn.
@@ -354,7 +338,7 @@ function EarlyAccessContent() {
                         htmlFor="fullName"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Full Name <span className="text-rose-500">*</span>
+                        {ef.nameLabel} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         id="fullName"
@@ -363,7 +347,7 @@ function EarlyAccessContent() {
                         required
                         value={formData.fullName}
                         onChange={handleChange}
-                        placeholder="e.g. CA Rajesh Kumar"
+                        placeholder={ef.namePlaceholder}
                         aria-invalid={!!errors.fullName}
                         aria-describedby={
                           errors.fullName ? "fullName-error" : undefined
@@ -391,7 +375,7 @@ function EarlyAccessContent() {
                         htmlFor="email"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Work Email <span className="text-rose-500">*</span>
+                        {ef.emailLabel} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         id="email"
@@ -400,7 +384,7 @@ function EarlyAccessContent() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="name@practice.com"
+                        placeholder={ef.emailPlaceholder}
                         aria-invalid={!!errors.email}
                         aria-describedby={
                           errors.email ? "email-error" : undefined
@@ -431,7 +415,7 @@ function EarlyAccessContent() {
                         htmlFor="firmName"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Practice / Firm Name <span className="text-rose-500">*</span>
+                        {ef.firmLabel} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         id="firmName"
@@ -440,7 +424,7 @@ function EarlyAccessContent() {
                         required
                         value={formData.firmName}
                         onChange={handleChange}
-                        placeholder="e.g. R. Kumar & Associates"
+                        placeholder={ef.firmPlaceholder}
                         aria-invalid={!!errors.firmName}
                         aria-describedby={
                           errors.firmName ? "firmName-error" : undefined
@@ -468,7 +452,7 @@ function EarlyAccessContent() {
                         htmlFor="phone"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Contact Number <span className="text-slate-400 font-normal">(Optional)</span>
+                        {ef.phoneLabel} <span className="text-slate-400 font-normal">(Optional)</span>
                       </label>
                       <input
                         id="phone"
@@ -476,7 +460,7 @@ function EarlyAccessContent() {
                         type="tel"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+91 98765 43210"
+                        placeholder={ef.phonePlaceholder}
                         aria-invalid={!!errors.phone}
                         aria-describedby={
                           errors.phone ? "phone-error" : undefined
@@ -525,7 +509,7 @@ function EarlyAccessContent() {
                         htmlFor="practiceSize"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Practice Size <span className="text-slate-400 font-normal">(Optional)</span>
+                        {ef.firmTypeLabel} <span className="text-slate-400 font-normal">(Optional)</span>
                       </label>
                       <select
                         id="practiceSize"
@@ -534,9 +518,9 @@ function EarlyAccessContent() {
                         onChange={handleChange}
                         className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all"
                       >
-                        {PRACTICE_SIZES.map((size) => (
-                          <option key={size} value={size}>
-                            {size}
+                        {ef.firmTypeOptions.map((size) => (
+                          <option key={size.value} value={size.value}>
+                            {size.label}
                           </option>
                         ))}
                       </select>
@@ -549,7 +533,7 @@ function EarlyAccessContent() {
                       htmlFor="primaryInterest"
                       className="block text-xs font-semibold text-slate-700 mb-1"
                     >
-                      Primary Area of Interest <span className="text-slate-400 font-normal">(Optional)</span>
+                      {ef.primaryInterestLabel} <span className="text-slate-400 font-normal">(Optional)</span>
                     </label>
                     <select
                       id="primaryInterest"
@@ -558,9 +542,9 @@ function EarlyAccessContent() {
                       onChange={handleChange}
                       className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all"
                     >
-                      {PRIMARY_INTERESTS.map((interest) => (
-                        <option key={interest} value={interest}>
-                          {interest}
+                      {ef.primaryInterestOptions.map((interest) => (
+                        <option key={interest.value} value={interest.value}>
+                          {interest.label}
                         </option>
                       ))}
                     </select>
@@ -576,7 +560,7 @@ function EarlyAccessContent() {
                       icon={Send}
                       className="w-full justify-center font-bold shadow-md shadow-[#00D1A3]/20"
                     >
-                      {isSubmitting ? "Preparing Email..." : "Join Early Access"}
+                      {isSubmitting ? ef.submittingButton : ef.submitButton}
                     </Button>
                   </div>
 
@@ -599,7 +583,7 @@ export function EarlyAccessForm() {
     <Suspense
       fallback={
         <div className="py-20 text-center text-slate-500 text-sm">
-          Loading Early Access onboarding...
+          Loading practice onboarding...
         </div>
       }
     >

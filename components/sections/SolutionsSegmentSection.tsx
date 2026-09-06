@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
@@ -12,68 +14,64 @@ import {
   Check,
   ArrowRight,
 } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function SolutionsSegmentSection() {
+  const { t } = useLanguage();
+  const s = t.solutionsSegment;
+
   const segments = [
     {
-      title: "Solo Practitioner",
-      badge: "Individual CA & Tax Advisor",
-      description:
-        "For independent tax consultants who want a focused, single-pane command center without complex IT overhead.",
-      benefits: [
-        "Consolidated GST, ITR & TDS tracking",
-        "Structured document collection checklists",
-        "Self-service client portal access",
-        "Fully managed cloud-native workspace",
-      ],
-      ctaText: "Solo Practitioner Solution",
+      title: s.solo.title,
+      badge: s.solo.badge,
+      description: s.solo.description,
+      benefits: s.solo.benefits,
+      ctaText: s.solo.ctaText,
       ctaHref: "/solutions/solo-practitioner",
       icon: User,
     },
     {
-      title: "Small Tax Firm",
-      badge: "Practice Teams",
-      description:
-        "For boutique firms needing structured task delegation, partner review gates, and team workload coordination.",
-      benefits: [
-        "Role permissions for staff & article assistants",
-        "Workload coordination across client assignments",
-        "Partner sign-off & computation review queues",
-        "Practice-wide statutory deadline calendar",
-      ],
-      ctaText: "Small Firm Solution",
-      ctaHref: "/solutions/small-firm",
+      title: s.smallFirm.title,
+      badge: s.smallFirm.badge,
+      description: s.smallFirm.description,
+      benefits: s.smallFirm.benefits,
+      ctaText: s.smallFirm.ctaText,
+      ctaHref: "/solutions/small-tax-firm",
       icon: Users,
       featured: true,
+      featuredBadge: s.smallFirm.teamBadge,
     },
     {
-      title: "Growing Tax Practice",
-      badge: "Multi-Branch / Corporate Advisory",
-      description:
-        "For expanding advisory practices managing multi-entity corporate clients, multiple offices, and firm expansion.",
-      benefits: [
-        "Multi-location practice management",
-        "Taxoryn Marketplace practice discovery",
-        "Consolidated firm productivity reporting",
-        "Multi-entity corporate compliance workflows",
-      ],
-      ctaText: "Growing Practice Solution",
+      title: s.growing.title,
+      badge: s.growing.badge,
+      description: s.growing.description,
+      benefits: s.growing.benefits,
+      ctaText: s.growing.ctaText,
       ctaHref: "/solutions/growing-practice",
+      icon: Building2,
+    },
+    {
+      title: s.business.title,
+      badge: s.business.badge,
+      description: s.business.description,
+      benefits: s.business.benefits,
+      ctaText: s.business.ctaText,
+      ctaHref: "/solutions/businesses",
       icon: Building2,
     },
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#F8FAFC]">
+    <section className="py-10 sm:py-14 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
-          badge="Practice Solutions"
+          badge={s.badge}
           badgeVariant="navy"
-          title="Built for the way tax practices grow."
-          description="Whether you are an independent practitioner or running a growing multi-partner tax advisory, Taxoryn scales with your operational complexity."
+          title={s.title}
+          description={s.description}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {segments.map((seg) => {
             const Icon = seg.icon;
             return (
@@ -91,7 +89,7 @@ export function SolutionsSegmentSection() {
                   {seg.featured && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                       <Badge variant="teal" size="sm">
-                        Team Focused
+                        {seg.featuredBadge || "Team Focused"}
                       </Badge>
                     </div>
                   )}
@@ -116,7 +114,7 @@ export function SolutionsSegmentSection() {
 
                   <div className="space-y-3 pt-4 border-t border-slate-100 mb-8">
                     <p className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                      Key Practice Capabilities:
+                      {s.keyCapabilities}
                     </p>
                     {seg.benefits.map((benefit, i) => (
                       <div key={i} className="flex items-start gap-2 text-xs text-[#0F172A]">

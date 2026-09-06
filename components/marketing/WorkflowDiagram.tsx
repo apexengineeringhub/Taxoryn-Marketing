@@ -1,73 +1,37 @@
+"use client";
+
 import React from "react";
 import {
   UserSearch,
-  FileQuestion,
   MapPin,
   GitMerge,
-  MessageSquareShare,
   Building2,
+  MessageSquareShare,
   UserCheck2,
-  Sparkles,
-  ArrowRight,
-  ChevronRight,
 } from "lucide-react";
-import { cn } from "@/components/common/Container";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-interface WorkflowStep {
-  stepNumber: string;
-  title: string;
-  description: string;
-  icon: React.ElementType;
-}
-
-const marketplaceSteps: WorkflowStep[] = [
-  {
-    stepNumber: "01",
-    title: "Client Requirement",
-    description: "Business or individual needs GST, ITR, Audit, or TDS services.",
-    icon: UserSearch,
-  },
-  {
-    stepNumber: "02",
-    title: "Location & Expertise",
-    description: "Matches by jurisdiction, industry specialization, and language.",
-    icon: MapPin,
-  },
-  {
-    stepNumber: "03",
-    title: "Practice Matching",
-    description: "Tax practice receives inquiry matched to their credentials and service scope.",
-    icon: GitMerge,
-  },
-  {
-    stepNumber: "04",
-    title: "Direct Enquiry",
-    description: "Practice reviews requirement scope and connects with prospect.",
-    icon: MessageSquareShare,
-  },
-  {
-    stepNumber: "05",
-    title: "Guided Onboarding",
-    description: "Converts prospective enquiry into active client on Taxoryn portal.",
-    icon: UserCheck2,
-  },
-  {
-    stepNumber: "06",
-    title: "Retained Client",
-    description: "Ongoing compliance, billing, and document exchange in one workspace.",
-    icon: Building2,
-  },
+const stepIcons = [
+  UserSearch,
+  MapPin,
+  GitMerge,
+  Building2,
+  MessageSquareShare,
+  UserCheck2,
 ];
 
 export function WorkflowDiagram() {
+  const { t } = useLanguage();
+  const steps = t.marketplaceSection.workflowSteps;
+
   return (
     <div className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {marketplaceSteps.map((step, index) => {
-          const Icon = step.icon;
+        {steps.map((step, index) => {
+          const Icon = stepIcons[index] || UserSearch;
           return (
             <div
-              key={step.stepNumber}
+              key={step.step}
               className="relative p-6 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm hover:border-[#00D1A3] hover:shadow-md transition-all duration-200 group flex flex-col justify-between"
             >
               <div>
@@ -76,7 +40,7 @@ export function WorkflowDiagram() {
                     <Icon className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-[#00D1A3]">
-                    STEP {step.stepNumber}
+                    STEP {step.step}
                   </span>
                 </div>
 
@@ -84,11 +48,11 @@ export function WorkflowDiagram() {
                   {step.title}
                 </h3>
                 <p className="text-sm text-[#475569] leading-relaxed">
-                  {step.description}
+                  {step.desc}
                 </p>
               </div>
 
-              {index < marketplaceSteps.length - 1 && (
+              {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 z-10">
                   {/* Subtle directional indicator */}
                 </div>
@@ -100,3 +64,4 @@ export function WorkflowDiagram() {
     </div>
   );
 }
+

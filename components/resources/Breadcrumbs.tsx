@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export interface BreadcrumbItem {
   label: string;
@@ -12,6 +15,7 @@ interface BreadcrumbsProps {
 }
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
+  const { t } = useLanguage();
   const schemaItems = items.map((item, index) => ({
     "@type": "ListItem",
     position: index + 1,
@@ -38,7 +42,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
             className="inline-flex items-center gap-1 text-slate-500 hover:text-[#082E5B] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded"
           >
             <Home className="w-3.5 h-3.5" />
-            <span>Home</span>
+            <span>{t.common.home || "Home"}</span>
           </Link>
         </li>
 

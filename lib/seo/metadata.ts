@@ -11,14 +11,14 @@ interface GenerateMetadataProps {
 
 export function constructMetadata({
   title,
-  description = siteConfig.description,
+  description = "Run your tax practice, manage compliance, serve clients and grow your business in one connected platform. Purpose-built for Indian tax professionals, tax firms, clients and marketplace discovery.",
   path = "",
   image = "/brand/logo.svg",
   noIndex = false,
 }: GenerateMetadataProps = {}): Metadata {
   const pageTitle = title
     ? `${title} | ${siteConfig.name}`
-    : `${siteConfig.name} | ${siteConfig.tagline}`;
+    : `Tax Practice Management Software | ${siteConfig.name}`;
 
   const canonicalUrl = `${siteConfig.url}${path ? (path.startsWith("/") ? path : `/${path}`) : ""}`;
 

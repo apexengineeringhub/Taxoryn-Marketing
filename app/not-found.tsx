@@ -62,7 +62,7 @@ export default function NotFound() {
             size="md"
             icon={ArrowRight}
           >
-            Join Early Access
+            Get Started
           </Button>
         </div>
 

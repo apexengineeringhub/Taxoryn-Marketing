@@ -17,6 +17,7 @@ import {
   ShieldCheck,
   Send,
 } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface BookDemoFormState {
   fullName: string;
@@ -36,31 +37,9 @@ interface FormErrors {
   phone?: string;
 }
 
-const PRACTICE_SIZES = [
-  "Solo Practitioner",
-  "2–10 Team Members",
-  "11–25 Team Members",
-  "26–50 Team Members",
-  "50+ Team Members",
-];
-
-const DEMO_FOCUS_OPTIONS = [
-  "Complete Product Walkthrough",
-  "Client Management & Profile Directory",
-  "GST / ITR / TDS Filing Tracking",
-  "Team & Article Assistant Workload Management",
-  "Document Requests & Secure Storage",
-  "Client Portal Experience",
-  "Taxoryn Marketplace Practice Profile",
-];
-
-const CONTACT_METHODS = [
-  "Email Coordination",
-  "Video Call (Google Meet)",
-  "Phone Call",
-];
-
 function BookDemoContent() {
+  const { t } = useLanguage();
+  const bf = t.forms.bookDemo;
   const searchParams = useSearchParams();
 
   const [formData, setFormData] = useState<BookDemoFormState>({
@@ -68,8 +47,8 @@ function BookDemoContent() {
     email: "",
     firmName: "",
     phone: "",
-    practiceSize: "Solo Practitioner",
-    demoFocus: "Complete Product Walkthrough",
+    practiceSize: bf.teamSizeOptions[0]?.value || "Solo Practitioner",
+    demoFocus: bf.primaryFocusOptions[0]?.value || "Complete Product Walkthrough",
     contactMethod: "Video Call (Google Meet)",
     preferredTiming: "",
   });
@@ -98,24 +77,24 @@ function BookDemoContent() {
     const newErrors: FormErrors = {};
 
     if (!formData.fullName.trim()) {
-      newErrors.fullName = "Please enter your full name.";
+      newErrors.fullName = bf.nameError;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = "Please enter your work email address.";
+      newErrors.email = bf.emailError;
     } else if (!emailRegex.test(formData.email.trim())) {
-      newErrors.email = "Please enter a valid work email address.";
+      newErrors.email = bf.emailInvalid;
     }
 
     if (!formData.firmName.trim()) {
-      newErrors.firmName = "Please enter your practice or firm name.";
+      newErrors.firmName = bf.firmError;
     }
 
     if (formData.phone.trim()) {
       const phoneRegex = /^[+]?[\d\s-]{8,15}$/;
       if (!phoneRegex.test(formData.phone.trim().replace(/\s+/g, ""))) {
-        newErrors.phone = "Please enter a valid contact phone number.";
+        newErrors.phone = bf.phoneInvalid;
       }
     }
 
@@ -213,7 +192,7 @@ function BookDemoContent() {
   };
 
   return (
-    <div className="py-12 sm:py-20 bg-[#F8FAFC]">
+    <div className="py-10 sm:py-16 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
           badge="Product Walkthrough"
@@ -222,7 +201,7 @@ function BookDemoContent() {
           description="Walk through Taxoryn's practice workflows with our team and see how it fits your firm's compliance operations."
         />
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Left Context & Details Column */}
           <div className="lg:col-span-5 space-y-6">
             <Card variant="default" padding="lg" className="bg-[#07152B] text-white space-y-4">
@@ -251,7 +230,7 @@ function BookDemoContent() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
-                  <span>Q&A on your practice requirements and early access timelines</span>
+                  <span>Q&A on your practice requirements and firm onboarding</span>
                 </li>
               </ul>
             </Card>
@@ -288,19 +267,19 @@ function BookDemoContent() {
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold text-[#07152B]">
-                    Thanks for your interest in Taxoryn
+                    {bf.successTitle}
                   </h3>
                   <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                    Your email client is being opened with your demo request prepared for our team at{" "}
+                    {bf.successDesc}{" "}
                     <strong>{siteConfig.supportEmail}</strong>.
                   </p>
                   <p className="text-xs text-slate-500 max-w-md mx-auto">
-                    Once you send the email, our team will review your request and contact you with next steps.
+                    {bf.successSub}
                   </p>
 
                   <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left space-y-2">
                     <p className="font-semibold text-slate-800">
-                      If your email client does not open automatically:
+                      {bf.emailNotOpenText}
                     </p>
                     <p>
                       Email us directly at:{" "}
@@ -319,7 +298,7 @@ function BookDemoContent() {
                       className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold rounded-lg bg-[#00D1A3] text-[#07152B] hover:bg-[#00D1A3]/90 transition-colors shadow-sm"
                     >
                       <Mail className="w-4 h-4" />
-                      Open Email Client
+                      {bf.openEmailClient}
                     </a>
                     <Button
                       type="button"
@@ -327,7 +306,7 @@ function BookDemoContent() {
                       size="sm"
                       onClick={() => setIsPrepared(false)}
                     >
-                      Edit Information
+                      {bf.editInquiry}
                     </Button>
                   </div>
 
@@ -349,7 +328,7 @@ function BookDemoContent() {
                 <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                   <div className="space-y-1">
                     <h3 className="text-lg font-bold text-[#07152B]">
-                      Request a Product Walkthrough
+                      {bf.submitButton}
                     </h3>
                     <p className="text-xs text-slate-500">
                       Please enter your contact details. Your email client will open with your demo request prepared for Taxoryn.
@@ -363,7 +342,7 @@ function BookDemoContent() {
                         htmlFor="fullName"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Full Name <span className="text-rose-500">*</span>
+                        {bf.nameLabel} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         id="fullName"
@@ -372,7 +351,7 @@ function BookDemoContent() {
                         required
                         value={formData.fullName}
                         onChange={handleChange}
-                        placeholder="e.g. CA Sunita Sharma"
+                        placeholder={bf.namePlaceholder}
                         aria-invalid={!!errors.fullName}
                         aria-describedby={
                           errors.fullName ? "fullName-error" : undefined
@@ -400,7 +379,7 @@ function BookDemoContent() {
                         htmlFor="email"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Work Email <span className="text-rose-500">*</span>
+                        {bf.emailLabel} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         id="email"
@@ -409,7 +388,7 @@ function BookDemoContent() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="sunita@firmdomain.in"
+                        placeholder={bf.emailPlaceholder}
                         aria-invalid={!!errors.email}
                         aria-describedby={
                           errors.email ? "email-error" : undefined
@@ -440,7 +419,7 @@ function BookDemoContent() {
                         htmlFor="firmName"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Practice / Firm Name <span className="text-rose-500">*</span>
+                        {bf.firmLabel} <span className="text-rose-500">*</span>
                       </label>
                       <input
                         id="firmName"
@@ -449,7 +428,7 @@ function BookDemoContent() {
                         required
                         value={formData.firmName}
                         onChange={handleChange}
-                        placeholder="e.g. S. Sharma & Co."
+                        placeholder={bf.firmPlaceholder}
                         aria-invalid={!!errors.firmName}
                         aria-describedby={
                           errors.firmName ? "firmName-error" : undefined
@@ -477,7 +456,7 @@ function BookDemoContent() {
                         htmlFor="phone"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Phone Number <span className="text-slate-400 font-normal">(Optional)</span>
+                        {bf.phoneLabel} <span className="text-slate-400 font-normal">(Optional)</span>
                       </label>
                       <input
                         id="phone"
@@ -485,7 +464,7 @@ function BookDemoContent() {
                         type="tel"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+91 98765 43210"
+                        placeholder={bf.phonePlaceholder}
                         aria-invalid={!!errors.phone}
                         aria-describedby={
                           errors.phone ? "phone-error" : undefined
@@ -516,7 +495,7 @@ function BookDemoContent() {
                         htmlFor="practiceSize"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Practice Size
+                        {bf.teamSizeLabel}
                       </label>
                       <select
                         id="practiceSize"
@@ -525,9 +504,9 @@ function BookDemoContent() {
                         onChange={handleChange}
                         className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all"
                       >
-                        {PRACTICE_SIZES.map((size) => (
-                          <option key={size} value={size}>
-                            {size}
+                        {bf.teamSizeOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
                           </option>
                         ))}
                       </select>
@@ -538,7 +517,7 @@ function BookDemoContent() {
                         htmlFor="demoFocus"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        What would you like to see?
+                        {bf.primaryFocusLabel}
                       </label>
                       <select
                         id="demoFocus"
@@ -547,9 +526,9 @@ function BookDemoContent() {
                         onChange={handleChange}
                         className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all"
                       >
-                        {DEMO_FOCUS_OPTIONS.map((opt) => (
-                          <option key={opt} value={opt}>
-                            {opt}
+                        {bf.primaryFocusOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
                           </option>
                         ))}
                       </select>
@@ -572,11 +551,9 @@ function BookDemoContent() {
                         onChange={handleChange}
                         className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all"
                       >
-                        {CONTACT_METHODS.map((method) => (
-                          <option key={method} value={method}>
-                            {method}
-                          </option>
-                        ))}
+                        <option value="Email Coordination">Email Coordination</option>
+                        <option value="Video Call (Google Meet)">Video Call (Google Meet)</option>
+                        <option value="Phone Call">Phone Call</option>
                       </select>
                     </div>
 
@@ -585,7 +562,7 @@ function BookDemoContent() {
                         htmlFor="preferredTiming"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        Preferred Timing / Note <span className="text-slate-400 font-normal">(Optional)</span>
+                        {bf.messageLabel}
                       </label>
                       <input
                         id="preferredTiming"
@@ -593,7 +570,7 @@ function BookDemoContent() {
                         type="text"
                         value={formData.preferredTiming}
                         onChange={handleChange}
-                        placeholder="e.g. Weekday afternoons, or next Tuesday"
+                        placeholder={bf.messagePlaceholder}
                         className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none transition-all"
                       />
                     </div>
@@ -609,7 +586,7 @@ function BookDemoContent() {
                       icon={Send}
                       className="w-full justify-center font-bold shadow-md shadow-[#00D1A3]/20"
                     >
-                      {isSubmitting ? "Preparing Demo Request..." : "Book a Product Demo"}
+                      {isSubmitting ? bf.submittingButton : bf.submitButton}
                     </Button>
                   </div>
 
