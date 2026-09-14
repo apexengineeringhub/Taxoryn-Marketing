@@ -31,7 +31,7 @@ export function WorkflowDiagram() {
           const Icon = stepIcons[index] || UserSearch;
           return (
             <div
-              key={step.step}
+              key={`workflow-step-${step.stepNumber ?? index}`}
               className="relative p-6 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm hover:border-[#00D1A3] hover:shadow-md transition-all duration-200 group flex flex-col justify-between"
             >
               <div>
