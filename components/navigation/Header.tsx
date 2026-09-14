@@ -24,7 +24,10 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/90 transition-colors">
-      <Container size="wide" className="flex items-center justify-between h-16 sm:h-[68px]">
+      <Container
+        size="wide"
+        className="flex items-center justify-between h-16 sm:h-[68px]"
+      >
         {/* 1. LEFT: Brand Lockup */}
         <div className="flex items-center shrink-0">
           <Logo
@@ -54,13 +57,13 @@ export function Header() {
         {/* 3. RIGHT: Action CTAs & Language Selector */}
         <div className="hidden xl:flex items-center gap-1.5 xl:gap-2.5 shrink-0">
           {/* Secondary Action: Watch Demo */}
-          <a
+          <Link
             href="/#demo-video"
             className="inline-flex items-center gap-1.5 px-2 xl:px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#07152B] hover:bg-slate-100/70 rounded-lg transition-colors whitespace-nowrap"
           >
             <Play className="w-3.5 h-3.5 text-[#00D1A3] fill-[#00D1A3]/25 shrink-0" />
             <span>{t.nav.watchDemo}</span>
-          </a>
+          </Link>
 
           {/* Compact Language Switcher */}
           <LanguageSwitcher variant="header" />
@@ -89,4 +92,3 @@ export function Header() {
     </header>
   );
 }
-
