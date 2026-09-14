@@ -24,15 +24,15 @@ export function SolutionBusinessClientContent() {
 
   const benefitTitles = language === "hi"
     ? [
-        "24/7 Client Portal Access",
+        "Client Portal Access",
         "Structured Document Checklists",
-        "Real-Time Compliance Tracking",
+        "Compliance Status Tracking",
         "Marketplace Practice Discovery",
       ]
     : [
-        "24/7 Client Portal Access",
+        "Client Portal Access",
         "Structured Document Requests",
-        "Real-Time Compliance Tracking",
+        "Compliance Status Tracking",
         "Marketplace Practice Discovery",
       ];
 
@@ -106,8 +106,8 @@ export function SolutionBusinessClientContent() {
         <div className="max-w-3xl mx-auto p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm text-center space-y-3 mb-10 sm:mb-14">
           <h3 className="text-lg sm:text-xl font-bold text-[#07152B]">
             {language === "hi"
-              ? "क्या आपके Business को Verified Tax Professional की आवश्यकता है?"
-              : "Need a Verified Tax Professional for Your Business?"}
+              ? "क्या आपके Business को Tax Professional की आवश्यकता है?"
+              : "Need a Tax Professional for Your Business?"}
           </h3>
           <p className="text-xs sm:text-sm text-[#475569] max-w-xl mx-auto">
             {language === "hi"

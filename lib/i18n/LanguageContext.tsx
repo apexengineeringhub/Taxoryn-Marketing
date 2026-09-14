@@ -13,13 +13,16 @@ import {
   LanguageOption,
   TranslationSchema,
 } from "./types";
-import {
-  DEFAULT_LANGUAGE,
-  LANGUAGE_STORAGE_KEY,
-  AVAILABLE_LANGUAGES,
-  translations,
-  getTranslation,
-} from "./index";
+import { en } from "./en";
+import { hi } from "./hi";
+
+const DEFAULT_LANGUAGE: SupportedLanguage = "en";
+const LANGUAGE_STORAGE_KEY = "taxoryn-language";
+const AVAILABLE_LANGUAGES: LanguageOption[] = [
+  { code: "en", label: "English", nativeLabel: "English", direction: "ltr" },
+  { code: "hi", label: "Hindi", nativeLabel: "हिन्दी", direction: "ltr" },
+];
+const translations: Record<SupportedLanguage, TranslationSchema> = { en, hi };
 
 interface LanguageContextValue {
   language: SupportedLanguage;
@@ -71,7 +74,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const currentTranslation = getTranslation(language);
+  const currentTranslation = translations[language] || translations[DEFAULT_LANGUAGE];
 
   return (
     <LanguageContext.Provider

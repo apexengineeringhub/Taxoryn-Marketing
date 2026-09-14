@@ -21,11 +21,11 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10 items-start">
           {/* LEFT COLUMN: Headline, Narrative, CTAs & Value Proof (5 cols) */}
-          <div className="lg:col-span-5 space-y-4 text-left pt-1">
+          <div className="lg:col-span-5 space-y-4 text-left pt-1 min-w-0">
             {/* Primary Headline */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[2.2rem] xl:text-[2.65rem] font-extrabold text-[#07152B] tracking-tight leading-[1.2] max-w-xl">
+            <h1 className="text-2xl sm:text-3xl lg:text-[2.1rem] xl:text-[2.55rem] font-extrabold text-[#07152B] tracking-tight leading-[1.16] max-w-[34rem] text-balance">
               <span>{t.hero.headlinePrefix} </span>
               <span className="text-[#009E77]">{t.hero.headlineSuffix}</span>
             </h1>
@@ -101,7 +101,7 @@ export function HeroSection() {
           </div>
 
           {/* RIGHT COLUMN: Clean, Prominent Taxoryn Product Dashboard Preview (7 cols) */}
-          <div className="lg:col-span-7 relative">
+          <div className="lg:col-span-7 relative min-w-0">
             <ProductPreview />
           </div>
         </div>

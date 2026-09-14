@@ -70,7 +70,7 @@ export const Button = React.forwardRef<
       {Icon && iconPosition === "left" && (
         <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
       )}
-      <span>{children}</span>
+      <span className="min-w-0">{children}</span>
       {Icon && iconPosition === "right" && (
         <Icon className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
       )}

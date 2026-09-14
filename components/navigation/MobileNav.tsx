@@ -124,7 +124,7 @@ export function MobileNav() {
         aria-modal="true"
         aria-label="Mobile Navigation"
       >
-        <div className="p-6 border-b border-slate-100 flex items-center justify-between">
+        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center gap-4">
           <Logo
             variant="horizontal"
             size="sm"
@@ -132,6 +132,7 @@ export function MobileNav() {
             descriptor={t.brand.productDescriptor}
             linkHref="/"
             onClick={handleClose}
+            className="min-w-0 flex-1"
           />
           <button
             ref={closeBtnRef}
@@ -184,7 +185,7 @@ export function MobileNav() {
         <div className="p-6 border-t border-slate-100 bg-slate-50/50 space-y-3">
           <div className="flex items-center gap-2 text-xs text-slate-500 mb-2 px-1">
             <ShieldCheck className="w-4 h-4 text-[#00D1A3]" />
-            <span>Tenant-Aware Practice Workspace</span>
+            <span>{t.brand.productDescriptor}</span>
           </div>
 
           <Button
