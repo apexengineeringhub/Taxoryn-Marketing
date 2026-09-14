@@ -75,3 +75,7 @@
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Phase 1 responsive safety: prevent accidental horizontal page overflow. */
+html, body { overflow-x: clip; }

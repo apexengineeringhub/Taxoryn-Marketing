@@ -27,7 +27,7 @@ export function ResourcesClientContent() {
   const r = t.pages.resources;
   const featuredArticles = RESOURCE_ARTICLES.filter((a) => a.featured);
 
-  const getCategoryIcon = (iconName) => {
+  const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
       case "FileSpreadsheet":
         return <FileSpreadsheet className="w-5 h-5 text-[#082E5B]" />;

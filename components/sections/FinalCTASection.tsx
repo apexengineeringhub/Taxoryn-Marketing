@@ -22,7 +22,7 @@ export function FinalCTASection() {
             {t.finalCTA.badge}
           </span>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white text-balance leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white text-balance leading-[1.12] max-w-3xl mx-auto">
             {t.finalCTA.title}
           </h2>
 

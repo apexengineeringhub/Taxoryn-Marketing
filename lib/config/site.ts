@@ -1,8 +1,9 @@
 import { SiteConfig } from "@/types";
 import { brandConfig } from "./brand";
 
-export const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://app.taxoryn.com";
+export const APP_URL = (
+  process.env.NEXT_PUBLIC_APP_URL || "https://app.taxoryn.com"
+).replace(/\/$/, "");
 
 export const APP_ROUTES = {
   login: `${APP_URL}/login`,

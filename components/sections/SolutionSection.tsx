@@ -35,7 +35,7 @@ export function SolutionSection() {
       description: t.solution.step2Desc,
       icon: SlidersHorizontal,
       highlights: [
-        "Automated compliance calendar & due-date tracking",
+        "Compliance calendar & due-date tracking",
         "GST, ITR & TDS preparation-to-filing pipelines",
         "Practice-wide productivity & workload reports",
       ],
@@ -61,7 +61,7 @@ export function SolutionSection() {
       highlights: [
         "Taxoryn Marketplace practice matching",
         "Structured client intake & KYC onboarding",
-        "Seamless transition from lead to retained client",
+        "Structured transition from lead to client",
       ],
     },
   ];
@@ -80,7 +80,7 @@ export function SolutionSection() {
           description={t.solution.subtitle}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-7 max-w-6xl mx-auto">
           {pillars.map((item) => {
             const Icon = item.icon;
             return (

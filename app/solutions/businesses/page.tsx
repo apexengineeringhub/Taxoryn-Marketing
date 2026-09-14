@@ -5,7 +5,7 @@ import { SolutionBusinessClientContent } from "@/components/pages/SolutionBusine
 export const metadata = constructMetadata({
   title: "Tax Solutions for Businesses | Taxoryn",
   description:
-    "Taxoryn helps businesses collaborate with their tax professionals, access filed returns 24/7, submit compliance documents securely, and discover verified tax practices.",
+    "Taxoryn helps businesses collaborate with their tax professionals, access approved filing records, submit compliance documents securely, and explore tax practices on the Marketplace.",
   path: "/solutions/businesses",
 });
 

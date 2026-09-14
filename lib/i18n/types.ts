@@ -62,6 +62,12 @@ export interface TranslationSchema {
     item4Title: string;
     item4Desc: string;
     replaceNote: string;
+    transformHeader: string;
+    solutionHeader: string;
+    pillDirectory: string;
+    pillGstItr: string;
+    pillPortal: string;
+    pillGrowth: string;
     stackHeader: string;
     disconnectedTools: string;
     dailyFriction: string;
@@ -85,6 +91,7 @@ export interface TranslationSchema {
     readFullStory: string;
     footerTagline: string;
     footerDesc: string;
+    descriptor: string;
   };
   helpShape: {
     badge: string;
@@ -135,6 +142,7 @@ export interface TranslationSchema {
     feature5Desc: string;
     feature6Title: string;
     feature6Desc: string;
+    exploreProduct: string;
     points5: string[];
   };
   demoVideo: {
@@ -166,6 +174,8 @@ export interface TranslationSchema {
     forProsTitle: string;
     forProsDesc: string;
     forProsCta: string;
+    journeyBusinessTag: string; journeyBusinessTitle: string; journeyBusinessDesc: string; journeyBusinessCta: string;
+    journeyTaxProfTag: string; journeyTaxProfTitle: string; journeyTaxProfDesc: string; journeyTaxProfCta: string;
     workflowStepPrefix: string;
     workflowSteps: Array<{
       stepNumber: string;
@@ -258,6 +268,10 @@ export interface TranslationSchema {
       tagMonthlyGst: string;
       tagQuarterlyTds: string;
       tagAnnualItr: string;
+      item1Title: string; item1Due: string; item1Tag: string;
+      item2Title: string; item2Due: string; item2Tag: string;
+      item3Title: string; item3Due: string; item3Tag: string;
+      item4Title: string; item4Due: string; item4Tag: string;
     };
     activity: {
       title: string;
@@ -274,6 +288,10 @@ export interface TranslationSchema {
       item4Title: string;
       item4Sub: string;
       item4Tag: string;
+      act1Title: string; act1Desc: string; act1Tag: string;
+      act2Title: string; act2Desc: string; act2Tag: string;
+      act3Title: string; act3Desc: string; act3Tag: string;
+      act4Title: string; act4Desc: string; act4Tag: string;
     };
     sidebar: {
       dashboard: string;
@@ -351,6 +369,13 @@ export interface TranslationSchema {
     relatedResources: string;
     viewAllResources: string;
     faqHeading: string;
+    scheduleDemo: string;
+    exploreFeatures: string;
+    contactSupport: string;
+    dashboard: string;
+    takeawaysSub: string;
+    sourcesHeading: string;
+    sourcesSub: string;
   };
   consentBanner: {
     title: string;
@@ -790,25 +815,8 @@ export interface TranslationSchema {
       openEmailClient: string;
       editInquiry: string;
     };
-  };
-  common: {
-    allRightsReserved: string;
-    scheduleDemo: string;
-    readMore: string;
-    learnMore: string;
-    exploreFeatures: string;
-    contactSupport: string;
-    dashboard: string;
-    readGuide: string;
-    updatedOn: string;
-    keyTakeaways: string;
-    takeawaysSub: string;
-    faqHeading: string;
-    home: string;
-    resources: string;
-    guides: string;
-    sourcesHeading: string;
-    sourcesSub: string;
-  };
+
 }
 
+
+}

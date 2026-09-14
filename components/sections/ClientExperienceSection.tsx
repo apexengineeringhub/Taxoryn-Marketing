@@ -24,7 +24,7 @@ export function ClientExperienceSection() {
     { step: "03", title: "Submit Documents", desc: "Uploads requested bank statements and invoices to checklists." },
     { step: "04", title: "Review Requests", desc: "Clarifies queries and approves computation summaries." },
     { step: "05", title: "Track Actions", desc: "Monitors upcoming GST, ITR, and TDS statutory deadlines." },
-    { step: "06", title: "Stay Connected", desc: "Downloads official filing acknowledgments and challans 24/7." },
+    { step: "06", title: "Stay Connected", desc: "Accesses official filing acknowledgments and challans through the client portal." },
   ];
 
   const features = [
@@ -32,7 +32,7 @@ export function ClientExperienceSection() {
       icon: Globe,
       title: "Self-Service Client Portal",
       description:
-        "Give your corporate and individual clients a dedicated login to view their tax profile, filed returns, and acknowledgments 24/7.",
+        "Give your corporate and individual clients a dedicated login to view their tax profile, approved filed returns, and acknowledgments.",
     },
     {
       icon: FolderUp,

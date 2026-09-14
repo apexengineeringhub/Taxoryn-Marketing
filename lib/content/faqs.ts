@@ -11,7 +11,7 @@ export const faqsData: FAQItem[] = [
     category: "general",
     question: "Is Taxoryn suitable for solo practitioners or only larger CA firms?",
     answer:
-      "Taxoryn is engineered to scale seamlessly from independent solo practitioners to multi-partner CA firms. Solo practitioners benefit immediately from automated document collection checklists, organized client masters, and self-service client portals. Multi-user firms leverage role-based permissions, manager-partner review queues, and practice-wide workload dashboards.",
+      "Taxoryn is designed to support solo practitioners and multi-user tax practices with organized client records, document workflows, role-based permissions, review queues, and practice workload visibility.",
   },
   {
     id: "portal-submission-boundary",
