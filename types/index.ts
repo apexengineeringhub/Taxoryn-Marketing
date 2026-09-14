@@ -33,6 +33,11 @@ export interface SiteConfig {
     privacy: string;
     terms: string;
     contact: string;
+    learn?: string;
+    videos?: string;
+    ourStory?: string;
+    youtube?: string;
+    linkedin?: string;
   };
 }
 
@@ -40,7 +45,7 @@ export interface CapabilityItem {
   id: string;
   title: string;
   shortDescription: string;
-  category: "Organize" | "Control" | "Serve" | "Grow";
+  category: "Organize" | "Comply" | "Control" | "Serve" | "Connect" | "Grow";
   iconName: string;
   badge?: string;
 }
@@ -53,7 +58,7 @@ export interface ProblemPoint {
 }
 
 export interface SolutionPillar {
-  pillar: "ORGANIZE" | "CONTROL" | "SERVE" | "GROW";
+  pillar: "ORGANIZE" | "COMPLY" | "CONTROL" | "SERVE" | "CONNECT" | "GROW";
   title: string;
   tagline: string;
   description: string;

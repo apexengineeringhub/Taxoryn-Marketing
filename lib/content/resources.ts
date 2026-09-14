@@ -131,7 +131,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     relatedArticleIds: ["gst-vs-itr-differences", "tax-practice-compliance-workflow-guide", "tax-practice-management-excel-to-cloud"],
     ctaType: "practice",
     ctaTitle: "Streamline GST Reconciliation Across All Your Practice Clients",
-    ctaDescription: "Taxoryn gives Indian tax practices automated due-date boards, GSTR-2B tracking, and structured client filing queues in one workspace.",
+    ctaDescription: "Taxoryn gives Indian tax practices due-date tracking, GSTR-2B tracking, and structured client filing queues in one workspace.",
   },
   {
     id: "itr-filing-checklist",
@@ -215,7 +215,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     relatedArticleIds: ["form-16-26as-ais-tis-guide", "gst-vs-itr-differences", "organize-client-documents-tax-practice"],
     ctaType: "practice",
     ctaTitle: "Manage ITR Computation Pipelines with Team Review Queues",
-    ctaDescription: "Taxoryn helps tax practitioners ingest client AIS data, track return statuses, and attach filing acknowledgments seamlessly.",
+    ctaDescription: "Taxoryn helps tax practitioners ingest client AIS data, track return statuses, and attach filing acknowledgments for easier retrieval.",
   },
   {
     id: "tds-compliance-calendar",
@@ -543,7 +543,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       },
       {
         heading: "2. Solving the 'Chasing Bank Statements' Bottleneck",
-        content: "Tax practitioners spend up to 30% of their operational time following up with clients for missing documents. Implementing digital document request checklists allows firms to send structured collection links with custom file specifications (e.g. password-free bank statements in PDF/Excel format).",
+        content: "A significant amount of practice time can be spent following up with clients for missing documents. Implementing digital document request checklists allows firms to send structured collection links with custom file specifications (e.g. password-free bank statements in PDF/Excel format).",
       },
       {
         heading: "3. Access Controls & Professional Confidentiality",
@@ -592,7 +592,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     sections: [
       {
         heading: "1. Stage 1: Client Intake & Digital Checklists",
-        content: "Every compliance cycle begins with automated task generation linked to statutory deadlines. Send the client a customized document checklist, track submission status in real-time, and verify that primary documents (purchase registers, Form 16, AIS) are complete before assigning to preparation staff.",
+        content: "Every compliance cycle can be organized around statutory deadlines. Send the client a customized document checklist, track submission status, and verify that primary documents (purchase registers, Form 16, AIS) are complete before assigning to preparation staff.",
       },
       {
         heading: "2. Stage 2: Data Ingestion & Computation Preparation",
@@ -614,7 +614,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     keyTakeaways: [
       "Standardize compliance execution into 5 defined stages to ensure consistent output quality across all team members.",
       "Never bypass the partner review gate before uploading returns to official government portals.",
-      "Attach filing acknowledgments immediately to client master records for seamless future retrieval.",
+      "Attach filing acknowledgments to client master records for easier future retrieval.",
       "Deliver filed returns to clients through a dedicated digital portal to eliminate repetitive document requests.",
     ],
     faqs: [
@@ -638,7 +638,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     relatedArticleIds: ["tax-practice-management-excel-to-cloud", "organize-client-documents-tax-practice", "gst-compliance-checklist"],
     ctaType: "practice",
     ctaTitle: "Implement Standardized Compliance SOPs with Taxoryn",
-    ctaDescription: "Enable task boards, review gates, and automated status alerts for your tax practice today.",
+    ctaDescription: "Use task boards, review gates, and status alerts to organize your tax practice.",
   },
 ];
 

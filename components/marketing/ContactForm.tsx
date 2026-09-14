@@ -13,6 +13,7 @@ import {
   Send,
   Sparkles,
 } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface FormState {
   fullName: string;
@@ -32,12 +33,16 @@ interface FormErrors {
 }
 
 export function ContactForm() {
+  const { t } = useLanguage();
+  const cp = t.pages.contact;
+  const cf = t.forms.contact;
+
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
     firmName: "",
     email: "",
     phone: "",
-    practiceSize: "Solo Practitioner (1 Person)",
+    practiceSize: cf.practiceSizeOptions[0]?.value || "Solo Practitioner (1 Person)",
     message: "",
   });
 
@@ -49,25 +54,25 @@ export function ContactForm() {
     const newErrors: FormErrors = {};
 
     if (!formData.fullName.trim()) {
-      newErrors.fullName = "Please enter your name.";
+      newErrors.fullName = cf.nameError;
     }
 
     if (!formData.firmName.trim()) {
-      newErrors.firmName = "Please enter your firm or practice name.";
+      newErrors.firmName = cf.firmError;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = "Please enter your work email.";
+      newErrors.email = cf.emailError;
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address.";
+      newErrors.email = cf.emailInvalid;
     }
 
     const phoneRegex = /^[+]?[\d\s-]{8,15}$/;
     if (!formData.phone.trim()) {
-      newErrors.phone = "Please enter your contact number.";
+      newErrors.phone = cf.phoneError;
     } else if (!phoneRegex.test(formData.phone.replace(/\s+/g, ""))) {
-      newErrors.phone = "Please enter a valid phone number.";
+      newErrors.phone = cf.phoneInvalid;
     }
 
     setErrors(newErrors);
@@ -128,22 +133,22 @@ export function ContactForm() {
   };
 
   return (
-    <div className="py-12 sm:py-20 bg-[#F8FAFC]">
+    <div className="py-10 sm:py-16 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
-          badge="Practice Consultation"
+          badge={cp.badge}
           badgeVariant="teal"
-          title="Schedule a Personalized Practice Walkthrough"
-          description="Learn how Taxoryn helps streamline client management, compliance deadlines, and team review queues."
+          title={cp.title}
+          description={cp.description}
         />
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 mb-16">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Practice Info Column */}
           <div className="md:col-span-5 space-y-6">
             <div className="p-6 rounded-2xl bg-[#07152B] text-white space-y-4 shadow-sm">
-              <h3 className="text-lg font-bold">Taxoryn Practice Advisory</h3>
+              <h3 className="text-lg font-bold">{cp.advisoryTitle}</h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Speak directly with our practice specialists to explore workflow organization, team role configurations, and client portal setup for your practice.
+                {cp.advisoryDesc}
               </p>
 
               <div className="space-y-3 pt-2 text-xs text-slate-200">
@@ -156,21 +161,15 @@ export function ContactForm() {
 
             <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
               <h4 className="text-sm font-bold text-[#07152B]">
-                Walkthrough Overview
+                {cp.overviewTitle}
               </h4>
               <ul className="space-y-2 text-xs text-slate-600">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
-                  <span>GST, ITR & TDS preparation-to-filing pipelines</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
-                  <span>Client portal and document collection checklists</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
-                  <span>Practice profile on Taxoryn Marketplace</span>
-                </li>
+                {cp.overviewItems.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -187,21 +186,21 @@ export function ContactForm() {
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#07152B]">
-                  Preparing Email Message
+                  {cf.successTitle}
                 </h3>
                 <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                  Your email client is being opened with your consultation request prepared for our team at{" "}
+                  {cf.successDesc}{" "}
                   <strong>{siteConfig.supportEmail}</strong>.
                 </p>
                 <p className="text-xs text-slate-500 max-w-md mx-auto">
-                  Once you send the email, our team will review your request and contact you with next steps.
+                  {cf.successSub}
                 </p>
                 <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left space-y-2">
                   <p className="font-semibold text-slate-800">
-                    If your email client does not open automatically:
+                    {cf.emailNotOpenText}
                   </p>
                   <p>
-                    Email us directly at:{" "}
+                    {cf.emailUsDirectly}{" "}
                     <a
                       href={constructMailtoUrl()}
                       className="text-[#082E5B] underline font-medium hover:text-[#00D1A3]"
@@ -216,7 +215,7 @@ export function ContactForm() {
                     className="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-[#00D1A3] text-[#07152B] hover:bg-[#00D1A3]/90 transition-colors"
                   >
                     <Mail className="w-3.5 h-3.5" />
-                    Open Email Client
+                    {cf.openEmailClient}
                   </a>
                   <Button
                     type="button"
@@ -229,12 +228,12 @@ export function ContactForm() {
                         firmName: "",
                         email: "",
                         phone: "",
-                        practiceSize: "Solo Practitioner (1 Person)",
+                        practiceSize: cf.practiceSizeOptions[0]?.value || "Solo Practitioner (1 Person)",
                         message: "",
                       });
                     }}
                   >
-                    Edit Inquiry
+                    {cf.editInquiry}
                   </Button>
                 </div>
               </div>
@@ -246,7 +245,7 @@ export function ContactForm() {
                       htmlFor="fullName"
                       className="block text-xs font-semibold text-slate-700 mb-1"
                     >
-                      Your Name <span className="text-rose-500">*</span>
+                      {cf.nameLabel} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       id="fullName"
@@ -255,7 +254,7 @@ export function ContactForm() {
                       required
                       value={formData.fullName}
                       onChange={handleChange}
-                      placeholder="e.g. CA Rajesh Kumar"
+                      placeholder={cf.namePlaceholder}
                       aria-invalid={!!errors.fullName}
                       aria-describedby={
                         errors.fullName ? "fullName-error" : undefined
@@ -283,7 +282,7 @@ export function ContactForm() {
                       htmlFor="firmName"
                       className="block text-xs font-semibold text-slate-700 mb-1"
                     >
-                      Firm / Practice Name <span className="text-rose-500">*</span>
+                      {cf.firmLabel} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       id="firmName"
@@ -292,7 +291,7 @@ export function ContactForm() {
                       required
                       value={formData.firmName}
                       onChange={handleChange}
-                      placeholder="e.g. R. Kumar & Associates"
+                      placeholder={cf.firmPlaceholder}
                       aria-invalid={!!errors.firmName}
                       aria-describedby={
                         errors.firmName ? "firmName-error" : undefined
@@ -322,7 +321,7 @@ export function ContactForm() {
                       htmlFor="email"
                       className="block text-xs font-semibold text-slate-700 mb-1"
                     >
-                      Work Email <span className="text-rose-500">*</span>
+                      {cf.emailLabel} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       id="email"
@@ -331,7 +330,7 @@ export function ContactForm() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="name@firmdomain.in"
+                      placeholder={cf.emailPlaceholder}
                       aria-invalid={!!errors.email}
                       aria-describedby={
                         errors.email ? "email-error" : undefined
@@ -359,7 +358,7 @@ export function ContactForm() {
                       htmlFor="phone"
                       className="block text-xs font-semibold text-slate-700 mb-1"
                     >
-                      Phone Number <span className="text-rose-500">*</span>
+                      {cf.phoneLabel} <span className="text-rose-500">*</span>
                     </label>
                     <input
                       id="phone"
@@ -368,7 +367,7 @@ export function ContactForm() {
                       required
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+91 98765 43210"
+                      placeholder={cf.phonePlaceholder}
                       aria-invalid={!!errors.phone}
                       aria-describedby={
                         errors.phone ? "phone-error" : undefined
@@ -397,7 +396,7 @@ export function ContactForm() {
                     htmlFor="practiceSize"
                     className="block text-xs font-semibold text-slate-700 mb-1"
                   >
-                    Practice Size
+                    {cf.practiceSizeLabel}
                   </label>
                   <select
                     id="practiceSize"
@@ -406,18 +405,11 @@ export function ContactForm() {
                     onChange={handleChange}
                     className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all"
                   >
-                    <option value="Solo Practitioner (1 Person)">
-                      Solo Practitioner (1 Person)
-                    </option>
-                    <option value="Small Firm (2 - 5 Team Members)">
-                      Small Firm (2 - 5 Team Members)
-                    </option>
-                    <option value="Medium Firm (6 - 15 Team Members)">
-                      Medium Firm (6 - 15 Team Members)
-                    </option>
-                    <option value="Growing Practice (16+ Team Members)">
-                      Growing Practice (16+ Team Members)
-                    </option>
+                    {cf.practiceSizeOptions.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -426,7 +418,7 @@ export function ContactForm() {
                     htmlFor="message"
                     className="block text-xs font-semibold text-slate-700 mb-1"
                   >
-                    Message / Current Software Context (Optional)
+                    {cf.messageLabel}
                   </label>
                   <textarea
                     id="message"
@@ -434,7 +426,7 @@ export function ContactForm() {
                     rows={3}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your current practice tools and key requirements..."
+                    placeholder={cf.messagePlaceholder}
                     className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none transition-all"
                   />
                 </div>
@@ -448,14 +440,12 @@ export function ContactForm() {
                     icon={Send}
                     className="w-full justify-center font-bold"
                   >
-                    {isSubmitting
-                      ? "Recording Request..."
-                      : "Request Practice Walkthrough"}
+                    {isSubmitting ? cf.submittingButton : cf.submitButton}
                   </Button>
                 </div>
 
                 <p className="text-xs text-slate-500 text-center pt-1 leading-relaxed">
-                  We respect your confidentiality. We do not ask for PAN, GST credentials, or financial documents on marketing inquiries.
+                  {cp.formPrivacy}
                 </p>
               </form>
             )}

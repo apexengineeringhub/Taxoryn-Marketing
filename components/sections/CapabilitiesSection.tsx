@@ -79,7 +79,7 @@ const capabilities: CapabilityItem[] = [
   },
   {
     id: "notifications",
-    title: "Automated Notifications",
+    title: "Notifications",
     shortDescription:
       "Keep clients and team informed of upcoming filing deadlines, status updates, and document verification.",
     category: "Serve",
@@ -138,7 +138,7 @@ const capabilities: CapabilityItem[] = [
 
 export function CapabilitiesSection() {
   return (
-    <section className="py-16 sm:py-24 bg-[#F8FAFC]">
+    <section className="py-12 sm:py-16 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
           badge="Product Capabilities"
@@ -147,7 +147,7 @@ export function CapabilitiesSection() {
           description="Every capability in Taxoryn is engineered to reduce administrative friction and deliver professional accuracy across Indian tax regulations."
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
           {capabilities.map((cap) => (
             <CapabilityCard key={cap.id} capability={cap} />
           ))}

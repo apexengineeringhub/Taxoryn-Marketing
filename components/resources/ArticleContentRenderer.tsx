@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { ArticleSection } from "@/types/content";
 import { CheckCircle2, AlertCircle, Lightbulb, Info } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface ArticleContentRendererProps {
   sections: ArticleSection[];
@@ -11,6 +14,7 @@ export function ArticleContentRenderer({
   sections,
   keyTakeaways,
 }: ArticleContentRendererProps) {
+  const { t } = useLanguage();
   return (
     <div className="space-y-10 text-slate-700 leading-relaxed">
       {/* Sections rendering */}
@@ -129,9 +133,9 @@ export function ArticleContentRenderer({
         <div className="p-6 sm:p-8 rounded-2xl bg-[#07152B] text-white space-y-4 shadow-md">
           <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#00D1A3] uppercase">
             <CheckCircle2 className="w-4 h-4 text-[#00D1A3]" />
-            <span>Key Practitioner Takeaways</span>
+            <span>{t.common.keyTakeaways || "Key Practitioner Takeaways"}</span>
           </div>
-          <h3 className="text-xl font-bold text-white">Summary for Practice & Compliance Files</h3>
+          <h3 className="text-xl font-bold text-white">{t.common.takeawaysSub || "Summary for Practice & Compliance Files"}</h3>
           <ul className="space-y-3 text-xs sm:text-sm text-slate-200">
             {keyTakeaways.map((item, i) => (
               <li key={i} className="flex items-start gap-3">

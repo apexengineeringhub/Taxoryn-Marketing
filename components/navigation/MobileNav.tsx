@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/common/Button";
-import { mainNavItems } from "@/lib/config/navigation";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { siteConfig } from "@/lib/config/site";
 import { cn } from "@/components/common/Container";
 
@@ -16,6 +17,16 @@ export function MobileNav() {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const { t } = useLanguage();
+
+  const navItems = [
+    { label: t.nav.product, href: "/product" },
+    { label: t.nav.solutions, href: "/solutions" },
+    { label: t.nav.marketplace, href: siteConfig.links.marketplace },
+    { label: t.nav.learn, href: "/learn" },
+    { label: t.nav.pricing, href: "/pricing" },
+    { label: t.nav.security, href: siteConfig.links.security },
+  ];
 
   // Close on route change
   useEffect(() => {
@@ -81,12 +92,12 @@ export function MobileNav() {
   };
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         ref={triggerRef}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close main navigation" : "Open main navigation"}
+        aria-label={isOpen ? t.nav.close : t.nav.menu}
         aria-expanded={isOpen}
         className="min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 text-[#0F172A] hover:text-[#082E5B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg transition-colors"
       >
@@ -113,48 +124,68 @@ export function MobileNav() {
         aria-modal="true"
         aria-label="Mobile Navigation"
       >
-        <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-          <Logo variant="horizontal" size="sm" linkHref="/" onClick={handleClose} />
+        <div className="p-5 sm:p-6 border-b border-slate-100 flex items-center gap-4">
+          <Logo
+            variant="horizontal"
+            size="sm"
+            tagline={t.brand.tagline}
+            descriptor={t.brand.productDescriptor}
+            linkHref="/"
+            onClick={handleClose}
+            className="min-w-0 flex-1"
+          />
           <button
             ref={closeBtnRef}
             type="button"
             onClick={handleClose}
-            aria-label="Close navigation"
+            aria-label={t.nav.close}
             className="min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 text-slate-500 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-1">
-          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 px-3">
-            Navigation
-          </p>
-          {mainNavItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={handleClose}
-                className={cn(
-                  "flex items-center justify-between px-3 py-3 rounded-lg text-base font-medium transition-colors",
-                  isActive
-                    ? "bg-[#082E5B]/5 text-[#082E5B] font-semibold"
-                    : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
-                )}
-              >
-                <span>{item.label}</span>
-                <ArrowRight className="w-4 h-4 text-slate-400" />
-              </Link>
-            );
-          })}
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+          {/* Mobile Language Switcher */}
+          <div>
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 px-1">
+              {t.nav.language}
+            </p>
+            <LanguageSwitcher variant="mobile" />
+          </div>
+
+          <div className="pt-2">
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2 px-1">
+              {t.nav.menu}
+            </p>
+            <div className="space-y-1">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={handleClose}
+                    className={cn(
+                      "flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors",
+                      isActive
+                        ? "bg-[#082E5B]/5 text-[#082E5B]"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                    )}
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight className="w-4 h-4 text-slate-400" />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         <div className="p-6 border-t border-slate-100 bg-slate-50/50 space-y-3">
           <div className="flex items-center gap-2 text-xs text-slate-500 mb-2 px-1">
             <ShieldCheck className="w-4 h-4 text-[#00D1A3]" />
-            <span>Tenant-Aware Practice Workspace</span>
+            <span>{t.brand.productDescriptor}</span>
           </div>
 
           <Button
@@ -163,16 +194,26 @@ export function MobileNav() {
             size="lg"
             className="w-full justify-center shadow-md font-bold"
           >
-            Join Early Access
+            {t.nav.getStarted}
+          </Button>
+
+          <Button
+            href="/#demo-video"
+            onClick={handleClose}
+            variant="outline"
+            size="md"
+            className="w-full justify-center font-semibold"
+          >
+            {t.nav.watchDemo}
           </Button>
 
           <Button
             href={siteConfig.links.login}
-            variant="outline"
+            variant="ghost"
             size="md"
-            className="w-full justify-center"
+            className="w-full justify-center font-bold text-[#082E5B] hover:bg-slate-100"
           >
-            Practice / Client Login
+            {t.nav.loginToPractice}
           </Button>
         </div>
       </div>

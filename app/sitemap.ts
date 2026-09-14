@@ -5,16 +5,18 @@ import { RESOURCE_ARTICLES } from "@/lib/content/resources";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
 
-  // Complete list of public static marketing routes
   const staticRoutes = [
     "",
     "/product",
     "/features",
     "/solutions",
     "/solutions/solo-practitioner",
-    "/solutions/small-firm",
+    "/solutions/small-tax-firm",
     "/solutions/growing-practice",
+    "/solutions/businesses",
     "/marketplace",
+    "/learn",
+    "/videos",
     "/pricing",
     "/security",
     "/resources",

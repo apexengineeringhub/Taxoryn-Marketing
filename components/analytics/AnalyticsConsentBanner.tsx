@@ -4,8 +4,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Shield, X } from "lucide-react";
 import { getConsentState, setAnalyticsConsent } from "@/lib/analytics";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function AnalyticsConsentBanner() {
+  const { t } = useLanguage();
+  const c = t.consentBanner;
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -36,7 +39,7 @@ export function AnalyticsConsentBanner() {
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2 text-sm font-bold text-white">
           <Shield className="w-4 h-4 text-[#00D1A3]" />
-          <span>Privacy & Analytics</span>
+          <span>{c.title}</span>
         </div>
         <button
           onClick={handleDecline}
@@ -48,12 +51,12 @@ export function AnalyticsConsentBanner() {
       </div>
 
       <p className="text-xs text-slate-300 leading-relaxed">
-        We use privacy-conscious analytics to measure site traffic and improve practice workflows. We never track PAN, GSTIN, financial returns, passwords, or personal identity. Read our{" "}
+        {c.text}{" "}
         <Link
           href="/privacy"
           className="text-[#00D1A3] underline hover:text-[#00B388]"
         >
-          Privacy Policy
+          {c.policyLink}
         </Link>
         .
       </p>
@@ -63,13 +66,13 @@ export function AnalyticsConsentBanner() {
           onClick={handleAccept}
           className="flex-1 min-h-[40px] py-2 px-3.5 rounded-lg bg-[#00D1A3] text-[#07152B] font-bold text-xs hover:bg-[#00B388] transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]"
         >
-          Accept Analytics
+          {c.accept}
         </button>
         <button
           onClick={handleDecline}
           className="flex-1 min-h-[40px] py-2 px-3.5 rounded-lg bg-slate-800 text-slate-200 font-semibold text-xs hover:bg-slate-700 transition-colors border border-slate-700 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
         >
-          Decline
+          {c.decline}
         </button>
       </div>
     </aside>

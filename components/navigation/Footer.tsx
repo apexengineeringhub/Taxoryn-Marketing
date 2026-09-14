@@ -1,44 +1,66 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { Logo } from "./Logo";
-import { footerNavigation } from "@/lib/config/navigation";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { siteConfig } from "@/lib/config/site";
-import { Shield, Sparkles } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
+
+  const productLinks = [
+    { label: t.footer.productLinks.product, href: "/product" },
+    { label: t.footer.productLinks.features, href: "/features" },
+    { label: t.footer.productLinks.pricing, href: "/pricing" },
+  ];
+
+  const connectLinks = [
+    { label: t.footer.connectLinks.marketplace, href: siteConfig.links.marketplace },
+    { label: t.footer.connectLinks.learn, href: "/learn" },
+    { label: t.footer.connectLinks.contact, href: siteConfig.links.contact },
+    { label: t.footer.connectLinks.bookDemo, href: siteConfig.links.bookDemo },
+  ];
+
+  const companyLinks = [
+    { label: t.footer.companyLinks.about, href: "/about" },
+    { label: t.footer.companyLinks.security, href: siteConfig.links.security },
+    { label: t.footer.companyLinks.privacy, href: siteConfig.links.privacy },
+    { label: t.footer.companyLinks.terms, href: siteConfig.links.terms },
+  ];
 
   return (
-    <footer className="bg-[#07152B] text-slate-300 border-t border-slate-800">
-      <Container className="pt-16 pb-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 xl:gap-12 pb-16 border-b border-slate-800">
-          {/* Brand & Motto Column */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-2 space-y-4">
-            <Logo variant="horizontal" theme="dark" size="md" linkHref="/" />
-            <p className="text-xs font-bold tracking-widest text-[#00D1A3] uppercase">
-              {siteConfig.motto}
+    <footer className="bg-[#07152B] text-slate-300 border-t border-slate-800/90">
+      <Container className="pt-9 pb-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-7 border-b border-slate-800/80">
+          {/* Column 1: Brand (5 cols on lg) */}
+          <div className="sm:col-span-2 lg:col-span-5 space-y-2.5">
+            <Logo
+              variant="horizontal"
+              theme="dark"
+              size="md"
+              tagline={t.brand.tagline}
+              descriptor={t.brand.productDescriptor}
+              linkHref="/"
+            />
+            <p className="text-xs text-slate-400 max-w-sm leading-relaxed pt-0.5">
+              {t.footer.brandPromise}
             </p>
-            <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-              Taxoryn is the all-in-one tax practice management SaaS built specifically for Indian Chartered Accountants, Tax Consultants, and corporate tax teams.
-            </p>
-            <div className="pt-2 flex items-center gap-2 text-xs text-slate-400">
-              <Shield className="w-4 h-4 text-[#00D1A3]" />
-              <span>Multi-tenant practice data isolation & role-based access</span>
-            </div>
           </div>
 
-          {/* Product Links */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              {footerNavigation.product.title}
+          {/* Column 2: Product */}
+          <div className="sm:col-span-1 lg:col-span-2 space-y-3">
+            <h3 className="text-[11px] font-bold text-white uppercase tracking-wider">
+              {t.footer.productHeading}
             </h3>
-            <ul className="space-y-2.5 text-sm">
-              {footerNavigation.product.items.map((link) => (
+            <ul className="space-y-2 text-xs">
+              {productLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 hover:text-[#00D1A3] transition-colors"
+                    className="text-slate-300 hover:text-[#00D1A3] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -47,17 +69,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Solutions Links */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              {footerNavigation.solutions.title}
+          {/* Column 3: Connect */}
+          <div className="sm:col-span-1 lg:col-span-2 space-y-3">
+            <h3 className="text-[11px] font-bold text-white uppercase tracking-wider">
+              {t.footer.connectHeading}
             </h3>
-            <ul className="space-y-2.5 text-sm">
-              {footerNavigation.solutions.items.map((link) => (
+            <ul className="space-y-2 text-xs">
+              {connectLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 hover:text-[#00D1A3] transition-colors"
+                    className="text-slate-300 hover:text-[#00D1A3] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -66,46 +88,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Resources Links */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              {footerNavigation.resources.title}
+          {/* Column 4: Company */}
+          <div className="sm:col-span-1 lg:col-span-3 space-y-3">
+            <h3 className="text-[11px] font-bold text-white uppercase tracking-wider">
+              {t.footer.companyHeading}
             </h3>
-            <ul className="space-y-2.5 text-sm">
-              {footerNavigation.resources.items.map((link) => (
+            <ul className="space-y-2 text-xs">
+              {companyLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-slate-400 hover:text-[#00D1A3] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company & Trust */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-white uppercase tracking-wider">
-              {footerNavigation.company.title} & {footerNavigation.trust.title}
-            </h3>
-            <ul className="space-y-2.5 text-sm">
-              {footerNavigation.company.items.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-slate-400 hover:text-[#00D1A3] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              {footerNavigation.trust.items.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-slate-400 hover:text-[#00D1A3] transition-colors"
+                    className="text-slate-300 hover:text-[#00D1A3] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -115,27 +108,27 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {currentYear} Taxoryn Technologies. All rights reserved.</p>
-          <div className="flex items-center gap-6">
+        {/* Bottom Bar: Clean & Minimal */}
+        <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+          <p>© {currentYear} {t.footer.copyright}</p>
+          <div className="flex items-center gap-5">
             <Link
               href={siteConfig.links.privacy}
-              className="hover:text-slate-400 transition-colors"
+              className="hover:text-slate-200 transition-colors"
             >
-              Privacy Policy
+              {t.footer.privacy}
             </Link>
             <Link
               href={siteConfig.links.terms}
-              className="hover:text-slate-400 transition-colors"
+              className="hover:text-slate-200 transition-colors"
             >
-              Terms of Service
+              {t.footer.terms}
             </Link>
             <Link
               href={siteConfig.links.security}
-              className="hover:text-slate-400 transition-colors"
+              className="hover:text-slate-200 transition-colors"
             >
-              Security
+              {t.footer.security}
             </Link>
           </div>
         </div>
@@ -143,3 +136,4 @@ export function Footer() {
     </footer>
   );
 }
+

@@ -32,7 +32,7 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "flex flex-col max-w-3xl mb-12 sm:mb-16",
+        "flex flex-col max-w-3xl mb-8 sm:mb-10",
         alignClasses[align],
         className
       )}

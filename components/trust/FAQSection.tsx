@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { Badge } from "@/components/common/Badge";
 import { faqsData, FAQItem } from "@/lib/content/faqs";
 import { ChevronDown, HelpCircle, Shield, Sparkles, Layers, DollarSign } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface FAQSectionProps {
   initialCategory?: "all" | "general" | "security" | "features" | "pricing";
@@ -17,22 +18,27 @@ interface FAQSectionProps {
 
 export function FAQSection({
   initialCategory = "all",
-  title = "Frequently Asked Questions",
-  description = "Transparent answers to common questions about Taxoryn's architecture, security, practice workflows, and early access program.",
+  title,
+  description,
   limit,
   showCategories = true,
 }: FAQSectionProps) {
+  const { t } = useLanguage();
+  const f = t.faqSection;
+  const sectionTitle = title || f.defaultTitle;
+  const sectionDesc = description || f.defaultDesc;
+
   const [activeCategory, setActiveCategory] = useState<string>(initialCategory);
   const [openIds, setOpenIds] = useState<Record<string, boolean>>({
     "solo-vs-firm": true, // open first item by default for preview
   });
 
   const categories = [
-    { id: "all", label: "All Questions", icon: HelpCircle },
-    { id: "general", label: "General & Suitability", icon: Sparkles },
-    { id: "security", label: "Security & Privacy", icon: Shield },
-    { id: "features", label: "Workflows & Features", icon: Layers },
-    { id: "pricing", label: "Pricing & Early Access", icon: DollarSign },
+    { id: "all", label: f.allCategory, icon: HelpCircle },
+    { id: "general", label: f.generalCategory, icon: Sparkles },
+    { id: "security", label: f.securityCategory, icon: Shield },
+    { id: "features", label: f.featuresCategory, icon: Layers },
+    { id: "pricing", label: f.pricingCategory, icon: DollarSign },
   ];
 
   const filteredFaqs = faqsData.filter((item) => {
@@ -73,10 +79,10 @@ export function FAQSection({
 
       <Container>
         <SectionHeading
-          badge="Clear Answers"
+          badge={f.badge}
           badgeVariant="teal"
-          title={title}
-          description={description}
+          title={sectionTitle}
+          description={sectionDesc}
         />
 
         {/* Category Filters */}

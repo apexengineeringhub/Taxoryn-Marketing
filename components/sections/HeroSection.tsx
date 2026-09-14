@@ -1,85 +1,139 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
-import { Badge } from "@/components/common/Badge";
 import { ProductPreview } from "@/components/marketing/ProductPreview";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { siteConfig } from "@/lib/config/site";
-import { ArrowRight, Calendar, CheckCircle2, Shield } from "lucide-react";
+import {
+  ArrowRight,
+  Play,
+  CheckCircle2,
+} from "lucide-react";
 
 export function HeroSection() {
+  const { t } = useLanguage();
+
   return (
-    <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden bg-gradient-to-b from-[#F8FAFC] via-[#EDF4FA]/60 to-[#F8FAFC]">
-      {/* Background Decorative Grid Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-75 pointer-events-none" />
+    <section className="relative pt-6 pb-10 lg:pt-8 lg:pb-12 overflow-hidden bg-[#F8FAFC]">
+      {/* Background Subtle Tech Grid */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
       <Container className="relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          {/* Positioning Category Tag */}
-          <div className="inline-flex items-center gap-2">
-            <Badge variant="navy" size="md">
-              TAX PRACTICE MANAGEMENT
-            </Badge>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10 items-start">
+          {/* LEFT COLUMN: Headline, Narrative, CTAs & Value Proof (5 cols) */}
+          <div className="lg:col-span-5 space-y-4 text-left pt-1 min-w-0">
+            {/* Primary Headline */}
+            <h1 className="text-2xl sm:text-3xl lg:text-[2.1rem] xl:text-[2.55rem] font-extrabold text-[#07152B] tracking-tight leading-[1.16] max-w-[34rem] text-balance">
+              <span>{t.hero.headlinePrefix} </span>
+              <span className="text-[#009E77]">{t.hero.headlineSuffix}</span>
+            </h1>
+
+            {/* Visual Workflow Highlights */}
+            <div className="flex flex-wrap items-center gap-2 pt-0.5">
+              {["Clients", "Compliance", "Documents", "Workflows"].map((pill) => (
+                <span
+                  key={pill}
+                  className="px-2.5 py-0.5 rounded-full bg-slate-200/70 border border-slate-300/80 text-[11px] font-bold text-[#07152B] flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                  {pill}
+                </span>
+              ))}
+            </div>
+
+            {/* Supporting Copy */}
+            <p className="text-sm sm:text-base text-[#475569] leading-relaxed font-normal">
+              {t.hero.description}
+            </p>
+
+            {/* Action CTAs */}
+            <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <Button
+                href={siteConfig.links.joinEarlyAccess}
+                variant="primary"
+                size="lg"
+                icon={ArrowRight}
+                className="justify-center px-6 py-3 text-sm sm:text-base font-bold shadow-md shadow-[#00D1A3]/20"
+              >
+                {t.hero.getStarted}
+              </Button>
+
+              <Button
+                href="#demo-video"
+                variant="outline"
+                size="lg"
+                icon={Play}
+                iconPosition="left"
+                className="justify-center px-5 py-3 text-sm sm:text-base font-semibold"
+              >
+                {t.hero.watchDemo}
+              </Button>
+            </div>
+
+            {/* Active Development Grounded Notice */}
+            <p className="text-xs text-slate-500 pt-1 leading-relaxed">
+              <a
+                href="#origin-story"
+                className="hover:text-[#00D1A3] transition-colors inline-flex items-center gap-1 font-medium text-slate-600 hover:underline underline-offset-2"
+              >
+                <span>{t.hero.devNote || "Built from a real tax-practice problem."}</span>
+                <ArrowRight className="w-3 h-3 text-[#00D1A3]" />
+              </a>
+            </p>
+
+            {/* 3 Concise Proof Points Below CTA */}
+            <div className="pt-2.5 border-t border-slate-200/90 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#334155] font-medium">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+                <span>{t.hero.proofPractice}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+                <span>{t.hero.proofCompliance}</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+                <span>{t.hero.proofNetwork}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Main Headline */}
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#07152B] tracking-tight leading-[1.15] text-balance">
-            Run Your Tax Practice. <br />
-            <span className="text-[#082E5B] underline decoration-[#00D1A3] decoration-4 underline-offset-8">
-              Not Your Spreadsheets.
-            </span>
-          </h1>
-
-          {/* Supporting Copy */}
-          <p className="text-base sm:text-xl text-[#475569] max-w-2xl mx-auto leading-relaxed text-pretty">
-            Manage clients, teams, GST, ITR, TDS, compliance, documents and client communication in one connected workspace.
-          </p>
-
-          {/* Call to Actions */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <Button
-              href={siteConfig.links.joinEarlyAccess}
-              variant="primary"
-              size="lg"
-              icon={ArrowRight}
-              className="w-full sm:w-auto px-8 py-3.5 text-base font-bold shadow-md shadow-[#00D1A3]/20"
-            >
-              Join Early Access
-            </Button>
-
-            <Button
-              href={siteConfig.links.bookDemo}
-              variant="outline"
-              size="lg"
-              icon={Calendar}
-              iconPosition="left"
-              className="w-full sm:w-auto px-6 py-3.5 text-base font-semibold"
-            >
-              Book a Demo
-            </Button>
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#64748B] font-medium">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-[#00D1A3]" />
-              Purpose-Built for Indian Tax Practices
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Shield className="w-4 h-4 text-[#082E5B]" />
-              Tenant-Aware Data Isolation
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-[#00D1A3]" />
-              Cloud-Native Workspace
-            </span>
+          {/* RIGHT COLUMN: Clean, Prominent Taxoryn Product Dashboard Preview (7 cols) */}
+          <div className="lg:col-span-7 relative min-w-0">
+            <ProductPreview />
           </div>
         </div>
 
-        {/* Product Visual Mockup Component */}
-        <div className="mt-12 sm:mt-16">
-          <ProductPreview />
+        {/* Compact Trust Strip Below Hero */}
+        <div className="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-slate-200/80">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+            <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500">
+              {t.hero.trustTitle}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 text-xs font-semibold text-slate-700">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                {t.hero.trustSolo}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                {t.hero.trustSmallFirm}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                {t.hero.trustGrowing}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                {t.hero.trustBusiness}
+              </span>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
   );
 }
+

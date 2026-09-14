@@ -5,6 +5,7 @@ import { ResourceArticle, ResourceCategory } from "@/types/content";
 import { ArticleCard } from "./ArticleCard";
 import { Search, Filter, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface ResourceSearchFilterProps {
   categories: ResourceCategory[];
@@ -15,6 +16,7 @@ export function ResourceSearchFilter({
   categories,
   articles,
 }: ResourceSearchFilterProps) {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
@@ -51,8 +53,8 @@ export function ResourceSearchFilter({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search guides, compliance checklists, or keywords..."
-              aria-label="Search resources"
+              placeholder={t.common.search}
+              aria-label={t.common.search}
               className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-slate-200 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none transition-all"
             />
           </div>
@@ -68,7 +70,7 @@ export function ResourceSearchFilter({
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               }`}
             >
-              All Topics ({articles.length})
+              {t.common.allTopics} ({articles.length})
             </button>
             {categories.map((cat) => {
               const count = articles.filter((a) => a.category === cat.slug).length;
@@ -102,11 +104,8 @@ export function ResourceSearchFilter({
         <div className="p-12 text-center bg-white rounded-2xl border border-slate-200 space-y-3">
           <BookOpen className="w-8 h-8 text-slate-400 mx-auto" />
           <h3 className="text-base font-bold text-slate-800">
-            No resources match your search
+            {t.common.noResults}
           </h3>
-          <p className="text-xs text-slate-500 max-w-sm mx-auto">
-            Try adjusting your search terms or select another category filter above.
-          </p>
           <button
             type="button"
             onClick={() => {
@@ -115,7 +114,7 @@ export function ResourceSearchFilter({
             }}
             className="text-xs font-bold text-[#082E5B] hover:text-[#00D1A3] underline pt-2"
           >
-            Clear Search & Filters
+            {t.common.clearFilters}
           </button>
         </div>
       )}

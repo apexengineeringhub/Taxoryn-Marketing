@@ -7,6 +7,8 @@ import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 import { AnalyticsConsentBanner } from "@/components/analytics/AnalyticsConsentBanner";
 import { constructMetadata, generateSoftwareApplicationSchema } from "@/lib/seo/metadata";
 
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -31,11 +33,13 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-[#0F172A] antialiased">
-        <AnalyticsTracker />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <AnalyticsConsentBanner />
+        <LanguageProvider>
+          <AnalyticsTracker />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <AnalyticsConsentBanner />
+        </LanguageProvider>
       </body>
     </html>
   );

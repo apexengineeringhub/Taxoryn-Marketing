@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
@@ -5,6 +7,7 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { Badge } from "@/components/common/Badge";
 import { Card } from "@/components/common/Card";
 import { siteConfig } from "@/lib/config/site";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { Users, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
 
 export interface VerifiedCustomerStory {
@@ -22,8 +25,10 @@ interface CustomerStoriesSectionProps {
 }
 
 export function CustomerStoriesSection({ stories = [] }: CustomerStoriesSectionProps) {
+  const { t } = useLanguage();
+
   // Strict W5 Trust Principle: Zero fake social proof.
-  // If no verified case studies are provided, display an honest early-access invitation.
+  // When no verified case studies exist, display honest early-stage invitation to help shape the product.
   if (stories.length === 0) {
     return (
       <section className="py-16 sm:py-20 bg-white border-t border-slate-200/80">
@@ -34,30 +39,32 @@ export function CustomerStoriesSection({ stories = [] }: CustomerStoriesSectionP
 
             <div className="relative z-10 space-y-6 text-center max-w-2xl mx-auto">
               <Badge variant="teal" size="md">
-                EARLY ACCESS COHORT
+                {t.helpShape.badge}
               </Badge>
 
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                Be Part of the First Cohort of Taxoryn Practices
+                {t.helpShape.title}
               </h2>
 
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                We believe in genuine transparency. Rather than displaying placeholder reviews or unverified quotes, we invite forward-thinking Chartered Accountants and tax consultants to shape the platform with us during early access.
-              </p>
+              <div className="space-y-3 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                <p>{t.helpShape.paragraph1}</p>
+                <p>{t.helpShape.paragraph2}</p>
+                <p className="font-semibold text-[#00D1A3]">{t.helpShape.paragraph3}</p>
+              </div>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href={siteConfig.links.joinEarlyAccess}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#00D1A3] text-[#07152B] font-bold text-sm hover:bg-[#00B388] transition-colors shadow-lg shadow-[#00D1A3]/20"
                 >
-                  <span>Apply for Early Access</span>
+                  <span>{t.helpShape.getStarted}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href={siteConfig.links.bookDemo}
+                  href={siteConfig.links.contact}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 transition-colors border border-white/20"
                 >
-                  <span>Schedule Practice Walkthrough</span>
+                  <span>{t.helpShape.shareFeedback}</span>
                 </Link>
               </div>
             </div>
