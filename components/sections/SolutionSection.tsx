@@ -1,27 +1,27 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import { Card } from "@/components/common/Card";
-import { Badge } from "@/components/common/Badge";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import {
   FolderTree,
   SlidersHorizontal,
   HeartHandshake,
   TrendingUp,
   Check,
-  ArrowRight,
 } from "lucide-react";
 
 export function SolutionSection() {
+  const { t } = useLanguage();
+
   const pillars = [
     {
       pillar: "ORGANIZE",
       tagline: "Structure & Visibility",
-      title: "Clients, teams, locations and practice information.",
-      description:
-        "Centralize client profiles, multiple branch locations, employee roles, and contact directories into a unified relational database.",
+      title: t.solution.step1Title,
+      description: t.solution.step1Desc,
       icon: FolderTree,
-      badgeColor: "navy" as const,
       highlights: [
         "Master client records & GSTIN/PAN directory",
         "Role-based staff & article assistant permissions",
@@ -29,13 +29,11 @@ export function SolutionSection() {
       ],
     },
     {
-      pillar: "CONTROL",
+      pillar: "COMPLY",
       tagline: "Filing & Deadlines",
-      title: "GST, ITR, TDS, compliance, tasks and reporting.",
-      description:
-        "Stay ahead of statutory deadlines with dedicated tax engines, automated task boards, and partner-level compliance oversight.",
+      title: t.solution.step2Title,
+      description: t.solution.step2Desc,
       icon: SlidersHorizontal,
-      badgeColor: "teal" as const,
       highlights: [
         "Automated compliance calendar & due-date tracking",
         "GST, ITR & TDS preparation-to-filing pipelines",
@@ -45,25 +43,21 @@ export function SolutionSection() {
     {
       pillar: "SERVE",
       tagline: "Client Delight",
-      title: "Documents, document requests, client portal and notifications.",
-      description:
-        "Deliver a modern, digital experience to clients with self-service access to tax acknowledgments, secure uploads, and automated reminders.",
+      title: t.solution.step3Title,
+      description: t.solution.step3Desc,
       icon: HeartHandshake,
-      badgeColor: "cyan" as const,
       highlights: [
         "Dedicated client portal with protected access",
-        "Structured document collection requests via email and client portal",
+        "Structured document collection requests via email and portal",
         "Filing acknowledgement tracking & status updates",
       ],
     },
     {
       pillar: "GROW",
       tagline: "Expansion Engine",
-      title: "Marketplace, enquiries, onboarding and practice growth.",
-      description:
-        "Attract new business clients seeking professional tax expertise in your geography, and onboard them smoothly into your practice workflow.",
+      title: t.solution.step5Title,
+      description: t.solution.step5Desc,
       icon: TrendingUp,
-      badgeColor: "emerald" as const,
       highlights: [
         "Taxoryn Marketplace practice matching",
         "Structured client intake & KYC onboarding",
@@ -79,11 +73,11 @@ export function SolutionSection() {
 
       <Container className="relative z-10">
         <SectionHeading
-          badge="The Taxoryn Architecture"
+          badge={t.solution.badge}
           badgeVariant="teal"
           theme="dark"
-          title="Everything your practice needs. Connected in one workspace."
-          description="Designed to systematically organize your practice, control your compliance obligations, serve your clients with excellence, and grow your firm."
+          title={t.solution.title}
+          description={t.solution.subtitle}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

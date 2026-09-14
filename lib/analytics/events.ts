@@ -92,6 +92,63 @@ export interface ExternalAppClickEvent {
   location?: string;
 }
 
+export interface WatchDemoEvent {
+  video_id?: string;
+  location?: string;
+  source?: string;
+}
+
+export interface YouTubeClickEvent {
+  video_id?: string;
+  video_title?: string;
+  destination_url?: string;
+}
+
+export interface GetStartedEvent {
+  location?: string;
+  cta_name?: string;
+  page?: string;
+}
+
+export interface MarketplaceClickEvent {
+  audience?: "business" | "practice" | "general";
+  location?: string;
+  destination?: string;
+}
+
+export interface FindProfessionalEvent {
+  location?: string;
+  specialization?: string;
+  source?: string;
+}
+
+export interface ListPracticeEvent {
+  location?: string;
+  source?: string;
+}
+
+export interface LearnArticleEvent {
+  article_slug: string;
+  category?: string;
+  title?: string;
+}
+
+export interface VideoOpenEvent {
+  video_id: string;
+  video_title?: string;
+  category?: string;
+}
+
+export interface RegistrationStartedEvent {
+  source?: string;
+  role?: string;
+}
+
+export interface RegistrationCompletedEvent {
+  source?: string;
+  practice_type?: string;
+}
+
 export type EventPropertiesMap = {
   page_view: PageViewEvent;
   cta_click: CtaClickEvent;
@@ -107,6 +164,16 @@ export type EventPropertiesMap = {
   book_demo_form_start: BookDemoFormStartEvent;
   book_demo_submit_intent: BookDemoSubmitIntentEvent;
   external_app_click: ExternalAppClickEvent;
+  watch_demo: WatchDemoEvent;
+  youtube_click: YouTubeClickEvent;
+  get_started: GetStartedEvent;
+  marketplace_click: MarketplaceClickEvent;
+  find_professional: FindProfessionalEvent;
+  list_practice: ListPracticeEvent;
+  learn_article: LearnArticleEvent;
+  video_open: VideoOpenEvent;
+  registration_started: RegistrationStartedEvent;
+  registration_completed: RegistrationCompletedEvent;
 };
 
 export type EventName = keyof EventPropertiesMap;

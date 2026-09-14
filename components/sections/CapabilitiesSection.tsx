@@ -138,7 +138,7 @@ const capabilities: CapabilityItem[] = [
 
 export function CapabilitiesSection() {
   return (
-    <section className="py-16 sm:py-24 bg-[#F8FAFC]">
+    <section className="py-12 sm:py-16 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
           badge="Product Capabilities"

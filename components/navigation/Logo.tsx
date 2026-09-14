@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { cn } from "@/components/common/Container";
+import { brandConfig } from "@/lib/config/brand";
 
 export type LogoVariant = "full" | "horizontal" | "symbol" | "compact" | "app-icon";
 export type LogoTheme = "light" | "dark" | "auto";
@@ -13,6 +14,8 @@ export interface LogoProps {
   framed?: boolean;
   className?: string;
   showMotto?: boolean;
+  tagline?: string;
+  descriptor?: string;
   linkHref?: string;
   onClick?: () => void;
 }
@@ -24,6 +27,8 @@ export const Logo: React.FC<LogoProps> = ({
   framed = true,
   className,
   showMotto = true,
+  tagline,
+  descriptor,
   linkHref = "/",
   onClick,
 }) => {
@@ -397,7 +402,7 @@ export const Logo: React.FC<LogoProps> = ({
             )}
             style={{ color: textColor }}
           >
-            TAXO
+            {brandConfig.brandNamePrefix}
           </span>
           <span
             className={cn(
@@ -405,30 +410,46 @@ export const Logo: React.FC<LogoProps> = ({
               currentSize.textClass
             )}
           >
-            RYN
+            {brandConfig.brandNameSuffix}
           </span>
         </div>
 
-        {/* Official Brand Motto: SIMPLIFYING TAX PRACTICE MANAGEMENT */}
-        {(variant === "full" ||
-          (variant === "horizontal" &&
-            showMotto &&
-            size !== "xs" &&
-            size !== "sm")) && (
-          <div className="flex items-center gap-1.5 mt-1">
-            <span className="w-2 h-[1.5px] bg-[#00D1A3] opacity-80" />
-            <span
-              className={cn(
-                "font-bold tracking-[0.16em] uppercase whitespace-nowrap opacity-90",
-                currentSize.mottoClass
-              )}
-              style={{ color: subtextColor }}
-            >
-              SIMPLIFYING TAX PRACTICE MANAGEMENT
-            </span>
-            <span className="w-2 h-[1.5px] bg-[#00D1A3] opacity-80" />
-          </div>
-        )}
+        {/* Primary Tagline: Tax Organization. Your Own Network. */}
+        {tagline ? (
+          <span
+            className={cn(
+              "font-semibold tracking-tight leading-none mt-1 whitespace-nowrap",
+              size === "sm" || size === "xs"
+                ? "text-[10px]"
+                : "text-[11px] xl:text-xs",
+              theme === "dark" ? "text-slate-100" : "text-[#07152B]"
+            )}
+          >
+            {tagline.includes("Your Own Network.") ? (
+              <>
+                <span>{tagline.replace("Your Own Network.", "").trimEnd()}&nbsp;</span>
+                <span className="text-[#00D1A3] font-bold">Your Own Network.</span>
+              </>
+            ) : (
+              tagline
+            )}
+          </span>
+        ) : null}
+
+        {/* Product Descriptor: Simplifying Tax Practice Management */}
+        {descriptor ? (
+          <span
+            className={cn(
+              "font-semibold tracking-tight leading-none whitespace-nowrap mt-0.5",
+              size === "sm" || size === "xs"
+                ? "text-[8px]"
+                : "text-[9px] xl:text-[9.5px]",
+              theme === "dark" ? "text-slate-300" : "text-slate-600"
+            )}
+          >
+            {descriptor}
+          </span>
+        ) : null}
       </div>
     </div>
   );
@@ -447,3 +468,4 @@ export const Logo: React.FC<LogoProps> = ({
 
   return logoContent;
 };
+

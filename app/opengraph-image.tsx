@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
-import { siteConfig } from "@/lib/config/site";
+import { brandConfig } from "@/lib/config/brand";
 
-export const alt = "Taxoryn - Simplifying Tax Practice Management";
+export const alt = `${brandConfig.brandName} - ${brandConfig.productDescriptor}`;
 export const size = {
   width: 1200,
   height: 630,
@@ -55,7 +55,7 @@ export default async function Image() {
           <span style={{ color: "#00D1A3" }}>RYN</span>
         </div>
 
-        {/* Official Motto */}
+        {/* Official Descriptor */}
         <div
           style={{
             display: "flex",
@@ -68,25 +68,29 @@ export default async function Image() {
             marginBottom: 36,
           }}
         >
-          SIMPLIFYING TAX PRACTICE MANAGEMENT
+          {brandConfig.productDescriptor}
         </div>
 
-        {/* Positioning Tagline */}
+        {/* Primary Brand Tagline */}
         <div
           style={{
-            fontSize: 32,
+            fontSize: 34,
             fontWeight: 800,
             textAlign: "center",
             maxWidth: "900px",
             lineHeight: 1.3,
             color: "#F8FAFC",
             marginBottom: 20,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          Run Your Tax Practice. Not Your Spreadsheets.
+          <span>Tax Organization.&nbsp;</span>
+          <span style={{ color: "#00D1A3" }}>Your Own Network.</span>
         </div>
 
-        {/* Subtitle */}
+        {/* Brand Promise Subtitle */}
         <div
           style={{
             fontSize: 20,
@@ -96,7 +100,7 @@ export default async function Image() {
             lineHeight: 1.5,
           }}
         >
-          One connected workspace for clients, teams, GST, ITR, TDS, compliance, and documents.
+          {brandConfig.brandPromise}
         </div>
       </div>
     ),
@@ -105,3 +109,4 @@ export default async function Image() {
     }
   );
 }
+

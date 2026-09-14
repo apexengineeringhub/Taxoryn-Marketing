@@ -46,7 +46,7 @@ export const faqsData: FAQItem[] = [
     category: "general",
     question: "Can we migrate existing client data from Excel or other practice management tools?",
     answer:
-      "Yes. Taxoryn supports standard CSV and spreadsheet data import for client directories, PAN/GSTIN profiles, and historical compliance records. During early access onboarding, our support team assists with structured data onboarding for your firm.",
+      "Yes. Taxoryn supports standard CSV and spreadsheet data import for client directories, PAN/GSTIN profiles, and historical compliance records. During practice onboarding, our support team assists with structured data onboarding for your firm.",
   },
   {
     id: "communication-security",
@@ -70,11 +70,11 @@ export const faqsData: FAQItem[] = [
       "The Taxoryn Marketplace provides practitioners with a public profile to showcase their statutory specializations, jurisdictional focus, and practice credentials. Prospective business clients searching for tax advisory or compliance assistance can discover your practice profile and submit structured service enquiries.",
   },
   {
-    id: "pricing-early-access",
+    id: "pricing-plans",
     category: "pricing",
-    question: "What are the pricing plans and how does the Early Access program work?",
+    question: "What are the pricing plans and practice tiers?",
     answer:
-      "Commercial pricing tiers are being finalized based on practice size and team seats. Early Access is intended for selected practices that want to evaluate Taxoryn and provide product feedback. Availability and commercial terms will be communicated separately.",
+      "Commercial pricing tiers are tailored based on practice size and team seat requirements. Practices can evaluate Taxoryn and discuss custom firm onboarding. Commercial terms are shared directly based on your firm requirements.",
   },
   {
     id: "data-ownership",
@@ -98,11 +98,11 @@ export const faqsData: FAQItem[] = [
       "No. The Taxoryn client portal is web-based and fully responsive on desktop browsers, tablets, and smartphones. Clients do not need to download or install any native software to view filings or upload documents.",
   },
   {
-    id: "early-access-onboarding",
+    id: "onboarding-process",
     category: "pricing",
-    question: "What happens after submitting an Early Access request?",
+    question: "What happens after submitting a practice onboarding request?",
     answer:
-      "Our team will review your practice profile and contact you with next steps, workspace setup instructions, and onboarding details.",
+      "Our team will review your practice profile and contact you with next steps, workspace setup guidance, and onboarding details.",
   },
   {
     id: "book-demo-team",

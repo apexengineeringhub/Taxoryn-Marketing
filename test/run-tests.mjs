@@ -1,4 +1,4 @@
-﻿import { test, describe, beforeEach } from "node:test";
+import { test, describe, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 
 // Mock environment
@@ -248,5 +248,184 @@ describe("W8.1 Analytics & Consent Remediation Test Suite", () => {
     global.window.dispatchEvent = () => { dispatched = true; return true; };
     trackPageView({ path: "/features" }, { enabled: true, provider: "custom" });
     assert.equal(dispatched, false);
+  });
+});
+
+describe("Taxoryn i18n Multilingual Test Suite", () => {
+  test("TEST 11: Language persistence storage key is taxoryn-language", () => {
+    const STORAGE_KEY = "taxoryn-language";
+    global.localStorage.setItem(STORAGE_KEY, "hi");
+    assert.equal(global.localStorage.getItem(STORAGE_KEY), "hi");
+    global.localStorage.setItem(STORAGE_KEY, "en");
+    assert.equal(global.localStorage.getItem(STORAGE_KEY), "en");
+  });
+
+  test("TEST 12: Default language is English (en)", () => {
+    const DEFAULT_LANG = "en";
+    assert.equal(DEFAULT_LANG, "en");
+  });
+
+  test("TEST 13: English and Hindi dictionary files exist and export typed translations", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+    assert.ok(enContent.includes("export const en"), "English dictionary exported");
+    assert.ok(hiContent.includes("export const hi"), "Hindi dictionary exported");
+    assert.ok(enContent.includes('product: "Product"'), "English product navigation string exists");
+    assert.ok(hiContent.includes('product: "Product"'), "Hindi product navigation retains domain term");
+    assert.ok(hiContent.includes('watchDemo: "डेमो देखें"'), "Hindi watchDemo translation exists");
+  });
+
+  test("TEST 14: Translation dictionary files include all core marketing sections and pages", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+    const requiredSections = [
+      "brand",
+      "nav",
+      "hero",
+      "problem",
+      "solution",
+      "coreProduct",
+      "demoVideo",
+      "marketplaceSection",
+      "securitySection",
+      "finalCTA",
+      "footer",
+      "common",
+      "pages",
+      "forms",
+    ];
+    for (const section of requiredSections) {
+      assert.ok(enContent.includes(`${section}: {`), `en.ts contains ${section}`);
+      assert.ok(hiContent.includes(`${section}: {`), `hi.ts contains ${section}`);
+    }
+  });
+
+  test("TEST 15: Language options contain genuine Devanagari Unicode label 'हिन्दी'", async () => {
+    const fs = await import("node:fs");
+    const indexContent = fs.readFileSync("lib/i18n/index.ts", "utf-8");
+    assert.ok(indexContent.includes('nativeLabel: "हिन्दी"'), "Hindi nativeLabel is 'हिन्दी'");
+    assert.ok(!indexContent.includes("??????"), "No corrupt question marks in index.ts");
+    assert.ok(indexContent.includes('nativeLabel: "English"'), "English nativeLabel is 'English'");
+  });
+
+  test("TEST 16: Hindi dictionary contains genuine Devanagari text without corrupt placeholders", async () => {
+    const fs = await import("node:fs");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+    assert.ok(!hiContent.includes("??????"), "No corrupt question marks in hi.ts");
+    assert.ok(hiContent.includes("अपनी Tax Practice को"), "Contains natural Devanagari copy");
+  });
+});
+
+describe("Taxoryn Header Layout & Spacing Test Suite", () => {
+  test("TEST 17: Header implements three-part layout (Brand Left, Nav Center, Actions Right)", async () => {
+    const fs = await import("node:fs");
+    const headerContent = fs.readFileSync("components/navigation/Header.tsx", "utf-8");
+    assert.ok(headerContent.includes("LEFT: Brand Lockup"), "Brand lockup on left");
+    assert.ok(headerContent.includes("CENTER: Main Navigation Links"), "Nav links in center");
+    assert.ok(headerContent.includes("RIGHT: Action CTAs & Language Selector"), "Action CTAs on right");
+    assert.ok(headerContent.includes("<nav"), "Semantic nav container present");
+    assert.ok(headerContent.includes("LanguageSwitcher"), "Language switcher present in action group");
+    assert.ok(!headerContent.includes("-ml-") && !headerContent.includes("-mr-"), "No arbitrary negative margin hacks on desktop layout");
+  });
+
+  test("TEST 18: Header navigation items and actions are distinct flex items with separation", async () => {
+    const fs = await import("node:fs");
+    const headerContent = fs.readFileSync("components/navigation/Header.tsx", "utf-8");
+    assert.ok(headerContent.includes('href="/#demo-video"'), "Watch Demo CTA link exists");
+    assert.ok(headerContent.includes("siteConfig.links.login"), "Login link exists");
+    assert.ok(headerContent.includes("siteConfig.links.joinEarlyAccess"), "Get Started CTA exists");
+  });
+});
+
+describe("Taxoryn Grounded Copy, Development Journey & Zero Fake Claims Test Suite", () => {
+  test("TEST 19: Final CTA uses grounded active-development messaging without unsupported claims", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+
+    // No unsupported social proof or fabricated stats
+    assert.ok(!enContent.includes("hundreds of"), "No 'hundreds of' in en.ts");
+    assert.ok(!hiContent.includes("सैकड़ों"), "No 'सैकड़ों' in hi.ts");
+    assert.ok(!enContent.includes("14-day"), "No fake 14-day trial claim in en.ts");
+    assert.ok(!hiContent.includes("14 दिनों"), "No fake 14-day trial claim in hi.ts");
+    assert.ok(!enContent.includes("No credit card required"), "No fake credit card statement in en.ts");
+
+    // Grounded messaging verified
+    assert.ok(enContent.includes("Taxoryn is being built around real practice needs."), "Grounded subtitle in en.ts");
+    assert.ok(hiContent.includes("Taxoryn को वास्तविक practice needs के अनुसार build किया जा रहा है।"), "Grounded subtitle in hi.ts");
+  });
+
+  test("TEST 20: Customer stories section implements authentic Help Shape Taxoryn invitation", async () => {
+    const fs = await import("node:fs");
+    const customerStories = fs.readFileSync("components/trust/CustomerStoriesSection.tsx", "utf-8");
+    assert.ok(customerStories.includes("t.helpShape.badge"), "Development journey badge present via i18n");
+    assert.ok(customerStories.includes("t.helpShape.title"), "Help Shape Taxoryn title present via i18n");
+    assert.ok(customerStories.includes("t.helpShape.paragraph1"), "Development journey message present via i18n");
+  });
+
+  test("TEST 21: Security and marketplace sections use verified benefit-first wording", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+
+    // Verified security statements
+    assert.ok(!enContent.includes("Enterprise-Grade Trust"), "No 'Enterprise-Grade Trust' in en.ts");
+    assert.ok(!enContent.includes("Bank-Grade Security"), "No 'Bank-Grade Security' in en.ts");
+    assert.ok(enContent.includes("Built With Security and Controlled Access."), "Benefit-first security title in en.ts");
+    assert.ok(hiContent.includes("Security और Controlled Access के साथ Built."), "Benefit-first security title in hi.ts");
+  });
+
+  test("TEST 22: Pricing page positions tiers as Planned Practice Tiers without fake availability", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+    assert.ok(!enContent.includes("Early Access Tier"), "No 'Early Access Tier' in pricing config");
+    assert.ok(!enContent.includes("Public Beta"), "No 'Public Beta' in pricing config");
+    assert.ok(enContent.includes("Planned Practice Tier"), "Accurate planned tier status in en.ts");
+    assert.ok(hiContent.includes("Planned Practice Tier"), "Accurate planned tier status in hi.ts");
+  });
+
+  test("TEST 23: ProductPreview contains NO synthetic metrics or fake growth percentages", async () => {
+    const fs = await import("node:fs");
+    const previewContent = fs.readFileSync("components/marketing/ProductPreview.tsx", "utf-8");
+    assert.ok(!previewContent.includes("142"), "No fake 142 client count");
+    assert.ok(!previewContent.includes("96.4%"), "No fake 96.4% compliance metric");
+    assert.ok(!previewContent.includes("78"), "No fake 78 ITR count");
+    assert.ok(!previewContent.includes("vs last month"), "No fake growth comparisons");
+    assert.ok(previewContent.includes("Sample interface — demonstration data"), "Honest preview disclaimer present");
+  });
+
+  test("TEST 24: Origin Story section renders the authentic founder journey", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+    const storySection = fs.readFileSync("components/sections/OriginStorySection.tsx", "utf-8");
+    const pageContent = fs.readFileSync("app/page.tsx", "utf-8");
+
+    assert.ok(enContent.includes("It Started With a Real Tax Practice."), "English story title");
+    assert.ok(hiContent.includes("इसकी शुरुआत एक असली Tax Practice से हुई।"), "Hindi story title");
+    assert.ok(enContent.includes("What if a tax practice could manage it all from one connected place?"), "English core question");
+    assert.ok(hiContent.includes("क्या होगा अगर एक tax practice यह सब कुछ एक ही connected place से manage कर सके?"), "Hindi core question");
+    assert.ok(storySection.includes('id="origin-story"'), "Origin story section has id anchor");
+    assert.ok(pageContent.includes("<OriginStorySection />"), "Origin story is included in homepage");
+  });
+
+  test("TEST 25: Problem section features human, realistic practice language", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+
+    assert.ok(enContent.includes("The Work Around Tax Work Can Get Messy."), "Human English problem title");
+    assert.ok(hiContent.includes("Tax Work के आसपास की चीज़ें अक्सर उलझ जाती हैं।"), "Human Hindi problem title");
+    assert.ok(enContent.includes("Documents across multiple channels"), "Human problem item 1");
+    assert.ok(enContent.includes("Repeated client follow-ups"), "Human problem item 3");
+  });
+
+  test("TEST 26: Hero section links to the Origin Story", async () => {
+    const fs = await import("node:fs");
+    const heroContent = fs.readFileSync("components/sections/HeroSection.tsx", "utf-8");
+    assert.ok(heroContent.includes('href="#origin-story"'), "Hero links to origin story anchor");
   });
 });

@@ -1,90 +1,139 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/components/common/Container";
-import { SectionHeading } from "@/components/common/SectionHeading";
-import { Card } from "@/components/common/Card";
+import { Badge } from "@/components/common/Badge";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import {
   FileSpreadsheet,
-  AlertTriangle,
-  FolderSync,
-  Users2,
   MessageSquareWarning,
-  TrendingDown,
+  Mail,
+  FolderSync,
+  Calendar,
+  ArrowDown,
+  CheckCircle2,
 } from "lucide-react";
 
 export function ProblemSection() {
-  const problems = [
-    {
-      icon: FileSpreadsheet,
-      title: "Client info spread across spreadsheets",
-      description:
-        "Client GSTINs, PANs, portal credentials, and contact records scattered in multiple Excel files with no single source of truth.",
-    },
-    {
-      icon: AlertTriangle,
-      title: "Compliance work difficult to track",
-      description:
-        "Tracking monthly GST, quarterly TDS, and annual ITR deadlines across multiple clients leads to last-minute rushes and missed filings.",
-    },
-    {
-      icon: FolderSync,
-      title: "Documents scattered in folders & chats",
-      description:
-        "Bank statements, invoices, and KYC documents get buried in email threads, WhatsApp chats, and local hard drives.",
-    },
-    {
-      icon: Users2,
-      title: "Team tasks difficult to coordinate",
-      description:
-        "Hard to know which article assistant or team member is working on which client return without constant manual follow-ups.",
-    },
-    {
-      icon: MessageSquareWarning,
-      title: "Client communication fragmented",
-      description:
-        "Clients constantly message asking for status updates, acknowledgments, or tax computation sheets through informal channels.",
-    },
-    {
-      icon: TrendingDown,
-      title: "Practice growth disconnected from operations",
-      description:
-        "Acquiring new clients and onboarding them is manual, slowing down firm expansion and increasing administrative overhead.",
-    },
+  const { t } = useLanguage();
+
+  const fragmentedTools = [
+    { name: "Spreadsheets", icon: FileSpreadsheet, detail: t.problem.item1Title },
+    { name: "WhatsApp", icon: MessageSquareWarning, detail: t.problem.item4Title },
+    { name: "Email Threads", icon: Mail, detail: t.problem.item3Title },
+    { name: "Local Folders", icon: FolderSync, detail: t.problem.item1Desc },
+    { name: "Calendars", icon: Calendar, detail: t.problem.item2Title },
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-[#E2E8F0]">
+    <section className="py-10 sm:py-14 bg-white border-b border-slate-200">
       <Container>
-        <SectionHeading
-          badge="The Practice Bottleneck"
-          badgeVariant="navy"
-          title="Your practice shouldn't run across spreadsheets, WhatsApp and scattered files."
-          description="Tax professionals spend valuable time managing administrative work instead of focusing on clients and advisory."
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* LEFT: Problem Narrative (6 cols) */}
+          <div className="lg:col-span-6 space-y-4 text-left">
+            <div className="inline-flex items-center">
+              <Badge variant="navy" size="md">
+                {t.problem.badge.toUpperCase()}
+              </Badge>
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {problems.map((prob, idx) => {
-            const Icon = prob.icon;
-            return (
-              <Card
-                key={idx}
-                variant="default"
-                padding="lg"
-                className="bg-slate-50/70 border-slate-200/80 hover:bg-white hover:border-[#082E5B]/40 transition-all duration-200"
-              >
-                <div className="w-10 h-10 rounded-lg bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600 mb-4">
-                  <Icon className="w-5 h-5" />
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-[#07152B] tracking-tight leading-tight">
+              {t.problem.title}
+            </h2>
+
+            <div className="space-y-3 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              <p>{t.problem.subtitle}</p>
+            </div>
+
+            <div className="pt-2 flex items-center gap-3 text-xs sm:text-sm font-semibold text-[#082E5B]">
+              <span className="w-2 h-2 rounded-full bg-[#00D1A3]" />
+              <span>{t.problem.replaceNote}</span>
+            </div>
+          </div>
+
+          {/* RIGHT: Visual Transformation Diagram (6 cols) */}
+          <div className="lg:col-span-6">
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#07152B] border border-slate-800 text-white space-y-4 shadow-lg">
+              {/* Fragmented Stack */}
+              <div>
+                <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
+                  <span className="text-[10px] font-mono font-bold tracking-wider text-rose-400 uppercase">
+                    {t.problem.stackHeader}
+                  </span>
+                  <span className="text-[10px] text-slate-400">{t.problem.disconnectedTools}</span>
                 </div>
-                <h3 className="text-base font-bold text-[#07152B] mb-2">
-                  {prob.title}
-                </h3>
-                <p className="text-sm text-[#475569] leading-relaxed">
-                  {prob.description}
-                </p>
-              </Card>
-            );
-          })}
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {fragmentedTools.map((tool) => {
+                    const Icon = tool.icon;
+                    return (
+                      <div
+                        key={tool.name}
+                        className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800 flex items-center gap-2"
+                      >
+                        <Icon className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                        <div className="truncate">
+                          <div className="text-xs font-semibold text-slate-200 truncate">{tool.name}</div>
+                          <div className="text-[9px] text-slate-500 truncate">{tool.detail}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-center">
+                    <span className="text-[10px] font-bold text-rose-300">{t.problem.dailyFriction}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Transformation Indicator */}
+              <div className="flex items-center justify-center gap-2 py-1 text-slate-400">
+                <ArrowDown className="w-4 h-4 text-[#00D1A3] animate-bounce" />
+                <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-[#00D1A3]">
+                  {t.problem.transformHeader}
+                </span>
+                <ArrowDown className="w-4 h-4 text-[#00D1A3] animate-bounce" />
+              </div>
+
+              {/* Connected Solution Block */}
+              <div className="p-4 rounded-xl bg-gradient-to-r from-[#082E5B] to-[#0A3D78] border border-[#00D1A3]/40 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded bg-[#00D1A3] flex items-center justify-center text-[#07152B] font-black text-[10px]">
+                      TR
+                    </div>
+                    <span className="font-extrabold text-xs sm:text-sm text-white">
+                      {t.problem.solutionHeader}
+                    </span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded bg-[#00D1A3]/20 text-[#00D1A3] font-bold text-[10px] border border-[#00D1A3]/30">
+                    {t.problem.connectedBadge}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-[11px] text-slate-200">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3 h-3 text-[#00D1A3] shrink-0" />
+                    <span>{t.problem.pillDirectory}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3 h-3 text-[#00D1A3] shrink-0" />
+                    <span>{t.problem.pillGstItr}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3 h-3 text-[#00D1A3] shrink-0" />
+                    <span>{t.problem.pillPortal}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3 h-3 text-[#00D1A3] shrink-0" />
+                    <span>{t.problem.pillGrowth}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
   );
 }
+

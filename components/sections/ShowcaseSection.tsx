@@ -53,7 +53,7 @@ export function ShowcaseSection() {
                 size="md"
                 icon={ArrowRight}
               >
-                Join Early Access
+                Get Started
               </Button>
             </div>
           </div>

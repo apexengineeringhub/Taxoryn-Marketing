@@ -1,58 +1,50 @@
 import React from "react";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { TrustStrip } from "@/components/marketing/TrustStrip";
 import { ProblemSection } from "@/components/sections/ProblemSection";
-import { SolutionSection } from "@/components/sections/SolutionSection";
-import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
-import { ShowcaseSection } from "@/components/sections/ShowcaseSection";
+import { OriginStorySection } from "@/components/sections/OriginStorySection";
+import { EcosystemSection } from "@/components/sections/EcosystemSection";
+import { CoreProductSection } from "@/components/sections/CoreProductSection";
+import { DemoVideoSection } from "@/components/sections/DemoVideoSection";
 import { MarketplaceSection } from "@/components/sections/MarketplaceSection";
-import { ClientExperienceSection } from "@/components/sections/ClientExperienceSection";
 import { SecuritySection } from "@/components/sections/SecuritySection";
 import { SolutionsSegmentSection } from "@/components/sections/SolutionsSegmentSection";
-import { FAQSection } from "@/components/trust/FAQSection";
 import { CustomerStoriesSection } from "@/components/trust/CustomerStoriesSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col w-full">
-      {/* 1. Hero Section */}
+      {/* 1. HERO */}
       <HeroSection />
 
-      {/* 2. Trust / Positioning Strip */}
-      <TrustStrip />
-
-      {/* 3. Problem Section */}
+      {/* 2. PROBLEMS TAX PRACTICES FACE */}
       <ProblemSection />
 
-      {/* 4. Taxoryn Solution Story: Organize, Control, Serve, Grow */}
-      <SolutionSection />
+      {/* 3. ORIGIN STORY: BUILT FROM A REAL PRACTICE PROBLEM */}
+      <OriginStorySection />
 
-      {/* 5. Product Capabilities (16 Core Capabilities) */}
-      <CapabilitiesSection />
+      {/* 4. TAXORYN FRAMEWORK: ORGANIZE -> COMPLY -> SERVE -> CONNECT -> GROW */}
+      <EcosystemSection />
 
-      {/* 6. Product Screenshot / Showcase Section */}
-      <ShowcaseSection />
+      {/* 4. CORE PRODUCT MODULES */}
+      <CoreProductSection />
 
-      {/* 7. Marketplace Section */}
+      {/* 5. PRODUCT WALKTHROUGH & DEMO */}
+      <DemoVideoSection />
+
+      {/* 6. TAXORYN MARKETPLACE & PROFESSIONAL NETWORK */}
       <MarketplaceSection />
 
-      {/* 8. Client Experience Section */}
-      <ClientExperienceSection />
-
-      {/* 9. Security Section */}
+      {/* 7. SECURITY & PRACTITIONER CONTROL */}
       <SecuritySection />
 
-      {/* 10. Solutions by Practice Scale */}
+      {/* 8. PRACTICE SOLUTIONS */}
       <SolutionsSegmentSection />
 
-      {/* 11. Early Access Cohort Note (Authentic Social Proof Architecture) */}
+      {/* 9. DEVELOPMENT JOURNEY / INVITATION */}
       <CustomerStoriesSection />
 
-      {/* 12. Frequently Asked Questions */}
-      <FAQSection />
-
-      {/* 13. Final Conversion CTA */}
+      {/* 10. FINAL CALL TO ACTION */}
       <FinalCTASection />
     </div>
   );

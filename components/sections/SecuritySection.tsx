@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Button } from "@/components/common/Button";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { siteConfig } from "@/lib/config/site";
 import {
   ShieldCheck,
@@ -11,75 +14,67 @@ import {
   UserCheck2,
   DatabaseZap,
   ArrowRight,
-  ShieldAlert,
 } from "lucide-react";
 
 export function SecuritySection() {
+  const { t } = useLanguage();
+
   const securityPillars = [
     {
       icon: DatabaseZap,
-      title: "Tenant-Aware Data Isolation",
-      description:
-        "Every tax practice operates within dedicated logical data boundaries. Client records and practice files are strictly partitioned by practice account.",
+      title: t.securitySection.point1Title,
+      description: t.securitySection.point1Desc,
     },
     {
       icon: KeyRound,
-      title: "Role-Based Access Control (RBAC)",
-      description:
-        "Define granular access policies for Partners, Managers, and Staff to ensure team members only access their assigned client records.",
+      title: t.securitySection.point2Title,
+      description: t.securitySection.point2Desc,
     },
     {
       icon: FileLock2,
-      title: "Secure Document Storage",
-      description:
-        "Client files and tax computation sheets are stored in secure cloud infrastructure with strict access verification.",
+      title: t.securitySection.point3Title,
+      description: t.securitySection.point3Desc,
     },
     {
       icon: History,
-      title: "Audit Logging",
-      description:
-        "Audit trails record document views, computation revisions, return approvals, and user session activity across the practice.",
+      title: t.securitySection.point4Title,
+      description: t.securitySection.point4Desc,
     },
     {
       icon: UserCheck2,
-      title: "Authentication & Session Controls",
-      description:
-        "Secure session tokens, password policies, and credential protection help safeguard practice accounts against unauthorized access.",
+      title: t.securitySection.point5Title,
+      description: t.securitySection.point5Desc,
     },
     {
       icon: ShieldCheck,
-      title: "Controlled Client Access",
-      description:
-        "Clients can only access specific tax returns, acknowledgments, and upload requests explicitly shared through their secure client portal.",
+      title: t.securitySection.point6Title,
+      description: t.securitySection.point6Desc,
     },
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-[#07152B] text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern-dark opacity-40 pointer-events-none" />
-
-      <Container className="relative z-10">
+    <section className="py-10 sm:py-14 bg-white border-b border-slate-200/80">
+      <Container>
         <SectionHeading
-          badge="Security Architecture"
-          badgeVariant="teal"
-          theme="dark"
-          title="Built with security in mind."
-          description="Your practice handles confidential client finances and tax credentials. Taxoryn is architected with security and controlled access at the core."
+          badge={t.securitySection.badge}
+          badgeVariant="navy"
+          title={t.securitySection.title}
+          description={t.securitySection.subtitle}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8">
           {securityPillars.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-[#00D1A3]/40 transition-all duration-200 space-y-3"
+                className="p-5 sm:p-6 rounded-xl bg-slate-50/60 border border-slate-200/90 hover:bg-white hover:border-[#00D1A3] transition-all duration-200 shadow-xs space-y-2.5"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#00D1A3]/10 border border-[#00D1A3]/30 flex items-center justify-center text-[#00FFC2]">
-                  <Icon className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-lg bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B]">
+                  <Icon className="w-4 h-4 text-[#009E77]" />
                 </div>
-                <h3 className="text-base font-bold text-white">{item.title}</h3>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <h3 className="text-sm sm:text-base font-bold text-[#07152B]">{item.title}</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -88,21 +83,24 @@ export function SecuritySection() {
         </div>
 
         {/* Informative Disclaimer */}
-        <p className="text-center text-xs text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
-          Security capabilities described here reflect the current Taxoryn architecture and may evolve as the platform develops.
+        <p className="text-center text-xs text-slate-500 max-w-2xl mx-auto mb-6 leading-relaxed">
+          {t.securitySection.disclaimer}
         </p>
 
         <div className="text-center">
           <Button
             href={siteConfig.links.security}
-            variant="teal-outline"
-            size="lg"
+            variant="outline"
+            size="md"
             icon={ArrowRight}
+            className="font-semibold"
           >
-            Explore Taxoryn Security
+            {t.securitySection.exploreSecurity}
           </Button>
         </div>
       </Container>
     </section>
   );
 }
+
+

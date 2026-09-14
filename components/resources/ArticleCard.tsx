@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Card } from "@/components/common/Card";
 import { Badge } from "@/components/common/Badge";
 import { ResourceArticle } from "@/types/content";
-import { ArrowRight, Clock, Calendar } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface ArticleCardProps {
   article: ResourceArticle;
@@ -14,6 +17,8 @@ export function ArticleCard({
   article,
   badgeVariant = "teal",
 }: ArticleCardProps) {
+  const { t } = useLanguage();
+
   return (
     <Card
       variant="interactive"
@@ -47,16 +52,17 @@ export function ArticleCard({
 
       <div className="pt-5 mt-4 border-t border-slate-100 flex items-center justify-between">
         <span className="text-[11px] text-slate-400">
-          Updated {article.updatedDate}
+          {t.common.updatedOn || "Updated"} {article.updatedDate}
         </span>
         <Link
           href={`/resources/${article.slug}`}
           className="inline-flex items-center gap-1 text-xs font-bold text-[#082E5B] hover:text-[#00D1A3] transition-colors"
         >
-          <span>Read Guide</span>
+          <span>{t.common.readGuide || "Read Guide"}</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
     </Card>
   );
 }
+

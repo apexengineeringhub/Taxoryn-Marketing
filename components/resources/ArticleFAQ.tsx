@@ -1,12 +1,16 @@
+"use client";
+
 import React from "react";
 import { ContentFAQ } from "@/types/content";
 import { HelpCircle } from "lucide-react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 interface ArticleFAQProps {
   faqs: ContentFAQ[];
 }
 
 export function ArticleFAQ({ faqs }: ArticleFAQProps) {
+  const { t } = useLanguage();
   if (!faqs || faqs.length === 0) return null;
 
   const jsonLd = {
@@ -31,7 +35,7 @@ export function ArticleFAQ({ faqs }: ArticleFAQProps) {
       <div className="flex items-center gap-2">
         <HelpCircle className="w-5 h-5 text-[#009E77]" />
         <h2 className="text-xl sm:text-2xl font-bold text-[#07152B]">
-          Frequently Asked Questions
+          {t.common.faqHeading || "Frequently Asked Questions"}
         </h2>
       </div>
 
@@ -53,3 +57,4 @@ export function ArticleFAQ({ faqs }: ArticleFAQProps) {
     </section>
   );
 }
+
