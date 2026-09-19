@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { Logo } from "./Logo";
+import { SocialLinks } from "./SocialLinks";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { siteConfig } from "@/lib/config/site";
 
@@ -36,18 +37,28 @@ export function Footer() {
       <Container className="pt-9 pb-7">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-7 border-b border-slate-800/80">
           {/* Column 1: Brand (5 cols on lg) */}
-          <div className="sm:col-span-2 lg:col-span-5 space-y-2.5">
-            <Logo
-              variant="horizontal"
-              theme="dark"
-              size="md"
-              tagline={t.brand.tagline}
-              descriptor={t.brand.productDescriptor}
-              linkHref="/"
-            />
-            <p className="text-xs text-slate-400 max-w-sm leading-relaxed pt-0.5">
-              {t.footer.brandPromise}
-            </p>
+          <div className="sm:col-span-2 lg:col-span-5 space-y-4">
+            <div className="space-y-2.5">
+              <Logo
+                variant="horizontal"
+                theme="dark"
+                size="md"
+                tagline={t.brand.tagline}
+                descriptor={t.brand.productDescriptor}
+                linkHref="/"
+              />
+              <p className="text-xs text-slate-400 max-w-sm leading-relaxed pt-0.5">
+                {t.footer.brandPromise}
+              </p>
+            </div>
+
+            {/* Follow Taxoryn Social Links */}
+            <div className="pt-2">
+              <h3 className="text-[11px] font-bold text-white uppercase tracking-wider mb-2.5">
+                {t.footer.followTaxoryn}
+              </h3>
+              <SocialLinks ariaLabel={t.footer.followTaxoryn} />
+            </div>
           </div>
 
           {/* Column 2: Product */}

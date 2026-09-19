@@ -13,6 +13,16 @@ export interface NavGroup {
   items: NavItem[];
 }
 
+export type SocialPlatform = "youtube" | "linkedin" | "instagram" | "facebook";
+
+export interface SocialLinkConfig {
+  enabled: boolean;
+  url: string;
+  label?: string;
+}
+
+export type SocialLinksConfig = Record<SocialPlatform, SocialLinkConfig>;
+
 export interface SiteConfig {
   name: string;
   tagline: string;
@@ -21,6 +31,7 @@ export interface SiteConfig {
   url: string;
   appUrl: string;
   supportEmail: string;
+  socialLinks: SocialLinksConfig;
   links: {
     joinEarlyAccess: string;
     bookDemo: string;
@@ -38,6 +49,8 @@ export interface SiteConfig {
     ourStory?: string;
     youtube?: string;
     linkedin?: string;
+    instagram?: string;
+    facebook?: string;
   };
 }
 

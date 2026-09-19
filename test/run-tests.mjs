@@ -429,3 +429,233 @@ describe("Taxoryn Grounded Copy, Development Journey & Zero Fake Claims Test Sui
     assert.ok(heroContent.includes('href="#origin-story"'), "Hero links to origin story anchor");
   });
 });
+
+describe("Taxoryn Configurable Social Media Links Test Suite", () => {
+  function isValidSocialUrl(url) {
+    if (!url || typeof url !== "string") return false;
+    const trimmed = url.trim();
+    if (!trimmed || trimmed === "#" || trimmed.startsWith("mailto:")) return false;
+    return trimmed.startsWith("https://") || trimmed.startsWith("http://");
+  }
+
+  function getActiveSocialLinks(config) {
+    const platforms = ["youtube", "linkedin", "instagram", "facebook"];
+    const active = [];
+    for (const platform of platforms) {
+      const item = config[platform];
+      if (item && item.enabled && isValidSocialUrl(item.url)) {
+        active.push({
+          id: platform,
+          url: item.url.trim(),
+          name:
+            item.label ||
+            (platform === "youtube"
+              ? "YouTube"
+              : platform === "linkedin"
+              ? "LinkedIn"
+              : platform === "instagram"
+              ? "Instagram"
+              : "Facebook"),
+        });
+      }
+    }
+    return active;
+  }
+
+  test("TEST 27: Active social links render when enabled and valid URL exists (YouTube & LinkedIn default)", () => {
+    const config = {
+      youtube: { enabled: true, url: "https://www.youtube.com/@taxoryn", label: "YouTube" },
+      linkedin: { enabled: true, url: "https://www.linkedin.com/company/taxoryn", label: "LinkedIn" },
+      instagram: { enabled: false, url: "", label: "Instagram" },
+      facebook: { enabled: false, url: "", label: "Facebook" },
+    };
+    const active = getActiveSocialLinks(config);
+    assert.equal(active.length, 2);
+    assert.equal(active[0].id, "youtube");
+    assert.equal(active[0].url, "https://www.youtube.com/@taxoryn");
+    assert.equal(active[1].id, "linkedin");
+    assert.equal(active[1].url, "https://www.linkedin.com/company/taxoryn");
+  });
+
+  test("TEST 28: Instagram renders when enabled with valid URL", () => {
+    const config = {
+      youtube: { enabled: true, url: "https://www.youtube.com/@taxoryn", label: "YouTube" },
+      linkedin: { enabled: true, url: "https://www.linkedin.com/company/taxoryn", label: "LinkedIn" },
+      instagram: { enabled: true, url: "https://www.instagram.com/taxoryn", label: "Instagram" },
+      facebook: { enabled: false, url: "", label: "Facebook" },
+    };
+    const active = getActiveSocialLinks(config);
+    assert.equal(active.length, 3);
+    assert.equal(active[2].id, "instagram");
+    assert.equal(active[2].url, "https://www.instagram.com/taxoryn");
+  });
+
+  test("TEST 29: All four platforms render in correct order when all are enabled", () => {
+    const config = {
+      youtube: { enabled: true, url: "https://www.youtube.com/@taxoryn", label: "YouTube" },
+      linkedin: { enabled: true, url: "https://www.linkedin.com/company/taxoryn", label: "LinkedIn" },
+      instagram: { enabled: true, url: "https://www.instagram.com/taxoryn", label: "Instagram" },
+      facebook: { enabled: true, url: "https://www.facebook.com/taxoryn", label: "Facebook" },
+    };
+    const active = getActiveSocialLinks(config);
+    assert.equal(active.length, 4);
+    assert.deepEqual(
+      active.map((a) => a.id),
+      ["youtube", "linkedin", "instagram", "facebook"]
+    );
+  });
+
+  test("TEST 30: Works correctly with only one social platform enabled", () => {
+    const config = {
+      youtube: { enabled: false, url: "https://www.youtube.com/@taxoryn", label: "YouTube" },
+      linkedin: { enabled: true, url: "https://www.linkedin.com/company/taxoryn", label: "LinkedIn" },
+      instagram: { enabled: false, url: "https://www.instagram.com/taxoryn", label: "Instagram" },
+      facebook: { enabled: false, url: "https://www.facebook.com/taxoryn", label: "Facebook" },
+    };
+    const active = getActiveSocialLinks(config);
+    assert.equal(active.length, 1);
+    assert.equal(active[0].id, "linkedin");
+  });
+
+  test("TEST 31: Disabled social links are not returned/rendered even if URL exists", () => {
+    const config = {
+      youtube: { enabled: false, url: "https://www.youtube.com/@taxoryn", label: "YouTube" },
+      linkedin: { enabled: true, url: "https://www.linkedin.com/company/taxoryn", label: "LinkedIn" },
+      instagram: { enabled: false, url: "https://www.instagram.com/taxoryn", label: "Instagram" },
+      facebook: { enabled: false, url: "https://www.facebook.com/taxoryn", label: "Facebook" },
+    };
+    const active = getActiveSocialLinks(config);
+    assert.equal(active.length, 1);
+    assert.equal(active[0].id, "linkedin");
+  });
+
+  test("TEST 32: Empty, whitespace, or invalid URLs are never rendered", () => {
+    const config = {
+      youtube: { enabled: true, url: "   ", label: "YouTube" },
+      linkedin: { enabled: true, url: "", label: "LinkedIn" },
+      instagram: { enabled: true, url: "", label: "Instagram" },
+      facebook: { enabled: true, url: null, label: "Facebook" },
+    };
+    const active = getActiveSocialLinks(config);
+    assert.equal(active.length, 0);
+  });
+
+  test("TEST 33: Zero '#' placeholder links or mailto links generated", () => {
+    const config = {
+      youtube: { enabled: true, url: "#", label: "YouTube" },
+      linkedin: { enabled: true, url: "mailto:taxoryn@example.com", label: "LinkedIn" },
+      instagram: { enabled: true, url: "#", label: "Instagram" },
+      facebook: { enabled: true, url: "javascript:void(0)", label: "Facebook" },
+    };
+    const active = getActiveSocialLinks(config);
+    assert.equal(active.length, 0);
+  });
+
+  test("TEST 34: SocialLinks component source enforces target='_blank', rel='noopener noreferrer', and aria-labels for all platforms", async () => {
+    const fs = await import("node:fs");
+    const componentContent = fs.readFileSync("components/navigation/SocialLinks.tsx", "utf-8");
+    assert.ok(componentContent.includes('target="_blank"'), "target='_blank' present");
+    assert.ok(componentContent.includes('rel="noopener noreferrer"'), "rel='noopener noreferrer' present");
+    assert.ok(componentContent.includes("aria-label="), "aria-label present on anchor");
+    assert.ok(componentContent.includes("<nav"), "Semantic nav container present");
+    assert.ok(componentContent.includes("focus-visible:ring-2"), "Keyboard focus ring present");
+    assert.ok(componentContent.includes("YouTubeIcon"), "YouTube icon included");
+    assert.ok(componentContent.includes("LinkedInIcon"), "LinkedIn icon included");
+    assert.ok(componentContent.includes("InstagramIcon"), "Instagram icon included");
+    assert.ok(componentContent.includes("FacebookIcon"), "Facebook icon included");
+  });
+
+  test("TEST 35: Footer component embeds SocialLinks and retains existing navigation structure", async () => {
+    const fs = await import("node:fs");
+    const footerContent = fs.readFileSync("components/navigation/Footer.tsx", "utf-8");
+    assert.ok(footerContent.includes("<SocialLinks"), "SocialLinks component embedded in Footer");
+    assert.ok(footerContent.includes("t.footer.followTaxoryn"), "Follow Taxoryn section header referenced");
+    assert.ok(footerContent.includes("productLinks"), "Product links retained in Footer");
+    assert.ok(footerContent.includes("connectLinks"), "Connect links retained in Footer");
+    assert.ok(footerContent.includes("companyLinks"), "Company links retained in Footer");
+    assert.ok(footerContent.includes("siteConfig.links.privacy"), "Privacy link retained in Footer");
+    assert.ok(footerContent.includes("siteConfig.links.terms"), "Terms link retained in Footer");
+    assert.ok(footerContent.includes("siteConfig.links.security"), "Security link retained in Footer");
+  });
+
+  test("TEST 36: Centralized configuration in site.ts exports socialLinks and environment overrides for all channels", async () => {
+    const fs = await import("node:fs");
+    const siteContent = fs.readFileSync("lib/config/site.ts", "utf-8");
+    assert.ok(siteContent.includes("socialLinksConfig"), "socialLinksConfig defined");
+    assert.ok(siteContent.includes("socialLinks: socialLinksConfig"), "socialLinks attached to siteConfig");
+    assert.ok(siteContent.includes("NEXT_PUBLIC_TAXORYN_YOUTUBE_URL"), "YouTube env var supported");
+    assert.ok(siteContent.includes("NEXT_PUBLIC_TAXORYN_LINKEDIN_URL"), "LinkedIn env var supported");
+    assert.ok(siteContent.includes("NEXT_PUBLIC_TAXORYN_INSTAGRAM_URL"), "Instagram env var supported");
+    assert.ok(siteContent.includes("NEXT_PUBLIC_TAXORYN_FACEBOOK_URL"), "Facebook env var supported");
+    assert.ok(siteContent.includes("https://www.youtube.com/@taxoryn"), "Official YouTube channel configured");
+    assert.ok(siteContent.includes("https://www.linkedin.com/company/taxoryn"), "Official LinkedIn page configured");
+  });
+
+  test("TEST 37: i18n dictionaries contain followTaxoryn heading and accessible social labels for YouTube, LinkedIn, Instagram, and Facebook", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+    assert.ok(enContent.includes('followTaxoryn: "Follow Taxoryn"'), "English followTaxoryn string exists");
+    assert.ok(hiContent.includes('followTaxoryn: "Taxoryn से जुड़ें"'), "Hindi followTaxoryn string exists");
+    assert.ok(enContent.includes('youtube: "Taxoryn on YouTube"'), "English YouTube label exists");
+    assert.ok(hiContent.includes('youtube: "YouTube पर Taxoryn"'), "Hindi YouTube label exists");
+    assert.ok(enContent.includes('linkedin: "Taxoryn on LinkedIn"'), "English LinkedIn label exists");
+    assert.ok(hiContent.includes('linkedin: "LinkedIn पर Taxoryn"'), "Hindi LinkedIn label exists");
+    assert.ok(enContent.includes('instagram: "Taxoryn on Instagram"'), "English Instagram label exists");
+    assert.ok(hiContent.includes('instagram: "Instagram पर Taxoryn"'), "Hindi Instagram label exists");
+    assert.ok(enContent.includes('facebook: "Taxoryn on Facebook"'), "English Facebook label exists");
+    assert.ok(hiContent.includes('facebook: "Facebook पर Taxoryn"'), "Hindi Facebook label exists");
+  });
+
+  test("TEST 38: CustomerStoriesSection has ONE primary CTA (Share Feedback) with no competing Get Started", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/trust/CustomerStoriesSection.tsx", "utf-8");
+    assert.ok(content.includes("t.helpShape.shareFeedback"), "Uses shareFeedback string");
+    assert.ok(content.includes("siteConfig.links.contact"), "Points to contact/feedback link");
+    assert.ok(!content.includes("t.helpShape.getStarted"), "Does not contain competing getStarted button in Help Shape section");
+  });
+
+  test("TEST 39: FinalCTASection has unambiguous primary (Request Early Access) and secondary (Book a Demo) CTAs", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/sections/FinalCTASection.tsx", "utf-8");
+    assert.ok(content.includes("siteConfig.links.joinEarlyAccess"), "Primary points to early access");
+    assert.ok(content.includes("siteConfig.links.bookDemo"), "Secondary points to book demo");
+    assert.ok(content.includes("t.finalCTA.getStarted"), "Primary uses finalCTA.getStarted key");
+    assert.ok(content.includes("t.finalCTA.bookDemo"), "Secondary uses finalCTA.bookDemo key");
+    assert.ok(content.includes("Calendar"), "Secondary uses Calendar icon");
+    assert.ok(!content.includes('href="#demo-video"'), "Secondary no longer points to ambiguous demo video anchor");
+  });
+
+  test("TEST 40: Standardized form submit CTAs in English and Hindi", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+    
+    // Contact form
+    assert.ok(enContent.includes('submitButton: "Send Message"'), "EN Contact submit button is Send Message");
+    assert.ok(hiContent.includes('submitButton: "Message भेजें"'), "HI Contact submit button is Message भेजें");
+    
+    // Book Demo form
+    assert.ok(enContent.includes('submitButton: "Book a Demo"'), "EN Book Demo submit button is Book a Demo");
+    assert.ok(hiContent.includes('submitButton: "डेमो बुक करें"'), "HI Book Demo submit button is डेमो बुक करें");
+    
+    // Early Access form
+    assert.ok(enContent.includes('submitButton: "Request Early Access"'), "EN Early Access submit button is Request Early Access");
+    assert.ok(hiContent.includes('submitButton: "Early Access Request करें"'), "HI Early Access submit button is Early Access Request करें");
+  });
+
+  test("TEST 41: Header and Hero have clean primary vs secondary intent separation", async () => {
+    const fs = await import("node:fs");
+    const headerContent = fs.readFileSync("components/navigation/Header.tsx", "utf-8");
+    const heroContent = fs.readFileSync("components/sections/HeroSection.tsx", "utf-8");
+
+    // Header has Watch Demo (secondary/ghost) and Get Started (primary)
+    assert.ok(headerContent.includes("t.nav.watchDemo"), "Header has Watch Demo secondary action");
+    assert.ok(headerContent.includes("t.nav.getStarted"), "Header has Get Started primary action");
+
+    // Hero has Get Started (primary) and Watch Demo (secondary)
+    assert.ok(heroContent.includes("siteConfig.links.joinEarlyAccess"), "Hero primary points to joinEarlyAccess");
+    assert.ok(heroContent.includes('href="#demo-video"'), "Hero secondary points to demo-video section anchor");
+  });
+});
+

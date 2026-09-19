@@ -67,6 +67,40 @@ NEXT_PUBLIC_ANALYTICS_DEBUG=false
 
 ---
 
+## 1.3 Social Media Links & Channels Configuration
+
+Taxoryn official social media channels are centrally managed and configurable from a single source of truth (`lib/config/site.ts`) and environment variables.
+
+### Supported Channels:
+- **YouTube**: `siteConfig.socialLinks.youtube` (Default: `https://www.youtube.com/@taxoryn`)
+- **LinkedIn**: `siteConfig.socialLinks.linkedin` (Default: `https://www.linkedin.com/company/taxoryn`)
+- **Instagram**: `siteConfig.socialLinks.instagram` (Optional supporting channel, configurable via `NEXT_PUBLIC_TAXORYN_INSTAGRAM_URL`)
+- **Facebook**: `siteConfig.socialLinks.facebook` (Configurable via `NEXT_PUBLIC_TAXORYN_FACEBOOK_URL`)
+
+### Environment Overrides (`.env.local`):
+```bash
+# Social Media URLs
+NEXT_PUBLIC_TAXORYN_YOUTUBE_URL=https://www.youtube.com/@taxoryn
+NEXT_PUBLIC_TAXORYN_LINKEDIN_URL=https://www.linkedin.com/company/taxoryn
+NEXT_PUBLIC_TAXORYN_INSTAGRAM_URL=
+NEXT_PUBLIC_TAXORYN_FACEBOOK_URL=
+
+# Channel Visibility Toggles (true/false)
+NEXT_PUBLIC_TAXORYN_YOUTUBE_ENABLED=true
+NEXT_PUBLIC_TAXORYN_LINKEDIN_ENABLED=true
+NEXT_PUBLIC_TAXORYN_INSTAGRAM_ENABLED=false
+NEXT_PUBLIC_TAXORYN_FACEBOOK_ENABLED=false
+```
+
+### Safety & Accessibility Guarantees:
+1. **Dynamic Visibility**: Disabled links or channels with empty/whitespace URLs are automatically omitted from the UI.
+2. **Zero Fake/Placeholder Links**: No `#` placeholder links or mock URLs are ever rendered.
+3. **Security Standards**: All external social links use `target="_blank"` and `rel="noopener noreferrer"`.
+4. **Accessible**: Every icon contains an accessible `aria-label` (e.g. `Taxoryn on YouTube`, `Taxoryn on LinkedIn`, `Taxoryn on Instagram`, `Taxoryn on Facebook`) and full keyboard navigation focus rings.
+5. **Reusable**: Managed through the `<SocialLinks />` component (`components/navigation/SocialLinks.tsx`).
+
+---
+
 ## 2. Technology Stack
 
 - **Framework**: Next.js 15+ (App Router, Server Components by default)

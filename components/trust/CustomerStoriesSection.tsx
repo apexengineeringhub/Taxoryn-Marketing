@@ -52,19 +52,13 @@ export function CustomerStoriesSection({ stories = [] }: CustomerStoriesSectionP
                 <p className="font-semibold text-[#00D1A3]">{t.helpShape.paragraph3}</p>
               </div>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
-                  href={siteConfig.links.joinEarlyAccess}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#00D1A3] text-[#07152B] font-bold text-sm hover:bg-[#00B388] transition-colors shadow-lg shadow-[#00D1A3]/20"
-                >
-                  <span>{t.helpShape.getStarted}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+              <div className="pt-2 flex items-center justify-center">
                 <Link
                   href={siteConfig.links.contact}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 transition-colors border border-white/20"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#00D1A3] text-[#07152B] font-bold text-sm sm:text-base hover:bg-[#00B388] transition-colors shadow-lg shadow-[#00D1A3]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07152B]"
                 >
                   <span>{t.helpShape.shareFeedback}</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
