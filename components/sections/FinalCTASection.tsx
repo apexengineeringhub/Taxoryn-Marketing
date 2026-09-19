@@ -44,7 +44,7 @@ export function FinalCTASection() {
             </Button>
 
             <Button
-              href="#demo-video"
+              href={siteConfig.links.bookDemo}
               variant="dark"
               size="lg"
               icon={Calendar}

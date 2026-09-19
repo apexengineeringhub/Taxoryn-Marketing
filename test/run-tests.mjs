@@ -606,5 +606,56 @@ describe("Taxoryn Configurable Social Media Links Test Suite", () => {
     assert.ok(enContent.includes('facebook: "Taxoryn on Facebook"'), "English Facebook label exists");
     assert.ok(hiContent.includes('facebook: "Facebook पर Taxoryn"'), "Hindi Facebook label exists");
   });
+
+  test("TEST 38: CustomerStoriesSection has ONE primary CTA (Share Feedback) with no competing Get Started", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/trust/CustomerStoriesSection.tsx", "utf-8");
+    assert.ok(content.includes("t.helpShape.shareFeedback"), "Uses shareFeedback string");
+    assert.ok(content.includes("siteConfig.links.contact"), "Points to contact/feedback link");
+    assert.ok(!content.includes("t.helpShape.getStarted"), "Does not contain competing getStarted button in Help Shape section");
+  });
+
+  test("TEST 39: FinalCTASection has unambiguous primary (Request Early Access) and secondary (Book a Demo) CTAs", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/sections/FinalCTASection.tsx", "utf-8");
+    assert.ok(content.includes("siteConfig.links.joinEarlyAccess"), "Primary points to early access");
+    assert.ok(content.includes("siteConfig.links.bookDemo"), "Secondary points to book demo");
+    assert.ok(content.includes("t.finalCTA.getStarted"), "Primary uses finalCTA.getStarted key");
+    assert.ok(content.includes("t.finalCTA.bookDemo"), "Secondary uses finalCTA.bookDemo key");
+    assert.ok(content.includes("Calendar"), "Secondary uses Calendar icon");
+    assert.ok(!content.includes('href="#demo-video"'), "Secondary no longer points to ambiguous demo video anchor");
+  });
+
+  test("TEST 40: Standardized form submit CTAs in English and Hindi", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const hiContent = fs.readFileSync("lib/i18n/hi.ts", "utf-8");
+    
+    // Contact form
+    assert.ok(enContent.includes('submitButton: "Send Message"'), "EN Contact submit button is Send Message");
+    assert.ok(hiContent.includes('submitButton: "Message भेजें"'), "HI Contact submit button is Message भेजें");
+    
+    // Book Demo form
+    assert.ok(enContent.includes('submitButton: "Book a Demo"'), "EN Book Demo submit button is Book a Demo");
+    assert.ok(hiContent.includes('submitButton: "डेमो बुक करें"'), "HI Book Demo submit button is डेमो बुक करें");
+    
+    // Early Access form
+    assert.ok(enContent.includes('submitButton: "Request Early Access"'), "EN Early Access submit button is Request Early Access");
+    assert.ok(hiContent.includes('submitButton: "Early Access Request करें"'), "HI Early Access submit button is Early Access Request करें");
+  });
+
+  test("TEST 41: Header and Hero have clean primary vs secondary intent separation", async () => {
+    const fs = await import("node:fs");
+    const headerContent = fs.readFileSync("components/navigation/Header.tsx", "utf-8");
+    const heroContent = fs.readFileSync("components/sections/HeroSection.tsx", "utf-8");
+
+    // Header has Watch Demo (secondary/ghost) and Get Started (primary)
+    assert.ok(headerContent.includes("t.nav.watchDemo"), "Header has Watch Demo secondary action");
+    assert.ok(headerContent.includes("t.nav.getStarted"), "Header has Get Started primary action");
+
+    // Hero has Get Started (primary) and Watch Demo (secondary)
+    assert.ok(heroContent.includes("siteConfig.links.joinEarlyAccess"), "Hero primary points to joinEarlyAccess");
+    assert.ok(heroContent.includes('href="#demo-video"'), "Hero secondary points to demo-video section anchor");
+  });
 });
 
