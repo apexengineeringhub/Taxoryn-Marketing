@@ -380,6 +380,13 @@ export const hi: TranslationSchema = {
     productHeading: "Product",
     connectHeading: "Connect",
     companyHeading: "Company",
+    followTaxoryn: "Taxoryn से जुड़ें",
+    social: {
+      youtube: "YouTube पर Taxoryn",
+      linkedin: "LinkedIn पर Taxoryn",
+      instagram: "Instagram पर Taxoryn",
+      facebook: "Facebook पर Taxoryn",
+    },
     productLinks: {
       product: "Product",
       features: "Features",

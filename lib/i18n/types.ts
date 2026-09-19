@@ -318,6 +318,13 @@ export interface TranslationSchema {
     productHeading: string;
     connectHeading: string;
     companyHeading: string;
+    followTaxoryn: string;
+    social: {
+      youtube: string;
+      linkedin: string;
+      instagram: string;
+      facebook: string;
+    };
     productLinks: {
       product: string;
       features: string;
