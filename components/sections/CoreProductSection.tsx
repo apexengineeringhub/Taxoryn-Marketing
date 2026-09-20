@@ -62,7 +62,7 @@ export function CoreProductSection() {
   ];
 
   return (
-    <section className="py-10 sm:py-14 bg-[#F8FAFC] border-b border-[#E2E8F0]">
+    <section className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC] border-b border-slate-200/80">
       <Container>
         <SectionHeading
           badge={t.coreProduct.badge}
@@ -72,17 +72,17 @@ export function CoreProductSection() {
         />
 
         {/* Editorial Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8 sm:mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8 sm:mb-10">
           {modules.map((mod) => {
             const Icon = mod.icon;
             return (
               <div
                 key={mod.id}
-                className="p-5 rounded-xl bg-white border border-slate-200/90 hover:border-[#00D1A3] transition-all duration-200 shadow-sm flex flex-col justify-between space-y-3"
+                className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-[#00D1A3] transition-all duration-200 shadow-sm hover:shadow-md flex flex-col justify-between space-y-3.5"
               >
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <div className="w-8 h-8 rounded-lg bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B]">
+                    <div className="w-9 h-9 rounded-xl bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B]">
                       <Icon className="w-4 h-4" />
                     </div>
                     <span className="text-[10px] font-mono font-bold tracking-wider text-slate-400 uppercase">
@@ -90,16 +90,16 @@ export function CoreProductSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-sm sm:text-base font-bold text-[#07152B]">
+                  <h3 className="text-base sm:text-lg font-bold text-[#07152B]">
                     {mod.title}
                   </h3>
 
-                  <p className="text-xs text-[#475569] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
                     {mod.description}
                   </p>
                 </div>
 
-                <div className="pt-2.5 border-t border-slate-100 space-y-1.5">
+                <div className="pt-3 border-t border-slate-100 space-y-1.5">
                   {mod.points.map((pt, i) => (
                     <div key={i} className="flex items-start gap-2 text-xs text-[#0F172A]">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#00D1A3] shrink-0 mt-0.5" />

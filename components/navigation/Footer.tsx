@@ -33,45 +33,49 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#07152B] text-slate-300 border-t border-slate-800/90">
-      <Container className="pt-9 pb-7">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-7 border-b border-slate-800/80">
-          {/* Column 1: Brand (5 cols on lg) */}
-          <div className="sm:col-span-2 lg:col-span-5 space-y-4">
-            <div className="space-y-2.5">
+    <footer className="relative bg-white text-slate-600 border-t border-slate-200">
+      {/* Subtle 1px Top Gradient Transition Accent */}
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#00D1A3]/30 to-transparent pointer-events-none" />
+
+      <Container className="pt-10 pb-6 sm:pt-11 sm:pb-7 lg:pt-12 lg:pb-8">
+        {/* Main Content Grid: Target ~220-280px Content-Driven Height on Desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 pb-7 sm:pb-8 border-b border-slate-200/90">
+          {/* Column 1: Brand & Socials (~35-40% on Desktop) */}
+          <div className="sm:col-span-2 md:col-span-4 lg:col-span-5 space-y-3.5">
+            <div className="space-y-2">
               <Logo
                 variant="horizontal"
-                theme="dark"
+                theme="light"
                 size="md"
                 tagline={t.brand.tagline}
                 descriptor={t.brand.productDescriptor}
                 linkHref="/"
               />
-              <p className="text-xs text-slate-400 max-w-sm leading-relaxed pt-0.5">
+              <p className="text-xs sm:text-sm text-slate-500 max-w-sm leading-relaxed">
                 {t.footer.brandPromise}
               </p>
             </div>
 
             {/* Follow Taxoryn Social Links */}
-            <div className="pt-2">
-              <h3 className="text-[11px] font-bold text-white uppercase tracking-wider mb-2.5">
+            <div className="pt-1.5 space-y-2">
+              <h3 className="text-[11px] sm:text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
                 {t.footer.followTaxoryn}
               </h3>
-              <SocialLinks ariaLabel={t.footer.followTaxoryn} />
+              <SocialLinks variant="footer" ariaLabel={t.footer.followTaxoryn} />
             </div>
           </div>
 
-          {/* Column 2: Product */}
-          <div className="sm:col-span-1 lg:col-span-2 space-y-3">
-            <h3 className="text-[11px] font-bold text-white uppercase tracking-wider">
+          {/* Column 2: Product (~16-18%) */}
+          <div className="sm:col-span-1 md:col-span-1 lg:col-span-2 space-y-3">
+            <h3 className="text-xs font-mono font-bold text-[#07152B] uppercase tracking-wider">
               {t.footer.productHeading}
             </h3>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2 text-xs sm:text-sm">
               {productLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-slate-300 hover:text-[#00D1A3] transition-colors"
+                    className="text-slate-600 hover:text-[#009E77] focus-visible:text-[#009E77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-xs transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -80,17 +84,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Connect */}
-          <div className="sm:col-span-1 lg:col-span-2 space-y-3">
-            <h3 className="text-[11px] font-bold text-white uppercase tracking-wider">
+          {/* Column 3: Connect (~20-22%) */}
+          <div className="sm:col-span-1 md:col-span-1 lg:col-span-3 space-y-3">
+            <h3 className="text-xs font-mono font-bold text-[#07152B] uppercase tracking-wider">
               {t.footer.connectHeading}
             </h3>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2 text-xs sm:text-sm">
               {connectLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-slate-300 hover:text-[#00D1A3] transition-colors"
+                    className="text-slate-600 hover:text-[#009E77] focus-visible:text-[#009E77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-xs transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -99,17 +103,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Company */}
-          <div className="sm:col-span-1 lg:col-span-3 space-y-3">
-            <h3 className="text-[11px] font-bold text-white uppercase tracking-wider">
+          {/* Column 4: Company (~16-18%) */}
+          <div className="sm:col-span-1 md:col-span-2 lg:col-span-2 space-y-3">
+            <h3 className="text-xs font-mono font-bold text-[#07152B] uppercase tracking-wider">
               {t.footer.companyHeading}
             </h3>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2 text-xs sm:text-sm">
               {companyLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-slate-300 hover:text-[#00D1A3] transition-colors"
+                    className="text-slate-600 hover:text-[#009E77] focus-visible:text-[#009E77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-xs transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -119,25 +123,27 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar: Clean & Minimal */}
-        <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        {/* Bottom Legal Bar: ~56-64px Height, Single Row on Desktop, Clean Separators */}
+        <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-[13px] text-slate-500">
           <p>© {currentYear} {t.footer.copyright}</p>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4 sm:gap-5 font-medium">
             <Link
               href={siteConfig.links.privacy}
-              className="hover:text-slate-200 transition-colors"
+              className="hover:text-[#009E77] focus-visible:text-[#009E77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-xs transition-colors"
             >
               {t.footer.privacy}
             </Link>
+            <span className="text-slate-300 select-none" aria-hidden="true">|</span>
             <Link
               href={siteConfig.links.terms}
-              className="hover:text-slate-200 transition-colors"
+              className="hover:text-[#009E77] focus-visible:text-[#009E77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-xs transition-colors"
             >
               {t.footer.terms}
             </Link>
+            <span className="text-slate-300 select-none" aria-hidden="true">|</span>
             <Link
               href={siteConfig.links.security}
-              className="hover:text-slate-200 transition-colors"
+              className="hover:text-[#009E77] focus-visible:text-[#009E77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-xs transition-colors"
             >
               {t.footer.security}
             </Link>
@@ -147,4 +153,3 @@ export function Footer() {
     </footer>
   );
 }
-

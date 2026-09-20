@@ -312,6 +312,9 @@ export interface TranslationSchema {
     getStarted: string;
     bookDemo: string;
     note: string;
+    benefitShapeProduct?: string;
+    benefitBuiltForIndia?: string;
+    benefitDirectFeedback?: string;
   };
   footer: {
     brandPromise: string;
@@ -811,6 +814,8 @@ export interface TranslationSchema {
       phonePlaceholder: string;
       phoneError: string;
       phoneInvalid: string;
+      cityLabel: string;
+      cityPlaceholder: string;
       firmTypeLabel: string;
       firmTypeOptions: Array<{ value: string; label: string }>;
       primaryInterestLabel: string;
@@ -819,8 +824,12 @@ export interface TranslationSchema {
       submittingButton: string;
       successTitle: string;
       successDesc: string;
-      openEmailClient: string;
-      editInquiry: string;
+      submittedEmailLabel: string;
+      continueExploring: string;
+      errorMessage: string;
+      privacyNote: string;
+      directSupportText: string;
+      optionalLabel: string;
     };
 
 }

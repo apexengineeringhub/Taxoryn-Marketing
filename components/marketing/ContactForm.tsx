@@ -133,7 +133,7 @@ export function ContactForm() {
   };
 
   return (
-    <div className="py-10 sm:py-16 bg-[#F8FAFC]">
+    <div className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
           badge={cp.badge}
@@ -144,22 +144,22 @@ export function ContactForm() {
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Practice Info Column */}
-          <div className="md:col-span-5 space-y-6">
-            <div className="p-6 rounded-2xl bg-[#07152B] text-white space-y-4 shadow-sm">
-              <h3 className="text-lg font-bold">{cp.advisoryTitle}</h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
+          <div className="md:col-span-5 space-y-5">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-4">
+              <h3 className="text-base sm:text-lg font-bold text-[#07152B]">{cp.advisoryTitle}</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {cp.advisoryDesc}
               </p>
 
-              <div className="space-y-3 pt-2 text-xs text-slate-200">
-                <div className="flex items-center gap-2.5">
-                  <Mail className="w-4 h-4 text-[#00D1A3]" />
-                  <span>{siteConfig.supportEmail}</span>
+              <div className="space-y-3 pt-2 text-xs text-slate-700">
+                <div className="flex items-center gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
+                  <Mail className="w-4 h-4 text-[#009E77] shrink-0" />
+                  <span className="font-semibold text-slate-800">{siteConfig.supportEmail}</span>
                 </div>
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3">
               <h4 className="text-sm font-bold text-[#07152B]">
                 {cp.overviewTitle}
               </h4>

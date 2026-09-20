@@ -105,7 +105,7 @@ export default async function ResourceArticlePage({ params }: PageProps) {
   ];
 
   return (
-    <article className="py-10 sm:py-16 bg-[#F8FAFC]">
+    <article className="py-12 sm:py-16 bg-[#F8FAFC]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}

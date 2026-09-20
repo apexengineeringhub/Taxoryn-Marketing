@@ -26,7 +26,7 @@ export function ProblemSection() {
   ];
 
   return (
-    <section className="py-10 sm:py-14 bg-white border-b border-slate-200">
+    <section className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200/80">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* LEFT: Problem Narrative (6 cols) */}
@@ -37,11 +37,11 @@ export function ProblemSection() {
               </Badge>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-[#07152B] tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-bold text-[#07152B] tracking-tight leading-tight">
               {t.problem.title}
             </h2>
 
-            <div className="space-y-3 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            <div className="space-y-3 text-sm sm:text-base lg:text-[17px] text-slate-600 leading-relaxed font-normal">
               <p>{t.problem.subtitle}</p>
             </div>
 
@@ -53,7 +53,7 @@ export function ProblemSection() {
 
           {/* RIGHT: Visual Transformation Diagram (6 cols) */}
           <div className="lg:col-span-6">
-            <div className="p-5 sm:p-6 rounded-2xl bg-[#07152B] border border-slate-800 text-white space-y-4 shadow-lg">
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#07152B] border border-slate-800 text-white space-y-4 shadow-xl">
               {/* Fragmented Stack */}
               <div>
                 <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-800">
@@ -69,7 +69,7 @@ export function ProblemSection() {
                     return (
                       <div
                         key={tool.name}
-                        className="p-2.5 rounded-lg bg-slate-900/90 border border-slate-800 flex items-center gap-2"
+                        className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center gap-2"
                       >
                         <Icon className="w-3.5 h-3.5 text-rose-400 shrink-0" />
                         <div className="truncate">
@@ -79,7 +79,7 @@ export function ProblemSection() {
                       </div>
                     );
                   })}
-                  <div className="p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-center">
+                  <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-center">
                     <span className="text-[10px] font-bold text-rose-300">{t.problem.dailyFriction}</span>
                   </div>
                 </div>
@@ -87,11 +87,11 @@ export function ProblemSection() {
 
               {/* Transformation Indicator */}
               <div className="flex items-center justify-center gap-2 py-1 text-slate-400">
-                <ArrowDown className="w-4 h-4 text-[#00D1A3] animate-bounce" />
+                <ArrowDown className="w-4 h-4 text-[#00D1A3]" />
                 <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-[#00D1A3]">
                   {t.problem.transformHeader}
                 </span>
-                <ArrowDown className="w-4 h-4 text-[#00D1A3] animate-bounce" />
+                <ArrowDown className="w-4 h-4 text-[#00D1A3]" />
               </div>
 
               {/* Connected Solution Block */}
@@ -136,4 +136,3 @@ export function ProblemSection() {
     </section>
   );
 }
-

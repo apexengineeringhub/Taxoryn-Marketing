@@ -3,59 +3,75 @@
 import React from "react";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
+import { MarketingCTA } from "@/components/common/MarketingCTA";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { siteConfig } from "@/lib/config/site";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, Check } from "lucide-react";
 
 export function FinalCTASection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const titleContent =
+    language === "en" ? (
+      <>
+        Help Us Build Better <span className="text-[#00D1A3]">Tax Practice</span> Management.
+      </>
+    ) : (
+      t.finalCTA.title
+    );
+
+  const benefitRow = (
+    <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs sm:text-[13px] text-slate-300 font-medium">
+      <div className="flex items-center gap-1.5">
+        <Check className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+        <span>{t.finalCTA.benefitShapeProduct || "Shape the product"}</span>
+      </div>
+      <span className="hidden sm:inline text-slate-700 select-none" aria-hidden="true">|</span>
+      <div className="flex items-center gap-1.5">
+        <Check className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+        <span>{t.finalCTA.benefitBuiltForIndia || "Built for Indian tax practitioners"}</span>
+      </div>
+      <span className="hidden sm:inline text-slate-700 select-none" aria-hidden="true">|</span>
+      <div className="flex items-center gap-1.5">
+        <Check className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+        <span>{t.finalCTA.benefitDirectFeedback || "Direct founder feedback"}</span>
+      </div>
+    </div>
+  );
 
   return (
-    <section className="py-12 sm:py-16 bg-[#07152B] relative overflow-hidden text-white border-t border-slate-800">
-      {/* Background glow & subtle patterns */}
-      <div className="absolute inset-0 bg-grid-pattern-dark opacity-30 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#00D1A3]/10 blur-[120px] rounded-full pointer-events-none" />
+    <section className="pt-10 sm:pt-12 lg:pt-14 pb-6 sm:pb-8 lg:pb-12 bg-[#F8FAFC] relative overflow-hidden" id="get-started">
+      <Container className="relative">
+        <MarketingCTA
+          variant="primary"
+          eyebrow={t.finalCTA.badge}
+          title={titleContent}
+          description={t.finalCTA.subtitle}
+          footer={benefitRow}
+        >
+          <Button
+            href={siteConfig.links.joinEarlyAccess}
+            variant="primary"
+            size="md"
+            icon={ArrowRight}
+            className="w-full sm:w-auto px-6 sm:px-7 min-h-[46px] sm:min-h-[48px] font-bold shadow-md shadow-[#00D1A3]/15 text-sm sm:text-base"
+          >
+            {t.finalCTA.getStarted}
+          </Button>
 
-      <Container className="relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#00D1A3] uppercase inline-block">
-            {t.finalCTA.badge}
-          </span>
-
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white text-balance leading-[1.12] max-w-3xl mx-auto">
-            {t.finalCTA.title}
-          </h2>
-
-          <div className="space-y-2 max-w-2xl mx-auto">
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed text-pretty">
-              {t.finalCTA.subtitle}
-            </p>
-          </div>
-
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              href={siteConfig.links.joinEarlyAccess}
-              variant="primary"
-              size="lg"
-              icon={ArrowRight}
-              className="w-full sm:w-auto px-8 py-3.5 font-bold shadow-lg shadow-[#00D1A3]/25"
-            >
-              {t.finalCTA.getStarted}
-            </Button>
-
-            <Button
-              href={siteConfig.links.bookDemo}
-              variant="dark"
-              size="lg"
-              icon={Calendar}
-              iconPosition="left"
-              className="w-full sm:w-auto px-8 py-3.5 font-semibold"
-            >
-              {t.finalCTA.bookDemo}
-            </Button>
-          </div>
-        </div>
+          <Button
+            href={siteConfig.links.bookDemo}
+            variant="dark"
+            size="md"
+            icon={Calendar}
+            iconPosition="left"
+            className="w-full sm:w-auto px-6 sm:px-7 min-h-[46px] sm:min-h-[48px] font-semibold text-sm sm:text-base border-slate-700 hover:bg-slate-800"
+          >
+            {t.finalCTA.bookDemo}
+          </Button>
+        </MarketingCTA>
       </Container>
     </section>
   );
 }
+

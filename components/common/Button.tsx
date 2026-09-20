@@ -41,28 +41,28 @@ export const Button = React.forwardRef<
   ref
 ) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none select-none";
+    "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none select-none";
 
   const variants = {
     primary:
-      "bg-[#00D1A3] text-[#07152B] font-semibold hover:bg-[#00B388] shadow-sm hover:shadow active:scale-[0.98]",
+      "bg-[#00D1A3] text-[#07152B] font-bold hover:bg-[#00B388] shadow-sm hover:shadow active:scale-[0.98]",
     secondary:
       "bg-[#082E5B] text-white font-semibold hover:bg-[#07152B] shadow-sm hover:shadow active:scale-[0.98]",
     dark:
-      "bg-[#07152B] text-white font-semibold hover:bg-[#070C1A] border border-white/10 active:scale-[0.98]",
+      "bg-[#07152B] text-white font-semibold hover:bg-[#040C1A] border border-slate-700 active:scale-[0.98]",
     outline:
-      "bg-white text-[#0F172A] border border-[#CBD5E1] hover:bg-slate-50 hover:border-[#082E5B] active:scale-[0.98]",
+      "bg-white text-[#07152B] border border-slate-300 hover:bg-slate-50 hover:border-[#082E5B] shadow-sm active:scale-[0.98]",
     "teal-outline":
-      "bg-transparent text-[#00D1A3] border border-[#00D1A3]/40 hover:bg-[#00D1A3]/10 hover:border-[#00D1A3] active:scale-[0.98]",
+      "bg-transparent text-[#009E77] border border-[#00D1A3]/50 hover:bg-[#00D1A3]/10 hover:border-[#00D1A3] active:scale-[0.98]",
     ghost:
-      "text-[#475569] hover:text-[#0F172A] hover:bg-slate-100 active:scale-[0.98]",
+      "text-[#475569] hover:text-[#07152B] hover:bg-slate-100 active:scale-[0.98]",
   };
 
   const sizes = {
-    sm: "text-xs px-3 py-2 gap-1.5 min-h-[36px]",
-    md: "text-sm px-4 py-2.5 gap-2 min-h-[42px]",
-    lg: "text-base px-6 py-3 gap-2.5 font-medium min-h-[48px]",
-    xl: "text-lg px-8 py-3.5 gap-3 font-semibold min-h-[52px]",
+    sm: "text-xs px-3.5 py-1.5 gap-1.5 min-h-[36px]",
+    md: "text-sm px-5 py-2.5 gap-2 min-h-[44px] font-semibold",
+    lg: "text-sm sm:text-base px-6 py-2.5 sm:px-7 sm:py-3 gap-2.5 font-bold min-h-[46px] sm:min-h-[48px]",
+    xl: "text-base sm:text-lg px-7 py-3 sm:px-8 sm:py-3.5 gap-3 font-bold min-h-[50px]",
   };
 
   const content = (

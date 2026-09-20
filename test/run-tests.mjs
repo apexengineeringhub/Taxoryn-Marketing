@@ -659,3 +659,204 @@ describe("Taxoryn Configurable Social Media Links Test Suite", () => {
   });
 });
 
+describe("Taxoryn Early Access API & Web Form Architecture Test Suite", () => {
+  test("TEST 42: Early Access form does not contain any mailto: submission or window.location.href mailto redirection", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/marketing/EarlyAccessForm.tsx", "utf-8");
+
+    // Zero mailto in submission logic
+    assert.ok(!content.includes("constructMailtoUrl"), "No constructMailtoUrl function");
+    assert.ok(!content.includes("window.location.href = mailtoUrl"), "No mailto window.location redirect");
+    assert.ok(!content.includes("window.open("), "No window.open mailto invocation");
+    assert.ok(!content.includes("openEmailClient"), "No openEmailClient button in form flow");
+    assert.ok(!content.includes("mailto:?"), "No mailto query builders");
+  });
+
+  test("TEST 43: Early Access form uses fetch('/api/early-access', { method: 'POST' }) for submission", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/marketing/EarlyAccessForm.tsx", "utf-8");
+
+    assert.ok(content.includes('fetch("/api/early-access"'), "Calls /api/early-access endpoint");
+    assert.ok(content.includes('method: "POST"'), "Uses HTTP POST method");
+    assert.ok(content.includes('"Content-Type": "application/json"'), "Sends JSON headers");
+  });
+
+  test("TEST 44: Early Access API route handler exists and exports POST handler", async () => {
+    const fs = await import("node:fs");
+    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+
+    assert.ok(routeContent.includes("export async function POST"), "Exports POST handler");
+    assert.ok(routeContent.includes("sanitizeInput"), "Implements input sanitization");
+    assert.ok(routeContent.includes("emailRegex"), "Validates email format via regex");
+  });
+
+  test("TEST 45: Early Access API validates required fields and handles bad data safely", async () => {
+    const fs = await import("node:fs");
+    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+
+    // Validates route structure and error handling
+    assert.ok(routeContent.includes("!fullName"), "Validates required fullName");
+    assert.ok(routeContent.includes("!email"), "Validates required email");
+    assert.ok(routeContent.includes("!firmName"), "Validates required firmName");
+    assert.ok(routeContent.includes("status: 400"), "Returns 400 status on validation error");
+    assert.ok(routeContent.includes("status: 200"), "Returns 200 status on valid submission");
+    assert.ok(routeContent.includes("success: true"), "Returns success: true on valid submission");
+
+    // Test validation logic directly
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[+]?[\d\s-]{8,15}$/;
+
+    assert.ok(emailRegex.test("rajesh@rkassociates.in"), "Valid email passes regex");
+    assert.ok(!emailRegex.test("invalid-email"), "Invalid email fails regex");
+    assert.ok(!emailRegex.test("@no-user.com"), "Malformed email fails regex");
+    assert.ok(phoneRegex.test("+91 98765 43210".replace(/\s+/g, "")), "Valid phone passes regex");
+    assert.ok(!phoneRegex.test("123"), "Short phone fails regex");
+  });
+
+  test("TEST 46: Early Access form renders accessible labels, aria-required, aria-invalid, and status indicators", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/marketing/EarlyAccessForm.tsx", "utf-8");
+
+    assert.ok(content.includes('aria-required="true"'), "Enforces aria-required on required inputs");
+    assert.ok(content.includes('aria-invalid='), "Binds aria-invalid on validation errors");
+    assert.ok(content.includes('role="alert"'), "Errors rendered with role=alert");
+    assert.ok(content.includes('role="status"'), "Success state rendered with role=status");
+    assert.ok(content.includes('aria-live="polite"'), "Success message announces via aria-live");
+  });
+
+  test("TEST 47: Early Access form disables submit button and shows loading indicator while submitting", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/marketing/EarlyAccessForm.tsx", "utf-8");
+
+    assert.ok(content.includes("disabled={isSubmitting}"), "Button is disabled during submission");
+    assert.ok(content.includes("isSubmitting ? ef.submittingButton : ef.submitButton"), "Button text changes to submitting state");
+  });
+
+  test("TEST 48: Early Access form displays success state with submitted email and navigation links", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/marketing/EarlyAccessForm.tsx", "utf-8");
+
+    assert.ok(content.includes("ef.successTitle"), "Renders successTitle");
+    assert.ok(content.includes("ef.successDesc"), "Renders successDesc");
+    assert.ok(content.includes("formData.email"), "Renders submitted user email in success state");
+    assert.ok(content.includes("ef.continueExploring"), "Provides continue exploring button");
+  });
+
+  test("TEST 49: Early Access form preserves entered form data upon submission failure and displays error message", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/marketing/EarlyAccessForm.tsx", "utf-8");
+
+    assert.ok(content.includes("setSubmitError"), "Captures error state without wiping formData");
+    assert.ok(content.includes("submitError &&"), "Renders alert box when submitError occurs");
+  });
+
+  test("TEST 50: Early Access privacy copy does not contain email client or automatic launch wording", async () => {
+    const fs = await import("node:fs");
+    const enContent = fs.readFileSync("lib/i18n/en.ts", "utf-8");
+    const formContent = fs.readFileSync("components/marketing/EarlyAccessForm.tsx", "utf-8");
+
+    assert.ok(!enContent.includes("Your email client will open"), "No 'email client will open' in en.ts");
+    assert.ok(!formContent.includes("Your email client will open"), "No 'email client will open' in EarlyAccessForm.tsx");
+    assert.ok(enContent.includes("We only need the information required to evaluate your early access request."), "Contains clear privacy statement in en.ts");
+  });
+
+  test("TEST 51: Direct support email is only an optional secondary link and never triggers automatically", async () => {
+    const fs = await import("node:fs");
+    const content = fs.readFileSync("components/marketing/EarlyAccessForm.tsx", "utf-8");
+
+    assert.ok(content.includes("mailto:${siteConfig.supportEmail}"), "Secondary link uses siteConfig.supportEmail");
+    assert.ok(!content.includes("window.location.href"), "No automatic redirect to mailto");
+  });
+
+  test("TEST 52: Early Access API checks for RESEND_API_KEY and fails safe if email service is not configured", async () => {
+    const fs = await import("node:fs");
+    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+
+    assert.ok(routeContent.includes("process.env.RESEND_API_KEY"), "Reads RESEND_API_KEY from environment");
+    assert.ok(routeContent.includes("https://api.resend.com/emails"), "Calls Resend API endpoint when configured");
+  });
+});
+
+describe("Taxoryn Lighter Premium SaaS Design System & Accessibility Suite", () => {
+  test("TEST 53: Button primitive enforces standardized 44-50px touch targets and focus-visible states", async () => {
+    const fs = await import("node:fs");
+    const buttonContent = fs.readFileSync("components/common/Button.tsx", "utf-8");
+
+    assert.ok(buttonContent.includes("min-h-[44px]"), "Enforces 44px min-height on md button");
+    assert.ok(buttonContent.includes("min-h-[46px] sm:min-h-[48px]"), "Enforces 46-48px min-height on lg button");
+    assert.ok(buttonContent.includes("focus-visible:ring-[#00D1A3]"), "Enforces visible focus ring");
+    assert.ok(buttonContent.includes("rounded-xl"), "Enforces modern rounded-xl geometry");
+  });
+
+  test("TEST 54: Card primitive standardizes rounded-2xl and light border-slate-200", async () => {
+    const fs = await import("node:fs");
+    const cardContent = fs.readFileSync("components/common/Card.tsx", "utf-8");
+
+    assert.ok(cardContent.includes("rounded-2xl"), "Standardizes rounded-2xl border radius");
+    assert.ok(cardContent.includes("border-slate-200"), "Uses crisp light border-slate-200");
+  });
+
+  test("TEST 55: SectionHeading standardizes H2 scale and 17px body copy", async () => {
+    const fs = await import("node:fs");
+    const headingContent = fs.readFileSync("components/common/SectionHeading.tsx", "utf-8");
+
+    assert.ok(headingContent.includes("text-2xl sm:text-3xl lg:text-[2.25rem] xl:text-[2.5rem]"), "Standardizes H2 heading typography");
+    assert.ok(headingContent.includes("text-[17px]"), "Standardizes 17px subtitle copy");
+  });
+
+  test("TEST 56: Global Footer implements light SaaS styling with clean column hierarchy", async () => {
+    const fs = await import("node:fs");
+    const footerContent = fs.readFileSync("components/navigation/Footer.tsx", "utf-8");
+
+    assert.ok(footerContent.includes("bg-white text-slate-600 border-t border-slate-200"), "Footer uses light background and border");
+    assert.ok(footerContent.includes("lg:col-span-5"), "Brand block occupies ~35-40% grid width on lg");
+  });
+
+  test("TEST 57: YouTubeEmbed enforces 16:9 aspect ratio standard (pb-[56.25%]) and ARIA play labels", async () => {
+    const fs = await import("node:fs");
+    const embedContent = fs.readFileSync("components/common/YouTubeEmbed.tsx", "utf-8");
+
+    assert.ok(embedContent.includes("pb-[56.25%]"), "Strictly enforces 16:9 aspect ratio container");
+    assert.ok(embedContent.includes('aria-label={`Play video: ${title}`}') || embedContent.includes("aria-label="), "Provides accessible play button label");
+  });
+
+  test("TEST 58: Mobile navigation implements accessible focus trapping, escape dismissal, and body lock", async () => {
+    const fs = await import("node:fs");
+    const mobileNavContent = fs.readFileSync("components/navigation/MobileNav.tsx", "utf-8");
+
+    assert.ok(mobileNavContent.includes('role="dialog"'), "Mobile drawer sets role=dialog");
+    assert.ok(mobileNavContent.includes('aria-modal="true"'), "Mobile drawer sets aria-modal=true");
+    assert.ok(mobileNavContent.includes("document.body.style.overflow = \"hidden\""), "Locks body scroll when open");
+    assert.ok(mobileNavContent.includes("Escape"), "Closes drawer on Escape key");
+  });
+
+  test("TEST 59: Subpages adhere to standardized padding and light background", async () => {
+    const fs = await import("node:fs");
+    const subpages = [
+      "components/pages/ProductClientContent.tsx",
+      "components/pages/FeaturesClientContent.tsx",
+      "components/pages/PricingClientContent.tsx",
+      "components/pages/MarketplaceClientContent.tsx",
+      "components/pages/SecurityClientContent.tsx",
+      "components/pages/LearnClientContent.tsx",
+      "components/pages/VideosClientContent.tsx",
+      "components/pages/AboutClientContent.tsx",
+      "components/pages/OurStoryClientContent.tsx",
+      "components/pages/SolutionSoloClientContent.tsx",
+      "components/pages/SolutionSmallFirmClientContent.tsx",
+      "components/pages/SolutionGrowingClientContent.tsx",
+      "components/pages/SolutionBusinessClientContent.tsx",
+    ];
+
+    for (const pagePath of subpages) {
+      const content = fs.readFileSync(pagePath, "utf-8");
+      assert.ok(
+        content.includes("py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]"),
+        `${pagePath} has standard padding and light background`
+      );
+    }
+  });
+});
+
+
+

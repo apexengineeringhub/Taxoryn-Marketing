@@ -70,7 +70,7 @@ export interface SocialLinksProps {
   className?: string;
   itemClassName?: string;
   iconClassName?: string;
-  variant?: "default" | "minimal" | "footer";
+  variant?: "default" | "minimal" | "footer" | "dark";
   ariaLabel?: string;
 }
 
@@ -90,15 +90,17 @@ export function SocialLinks({
 
   const defaultStyles =
     variant === "footer"
-      ? "text-slate-400 hover:text-[#00D1A3] bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 hover:border-slate-600 rounded-lg p-2.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07152B]"
+      ? "w-9 h-9 min-w-[36px] min-h-[36px] inline-flex items-center justify-center text-slate-600 hover:text-[#009E77] bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 rounded-lg transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]"
+      : variant === "dark"
+      ? "w-9 h-9 min-w-[36px] min-h-[36px] inline-flex items-center justify-center text-slate-400 hover:text-[#00D1A3] bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 hover:border-slate-600 rounded-lg transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07152B]"
       : variant === "minimal"
-      ? "text-slate-400 hover:text-[#00D1A3] p-1.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-md"
-      : "text-slate-400 hover:text-[#00D1A3] bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 hover:border-slate-600 rounded-lg p-2 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]";
+      ? "text-slate-500 hover:text-[#009E77] p-1.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-md"
+      : "w-9 h-9 min-w-[36px] min-h-[36px] inline-flex items-center justify-center text-slate-600 hover:text-[#009E77] bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]";
 
   return (
     <nav
       aria-label={ariaLabel}
-      className={cn("flex items-center gap-3", className)}
+      className={cn("flex items-center gap-2.5", className)}
     >
       {activeLinks.map((link: ActiveSocialLink) => {
         const platform = link.id;

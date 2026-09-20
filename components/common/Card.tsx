@@ -16,20 +16,20 @@ export function Card({
   ...props
 }: CardProps) {
   const variants = {
-    default: "bg-white border border-[#E2E8F0] shadow-sm rounded-xl",
-    elevated: "bg-white border border-[#E2E8F0] shadow-card hover:shadow-elevated transition-all duration-200 rounded-xl",
+    default: "bg-white border border-slate-200/90 shadow-sm rounded-2xl",
+    elevated: "bg-white border border-slate-200/90 shadow-md hover:shadow-lg transition-all duration-200 rounded-2xl",
     interactive:
-      "bg-white border border-[#E2E8F0] shadow-sm hover:shadow-md hover:border-[#00D1A3]/60 transition-all duration-200 rounded-xl group",
-    flat: "bg-slate-50 border border-[#E2E8F0] rounded-xl",
-    dark: "bg-[#07152B] border border-slate-700/60 shadow-elevated rounded-xl text-white",
+      "bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-[#00D1A3]/60 transition-all duration-200 rounded-2xl group",
+    flat: "bg-[#F8FAFC] border border-slate-200/80 rounded-2xl",
+    dark: "bg-[#07152B] border border-slate-800 shadow-md rounded-2xl text-white",
   };
 
   const paddings = {
     none: "",
-    sm: "p-3 sm:p-4",
+    sm: "p-3.5 sm:p-4",
     md: "p-5 sm:p-6",
     lg: "p-6 sm:p-8",
-    xl: "p-6 sm:p-10",
+    xl: "p-7 sm:p-10",
   };
 
   return (

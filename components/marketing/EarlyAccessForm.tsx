@@ -11,10 +11,10 @@ import { siteConfig } from "@/lib/config/site";
 import { trackEvent } from "@/lib/analytics";
 import {
   Send,
-  Mail,
   CheckCircle2,
   AlertCircle,
   ShieldCheck,
+  Loader2,
 } from "lucide-react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -52,7 +52,8 @@ function EarlyAccessContent() {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isPrepared, setIsPrepared] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const formStartedRef = useRef(false);
 
   // Capture optional campaign parameters safely
@@ -99,71 +100,67 @@ function EarlyAccessContent() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const getCleanCampaignContext = (): string => {
-    const contextLines: string[] = [];
-    if (source) contextLines.push(`Source: ${source.replace(/[\r\n]/g, " ")}`);
-    if (utmSource) contextLines.push(`UTM Source: ${utmSource.replace(/[\r\n]/g, " ")}`);
-    if (utmMedium) contextLines.push(`UTM Medium: ${utmMedium.replace(/[\r\n]/g, " ")}`);
-    if (utmCampaign) contextLines.push(`UTM Campaign: ${utmCampaign.replace(/[\r\n]/g, " ")}`);
-    if (utmContent) contextLines.push(`UTM Content: ${utmContent.replace(/[\r\n]/g, " ")}`);
-    if (utmTerm) contextLines.push(`UTM Term: ${utmTerm.replace(/[\r\n]/g, " ")}`);
-    return contextLines.join("\n");
-  };
-
-  const constructMailtoUrl = () => {
-    const subject = `Taxoryn Early Access Application - ${formData.firmName}`;
-    const campaignCtx = getCleanCampaignContext();
-
-    const bodyLines = [
-      `TAXORYN EARLY ACCESS INQUIRY`,
-      `---------------------------------`,
-      `Full Name: ${formData.fullName}`,
-      `Work Email: ${formData.email}`,
-      `Practice / Firm: ${formData.firmName}`,
-      `Phone: ${formData.phone || "Not provided"}`,
-      `City: ${formData.city || "Not provided"}`,
-      `Practice Size: ${formData.practiceSize}`,
-      `Primary Interest: ${formData.primaryInterest}`,
-      ``,
-    ];
-
-    if (campaignCtx) {
-      bodyLines.push(`Campaign Context:`, campaignCtx, ``);
-    }
-
-    bodyLines.push(
-      `---`,
-      `Submitted via Taxoryn Marketing Website (https://taxoryn.com/early-access)`
-    );
-
-    return `mailto:${siteConfig.supportEmail}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isSubmitting || isPrepared) return;
+    if (isSubmitting || isSuccess) return;
 
-    if (validate()) {
-      setIsSubmitting(true);
+    if (!validate()) return;
 
-      // Track submit intent without ANY personal details
-      trackEvent("early_access_submit_intent", {
-        practice_size: formData.practiceSize,
-        primary_interest: formData.primaryInterest,
-        has_city: Boolean(formData.city.trim()),
-        has_phone: Boolean(formData.phone.trim()),
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    // Track submit intent without ANY personal PII
+    trackEvent("early_access_submit_intent", {
+      practice_size: formData.practiceSize,
+      primary_interest: formData.primaryInterest,
+      has_city: Boolean(formData.city.trim()),
+      has_phone: Boolean(formData.phone.trim()),
+    });
+
+    try {
+      const response = await fetch("/api/early-access", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          firmName: formData.firmName,
+          phone: formData.phone,
+          city: formData.city,
+          practiceSize: formData.practiceSize,
+          primaryInterest: formData.primaryInterest,
+          campaign: {
+            source,
+            utmSource,
+            utmMedium,
+            utmCampaign,
+            utmContent,
+            utmTerm,
+          },
+        }),
       });
 
-      const mailtoUrl = constructMailtoUrl();
+      const data = await response.json().catch(() => ({}));
 
-      if (typeof window !== "undefined") {
-        window.location.href = mailtoUrl;
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || ef.errorMessage);
       }
 
+      // Track submit success
+      trackEvent("early_access_submit_success", {
+        practice_size: formData.practiceSize,
+        primary_interest: formData.primaryInterest,
+      });
+
+      setIsSuccess(true);
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error && err.message ? err.message : ef.errorMessage;
+      setSubmitError(errorMessage);
+    } finally {
       setIsSubmitting(false);
-      setIsPrepared(true);
     }
   };
 
@@ -185,10 +182,13 @@ function EarlyAccessContent() {
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
+    if (submitError) {
+      setSubmitError(null);
+    }
   };
 
   return (
-    <div className="py-10 sm:py-16 bg-[#F8FAFC]">
+    <div className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
           badge="Practice Onboarding"
@@ -199,19 +199,19 @@ function EarlyAccessContent() {
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Left Context & Trust Column */}
-          <div className="lg:col-span-5 space-y-6">
-            <Card variant="default" padding="lg" className="bg-[#07152B] text-white space-y-4">
-              <span className="text-xs font-mono font-bold tracking-widest text-[#00D1A3] uppercase inline-block">
+          <div className="lg:col-span-5 space-y-5">
+            <Card variant="default" padding="lg" className="bg-white border-slate-200/90 shadow-sm space-y-4">
+              <span className="text-xs font-mono font-bold tracking-widest text-[#009E77] bg-emerald-50 px-2.5 py-0.5 rounded uppercase border border-emerald-100 inline-block">
                 PRACTICE PROGRAM
               </span>
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-xl font-bold text-[#07152B]">
                 What Practice Onboarding Includes
               </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 We are actively working with Indian Chartered Accountants, Tax Consultants, and boutique firms to refine practice workflows.
               </p>
 
-              <ul className="space-y-3 pt-2 text-xs text-slate-200">
+              <ul className="space-y-3 pt-2 text-xs text-slate-700">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
                   <span>Access to evaluate client directory, task boards & compliance calendar</span>
@@ -253,56 +253,37 @@ function EarlyAccessContent() {
           {/* Right Form Column */}
           <div className="lg:col-span-7">
             <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
-              {isPrepared ? (
+              {isSuccess ? (
                 <div
                   role="status"
                   className="space-y-5 py-4 text-center"
                   aria-live="polite"
                 >
-                  <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center mx-auto text-emerald-600 border border-emerald-200">
-                    <CheckCircle2 className="w-6 h-6" />
+                  <div className="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center mx-auto text-emerald-600 border border-emerald-200">
+                    <CheckCircle2 className="w-7 h-7" />
                   </div>
-                  <h3 className="text-2xl font-bold text-[#07152B]">
-                    {ef.successTitle}
-                  </h3>
-                  <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                    {ef.successDesc}{" "}
-                    <strong>{siteConfig.supportEmail}</strong>.
-                  </p>
-                  <p className="text-xs text-slate-500 max-w-md mx-auto">
-                    Once you send the email, our team will review your request and contact you with next steps.
-                  </p>
-
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 text-left space-y-2">
-                    <p className="font-semibold text-slate-800">
-                      If your email client does not open automatically:
-                    </p>
-                    <p>
-                      Email us directly with your details at:{" "}
-                      <a
-                        href={constructMailtoUrl()}
-                        className="text-[#082E5B] underline font-medium hover:text-[#00D1A3]"
-                      >
-                        {siteConfig.supportEmail}
-                      </a>
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-bold text-[#07152B]">
+                      {ef.successTitle}
+                    </h3>
+                    <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                      {ef.successDesc}
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-3 justify-center pt-3">
-                    <a
-                      href={constructMailtoUrl()}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold rounded-lg bg-[#00D1A3] text-[#07152B] hover:bg-[#00D1A3]/90 transition-colors shadow-sm"
-                    >
-                      <Mail className="w-4 h-4" />
-                      {ef.openEmailClient}
-                    </a>
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 max-w-sm mx-auto text-center font-medium">
+                    <span className="text-slate-500 mr-1.5">{ef.submittedEmailLabel}</span>
+                    <strong className="text-[#07152B] font-semibold">{formData.email}</strong>
+                  </div>
+
+                  <div className="pt-3 flex justify-center">
                     <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setIsPrepared(false)}
+                      href="/"
+                      variant="primary"
+                      size="md"
+                      className="font-bold shadow-sm"
                     >
-                      {ef.editInquiry}
+                      {ef.continueExploring}
                     </Button>
                   </div>
 
@@ -327,12 +308,22 @@ function EarlyAccessContent() {
                       {ef.submitButton}
                     </h3>
                     <p className="text-xs text-slate-500">
-                      Please enter your professional details. Your email client will open with the information prepared for Taxoryn.
+                      Please enter your professional details to evaluate early access for your practice.
                     </p>
                   </div>
 
+                  {submitError && (
+                    <div
+                      role="alert"
+                      className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-700 flex items-start gap-2.5"
+                    >
+                      <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
+
                   {/* Required: Name & Work Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                     <div>
                       <label
                         htmlFor="fullName"
@@ -345,6 +336,8 @@ function EarlyAccessContent() {
                         name="fullName"
                         type="text"
                         required
+                        aria-required="true"
+                        disabled={isSubmitting}
                         value={formData.fullName}
                         onChange={handleChange}
                         placeholder={ef.namePlaceholder}
@@ -356,7 +349,7 @@ function EarlyAccessContent() {
                           errors.fullName
                             ? "border-rose-300 focus:ring-2 focus:ring-rose-200"
                             : "border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20"
-                        }`}
+                        } disabled:opacity-60 disabled:cursor-not-allowed`}
                       />
                       {errors.fullName && (
                         <p
@@ -382,6 +375,8 @@ function EarlyAccessContent() {
                         name="email"
                         type="email"
                         required
+                        aria-required="true"
+                        disabled={isSubmitting}
                         value={formData.email}
                         onChange={handleChange}
                         placeholder={ef.emailPlaceholder}
@@ -393,7 +388,7 @@ function EarlyAccessContent() {
                           errors.email
                             ? "border-rose-300 focus:ring-2 focus:ring-rose-200"
                             : "border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20"
-                        }`}
+                        } disabled:opacity-60 disabled:cursor-not-allowed`}
                       />
                       {errors.email && (
                         <p
@@ -422,6 +417,8 @@ function EarlyAccessContent() {
                         name="firmName"
                         type="text"
                         required
+                        aria-required="true"
+                        disabled={isSubmitting}
                         value={formData.firmName}
                         onChange={handleChange}
                         placeholder={ef.firmPlaceholder}
@@ -433,7 +430,7 @@ function EarlyAccessContent() {
                           errors.firmName
                             ? "border-rose-300 focus:ring-2 focus:ring-rose-200"
                             : "border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20"
-                        }`}
+                        } disabled:opacity-60 disabled:cursor-not-allowed`}
                       />
                       {errors.firmName && (
                         <p
@@ -452,12 +449,13 @@ function EarlyAccessContent() {
                         htmlFor="phone"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        {ef.phoneLabel} <span className="text-slate-400 font-normal">(Optional)</span>
+                        {ef.phoneLabel} <span className="text-slate-400 font-normal">{ef.optionalLabel}</span>
                       </label>
                       <input
                         id="phone"
                         name="phone"
                         type="tel"
+                        disabled={isSubmitting}
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder={ef.phonePlaceholder}
@@ -469,7 +467,7 @@ function EarlyAccessContent() {
                           errors.phone
                             ? "border-rose-300 focus:ring-2 focus:ring-rose-200"
                             : "border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20"
-                        }`}
+                        } disabled:opacity-60 disabled:cursor-not-allowed`}
                       />
                       {errors.phone && (
                         <p
@@ -491,16 +489,17 @@ function EarlyAccessContent() {
                         htmlFor="city"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        City / Location <span className="text-slate-400 font-normal">(Optional)</span>
+                        {ef.cityLabel} <span className="text-slate-400 font-normal">{ef.optionalLabel}</span>
                       </label>
                       <input
                         id="city"
                         name="city"
                         type="text"
+                        disabled={isSubmitting}
                         value={formData.city}
                         onChange={handleChange}
-                        placeholder="e.g. Mumbai, New Delhi, Bengaluru"
-                        className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none transition-all"
+                        placeholder={ef.cityPlaceholder}
+                        className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
 
@@ -509,14 +508,15 @@ function EarlyAccessContent() {
                         htmlFor="practiceSize"
                         className="block text-xs font-semibold text-slate-700 mb-1"
                       >
-                        {ef.firmTypeLabel} <span className="text-slate-400 font-normal">(Optional)</span>
+                        {ef.firmTypeLabel} <span className="text-slate-400 font-normal">{ef.optionalLabel}</span>
                       </label>
                       <select
                         id="practiceSize"
                         name="practiceSize"
+                        disabled={isSubmitting}
                         value={formData.practiceSize}
                         onChange={handleChange}
-                        className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all"
+                        className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {ef.firmTypeOptions.map((size) => (
                           <option key={size.value} value={size.value}>
@@ -533,14 +533,15 @@ function EarlyAccessContent() {
                       htmlFor="primaryInterest"
                       className="block text-xs font-semibold text-slate-700 mb-1"
                     >
-                      {ef.primaryInterestLabel} <span className="text-slate-400 font-normal">(Optional)</span>
+                      {ef.primaryInterestLabel} <span className="text-slate-400 font-normal">{ef.optionalLabel}</span>
                     </label>
                     <select
                       id="primaryInterest"
                       name="primaryInterest"
+                      disabled={isSubmitting}
                       value={formData.primaryInterest}
                       onChange={handleChange}
-                      className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all"
+                      className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-slate-300 focus:border-[#00D1A3] focus:ring-2 focus:ring-[#00D1A3]/20 outline-none bg-white transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {ef.primaryInterestOptions.map((interest) => (
                         <option key={interest.value} value={interest.value}>
@@ -550,23 +551,41 @@ function EarlyAccessContent() {
                     </select>
                   </div>
 
-                  {/* Submission note & Button */}
+                  {/* Submission Button */}
                   <div className="pt-3">
                     <Button
                       type="submit"
                       variant="primary"
                       size="lg"
                       disabled={isSubmitting}
-                      icon={Send}
+                      icon={isSubmitting ? Loader2 : Send}
                       className="w-full justify-center font-bold shadow-md shadow-[#00D1A3]/20"
                     >
                       {isSubmitting ? ef.submittingButton : ef.submitButton}
                     </Button>
                   </div>
 
+                  {/* Privacy note */}
                   <p className="text-xs text-slate-500 text-center pt-2 leading-relaxed">
-                    Please do not submit sensitive tax or financial information through this form. By submitting, your email client will open addressed to{" "}
-                    <span className="font-semibold text-slate-700">{siteConfig.supportEmail}</span>.
+                    {ef.privacyNote}{" "}
+                    <Link
+                      href="/privacy"
+                      className="text-[#082E5B] hover:text-[#00D1A3] underline font-medium"
+                    >
+                      Privacy Policy
+                    </Link>
+                    .
+                  </p>
+
+                  {/* Direct support optional link */}
+                  <p className="text-[11px] text-slate-400 text-center pt-0.5">
+                    {ef.directSupportText}{" "}
+                    <a
+                      href={`mailto:${siteConfig.supportEmail}`}
+                      className="text-slate-600 hover:text-[#00D1A3] underline font-medium"
+                    >
+                      {siteConfig.supportEmail}
+                    </a>
                   </p>
                 </form>
               )}
