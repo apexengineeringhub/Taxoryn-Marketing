@@ -164,6 +164,30 @@ export function ProductPreview({
             </div>
           </div>
 
+          {/* Mobile Tab Selector (Visible on <md) */}
+          <div className="flex md:hidden items-center gap-1.5 px-3 py-2 border-b border-slate-800/80 bg-[#061224]/80 overflow-x-auto no-scrollbar">
+            {sidebarNav.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => handleTabChange(item.id as ProductTabKey)}
+                  className={cn(
+                    "flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold whitespace-nowrap transition-colors shrink-0",
+                    isActive
+                      ? "bg-[#00D1A3]/20 text-[#00D1A3] border border-[#00D1A3]/30"
+                      : "text-slate-400 hover:text-slate-200 bg-slate-900/40"
+                  )}
+                >
+                  <Icon className="w-3 h-3" />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
           {/* Module View Body */}
           <div className="p-4 sm:p-5 space-y-4 flex-1 overflow-hidden">
             {/* Dashboard Overview Panel (Default) */}

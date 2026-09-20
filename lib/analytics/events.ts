@@ -70,6 +70,11 @@ export interface EarlyAccessSubmitIntentEvent {
   has_phone?: boolean;
 }
 
+export interface EarlyAccessSubmitSuccessEvent {
+  practice_size?: string;
+  primary_interest?: string;
+}
+
 export interface BookDemoViewEvent {
   source?: string;
   campaign?: string;
@@ -160,6 +165,7 @@ export type EventPropertiesMap = {
   early_access_view: EarlyAccessViewEvent;
   early_access_form_start: EarlyAccessFormStartEvent;
   early_access_submit_intent: EarlyAccessSubmitIntentEvent;
+  early_access_submit_success: EarlyAccessSubmitSuccessEvent;
   book_demo_view: BookDemoViewEvent;
   book_demo_form_start: BookDemoFormStartEvent;
   book_demo_submit_intent: BookDemoSubmitIntentEvent;
