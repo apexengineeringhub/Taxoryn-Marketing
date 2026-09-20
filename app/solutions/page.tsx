@@ -12,7 +12,7 @@ export const metadata = constructMetadata({
 
 export default function SolutionsPage() {
   return (
-    <div className="py-2 sm:py-6 bg-[#F8FAFC]">
+    <div className="w-full bg-[#F8FAFC]">
       <SolutionsSegmentSection />
       <FinalCTASection />
     </div>

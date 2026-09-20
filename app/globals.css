@@ -18,6 +18,22 @@
     --brand-text-muted: #64748B;
     --brand-border: #E2E8F0;
     --brand-border-strong: #CBD5E1;
+
+    /* Centralized Marketing Design System Tokens */
+    --marketing-container-max: 1240px;
+    --marketing-space-xs: 8px;
+    --marketing-space-sm: 16px;
+    --marketing-space-md: 24px;
+    --marketing-space-lg: 32px;
+    --marketing-space-xl: 48px;
+    --marketing-space-2xl: 56px;
+    --marketing-space-3xl: 80px;
+    --marketing-space-4xl: 96px;
+
+    --marketing-radius-sm: 8px;
+    --marketing-radius-btn: 12px;
+    --marketing-radius-card: 18px;
+    --marketing-radius-cta: 24px;
   }
 
   html {
