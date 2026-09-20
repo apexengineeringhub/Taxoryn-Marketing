@@ -5,10 +5,12 @@ import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Badge } from "@/components/common/Badge";
+import { Button } from "@/components/common/Button";
 import { Card } from "@/components/common/Card";
+import { MarketingCTA } from "@/components/common/MarketingCTA";
 import { siteConfig } from "@/lib/config/site";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { Users, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export interface VerifiedCustomerStory {
   id: string;
@@ -31,45 +33,37 @@ export function CustomerStoriesSection({ stories = [] }: CustomerStoriesSectionP
   // When no verified case studies exist, display honest early-stage invitation to help shape the product.
   if (stories.length === 0) {
     return (
-      <section className="py-16 sm:py-20 bg-white border-t border-slate-200/80">
-        <Container>
-          <div className="max-w-4xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#07152B] to-[#082E5B] text-white shadow-xl relative overflow-hidden">
-            {/* Background accents */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#00D1A3]/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 space-y-6 text-center max-w-2xl mx-auto">
-              <Badge variant="teal" size="md">
-                {t.helpShape.badge}
-              </Badge>
-
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                {t.helpShape.title}
-              </h2>
-
-              <div className="space-y-3 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+      <section className="py-8 sm:py-10 lg:py-12 bg-white border-t border-slate-200/80">
+        <Container className="relative">
+          <MarketingCTA
+            variant="compact"
+            eyebrow={t.helpShape.badge}
+            title={t.helpShape.title}
+            description={
+              <>
                 <p>{t.helpShape.paragraph1}</p>
                 <p>{t.helpShape.paragraph2}</p>
-                <p className="font-semibold text-[#00D1A3]">{t.helpShape.paragraph3}</p>
-              </div>
-
-              <div className="pt-2 flex items-center justify-center">
-                <Link
-                  href={siteConfig.links.contact}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-[#00D1A3] text-[#07152B] font-bold text-sm sm:text-base hover:bg-[#00B388] transition-colors shadow-lg shadow-[#00D1A3]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07152B]"
-                >
-                  <span>{t.helpShape.shareFeedback}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          </div>
+                <p className="pt-0.5 font-semibold text-[#00D1A3]">{t.helpShape.paragraph3}</p>
+              </>
+            }
+          >
+            <Button
+              href={siteConfig.links.contact}
+              variant="primary"
+              size="md"
+              icon={ArrowRight}
+              className="w-full sm:w-auto px-6 sm:px-7 min-h-[46px] font-bold shadow-md shadow-[#00D1A3]/20"
+            >
+              {t.helpShape.shareFeedback}
+            </Button>
+          </MarketingCTA>
         </Container>
       </section>
     );
   }
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-t border-slate-200/80">
+    <section className="py-10 sm:py-12 bg-white border-t border-slate-200/80">
       <Container>
         <SectionHeading
           badge="Practitioner Stories"

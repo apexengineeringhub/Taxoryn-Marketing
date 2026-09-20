@@ -11,7 +11,7 @@ export function PrivacyContent() {
   const p = t.pages.privacy;
 
   return (
-    <div className="py-12 sm:py-20 bg-[#F8FAFC]">
+    <div className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]">
       <Container size="narrow">
         <SectionHeading
           badge={p.badge}
@@ -21,7 +21,7 @@ export function PrivacyContent() {
           align="left"
         />
 
-        <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-8 text-slate-700 text-sm sm:text-base leading-relaxed">
+        <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/90 shadow-sm space-y-8 text-slate-700 text-sm sm:text-base leading-relaxed">
           {/* 1. Overview */}
           <section className="space-y-3">
             <div className="flex items-center gap-2 text-[#082E5B] font-bold text-base sm:text-lg">

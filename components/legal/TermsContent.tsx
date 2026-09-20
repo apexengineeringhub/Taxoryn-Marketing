@@ -10,7 +10,7 @@ export function TermsContent() {
   const tr = t.pages.terms;
 
   return (
-    <div className="py-12 sm:py-20 bg-[#F8FAFC]">
+    <div className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]">
       <Container size="narrow">
         <SectionHeading
           badge={tr.badge}
@@ -20,7 +20,7 @@ export function TermsContent() {
           align="left"
         />
 
-        <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-6 text-slate-700 text-sm sm:text-base leading-relaxed">
+        <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200/90 shadow-sm space-y-6 text-slate-700 text-sm sm:text-base leading-relaxed">
           <section className="space-y-2">
             <h2 className="text-lg font-bold text-[#07152B]">{tr.sec1Title}</h2>
             <p>{tr.sec1P}</p>

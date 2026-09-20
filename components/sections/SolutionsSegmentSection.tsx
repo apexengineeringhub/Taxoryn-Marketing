@@ -62,7 +62,7 @@ export function SolutionsSegmentSection() {
   ];
 
   return (
-    <section className="py-10 sm:py-14 bg-[#F8FAFC]">
+    <section className="py-10 sm:py-12 lg:py-14 bg-white border-b border-slate-200/80">
       <Container>
         <SectionHeading
           badge={s.badge}
@@ -81,8 +81,8 @@ export function SolutionsSegmentSection() {
                 padding="lg"
                 className={`flex flex-col justify-between relative ${
                   seg.featured
-                    ? "border-[#00D1A3] ring-2 ring-[#00D1A3]/20 shadow-lg bg-white"
-                    : "bg-white border-[#E2E8F0]"
+                    ? "border-[#00D1A3] ring-2 ring-[#00D1A3]/20 shadow-md bg-white"
+                    : "bg-[#F8FAFC] border-slate-200/90 hover:bg-white transition-all duration-200"
                 }`}
               >
                 <div>
@@ -99,20 +99,20 @@ export function SolutionsSegmentSection() {
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-[#07152B]">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#07152B]">
                         {seg.title}
                       </h3>
-                      <span className="text-xs font-semibold text-[#009E77]">
+                      <span className="text-xs font-semibold text-[#008766]">
                         {seg.badge}
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-sm text-[#475569] leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed mb-6">
                     {seg.description}
                   </p>
 
-                  <div className="space-y-3 pt-4 border-t border-slate-100 mb-8">
+                  <div className="space-y-2.5 pt-4 border-t border-slate-200/70 mb-8">
                     <p className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                       {s.keyCapabilities}
                     </p>

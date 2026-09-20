@@ -50,40 +50,42 @@ export function YouTubeEmbed({
   if (!isConfigured) {
     return (
       <div className={`relative w-full rounded-2xl overflow-hidden bg-[#07152B] shadow-2xl border border-slate-700/80 ${className}`}>
-        <div className="relative w-full min-h-[340px] sm:min-h-[420px] flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-[#082E5B] via-[#07152B] to-[#040C1A]">
-          {/* Background pattern */}
-          <div className="absolute inset-0 bg-grid-pattern-dark opacity-30 pointer-events-none" />
-          <div className="absolute inset-0 bg-radial-vignette opacity-60 pointer-events-none" />
+        <div className="relative w-full pb-[56.25%]">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 text-center bg-gradient-to-br from-[#082E5B] via-[#07152B] to-[#040C1A]">
+            {/* Background pattern */}
+            <div className="absolute inset-0 bg-grid-pattern-dark opacity-30 pointer-events-none" />
+            <div className="absolute inset-0 bg-radial-vignette opacity-60 pointer-events-none" />
 
-          {/* Fallback Content */}
-          <div className="relative z-10 max-w-lg mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00D1A3]/10 border border-[#00D1A3]/30 text-[#00D1A3] text-xs font-semibold">
-              <span className="w-2 h-2 rounded-full bg-[#00D1A3] animate-pulse" />
-              <span>Product Demo Walkthrough</span>
-            </div>
+            {/* Fallback Content */}
+            <div className="relative z-10 max-w-md mx-auto space-y-2 sm:space-y-3">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#00D1A3]/10 border border-[#00D1A3]/30 text-[#00D1A3] text-[11px] sm:text-xs font-semibold">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#00D1A3] animate-pulse" />
+                <span>Product Demo Walkthrough</span>
+              </div>
 
-            <div className="space-y-2 text-white">
-              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight">
-                Taxoryn product demo coming soon.
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
-                We are preparing a full guided walkthrough of the practice workspace, compliance calendar, and client portal.
-              </p>
-            </div>
+              <div className="space-y-1 sm:space-y-1.5 text-white">
+                <h3 className="text-base sm:text-xl md:text-2xl font-extrabold tracking-tight">
+                  Taxoryn product demo coming soon.
+                </h3>
+                <p className="text-[11px] sm:text-xs md:text-sm text-slate-300 leading-relaxed max-w-sm mx-auto">
+                  We are preparing a full guided walkthrough of the practice workspace, compliance calendar, and client portal.
+                </p>
+              </div>
 
-            <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href="/book-demo"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-[#00D1A3] text-[#07152B] font-bold text-xs hover:bg-[#00FFC2] shadow-md transition-all duration-200"
-              >
-                Schedule Practice Walkthrough
-              </a>
-              <a
-                href="/early-access"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 font-semibold text-xs border border-slate-700 transition-all duration-200"
-              >
-                Get Started
-              </a>
+              <div className="pt-1.5 sm:pt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                <a
+                  href="/book-demo"
+                  className="inline-flex items-center justify-center px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-[#00D1A3] text-[#07152B] font-bold text-xs hover:bg-[#00FFC2] shadow-md transition-all duration-200"
+                >
+                  Schedule Practice Walkthrough
+                </a>
+                <a
+                  href="/early-access"
+                  className="inline-flex items-center justify-center px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 font-semibold text-xs border border-slate-700 transition-all duration-200"
+                >
+                  Get Started
+                </a>
+              </div>
             </div>
           </div>
         </div>

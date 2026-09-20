@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Container } from "@/components/common/Container";
 import { SectionHeading } from "@/components/common/SectionHeading";
+import { Button } from "@/components/common/Button";
 import { YouTubeEmbed } from "@/components/common/YouTubeEmbed";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 import {
@@ -19,6 +20,10 @@ import {
   Layers,
   ExternalLink,
   Clock,
+  Users,
+  ShieldCheck,
+  Sparkles,
+  ArrowRight,
 } from "lucide-react";
 
 export function VideosClientContent() {
@@ -38,76 +43,157 @@ export function VideosClientContent() {
 
   const displayedVideos = getVideosByCategory(activeTab);
 
+  const benefits = [
+    {
+      icon: Users,
+      title: "Manage Clients",
+      desc: "Keep client details, documents and communication organized.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Stay Compliant",
+      desc: "Track GST, TDS, ITR and important compliance requirements.",
+    },
+    {
+      icon: Layers,
+      title: "Connected Workflows",
+      desc: "Bring documents, tasks and workflows together.",
+    },
+    {
+      icon: Sparkles,
+      title: "Built for Indian Tax Practitioners",
+      desc: "Designed around real tax-practice workflows.",
+    },
+  ];
+
   return (
-    <div className="py-10 sm:py-16 bg-[#F8FAFC]">
-      <Container>
+    <div className="w-full bg-[#F8FAFC]">
+      <div className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]">
+        <Container>
         {/* Header */}
         <SectionHeading
-          badge={v.badge}
+          badge={v.badge || "Product Demo"}
           badgeVariant="teal"
-          title={v.title}
-          description={v.description}
+          title="Taxoryn Practice Management Platform Walkthrough"
+          description="Explore how Taxoryn helps tax practitioners manage clients, compliance, documents, tasks and more — all in one place."
         />
 
-        {/* Featured Platform Walkthrough */}
-        <div className="mb-12 sm:mb-14 max-w-4xl mx-auto">
-          <div className="text-center mb-5 space-y-1">
-            <span className="text-[11px] font-mono font-bold tracking-wider text-[#009E77] bg-emerald-50 px-3 py-0.5 rounded-full uppercase border border-emerald-100">
-              {v.featuredBadge}
-            </span>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#07152B] pt-1">
-              {v.featuredTitle}
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">
-              {v.featuredDesc}
-            </p>
+        {/* Featured Two-Column Section: Video + Value Proposition */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mb-14 sm:mb-18">
+          {/* Left Column: 16:9 Video Player */}
+          <div className="lg:col-span-7 xl:col-span-8 flex flex-col justify-center">
+            <div className="w-full max-w-[760px] mx-auto lg:max-w-none">
+              <YouTubeEmbed
+                videoId={DEFAULT_DEMO_YOUTUBE_ID}
+                title={v.featuredTitle}
+                description={v.featuredDesc}
+                showYouTubeLink={Boolean(DEFAULT_DEMO_YOUTUBE_ID)}
+              />
+            </div>
           </div>
 
-          <YouTubeEmbed
-            videoId={DEFAULT_DEMO_YOUTUBE_ID}
-            title={v.featuredTitle}
-            description={v.featuredDesc}
-            showYouTubeLink={Boolean(DEFAULT_DEMO_YOUTUBE_ID)}
-          />
-        </div>
+          {/* Right Column: Value Proposition & Dual CTA */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-between p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-sm">
+            <div className="space-y-4">
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono font-bold tracking-wider text-[#009E77] bg-emerald-50 px-2.5 py-0.5 rounded uppercase border border-emerald-100">
+                  {v.featuredBadge || "Key Capabilities"}
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-[#07152B]">
+                  {v.featuredTitle || "Connected Tax Practice Platform"}
+                </h3>
+              </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 max-w-2xl mx-auto">
-          {categories.map((cat) => {
-            const Icon = cat.icon;
-            const isActive = activeTab === cat.id;
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setActiveTab(cat.id)}
-                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
-                  isActive
-                    ? "bg-[#082E5B] text-white shadow-sm"
-                    : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:text-[#082E5B]"
-                }`}
-                aria-pressed={isActive}
+              {/* 4 Benefits List */}
+              <div className="space-y-3.5 pt-1">
+                {benefits.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-[#009E77] shrink-0 mt-0.5">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div className="space-y-0.5 min-w-0">
+                        <h4 className="text-xs sm:text-sm font-semibold text-[#07152B] leading-tight">
+                          {item.title}
+                        </h4>
+                        <p className="text-[11px] sm:text-xs text-[#475569] leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Dual Actions */}
+            <div className="pt-6 mt-4 border-t border-slate-100 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-2.5">
+              <Button
+                variant="primary"
+                size="md"
+                href="/early-access"
+                icon={ArrowRight}
+                className="flex-1 justify-center shadow-sm"
               >
-                <Icon
-                  className={`w-3.5 h-3.5 ${
-                    isActive ? "text-[#00D1A3]" : "text-slate-400"
-                  }`}
-                />
-                <span>{cat.label}</span>
-              </button>
-            );
-          })}
+                Get Started
+              </Button>
+              <Button
+                variant="outline"
+                size="md"
+                href="/book-demo"
+                className="flex-1 justify-center"
+              >
+                Book a Demo
+              </Button>
+            </div>
+          </div>
         </div>
 
-        {/* Video Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12 sm:mb-16">
+        {/* More Videos Section Header & Category Filter Tabs */}
+        <div className="pt-4 pb-8 space-y-4 text-center max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold">
+            <Play className="w-3 h-3 text-[#009E77]" />
+            <span>MORE DEMO VIDEOS & TUTORIALS</span>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+            {categories.map((cat) => {
+              const Icon = cat.icon;
+              const isActive = activeTab === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActiveTab(cat.id)}
+                  className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                    isActive
+                      ? "bg-[#082E5B] text-white shadow-sm"
+                      : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:text-[#082E5B]"
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  <Icon
+                    className={`w-3.5 h-3.5 ${
+                      isActive ? "text-[#00D1A3]" : "text-slate-400"
+                    }`}
+                  />
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 4-Column Video Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-14 sm:mb-18">
           {displayedVideos.map((video) => {
             const hasVideo = Boolean(video.youtubeId && video.youtubeId.trim() !== "");
 
             return (
               <div
                 key={video.id}
-                className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3 flex flex-col justify-between hover:border-[#00D1A3] transition-colors"
+                className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-3 flex flex-col justify-between hover:border-[#00D1A3] transition-colors"
               >
                 <div className="space-y-3">
                   {hasVideo ? (
@@ -123,9 +209,9 @@ export function VideosClientContent() {
                         <div className="w-7 h-7 rounded-lg bg-[#082E5B] text-[#00D1A3] flex items-center justify-center shrink-0">
                           <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
                         </div>
-                        <span className="text-xs">{v.educationalSeries}</span>
+                        <span className="text-xs truncate max-w-[110px] sm:max-w-none">{v.educationalSeries}</span>
                       </div>
-                      <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">
+                      <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100 shrink-0">
                         {v.inProduction}
                       </span>
                     </div>
@@ -144,7 +230,7 @@ export function VideosClientContent() {
                       )}
                     </div>
 
-                    <h3 className="text-sm font-bold text-[#07152B] leading-snug">
+                    <h3 className="text-sm font-bold text-[#07152B] leading-snug line-clamp-2">
                       {video.title}
                     </h3>
 
@@ -173,8 +259,9 @@ export function VideosClientContent() {
           })}
         </div>
       </Container>
-
-      <FinalCTASection />
     </div>
-  );
+
+    <FinalCTASection />
+  </div>
+);
 }

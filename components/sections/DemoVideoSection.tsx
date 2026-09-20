@@ -16,7 +16,7 @@ export function DemoVideoSection() {
     process.env.NEXT_PUBLIC_TAXORYN_DEMO_YOUTUBE_ID || DEFAULT_DEMO_YOUTUBE_ID;
 
   return (
-    <section id="demo-video" className="py-10 sm:py-14 bg-white border-b border-slate-200 scroll-mt-20">
+    <section id="demo-video" className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200/80 scroll-mt-20">
       <Container>
         <SectionHeading
           badge={t.demoVideo.badge}
@@ -35,9 +35,9 @@ export function DemoVideoSection() {
           />
 
           {/* Supporting Callout & Actions */}
-          <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-[#F8FAFC] border border-[#E2E8F0] flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="mt-8 p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1 text-center sm:text-left">
-              <h3 className="text-base font-bold text-[#07152B]">
+              <h3 className="text-base sm:text-lg font-bold text-[#07152B]">
                 {t.demoVideo.walkthroughTitle}
               </h3>
               <p className="text-xs sm:text-sm text-[#475569]">

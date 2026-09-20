@@ -192,7 +192,7 @@ function BookDemoContent() {
   };
 
   return (
-    <div className="py-10 sm:py-16 bg-[#F8FAFC]">
+    <div className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
           badge="Product Walkthrough"
@@ -203,19 +203,19 @@ function BookDemoContent() {
 
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Left Context & Details Column */}
-          <div className="lg:col-span-5 space-y-6">
-            <Card variant="default" padding="lg" className="bg-[#07152B] text-white space-y-4">
-              <span className="text-xs font-mono font-bold tracking-widest text-[#00D1A3] uppercase inline-block">
+          <div className="lg:col-span-5 space-y-5">
+            <Card variant="default" padding="lg" className="bg-white border-slate-200/90 shadow-sm space-y-4">
+              <span className="text-xs font-mono font-bold tracking-widest text-[#009E77] bg-emerald-50 px-2.5 py-0.5 rounded uppercase border border-emerald-100 inline-block">
                 INTERACTIVE DEMO
               </span>
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-xl font-bold text-[#07152B]">
                 What to Expect
               </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 A 20-minute focused walkthrough tailored to your practice size and current workflow challenges.
               </p>
 
-              <ul className="space-y-3 pt-2 text-xs text-slate-200">
+              <ul className="space-y-3 pt-2 text-xs text-slate-700">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
                   <span>Interactive demonstration of the practice command center</span>

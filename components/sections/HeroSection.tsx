@@ -16,18 +16,18 @@ export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative pt-6 pb-10 lg:pt-8 lg:pb-12 overflow-hidden bg-[#F8FAFC]">
+    <section className="relative pt-8 pb-12 lg:pt-12 lg:pb-16 overflow-hidden bg-white border-b border-slate-200/80">
       {/* Background Subtle Tech Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-25 pointer-events-none" />
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
           {/* LEFT COLUMN: Headline, Narrative, CTAs & Value Proof (5 cols) */}
           <div className="lg:col-span-5 space-y-4 text-left pt-1 min-w-0">
             {/* Primary Headline */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[2.1rem] xl:text-[2.55rem] font-extrabold text-[#07152B] tracking-tight leading-[1.16] max-w-[34rem] text-balance">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.45rem] xl:text-[2.75rem] font-bold text-[#07152B] tracking-tight leading-[1.12] text-balance">
               <span>{t.hero.headlinePrefix} </span>
-              <span className="text-[#009E77]">{t.hero.headlineSuffix}</span>
+              <span className="text-[#008766]">{t.hero.headlineSuffix}</span>
             </h1>
 
             {/* Visual Workflow Highlights */}
@@ -35,7 +35,7 @@ export function HeroSection() {
               {["Clients", "Compliance", "Documents", "Workflows"].map((pill) => (
                 <span
                   key={pill}
-                  className="px-2.5 py-0.5 rounded-full bg-slate-200/70 border border-slate-300/80 text-[11px] font-bold text-[#07152B] flex items-center gap-1.5"
+                  className="px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-bold text-[#07152B] flex items-center gap-1.5"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
                   {pill}
@@ -44,18 +44,18 @@ export function HeroSection() {
             </div>
 
             {/* Supporting Copy */}
-            <p className="text-sm sm:text-base text-[#475569] leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#475569] leading-relaxed font-normal">
               {t.hero.description}
             </p>
 
             {/* Action CTAs */}
-            <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Button
                 href={siteConfig.links.joinEarlyAccess}
                 variant="primary"
                 size="lg"
                 icon={ArrowRight}
-                className="justify-center px-6 py-3 text-sm sm:text-base font-bold shadow-md shadow-[#00D1A3]/20"
+                className="justify-center shadow-md shadow-[#00D1A3]/20"
               >
                 {t.hero.getStarted}
               </Button>
@@ -66,7 +66,7 @@ export function HeroSection() {
                 size="lg"
                 icon={Play}
                 iconPosition="left"
-                className="justify-center px-5 py-3 text-sm sm:text-base font-semibold"
+                className="justify-center"
               >
                 {t.hero.watchDemo}
               </Button>
@@ -76,7 +76,7 @@ export function HeroSection() {
             <p className="text-xs text-slate-500 pt-1 leading-relaxed">
               <a
                 href="#origin-story"
-                className="hover:text-[#00D1A3] transition-colors inline-flex items-center gap-1 font-medium text-slate-600 hover:underline underline-offset-2"
+                className="hover:text-[#008766] transition-colors inline-flex items-center gap-1 font-medium text-slate-600 hover:underline underline-offset-2"
               >
                 <span>{t.hero.devNote || "Built from a real tax-practice problem."}</span>
                 <ArrowRight className="w-3 h-3 text-[#00D1A3]" />
@@ -84,17 +84,17 @@ export function HeroSection() {
             </p>
 
             {/* 3 Concise Proof Points Below CTA */}
-            <div className="pt-2.5 border-t border-slate-200/90 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#334155] font-medium">
+            <div className="pt-3 border-t border-slate-200 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#334155] font-semibold">
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
                 <span>{t.hero.proofPractice}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
                 <span>{t.hero.proofCompliance}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
                 <span>{t.hero.proofNetwork}</span>
               </div>
             </div>
@@ -136,4 +136,3 @@ export function HeroSection() {
     </section>
   );
 }
-

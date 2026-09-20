@@ -38,7 +38,7 @@ export function SectionHeading({
       )}
     >
       {badge && (
-        <div className="mb-3">
+        <div className="mb-2 sm:mb-2.5">
           <Badge
             variant={isDark && badgeVariant === "teal" ? "teal" : badgeVariant}
             className={isDark ? "bg-[#00D1A3]/15 text-[#00FFC2] border-[#00D1A3]/30" : ""}
@@ -49,7 +49,7 @@ export function SectionHeading({
       )}
       <h2
         className={cn(
-          "text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-balance",
+          "text-2xl sm:text-3xl lg:text-[2.25rem] xl:text-[2.5rem] font-bold tracking-tight text-balance leading-[1.16]",
           isDark ? "text-white" : "text-[#07152B]"
         )}
       >
@@ -58,7 +58,7 @@ export function SectionHeading({
       {description && (
         <p
           className={cn(
-            "mt-4 text-base sm:text-lg leading-relaxed text-pretty",
+            "mt-2.5 sm:mt-3 text-sm sm:text-base lg:text-[17px] leading-relaxed text-pretty max-w-2xl",
             isDark ? "text-slate-300" : "text-[#475569]"
           )}
         >

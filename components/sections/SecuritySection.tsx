@@ -53,7 +53,7 @@ export function SecuritySection() {
   ];
 
   return (
-    <section className="py-10 sm:py-14 bg-white border-b border-slate-200/80">
+    <section className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200/80">
       <Container>
         <SectionHeading
           badge={t.securitySection.badge}
@@ -68,13 +68,13 @@ export function SecuritySection() {
             return (
               <div
                 key={idx}
-                className="p-5 sm:p-6 rounded-xl bg-slate-50/60 border border-slate-200/90 hover:bg-white hover:border-[#00D1A3] transition-all duration-200 shadow-xs space-y-2.5"
+                className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-[#00D1A3] transition-all duration-200 shadow-sm space-y-2.5"
               >
-                <div className="w-9 h-9 rounded-lg bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B]">
-                  <Icon className="w-4 h-4 text-[#009E77]" />
+                <div className="w-9 h-9 rounded-xl bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B]">
+                  <Icon className="w-4 h-4 text-[#008766]" />
                 </div>
                 <h3 className="text-sm sm:text-base font-bold text-[#07152B]">{item.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -102,5 +102,3 @@ export function SecuritySection() {
     </section>
   );
 }
-
-

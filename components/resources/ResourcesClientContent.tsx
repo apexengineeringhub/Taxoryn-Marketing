@@ -45,8 +45,9 @@ export function ResourcesClientContent() {
   };
 
   return (
-    <div className="py-10 sm:py-16 bg-[#F8FAFC]">
-      <Container>
+    <div className="w-full bg-[#F8FAFC]">
+      <div className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]">
+        <Container>
         {/* Knowledge Hub Header */}
         <SectionHeading
           badge={r.badge}
@@ -126,9 +127,10 @@ export function ResourcesClientContent() {
           />
         </div>
       </Container>
-
-      {/* Conversion Final CTA */}
-      <FinalCTASection />
     </div>
-  );
+
+    {/* Conversion Final CTA */}
+    <FinalCTASection />
+  </div>
+);
 }
