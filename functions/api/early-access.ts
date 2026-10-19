@@ -1,5 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-import { siteConfig } from "@/lib/config/site";
+// Cloudflare Pages Function for /api/early-access
+interface Env {
+  RESEND_API_KEY?: string;
+  RESEND_FROM_EMAIL?: string;
+  TAXORYN_NOTIFICATION_EMAIL?: string;
+}
 
 interface EarlyAccessPayload {
   fullName?: string;
@@ -19,23 +23,14 @@ interface EarlyAccessPayload {
   };
 }
 
-/**
- * Sanitizes input string to prevent injection or invalid characters.
- */
 function sanitizeInput(str?: string): string {
   if (!str || typeof str !== "string") return "";
-  return str
-    .replace(/[<>]/g, "") // strip dangerous html brackets
-    .trim()
-    .slice(0, 500); // enforce maximum length
+  return str.replace(/[<>]/g, "").trim().slice(0, 500);
 }
 
-/**
- * Handles Early Access application submissions via HTTP POST.
- */
-export async function POST(request: NextRequest) {
+export async function onRequestPost(context: { request: Request; env: Env }) {
   try {
-    const body: EarlyAccessPayload = await request.json().catch(() => ({}));
+    const body: EarlyAccessPayload = await context.request.json().catch(() => ({}));
 
     const fullName = sanitizeInput(body.fullName);
     const email = sanitizeInput(body.email);
@@ -47,51 +42,41 @@ export async function POST(request: NextRequest) {
 
     // 1. Validation
     if (!fullName) {
-      return NextResponse.json(
-        { success: false, error: "Full name is required." },
-        { status: 400 }
+      return new Response(
+        JSON.stringify({ success: false, error: "Full name is required." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
-      return NextResponse.json(
-        { success: false, error: "A valid email address is required." },
-        { status: 400 }
+      return new Response(
+        JSON.stringify({ success: false, error: "A valid email address is required." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
     if (!firmName) {
-      return NextResponse.json(
-        { success: false, error: "Firm or practice name is required." },
-        { status: 400 }
+      return new Response(
+        JSON.stringify({ success: false, error: "Firm or practice name is required." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
 
     if (phone) {
       const phoneRegex = /^[+]?[\d\s-]{8,15}$/;
       if (!phoneRegex.test(phone.replace(/\s+/g, ""))) {
-        return NextResponse.json(
-          { success: false, error: "Invalid phone number format." },
-          { status: 400 }
+        return new Response(
+          JSON.stringify({ success: false, error: "Invalid phone number format." }),
+          { status: 400, headers: { "Content-Type": "application/json" } }
         );
       }
     }
 
-    const submissionData = {
-      fullName,
-      email,
-      firmName,
-      phone: phone || null,
-      city: city || null,
-      practiceSize,
-      primaryInterest,
-      campaign: body.campaign || {},
-      receivedAt: new Date().toISOString(),
-    };
+    const receivedAt = new Date().toISOString();
 
-    // 2. Email Notification Delivery via Resend (if configured)
-    const resendApiKey = process.env.RESEND_API_KEY;
+    // 2. Email Delivery via Resend (if configured)
+    const resendApiKey = context.env.RESEND_API_KEY;
     if (resendApiKey) {
       try {
         const emailSubject = `New Early Access Request: ${firmName} (${fullName})`;
@@ -105,7 +90,7 @@ export async function POST(request: NextRequest) {
           <p><strong>Practice Size:</strong> ${practiceSize}</p>
           <p><strong>Primary Interest:</strong> ${primaryInterest}</p>
           <hr />
-          <p><small>Submitted at ${submissionData.receivedAt} via Taxoryn Early Access API</small></p>
+          <p><small>Submitted at ${receivedAt} via Cloudflare Pages Function</small></p>
         `;
 
         await fetch("https://api.resend.com/emails", {
@@ -115,38 +100,33 @@ export async function POST(request: NextRequest) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: process.env.RESEND_FROM_EMAIL || "Taxoryn <notifications@taxoryn.com>",
-            to: [process.env.TAXORYN_NOTIFICATION_EMAIL || siteConfig.supportEmail],
+            from: context.env.RESEND_FROM_EMAIL || "Taxoryn <notifications@taxoryn.com>",
+            to: [context.env.TAXORYN_NOTIFICATION_EMAIL || "info@taxoryn.com"],
             subject: emailSubject,
             html: emailHtml,
           }),
         });
       } catch (emailError) {
-        // Log error safely on backend without exposing secrets to frontend
         console.error("Early Access notification dispatch failed:", emailError);
       }
     }
 
-    // 3. Return clean success response
-    return NextResponse.json(
-      {
+    return new Response(
+      JSON.stringify({
         success: true,
         message: "Thank you for your interest. Your early access request has been received.",
-        data: {
-          email,
-          receivedAt: submissionData.receivedAt,
-        },
-      },
-      { status: 200 }
+        data: { email, receivedAt },
+      }),
+      { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
     console.error("Early Access API error:", error);
-    return NextResponse.json(
-      {
+    return new Response(
+      JSON.stringify({
         success: false,
         error: "Unable to process early access request at this time. Please try again later.",
-      },
-      { status: 500 }
+      }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 }
