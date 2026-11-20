@@ -4,7 +4,7 @@ import { cn } from "./Container";
 import { LucideIcon } from "lucide-react";
 
 interface BaseButtonProps {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "dark" | "teal-outline";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "dark" | "teal-outline" | "secondary-dark";
   size?: "sm" | "md" | "lg" | "xl";
   className?: string;
   icon?: LucideIcon;
@@ -50,6 +50,8 @@ export const Button = React.forwardRef<
       "bg-[#082E5B] text-white font-semibold hover:bg-[#07152B] shadow-sm hover:shadow active:scale-[0.98]",
     dark:
       "bg-[#07152B] text-white font-semibold hover:bg-[#040C1A] border border-slate-700 active:scale-[0.98]",
+    "secondary-dark":
+      "bg-slate-800/80 text-white font-semibold hover:bg-slate-700 hover:border-slate-600 border border-slate-700 opacity-100 shadow-xs active:bg-slate-900 active:scale-[0.98]",
     outline:
       "bg-white text-[#07152B] border border-slate-300 hover:bg-slate-50 hover:border-[#082E5B] shadow-sm active:scale-[0.98]",
     "teal-outline":

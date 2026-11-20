@@ -1,50 +1,60 @@
 import React from "react";
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProblemSection } from "@/components/sections/ProblemSection";
+import { SmartProcessesSection } from "@/components/sections/SmartProcessesSection";
+import { ProductExperienceShowcase } from "@/components/marketing/ProductExperienceShowcase";
+import { ModernPracticeSection } from "@/components/sections/ModernPracticeSection";
+import { AccessTaxorynSection } from "@/components/sections/AccessTaxorynSection";
 import { OriginStorySection } from "@/components/sections/OriginStorySection";
-import { EcosystemSection } from "@/components/sections/EcosystemSection";
-import { CoreProductSection } from "@/components/sections/CoreProductSection";
 import { DemoVideoSection } from "@/components/sections/DemoVideoSection";
-import { MarketplaceSection } from "@/components/sections/MarketplaceSection";
 import { SecuritySection } from "@/components/sections/SecuritySection";
-import { SolutionsSegmentSection } from "@/components/sections/SolutionsSegmentSection";
 import { CustomerStoriesSection } from "@/components/trust/CustomerStoriesSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
+
+export const metadata: Metadata = {
+  title: "Taxoryn — A Smarter Way to Manage Your Tax Practice",
+  description:
+    "One connected workspace to organize client relationships, work, documents and practice operations. Built for Indian Chartered Accountants, tax practitioners, and growing firms.",
+  alternates: {
+    canonical: "https://taxoryn.com",
+  },
+};
 
 export default function HomePage() {
   return (
     <div className="flex flex-col w-full">
-      {/* 1. HERO */}
+      {/* SECTION 1: HERO */}
       <HeroSection />
 
-      {/* 2. PROBLEMS TAX PRACTICES FACE */}
+      {/* SECTION 2: THE PROBLEM */}
       <ProblemSection />
 
-      {/* 3. ORIGIN STORY: BUILT FROM A REAL PRACTICE PROBLEM */}
+      {/* SECTION 3: THE TAXORYN APPROACH — FOUR SMART PROCESSES */}
+      <SmartProcessesSection />
+
+      {/* SECTION 4: PRODUCT EXPERIENCE (AUTHENTIC APPLICATION SCREENS) */}
+      <ProductExperienceShowcase />
+
+      {/* SECTION 5: DESIGNED FOR MODERN TAX PRACTICES */}
+      <ModernPracticeSection />
+
+      {/* SECTION 6: ACCESS TAXORYN (WEB & ANDROID APPLICATION) */}
+      <AccessTaxorynSection />
+
+      {/* VERIFIED ORIGIN STORY: BUILT FROM A REAL PRACTICE PROBLEM */}
       <OriginStorySection />
 
-      {/* 4. TAXORYN FRAMEWORK: ORGANIZE -> COMPLY -> SERVE -> CONNECT -> GROW */}
-      <EcosystemSection />
-
-      {/* 4. CORE PRODUCT MODULES */}
-      <CoreProductSection />
-
-      {/* 5. PRODUCT WALKTHROUGH & DEMO */}
+      {/* PRODUCT WALKTHROUGH & DEMO VIDEO */}
       <DemoVideoSection />
 
-      {/* 6. TAXORYN MARKETPLACE & PROFESSIONAL NETWORK */}
-      <MarketplaceSection />
-
-      {/* 7. SECURITY & PRACTITIONER CONTROL */}
+      {/* SECTION 7: TRUST AND SECURITY */}
       <SecuritySection />
 
-      {/* 8. PRACTICE SOLUTIONS */}
-      <SolutionsSegmentSection />
-
-      {/* 9. DEVELOPMENT JOURNEY / INVITATION */}
+      {/* COLLABORATIVE DEVELOPMENT JOURNEY */}
       <CustomerStoriesSection />
 
-      {/* 10. FINAL CALL TO ACTION */}
+      {/* SECTION 8: FINAL CALL TO ACTION */}
       <FinalCTASection />
     </div>
   );

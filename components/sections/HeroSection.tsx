@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
 import { ProductPreview } from "@/components/marketing/ProductPreview";
@@ -10,6 +11,7 @@ import {
   ArrowRight,
   Play,
   CheckCircle2,
+  Sparkles,
 } from "lucide-react";
 
 export function HeroSection() {
@@ -24,15 +26,21 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
           {/* LEFT COLUMN: Headline, Narrative, CTAs & Value Proof (5 cols) */}
           <div className="lg:col-span-5 space-y-4 text-left pt-1 min-w-0">
+            {/* Tagline Badge */}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-bold text-[#082E5B]">
+              <span className="w-2 h-2 rounded-full bg-[#00D1A3]" />
+              <span>TAX PRACTICE MANAGEMENT PLATFORM</span>
+            </div>
+
             {/* Primary Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.45rem] xl:text-[2.75rem] font-bold text-[#07152B] tracking-tight leading-[1.12] text-balance">
-              <span>{t.hero.headlinePrefix} </span>
-              <span className="text-[#008766]">{t.hero.headlineSuffix}</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.45rem] xl:text-[2.75rem] font-bold text-[#07152B] tracking-tight leading-[1.14] text-balance">
+              <span>Your Tax Practice. </span>
+              <span className="text-[#008766]">Better Organized.</span>
             </h1>
 
             {/* Visual Workflow Highlights */}
             <div className="flex flex-wrap items-center gap-2 pt-0.5">
-              {["Clients", "Compliance", "Documents", "Workflows"].map((pill) => (
+              {["Clients", "Compliance", "Documents", "Operations"].map((pill) => (
                 <span
                   key={pill}
                   className="px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-bold text-[#07152B] flex items-center gap-1.5"
@@ -45,7 +53,7 @@ export function HeroSection() {
 
             {/* Supporting Copy */}
             <p className="text-base sm:text-lg text-[#475569] leading-relaxed font-normal">
-              {t.hero.description}
+              Manage clients, compliance work, documents and practice operations in one connected workspace built for modern tax professionals.
             </p>
 
             {/* Action CTAs */}
@@ -55,7 +63,7 @@ export function HeroSection() {
                 variant="primary"
                 size="lg"
                 icon={ArrowRight}
-                className="justify-center shadow-md shadow-[#00D1A3]/20"
+                className="justify-center shadow-md shadow-[#00D1A3]/20 font-bold"
               >
                 {t.hero.getStarted}
               </Button>
@@ -66,7 +74,7 @@ export function HeroSection() {
                 size="lg"
                 icon={Play}
                 iconPosition="left"
-                className="justify-center"
+                className="justify-center font-semibold"
               >
                 {t.hero.watchDemo}
               </Button>
@@ -87,15 +95,15 @@ export function HeroSection() {
             <div className="pt-3 border-t border-slate-200 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#334155] font-semibold">
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
-                <span>{t.hero.proofPractice}</span>
+                <span>Practice Management</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
-                <span>{t.hero.proofCompliance}</span>
+                <span>Statutory Compliance</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
-                <span>{t.hero.proofNetwork}</span>
+                <span>Client Document Hub</span>
               </div>
             </div>
           </div>
@@ -108,26 +116,22 @@ export function HeroSection() {
 
         {/* Compact Trust Strip Below Hero */}
         <div className="mt-8 sm:mt-10 pt-4 sm:pt-5 border-t border-slate-200/80">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
-            <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500">
-              {t.hero.trustTitle}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1.5 text-xs font-semibold text-slate-700">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <span className="font-semibold text-slate-700 uppercase tracking-wider text-[11px]">
+              PURPOSE-BUILT FOR INDIAN PRACTICES
+            </span>
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-medium text-slate-600">
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
-                {t.hero.trustSolo}
+                Independent Practitioners
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
-                {t.hero.trustSmallFirm}
+                Chartered Accountant (CA) Firms
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
-                {t.hero.trustGrowing}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
-                {t.hero.trustBusiness}
+                Tax Advocates & Consultants
               </span>
             </div>
           </div>

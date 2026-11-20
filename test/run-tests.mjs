@@ -683,16 +683,18 @@ describe("Taxoryn Early Access API & Web Form Architecture Test Suite", () => {
 
   test("TEST 44: Early Access API route handler exists and exports POST handler", async () => {
     const fs = await import("node:fs");
-    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+    const routePath = fs.existsSync("app/api/early-access/route.ts") ? "app/api/early-access/route.ts" : "functions/api/early-access.ts";
+    const routeContent = fs.readFileSync(routePath, "utf-8");
 
-    assert.ok(routeContent.includes("export async function POST"), "Exports POST handler");
+    assert.ok(routeContent.includes("export async function POST") || routeContent.includes("export async function onRequestPost"), "Exports POST or onRequestPost handler");
     assert.ok(routeContent.includes("sanitizeInput"), "Implements input sanitization");
     assert.ok(routeContent.includes("emailRegex"), "Validates email format via regex");
   });
 
   test("TEST 45: Early Access API validates required fields and handles bad data safely", async () => {
     const fs = await import("node:fs");
-    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+    const routePath = fs.existsSync("app/api/early-access/route.ts") ? "app/api/early-access/route.ts" : "functions/api/early-access.ts";
+    const routeContent = fs.readFileSync(routePath, "utf-8");
 
     // Validates route structure and error handling
     assert.ok(routeContent.includes("!fullName"), "Validates required fullName");
@@ -770,9 +772,10 @@ describe("Taxoryn Early Access API & Web Form Architecture Test Suite", () => {
 
   test("TEST 52: Early Access API checks for RESEND_API_KEY and fails safe if email service is not configured", async () => {
     const fs = await import("node:fs");
-    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+    const routePath = fs.existsSync("app/api/early-access/route.ts") ? "app/api/early-access/route.ts" : "functions/api/early-access.ts";
+    const routeContent = fs.readFileSync(routePath, "utf-8");
 
-    assert.ok(routeContent.includes("process.env.RESEND_API_KEY"), "Reads RESEND_API_KEY from environment");
+    assert.ok(routeContent.includes("RESEND_API_KEY"), "Reads RESEND_API_KEY from environment");
     assert.ok(routeContent.includes("https://api.resend.com/emails"), "Calls Resend API endpoint when configured");
   });
 });
@@ -854,6 +857,30 @@ describe("Taxoryn Lighter Premium SaaS Design System & Accessibility Suite", () 
         content.includes("py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]"),
         `${pagePath} has standard padding and light background`
       );
+    }
+  });
+
+  test("TEST 60: Button secondary-dark variant and How It Works bottom CTA Sign In button readability", async () => {
+    const fs = await import("node:fs");
+    const buttonContent = fs.readFileSync("components/common/Button.tsx", "utf-8");
+    assert.ok(buttonContent.includes('"secondary-dark"'), "Button supports secondary-dark variant");
+    assert.ok(buttonContent.includes("bg-slate-800/80"), "secondary-dark sets dark slate background");
+
+    const hiwContent = fs.readFileSync("app/how-it-works/page.tsx", "utf-8");
+    assert.ok(hiwContent.includes("siteConfig.links.login"), "How It Works links to login");
+    assert.ok(hiwContent.includes("Sign In to Web App"), "How It Works has Sign In to Web App CTA");
+    assert.ok(hiwContent.includes('variant="secondary-dark"'), "How It Works uses secondary-dark variant");
+    assert.ok(hiwContent.includes("text-white"), "How It Works sets explicit white text");
+    assert.ok(hiwContent.includes("bg-slate-800/80"), "How It Works sets explicit dark slate background");
+    assert.ok(hiwContent.includes("opacity-100"), "How It Works sets explicit opacity-100");
+
+    if (fs.existsSync("out/how-it-works.html")) {
+      const html = fs.readFileSync("out/how-it-works.html", "utf-8");
+      const match = html.match(/<a[^>]*>\s*<span[^>]*>Sign In to Web App<\/span><\/a>/);
+      assert.ok(match, "Sign In to Web App anchor exists in static export");
+      assert.ok(match[0].includes("text-white"), "Anchor has text-white");
+      assert.ok(match[0].includes("bg-slate-800"), "Anchor has dark slate background");
+      assert.ok(!match[0].includes("bg-white"), "Anchor does not have conflicting bg-white");
     }
   });
 });

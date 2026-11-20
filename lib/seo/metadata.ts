@@ -11,14 +11,14 @@ interface GenerateMetadataProps {
 
 export function constructMetadata({
   title,
-  description = "Run your tax practice, manage compliance, serve clients and grow your business in one connected platform. Purpose-built for Indian tax professionals, tax firms, clients and marketplace discovery.",
+  description = "Taxoryn — A smarter way to manage your tax practice. One connected workspace to organize client relationships, work, documents and practice operations for Indian CA firms and tax professionals.",
   path = "",
   image = "/brand/logo.svg",
   noIndex = false,
 }: GenerateMetadataProps = {}): Metadata {
   const pageTitle = title
     ? `${title} | ${siteConfig.name}`
-    : `Tax Practice Management Software | ${siteConfig.name}`;
+    : `Taxoryn — Tax Practice Management Software for Indian CAs & Tax Professionals`;
 
   const canonicalUrl = `${siteConfig.url}${path ? (path.startsWith("/") ? path : `/${path}`) : ""}`;
 
@@ -49,7 +49,7 @@ export function constructMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: `${siteConfig.name} - ${siteConfig.motto}`,
+          alt: `${siteConfig.name} — ${siteConfig.motto}`,
         },
       ],
     },
@@ -74,14 +74,13 @@ export function constructMetadata({
 }
 
 export function generateSoftwareApplicationSchema() {
-  // Pure SoftwareApplication schema without fake offers, fake ratings, or unverified pricing
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: siteConfig.name,
-    headline: siteConfig.tagline,
+    headline: "Taxoryn — A smarter way to manage your tax practice",
     applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
+    operatingSystem: "Web, Android (APK)",
     description: siteConfig.description,
     url: siteConfig.url,
   };
