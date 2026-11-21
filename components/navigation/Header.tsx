@@ -8,7 +8,7 @@ import { MobileNav } from "./MobileNav";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { siteConfig, androidConfig } from "@/lib/config/site";
-import { ArrowRight, Play, Smartphone } from "lucide-react";
+import { ArrowRight, Smartphone } from "lucide-react";
 
 export function Header() {
   const { t } = useLanguage();
@@ -32,6 +32,7 @@ export function Header() {
             size="md"
             tagline={t.brand.tagline}
             descriptor={t.brand.productDescriptor}
+            hideSubtextBelow="xl"
           />
         </div>
 
@@ -65,15 +66,6 @@ export function Header() {
 
         {/* 3. RIGHT: Action CTAs & Language Selector */}
         <div className="hidden lg:flex items-center gap-2 xl:gap-2.5 shrink-0">
-          {/* Secondary Action: Watch Demo */}
-          <Link
-            href="/#demo-video"
-            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#07152B] hover:bg-slate-100/70 rounded-lg transition-colors whitespace-nowrap"
-          >
-            <Play className="w-3.5 h-3.5 text-[#00D1A3] fill-[#00D1A3]/25 shrink-0" />
-            <span>{t.nav.watchDemo}</span>
-          </Link>
-
           {/* Compact Language Switcher */}
           <LanguageSwitcher variant="header" />
 

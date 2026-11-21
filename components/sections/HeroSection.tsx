@@ -38,19 +38,6 @@ export function HeroSection() {
               <span className="text-[#008766]">Better Organized.</span>
             </h1>
 
-            {/* Visual Workflow Highlights */}
-            <div className="flex flex-wrap items-center gap-2 pt-0.5">
-              {["Clients", "Compliance", "Documents", "Operations"].map((pill) => (
-                <span
-                  key={pill}
-                  className="px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-bold text-[#07152B] flex items-center gap-1.5"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
-                  {pill}
-                </span>
-              ))}
-            </div>
-
             {/* Supporting Copy */}
             <p className="text-base sm:text-lg text-[#475569] leading-relaxed font-normal">
               Manage clients, compliance work, documents and practice operations in one connected workspace built for modern tax professionals.
@@ -110,6 +97,19 @@ export function HeroSection() {
 
           {/* RIGHT COLUMN: Clean, Prominent Taxoryn Product Dashboard Preview (7 cols) */}
           <div className="lg:col-span-7 relative min-w-0">
+            {/* Supporting Workflow Strip Integrated with Product Preview */}
+            <div className="flex items-center gap-1.5 mb-2.5 overflow-x-auto no-scrollbar">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mr-1">Workspaces:</span>
+              {["Clients", "Compliance", "Documents", "Operations"].map((pill) => (
+                <span
+                  key={pill}
+                  className="px-2.5 py-0.5 rounded-full bg-slate-100/90 border border-slate-200 text-[11px] font-bold text-[#07152B] flex items-center gap-1.5 whitespace-nowrap shadow-2xs"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#009E77]" />
+                  {pill}
+                </span>
+              ))}
+            </div>
             <ProductPreview />
           </div>
         </div>

@@ -27,6 +27,7 @@ import {
   BarChart3,
   UserCheck,
   LayoutDashboard,
+  Lock,
 } from "lucide-react";
 import { cn } from "@/components/common/Container";
 import { trackEvent } from "@/lib/analytics";
@@ -71,35 +72,37 @@ export function ProductPreview({
   };
 
   return (
-    <div className="relative mx-auto w-full rounded-2xl border border-slate-700/80 bg-[#07152B] shadow-2xl shadow-[#082E5B]/30 overflow-hidden text-slate-100 select-none">
-      {/* 1. Mac Window Chrome Bar */}
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-800 bg-[#050E1D] text-xs">
+    <div className="relative mx-auto w-full rounded-2xl border border-slate-200/90 bg-white shadow-2xl shadow-slate-900/10 overflow-hidden text-slate-800 select-none">
+      {/* 1. Light Application Chrome Bar */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-200 bg-slate-100/80 text-xs">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="hidden sm:block w-3 h-3 rounded-full bg-rose-500/80 shrink-0" />
-          <div className="hidden sm:block w-3 h-3 rounded-full bg-amber-500/80 shrink-0" />
-          <div className="hidden sm:block w-3 h-3 rounded-full bg-emerald-500/80 shrink-0" />
-          <div className="flex min-w-0 items-center gap-1 sm:ml-3 font-mono text-[10px] sm:text-[11px] text-slate-400">
-            <Search className="w-3 h-3 text-slate-500 shrink-0" />
+          <div className="hidden sm:block w-3 h-3 rounded-full bg-rose-400/90 shrink-0" />
+          <div className="hidden sm:block w-3 h-3 rounded-full bg-amber-400/90 shrink-0" />
+          <div className="hidden sm:block w-3 h-3 rounded-full bg-emerald-400/90 shrink-0" />
+          <div className="flex min-w-0 items-center gap-1 sm:ml-3 font-mono text-[10px] sm:text-[11px] text-slate-600 bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-xs">
+            <Lock className="w-2.5 h-2.5 text-slate-400 shrink-0" />
             <span className="truncate">app.taxoryn.com/{activeTab}</span>
           </div>
         </div>
-        <div className="text-[10px] text-slate-400 hidden sm:inline-block">
-          <span className="text-[#00D1A3] font-semibold">{t.productPreview.demoDisclaimer || "Sample interface — demonstration data"}</span>
+        <div className="text-[10px] text-slate-500 hidden sm:inline-block">
+          <span className="text-[#008766] font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
+            {t.productPreview.demoDisclaimer || "Sample interface — demonstration data"}
+          </span>
         </div>
       </div>
 
       {/* 2. Main App Frame (Sidebar + Main Content View) */}
-      <div className="flex min-h-[460px] min-w-0 bg-[#07152B]">
+      <div className="flex min-h-[460px] min-w-0 bg-[#F8FAFC]">
         {/* Left App Sidebar */}
-        <aside className="w-36 sm:w-44 shrink-0 border-r border-slate-800/80 bg-[#061224] p-3 flex flex-col justify-between hidden md:flex">
+        <aside className="w-36 sm:w-44 shrink-0 border-r border-slate-200/90 bg-slate-50/80 p-3 flex flex-col justify-between hidden md:flex">
           <div className="space-y-4">
-            {/* Sidebar Logo */}
+            {/* Sidebar Logo Lockup */}
             <div className="flex items-center gap-2 px-2 py-1">
-              <div className="w-6 h-6 rounded-lg bg-[#07152B] border border-slate-700 flex items-center justify-center text-[#00D1A3] text-xs font-black">
+              <div className="w-6 h-6 rounded-md bg-[#07152B] flex items-center justify-center text-[#00D1A3] text-xs font-black shadow-xs">
                 TR
               </div>
               <div className="font-black text-xs tracking-wider">
-                <span className="text-white">TAXO</span>
+                <span className="text-[#07152B]">TAXO</span>
                 <span className="text-[#00D1A3]">RYN</span>
               </div>
             </div>
@@ -117,12 +120,12 @@ export function ProductPreview({
                     className={cn(
                       "w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all text-left",
                       isActive
-                        ? "bg-[#00D1A3]/20 text-[#00D1A3] border border-[#00D1A3]/30"
-                        : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
+                        ? "bg-white text-[#07152B] font-bold shadow-xs border border-slate-200/90 text-[#008766]"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
                     )}
                   >
-                    <Icon className={cn("w-3.5 h-3.5", isActive ? "text-[#00D1A3]" : "text-slate-400")} />
-                    <span>{item.label}</span>
+                    <Icon className={cn("w-3.5 h-3.5 shrink-0", isActive ? "text-[#008766]" : "text-slate-400")} />
+                    <span className="truncate">{item.label}</span>
                   </button>
                 );
               })}
@@ -130,42 +133,42 @@ export function ProductPreview({
           </div>
 
           {/* User Tenant Badge */}
-          <div className="pt-3 border-t border-slate-800/80 px-1 flex items-center gap-2 text-[11px] text-slate-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#00D1A3] shrink-0" />
-            <span className="truncate">{t.productPreview.tenantBadge}</span>
+          <div className="pt-3 border-t border-slate-200 px-1 flex items-center gap-2 text-[11px] text-slate-500">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#008766] shrink-0" />
+            <span className="truncate font-medium">{t.productPreview.tenantBadge}</span>
           </div>
         </aside>
 
         {/* Main Content View Area */}
-        <main className="flex-1 flex flex-col min-w-0 bg-gradient-to-b from-[#07152B] to-[#050E1D]">
+        <main className="flex-1 flex flex-col min-w-0 bg-[#F8FAFC]">
           {/* Top Search & Profile Bar */}
-          <div className="px-3 sm:px-6 py-2.5 border-b border-slate-800/80 flex items-center justify-between gap-2 sm:gap-3 bg-[#07152B]/60 min-w-0">
+          <div className="px-3 sm:px-6 py-2.5 border-b border-slate-200 flex items-center justify-between gap-2 sm:gap-3 bg-white min-w-0">
             <div className="relative min-w-0 flex-1 max-w-xs">
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 readOnly
                 placeholder={t.productPreview.searchPlaceholder}
-                className="w-full pl-8 pr-7 py-1 text-[11px] bg-slate-900/80 border border-slate-800 rounded-lg text-slate-200 placeholder:text-slate-400 focus:outline-none cursor-default"
+                className="w-full pl-8 pr-7 py-1 text-[11px] bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder:text-slate-400 focus:outline-none cursor-default"
               />
-              <kbd className="hidden sm:inline-block absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.2 text-[9px] font-mono text-slate-400 bg-slate-800 border border-slate-700 rounded">
+              <kbd className="hidden sm:inline-block absolute right-2 top-1/2 -translate-y-1/2 px-1 py-0.2 text-[9px] font-mono text-slate-400 bg-slate-100 border border-slate-200 rounded">
                 ⌘K
               </kbd>
             </div>
 
             <div className="flex items-center gap-2.5 shrink-0">
               <div className="relative p-1 rounded text-slate-400">
-                <Bell className="w-3.5 h-3.5" />
+                <Bell className="w-3.5 h-3.5 text-slate-500" />
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3] absolute top-0.5 right-0.5" />
               </div>
-              <div className="w-6 h-6 rounded-full bg-[#00D1A3] text-[#07152B] font-bold text-[10px] flex items-center justify-center shadow-sm">
+              <div className="w-6 h-6 rounded-full bg-[#07152B] text-white font-bold text-[10px] flex items-center justify-center shadow-xs">
                 CA
               </div>
             </div>
           </div>
 
           {/* Mobile Tab Selector (Visible on <md) */}
-          <div className="flex md:hidden items-center gap-1.5 px-3 py-2 border-b border-slate-800/80 bg-[#061224]/80 overflow-x-auto no-scrollbar">
+          <div className="flex md:hidden items-center gap-1.5 px-3 py-2 border-b border-slate-200 bg-slate-50 overflow-x-auto no-scrollbar">
             {sidebarNav.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.id;
@@ -177,8 +180,8 @@ export function ProductPreview({
                   className={cn(
                     "flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold whitespace-nowrap transition-colors shrink-0",
                     isActive
-                      ? "bg-[#00D1A3]/20 text-[#00D1A3] border border-[#00D1A3]/30"
-                      : "text-slate-400 hover:text-slate-200 bg-slate-900/40"
+                      ? "bg-white text-[#07152B] border border-slate-200 shadow-xs text-[#008766]"
+                      : "text-slate-600 hover:text-slate-900 bg-slate-100/60"
                   )}
                 >
                   <Icon className="w-3 h-3" />
@@ -195,101 +198,101 @@ export function ProductPreview({
               <div className="space-y-4">
                 {/* Greeting Header */}
                 <div>
-                  <h3 className="text-base sm:text-lg font-extrabold text-white tracking-tight">
+                  <h3 className="text-base sm:text-lg font-extrabold text-[#07152B] tracking-tight">
                     {t.productPreview.workspaceTitle}
                   </h3>
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[11px] text-slate-500">
                     {t.productPreview.workspaceSubtitle}
                   </p>
                 </div>
 
                 {/* 4 Neutral Sample Module Cards */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1">
-                    <div className="flex items-center justify-between text-slate-400">
+                  <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-1">
+                    <div className="flex items-center justify-between text-slate-500">
                       <span className="text-[10px] font-semibold">{t.productPreview.modules.clientsTitle}</span>
-                      <Users className="w-3.5 h-3.5 text-[#00D1A3]" />
+                      <Users className="w-3.5 h-3.5 text-[#008766]" />
                     </div>
-                    <div className="text-sm font-bold text-white">{t.productPreview.modules.clientsSub}</div>
-                    <div className="text-[10px] text-slate-400 font-medium">{t.productPreview.modules.clientsDesc}</div>
+                    <div className="text-sm font-bold text-[#07152B]">{t.productPreview.modules.clientsSub}</div>
+                    <div className="text-[10px] text-slate-500 font-medium">{t.productPreview.modules.clientsDesc}</div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1">
-                    <div className="flex items-center justify-between text-slate-400">
+                  <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-1">
+                    <div className="flex items-center justify-between text-slate-500">
                       <span className="text-[10px] font-semibold">{t.productPreview.modules.complianceTitle}</span>
-                      <FileCheck2 className="w-3.5 h-3.5 text-[#00D1A3]" />
+                      <FileCheck2 className="w-3.5 h-3.5 text-[#008766]" />
                     </div>
-                    <div className="text-sm font-bold text-white">{t.productPreview.modules.complianceSub}</div>
-                    <div className="text-[10px] text-slate-400 font-medium">{t.productPreview.modules.complianceDesc}</div>
+                    <div className="text-sm font-bold text-[#07152B]">{t.productPreview.modules.complianceSub}</div>
+                    <div className="text-[10px] text-slate-500 font-medium">{t.productPreview.modules.complianceDesc}</div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1">
-                    <div className="flex items-center justify-between text-slate-400">
+                  <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-1">
+                    <div className="flex items-center justify-between text-slate-500">
                       <span className="text-[10px] font-semibold">{t.productPreview.modules.documentsTitle}</span>
-                      <FolderLock className="w-3.5 h-3.5 text-sky-400" />
+                      <FolderLock className="w-3.5 h-3.5 text-sky-600" />
                     </div>
-                    <div className="text-sm font-bold text-white">{t.productPreview.modules.documentsSub}</div>
-                    <div className="text-[10px] text-slate-400 font-medium">{t.productPreview.modules.documentsDesc}</div>
+                    <div className="text-sm font-bold text-[#07152B]">{t.productPreview.modules.documentsSub}</div>
+                    <div className="text-[10px] text-slate-500 font-medium">{t.productPreview.modules.documentsDesc}</div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/90 space-y-1">
-                    <div className="flex items-center justify-between text-slate-400">
+                  <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-1">
+                    <div className="flex items-center justify-between text-slate-500">
                       <span className="text-[10px] font-semibold">{t.productPreview.modules.tasksTitle}</span>
-                      <CheckSquare className="w-3.5 h-3.5 text-amber-400" />
+                      <CheckSquare className="w-3.5 h-3.5 text-amber-600" />
                     </div>
-                    <div className="text-sm font-bold text-white">{t.productPreview.modules.tasksSub}</div>
-                    <div className="text-[10px] text-slate-400 font-medium">{t.productPreview.modules.tasksDesc}</div>
+                    <div className="text-sm font-bold text-[#07152B]">{t.productPreview.modules.tasksSub}</div>
+                    <div className="text-[10px] text-slate-500 font-medium">{t.productPreview.modules.tasksDesc}</div>
                   </div>
                 </div>
 
                 {/* 2 Bottom Content Panels */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                   {/* Panel 1: Upcoming Compliance */}
-                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/90 space-y-2.5">
-                    <div className="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
-                      <h4 className="text-xs font-bold text-white">{t.productPreview.upcoming.title}</h4>
-                      <span className="text-[10px] font-semibold text-slate-400 hover:text-white cursor-pointer">
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-2.5">
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
+                      <h4 className="text-xs font-bold text-[#07152B]">{t.productPreview.upcoming.title}</h4>
+                      <span className="text-[10px] font-semibold text-slate-500 hover:text-slate-800 cursor-pointer">
                         {t.productPreview.upcoming.viewAll}
                       </span>
                     </div>
 
                     <div className="space-y-1.5 text-xs">
-                      <div className="p-2 rounded-lg bg-slate-800/60 flex items-center justify-between text-[11px]">
+                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]">
                         <div>
-                          <div className="font-semibold text-white">{t.productPreview.upcoming.item1Title}</div>
-                          <div className="text-[10px] text-slate-400">{t.productPreview.upcoming.item1Due}</div>
+                          <div className="font-semibold text-slate-900">{t.productPreview.upcoming.item1Title}</div>
+                          <div className="text-[10px] text-slate-500">{t.productPreview.upcoming.item1Due}</div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-bold text-[10px] border border-sky-500/30">
+                        <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-700 font-bold text-[10px] border border-sky-200">
                           {t.productPreview.upcoming.item1Tag}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-lg bg-slate-800/60 flex items-center justify-between text-[11px]">
+                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]">
                         <div>
-                          <div className="font-semibold text-white">{t.productPreview.upcoming.item2Title}</div>
-                          <div className="text-[10px] text-slate-400">{t.productPreview.upcoming.item2Due}</div>
+                          <div className="font-semibold text-slate-900">{t.productPreview.upcoming.item2Title}</div>
+                          <div className="text-[10px] text-slate-500">{t.productPreview.upcoming.item2Due}</div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-bold text-[10px] border border-sky-500/30">
+                        <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-700 font-bold text-[10px] border border-sky-200">
                           {t.productPreview.upcoming.item2Tag}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-lg bg-slate-800/60 flex items-center justify-between text-[11px]">
+                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]">
                         <div>
-                          <div className="font-semibold text-white">{t.productPreview.upcoming.item3Title}</div>
-                          <div className="text-[10px] text-slate-400">{t.productPreview.upcoming.item3Due}</div>
+                          <div className="font-semibold text-slate-900">{t.productPreview.upcoming.item3Title}</div>
+                          <div className="text-[10px] text-slate-500">{t.productPreview.upcoming.item3Due}</div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold text-[10px] border border-amber-500/30">
+                        <span className="px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-bold text-[10px] border border-amber-200">
                           {t.productPreview.upcoming.item3Tag}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-lg bg-slate-800/60 flex items-center justify-between text-[11px]">
+                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]">
                         <div>
-                          <div className="font-semibold text-white">{t.productPreview.upcoming.item4Title}</div>
-                          <div className="text-[10px] text-slate-400">{t.productPreview.upcoming.item4Due}</div>
+                          <div className="font-semibold text-slate-900">{t.productPreview.upcoming.item4Title}</div>
+                          <div className="text-[10px] text-slate-500">{t.productPreview.upcoming.item4Due}</div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold text-[10px] border border-emerald-500/30">
+                        <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-bold text-[10px] border border-emerald-200">
                           {t.productPreview.upcoming.item4Tag}
                         </span>
                       </div>
@@ -297,71 +300,71 @@ export function ProductPreview({
                   </div>
 
                   {/* Panel 2: Recent Activity */}
-                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800/90 space-y-2.5">
-                    <div className="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
-                      <h4 className="text-xs font-bold text-white">{t.productPreview.activity.title}</h4>
-                      <span className="text-[10px] font-semibold text-slate-400 hover:text-white cursor-pointer">
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-2.5">
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-1.5">
+                      <h4 className="text-xs font-bold text-[#07152B]">{t.productPreview.activity.title}</h4>
+                      <span className="text-[10px] font-semibold text-slate-500 hover:text-slate-800 cursor-pointer">
                         {t.productPreview.activity.viewAll}
                       </span>
                     </div>
 
                     <div className="space-y-1.5 text-xs">
-                      <div className="p-2 rounded-lg bg-slate-800/60 flex items-center justify-between text-[11px]">
+                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
+                          <div className="w-6 h-6 rounded bg-sky-100 text-sky-700 flex items-center justify-center shrink-0">
                             <FileText className="w-3 h-3" />
                           </div>
                           <div>
-                            <div className="font-semibold text-white">{t.productPreview.activity.act1Title}</div>
-                            <div className="text-[10px] text-slate-400">{t.productPreview.activity.act1Desc}</div>
+                            <div className="font-semibold text-slate-900">{t.productPreview.activity.act1Title}</div>
+                            <div className="text-[10px] text-slate-500">{t.productPreview.activity.act1Desc}</div>
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-slate-700/60 text-slate-300 text-[9px] font-mono">
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[9px] font-mono border border-slate-200">
                           {t.productPreview.activity.act1Tag}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-lg bg-slate-800/60 flex items-center justify-between text-[11px]">
+                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                          <div className="w-6 h-6 rounded bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
                             <Check className="w-3 h-3" />
                           </div>
                           <div>
-                            <div className="font-semibold text-white">{t.productPreview.activity.act2Title}</div>
-                            <div className="text-[10px] text-slate-400">{t.productPreview.activity.act2Desc}</div>
+                            <div className="font-semibold text-slate-900">{t.productPreview.activity.act2Title}</div>
+                            <div className="text-[10px] text-slate-500">{t.productPreview.activity.act2Desc}</div>
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[9px] font-mono">
+                        <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[9px] font-mono border border-emerald-200">
                           {t.productPreview.activity.act2Tag}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-lg bg-slate-800/60 flex items-center justify-between text-[11px]">
+                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded bg-[#00D1A3]/20 text-[#00D1A3] flex items-center justify-center shrink-0">
+                          <div className="w-6 h-6 rounded bg-teal-100 text-[#008766] flex items-center justify-center shrink-0">
                             <UserCheck className="w-3 h-3" />
                           </div>
                           <div>
-                            <div className="font-semibold text-white">{t.productPreview.activity.act3Title}</div>
-                            <div className="text-[10px] text-slate-400">{t.productPreview.activity.act3Desc}</div>
+                            <div className="font-semibold text-slate-900">{t.productPreview.activity.act3Title}</div>
+                            <div className="text-[10px] text-slate-500">{t.productPreview.activity.act3Desc}</div>
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-slate-700/60 text-slate-300 text-[9px] font-mono">
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[9px] font-mono border border-slate-200">
                           {t.productPreview.activity.act3Tag}
                         </span>
                       </div>
 
-                      <div className="p-2 rounded-lg bg-slate-800/60 flex items-center justify-between text-[11px]">
+                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                          <div className="w-6 h-6 rounded bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
                             <AlertCircle className="w-3 h-3" />
                           </div>
                           <div>
-                            <div className="font-semibold text-white">{t.productPreview.activity.act4Title}</div>
-                            <div className="text-[10px] text-slate-400">{t.productPreview.activity.act4Desc}</div>
+                            <div className="font-semibold text-slate-900">{t.productPreview.activity.act4Title}</div>
+                            <div className="text-[10px] text-slate-500">{t.productPreview.activity.act4Desc}</div>
                           </div>
                         </div>
-                        <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[9px] font-mono">
+                        <span className="px-2 py-0.5 rounded bg-amber-50 text-amber-700 text-[9px] font-mono border border-amber-200">
                           {t.productPreview.activity.act4Tag}
                         </span>
                       </div>
@@ -374,22 +377,22 @@ export function ProductPreview({
             {/* Other interactive module views (Clients, Compliance, Documents, etc.) */}
             {activeTab !== "overview" && (
               <div className="space-y-4">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                  <h4 className="text-sm font-bold text-white capitalize">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                  <h4 className="text-sm font-bold text-[#07152B] capitalize">
                     {activeTab} Management Workspace
                   </h4>
                   <button
                     onClick={() => setActiveTab("overview")}
-                    className="text-[11px] text-[#00D1A3] hover:underline"
+                    className="text-[11px] text-[#008766] font-semibold hover:underline"
                   >
                     ← {t.productPreview.backToDashboard}
                   </button>
                 </div>
-                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 space-y-2">
-                  <p className="font-semibold text-white">
-                    {t.productPreview.liveModule}: <span className="capitalize text-[#00D1A3]">{activeTab}</span>
+                <div className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-xs text-xs text-slate-700 space-y-2">
+                  <p className="font-semibold text-[#07152B]">
+                    {t.productPreview.liveModule}: <span className="capitalize text-[#008766]">{activeTab}</span>
                   </p>
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[11px] text-slate-500">
                     {t.productPreview.tenantDesc}
                   </p>
                 </div>
@@ -401,4 +404,3 @@ export function ProductPreview({
     </div>
   );
 }
-

@@ -6,16 +6,19 @@ import { brandConfig } from "@/lib/config/brand";
 export type LogoVariant = "full" | "horizontal" | "symbol" | "compact" | "app-icon";
 export type LogoTheme = "light" | "dark" | "auto";
 export type LogoSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "custom";
+export type LogoMarkVariant = "master" | "original" | "vector";
 
 export interface LogoProps {
   variant?: LogoVariant;
   theme?: LogoTheme;
   size?: LogoSize;
+  markVariant?: LogoMarkVariant;
   framed?: boolean;
   className?: string;
   showMotto?: boolean;
   tagline?: string;
   descriptor?: string;
+  hideSubtextBelow?: "sm" | "md" | "lg" | "xl" | "none";
   linkHref?: string;
   onClick?: () => void;
 }
@@ -24,11 +27,13 @@ export const Logo: React.FC<LogoProps> = ({
   variant = "horizontal",
   theme = "light",
   size = "md",
+  markVariant = "master",
   framed = true,
   className,
   showMotto = true,
   tagline,
   descriptor,
+  hideSubtextBelow = "none",
   linkHref = "/",
   onClick,
 }) => {
@@ -83,8 +88,75 @@ export const Logo: React.FC<LogoProps> = ({
   const subtextColor =
     theme === "dark" ? "#94A3B8" : theme === "light" ? "#475569" : "currentColor";
 
-  // Architectural SVG TR Symbol: Deep Emerald R, Bright Cyan Swoop Arrow & Sharp TAX Document
-  const renderSymbol = (dimension: number) => {
+  const hideSubtextClass =
+    hideSubtextBelow === "xl"
+      ? "hidden xl:block"
+      : hideSubtextBelow === "lg"
+      ? "hidden lg:block"
+      : hideSubtextBelow === "md"
+      ? "hidden md:block"
+      : hideSubtextBelow === "sm"
+      ? "hidden sm:block"
+      : "block";
+
+  // Proposed Refined 2D Vector Mark (Clean geometric paths, zero micro-text, zero blur filters)
+  const renderVectorSymbol = (dimension: number) => {
+    return (
+      <svg
+        width={dimension}
+        height={dimension}
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="shrink-0 select-none"
+        aria-label="Taxoryn Symbol"
+      >
+        {/* LAYER 0: Squircle Background Container */}
+        {isFramed && (
+          <rect
+            width="100"
+            height="100"
+            rx="22"
+            fill="#07152B"
+            stroke="#0E274D"
+            strokeWidth="1.5"
+          />
+        )}
+
+        {/* LAYER 1: Dynamic Encircling Swoop Arc (Growth & Trajectory) */}
+        <path
+          d="M 18 36 C 10 54, 14 80, 40 86 C 56 89, 68 83, 76 74"
+          stroke="#00E5B3"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <polygon points="70,66 84,72 75,82" fill="#00FFC2" />
+
+        {/* LAYER 2: Bold Dynamic Mint Letter 'R' */}
+        <path
+          d="M 48 22 H 68 C 80 22, 88 29, 88 40 C 88 50, 80 56, 66 56 H 50 M 64 56 L 82 82"
+          stroke="#00D1A3"
+          strokeWidth="11"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+
+        {/* LAYER 3: Bold Geometric Slanted 'T' in Solid White */}
+        <path
+          d="M 14 16 L 62 16 L 56 28 L 42 28 L 32 64 L 18 64 L 28 28 L 14 28 Z"
+          fill="#FFFFFF"
+        />
+
+        {/* LAYER 4: Subtle Inner Verification Accent */}
+        <circle cx="56" cy="22" r="2.5" fill="#00FFC2" />
+      </svg>
+    );
+  };
+
+  // Architectural SVG TR Symbol: Deep Emerald R, Bright Cyan Swoop Arrow & Sharp TAX Document (Preserved for review)
+  const renderOriginalSymbol = (dimension: number) => {
     return (
       <svg
         width={dimension}
@@ -339,6 +411,13 @@ export const Logo: React.FC<LogoProps> = ({
     );
   };
 
+  // Active Symbol renderer: authoritative master application mark is default
+  const renderSymbol = (dimension: number) => {
+    return markVariant === "vector"
+      ? renderVectorSymbol(dimension)
+      : renderOriginalSymbol(dimension);
+  };
+
   // Symbol only variant
   if (variant === "symbol" || variant === "compact" || variant === "app-icon") {
     const symbolContent = (
@@ -419,6 +498,7 @@ export const Logo: React.FC<LogoProps> = ({
           <span
             className={cn(
               "font-semibold tracking-tight leading-none mt-1 whitespace-nowrap",
+              hideSubtextClass,
               size === "sm" || size === "xs"
                 ? "text-[10px]"
                 : "text-[11px] xl:text-xs",
@@ -441,6 +521,7 @@ export const Logo: React.FC<LogoProps> = ({
           <span
             className={cn(
               "font-semibold tracking-tight leading-none whitespace-nowrap mt-0.5",
+              hideSubtextClass,
               size === "sm" || size === "xs"
                 ? "text-[8px]"
                 : "text-[9px] xl:text-[9.5px]",

@@ -7,9 +7,9 @@ import { ProductExperienceShowcase } from "@/components/marketing/ProductExperie
 import { ModernPracticeSection } from "@/components/sections/ModernPracticeSection";
 import { AccessTaxorynSection } from "@/components/sections/AccessTaxorynSection";
 import { OriginStorySection } from "@/components/sections/OriginStorySection";
-import { DemoVideoSection } from "@/components/sections/DemoVideoSection";
 import { SecuritySection } from "@/components/sections/SecuritySection";
 import { CustomerStoriesSection } from "@/components/trust/CustomerStoriesSection";
+import { DemoVideoSection } from "@/components/sections/DemoVideoSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 
 export const metadata: Metadata = {
@@ -24,37 +24,31 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="flex flex-col w-full">
-      {/* SECTION 1: HERO */}
+      {/* ACT 1: HERO & PROMISE */}
       <HeroSection />
 
-      {/* SECTION 2: THE PROBLEM */}
+      {/* ACT 2: PRACTICE REALITY & FRICTION */}
       <ProblemSection />
 
-      {/* SECTION 3: THE TAXORYN APPROACH — FOUR SMART PROCESSES */}
+      {/* ACT 3: FOUR SMART PROCESSES (CONNECTED OPERATING MODEL) */}
       <SmartProcessesSection />
 
-      {/* SECTION 4: PRODUCT EXPERIENCE (AUTHENTIC APPLICATION SCREENS) */}
+      {/* ACT 4: PRODUCT EXPERIENCE (AUTHENTIC APPLICATION SCREENS) */}
       <ProductExperienceShowcase />
 
-      {/* SECTION 5: DESIGNED FOR MODERN TAX PRACTICES */}
+      {/* ACT 5: PRACTICE ARCHITECTURE & SEGMENTS */}
       <ModernPracticeSection />
 
-      {/* SECTION 6: ACCESS TAXORYN (WEB & ANDROID APPLICATION) */}
+      {/* ACT 6: DUAL ACCESS (WEB & ANDROID APPLICATION) */}
       <AccessTaxorynSection />
 
-      {/* VERIFIED ORIGIN STORY: BUILT FROM A REAL PRACTICE PROBLEM */}
+      {/* ACT 7: TRUST, SECURITY & ORIGIN */}
       <OriginStorySection />
-
-      {/* PRODUCT WALKTHROUGH & DEMO VIDEO */}
-      <DemoVideoSection />
-
-      {/* SECTION 7: TRUST AND SECURITY */}
       <SecuritySection />
-
-      {/* COLLABORATIVE DEVELOPMENT JOURNEY */}
       <CustomerStoriesSection />
 
-      {/* SECTION 8: FINAL CALL TO ACTION */}
+      {/* ACT 8: VIDEO TOUR & FINAL CONVERSION CTA */}
+      <DemoVideoSection />
       <FinalCTASection />
     </div>
   );
