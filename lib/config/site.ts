@@ -1,13 +1,80 @@
 import { SiteConfig, SocialPlatform, SocialLinksConfig } from "@/types";
 import { brandConfig } from "./brand";
 
+// Safe helper for environment variable resolution
+function getEnv(nextKey: string, viteKey: string, fallback: string = ""): string {
+  if (typeof process !== "undefined" && process.env) {
+    if (process.env[nextKey] !== undefined && process.env[nextKey] !== "") {
+      return process.env[nextKey]!;
+    }
+    if (process.env[viteKey] !== undefined && process.env[viteKey] !== "") {
+      return process.env[viteKey]!;
+    }
+  }
+  return fallback;
+}
+
+/**
+ * Validates whether an APK URL is secure (HTTPS), non-empty, and not a placeholder.
+ */
+export function isValidApkUrl(url?: string): boolean {
+  if (!url || typeof url !== "string") return false;
+  const trimmed = url.trim();
+  if (!trimmed || trimmed === "#") return false;
+  return trimmed.startsWith("https://");
+}
+
 export const APP_URL = (
-  process.env.NEXT_PUBLIC_APP_URL || "https://app.taxoryn.com"
+  getEnv("NEXT_PUBLIC_WEB_APP_URL", "VITE_WEB_APP_URL", process.env.NEXT_PUBLIC_APP_URL || "https://app.taxoryn.com")
 ).replace(/\/$/, "");
 
 export const APP_ROUTES = {
   login: `${APP_URL}/login`,
   register: `${APP_URL}/register`,
+} as const;
+
+export const ANDROID_DOWNLOAD_URL = getEnv(
+  "NEXT_PUBLIC_ANDROID_DOWNLOAD_URL",
+  "VITE_ANDROID_DOWNLOAD_URL",
+  ""
+);
+
+export const ANDROID_APP_VERSION = getEnv(
+  "NEXT_PUBLIC_ANDROID_APP_VERSION",
+  "VITE_ANDROID_APP_VERSION",
+  "1.0.0"
+);
+
+export const ANDROID_DOWNLOAD_ENABLED = (() => {
+  const val = getEnv("NEXT_PUBLIC_ANDROID_DOWNLOAD_ENABLED", "VITE_ANDROID_DOWNLOAD_ENABLED", "true");
+  return val !== "false";
+})();
+
+export const EARLY_ACCESS_ENABLED = (() => {
+  const val = getEnv("NEXT_PUBLIC_EARLY_ACCESS_ENABLED", "VITE_EARLY_ACCESS_ENABLED", "true");
+  return val !== "false";
+})();
+
+export const CONTACT_EMAIL = getEnv(
+  "NEXT_PUBLIC_CONTACT_EMAIL",
+  "VITE_CONTACT_EMAIL",
+  "support@taxoryn.com"
+);
+
+export const androidConfig = {
+  downloadUrl: ANDROID_DOWNLOAD_URL,
+  version: ANDROID_APP_VERSION,
+  enabled: ANDROID_DOWNLOAD_ENABLED,
+  isAvailable: Boolean(ANDROID_DOWNLOAD_ENABLED && isValidApkUrl(ANDROID_DOWNLOAD_URL)),
+  packageName: "com.taxoryn.mobile",
+  minAndroidVersion: "Android 7.0 (API 24) or higher (Android 8.0+ recommended)",
+  minSdk: 24,
+  targetSdk: 36,
+  fileSizeEstimate: "~77 MB",
+  fileSizeBytes: 80810614,
+  sha256: "161fccb490fdcdbe831780dd28f26f88feca9e458b22c65d6b1b90b0a4bafed5",
+  certSha256: "7a749702bf65181325dbe74a74ea45e338208b4a8a0326f571338925551dc54c",
+  downloadRoute: "/download",
 } as const;
 
 export const YOUTUBE_URL =
@@ -118,7 +185,7 @@ export const siteConfig: SiteConfig = {
     `${brandConfig.brandPromise} Built for Indian tax professionals, CA firms, tax consultants, and their clients.`,
   url: "https://taxoryn.com",
   appUrl: APP_URL,
-  supportEmail: "support@taxoryn.com",
+  supportEmail: CONTACT_EMAIL,
   socialLinks: socialLinksConfig,
   links: {
     joinEarlyAccess: "/early-access",
@@ -127,6 +194,9 @@ export const siteConfig: SiteConfig = {
     login: APP_ROUTES.login,
     register: APP_ROUTES.register,
     contactSales: "/book-demo",
+    platform: "/platform",
+    howItWorks: "/how-it-works",
+    download: "/download",
     marketplace: "/marketplace",
     security: "/security",
     privacy: "/privacy",
@@ -141,4 +211,3 @@ export const siteConfig: SiteConfig = {
     facebook: FACEBOOK_URL,
   },
 };
-

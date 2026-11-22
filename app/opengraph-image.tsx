@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { brandConfig } from "@/lib/config/brand";
 
+export const dynamic = "force-static";
 export const alt = `${brandConfig.brandName} - ${brandConfig.productDescriptor}`;
 export const size = {
   width: 1200,

@@ -12,15 +12,19 @@
     "clean": "node -e \"const fs=require('fs'); ['.next', 'node_modules', '.turbo', 'out'].forEach(d=>{try{fs.rmSync(d,{recursive:true,force:true})}catch(e){}});\""
   },
   "dependencies": {
+    "@types/qrcode": "^1.5.6",
     "clsx": "^2.1.1",
     "es-abstract": "^1.24.2",
     "lucide-react": "^0.474.0",
     "next": "^15.1.7",
+    "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {
+    "@emnapi/core": "^1.11.3",
+    "@emnapi/runtime": "^1.11.3",
     "@types/node": "^22.13.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

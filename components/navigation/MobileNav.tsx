@@ -3,12 +3,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
+import { Menu, X, ArrowRight, ShieldCheck, Smartphone } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/common/Button";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { siteConfig } from "@/lib/config/site";
+import { siteConfig, androidConfig } from "@/lib/config/site";
 import { cn } from "@/components/common/Container";
 
 export function MobileNav() {
@@ -20,10 +20,10 @@ export function MobileNav() {
   const { t } = useLanguage();
 
   const navItems = [
-    { label: t.nav.product, href: "/product" },
-    { label: t.nav.solutions, href: "/solutions" },
-    { label: t.nav.marketplace, href: siteConfig.links.marketplace },
-    { label: t.nav.learn, href: "/learn" },
+    { label: t.nav.platform || "Platform", href: "/platform" },
+    { label: t.nav.howItWorks || "How It Works", href: "/how-it-works" },
+    { label: t.nav.about || "About", href: "/about" },
+    { label: "Android App", href: "/download", badge: "APK" },
     { label: t.nav.pricing, href: "/pricing" },
     { label: t.nav.security, href: siteConfig.links.security },
   ];
@@ -54,13 +54,11 @@ export function MobileNav() {
         if (!firstElement || !lastElement) return;
 
         if (e.shiftKey) {
-          // Backward tab
           if (document.activeElement === firstElement) {
             e.preventDefault();
             lastElement.focus();
           }
         } else {
-          // Forward tab
           if (document.activeElement === lastElement) {
             e.preventDefault();
             firstElement.focus();
@@ -72,7 +70,6 @@ export function MobileNav() {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
-      // Move focus into the drawer
       setTimeout(() => {
         closeBtnRef.current?.focus();
       }, 50);
@@ -92,28 +89,29 @@ export function MobileNav() {
   };
 
   return (
-    <div className="xl:hidden">
+    <div className="lg:hidden">
       <button
         ref={triggerRef}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? t.nav.close : t.nav.menu}
         aria-expanded={isOpen}
-        className="min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 text-[#0F172A] hover:text-[#082E5B] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3] rounded-lg transition-colors"
+        className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00D1A3]"
       >
+        <span className="sr-only">{isOpen ? t.nav.close : t.nav.menu}</span>
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
-      {/* Backdrop overlay */}
+      {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-[#07152B]/60 backdrop-blur-sm transition-opacity"
+          className="fixed inset-0 z-40 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-300"
           onClick={handleClose}
           aria-hidden="true"
         />
       )}
 
-      {/* Focus-trapped Drawer */}
+      {/* Slide-out Drawer */}
       <div
         ref={drawerRef}
         className={cn(
@@ -173,7 +171,14 @@ export function MobileNav() {
                         : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
                     )}
                   >
-                    <span>{item.label}</span>
+                    <span className="flex items-center gap-2">
+                      {item.label}
+                      {item.badge && (
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#00D1A3]/15 text-[#008766]">
+                          {item.badge}
+                        </span>
+                      )}
+                    </span>
                     <ArrowRight className="w-4 h-4 text-slate-400" />
                   </Link>
                 );
@@ -185,7 +190,7 @@ export function MobileNav() {
         <div className="p-6 border-t border-slate-100 bg-slate-50/50 space-y-3">
           <div className="flex items-center gap-2 text-xs text-slate-500 mb-2 px-1">
             <ShieldCheck className="w-4 h-4 text-[#00D1A3]" />
-            <span>{t.brand.productDescriptor}</span>
+            <span>Tax Practice Management Platform</span>
           </div>
 
           <Button
@@ -195,16 +200,6 @@ export function MobileNav() {
             className="w-full justify-center shadow-md font-bold"
           >
             {t.nav.getStarted}
-          </Button>
-
-          <Button
-            href="/#demo-video"
-            onClick={handleClose}
-            variant="outline"
-            size="md"
-            className="w-full justify-center font-semibold"
-          >
-            {t.nav.watchDemo}
           </Button>
 
           <Button

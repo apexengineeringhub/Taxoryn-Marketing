@@ -188,7 +188,7 @@ function EarlyAccessContent() {
   };
 
   return (
-    <div className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC]">
+    <div className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC]">
       <Container>
         <SectionHeading
           badge="Practice Onboarding"
@@ -197,21 +197,21 @@ function EarlyAccessContent() {
           description="Connect your practice workflows — clients, compliance, documents and growth in one structured workspace."
         />
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-8 sm:mb-12">
-          {/* Left Context & Trust Column */}
-          <div className="lg:col-span-5 space-y-5">
-            <Card variant="default" padding="lg" className="bg-white border-slate-200/90 shadow-sm space-y-4">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-7 mb-6 sm:mb-8">
+          {/* Left Context & Trust Column (order-2 on mobile for immediate form visibility, order-1 on lg) */}
+          <div className="order-2 lg:order-1 lg:col-span-5 space-y-4 sm:space-y-5">
+            <Card variant="default" padding="lg" className="bg-white border-slate-200/90 shadow-sm space-y-3.5 sm:space-y-4 p-5 sm:p-6 lg:p-7">
               <span className="text-xs font-mono font-bold tracking-widest text-[#009E77] bg-emerald-50 px-2.5 py-0.5 rounded uppercase border border-emerald-100 inline-block">
                 PRACTICE PROGRAM
               </span>
-              <h3 className="text-xl font-bold text-[#07152B]">
+              <h3 className="text-lg sm:text-xl font-bold text-[#07152B]">
                 What Practice Onboarding Includes
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
                 We are actively working with Indian Chartered Accountants, Tax Consultants, and boutique firms to refine practice workflows.
               </p>
 
-              <ul className="space-y-3 pt-2 text-xs text-slate-700">
+              <ul className="space-y-2.5 sm:space-y-3 pt-1 sm:pt-2 text-xs text-slate-700">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0 mt-0.5" />
                   <span>Access to evaluate client directory, task boards & compliance calendar</span>
@@ -231,9 +231,9 @@ function EarlyAccessContent() {
               </ul>
             </Card>
 
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-              <div className="flex items-center gap-2 text-sm font-bold text-[#07152B]">
-                <ShieldCheck className="w-5 h-5 text-[#00D1A3]" />
+            <div className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2.5 sm:space-y-3">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#07152B]">
+                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-[#00D1A3] shrink-0" />
                 <span>Confidentiality & Privacy Commitment</span>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed">
@@ -250,8 +250,8 @@ function EarlyAccessContent() {
             </div>
           </div>
 
-          {/* Right Form Column */}
-          <div className="lg:col-span-7">
+          {/* Right Form Column (order-1 on mobile for primary focus, order-2 on lg) */}
+          <div className="order-1 lg:order-2 lg:col-span-7">
             <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
               {isSuccess ? (
                 <div

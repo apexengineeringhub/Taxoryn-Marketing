@@ -56,29 +56,29 @@ export function AboutClientContent() {
           />
 
           {/* Why We Built Taxoryn */}
-          <div className="max-w-4xl mx-auto space-y-8 mb-10 sm:mb-14 text-slate-700 leading-relaxed">
+          <div className="max-w-4xl mx-auto space-y-6 sm:space-y-7 mb-8 sm:mb-10 text-slate-700 leading-relaxed">
             <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-4">
               <Badge variant="teal" size="sm">
                 {page.storyBadge}
               </Badge>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-[#07152B] tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#07152B] tracking-tight">
                 {page.storyTitle}
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 {page.storyP1}
               </p>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 {page.storyP2}
               </p>
-              <div className="p-4 rounded-xl bg-slate-50 border-l-4 border-[#00D1A3] my-3">
-                <p className="text-sm sm:text-base font-bold text-[#082E5B] italic">
+              <div className="p-4 sm:p-5 rounded-xl bg-slate-50 border-l-4 border-[#00D1A3] my-4 space-y-1">
+                <p className="text-base sm:text-lg font-bold text-[#082E5B] italic leading-snug">
                   &ldquo;{page.storyQuote}&rdquo;
                 </p>
-                <p className="text-xs text-[#00D1A3] font-semibold mt-1">
+                <p className="text-xs sm:text-sm text-[#008766] font-semibold">
                   {page.storyQuoteSub}
                 </p>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold text-[#082E5B]">
+              <p className="text-sm sm:text-base font-semibold text-[#082E5B] leading-relaxed">
                 {page.storyClosing}
               </p>
             </div>
@@ -89,7 +89,7 @@ export function AboutClientContent() {
                 <Badge variant="teal" size="sm">
                   {page.principlesBadge}
                 </Badge>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#07152B]">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#07152B]">
                   {page.principlesTitle}
                 </h2>
               </div>
@@ -107,8 +107,8 @@ export function AboutClientContent() {
                       <div className="w-8 h-8 rounded-lg bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B]">
                         <Icon className="w-4 h-4" />
                       </div>
-                      <h3 className="text-sm sm:text-base font-bold text-[#07152B]">{v.title}</h3>
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      <h3 className="text-base font-bold text-[#07152B]">{v.title}</h3>
+                      <p className="text-sm text-slate-600 leading-relaxed">
                         {v.description}
                       </p>
                     </Card>
@@ -123,10 +123,10 @@ export function AboutClientContent() {
                 <Badge variant="navy" size="md">
                   {page.boundariesBadge}
                 </Badge>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#07152B]">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#07152B]">
                   {page.boundariesTitle}
                 </h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
                   {page.boundariesDesc}
                 </p>
               </div>
@@ -138,7 +138,7 @@ export function AboutClientContent() {
                     className={`p-5 rounded-xl ${b.bgColor} border ${b.borderColor} space-y-3`}
                   >
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-[#07152B] text-sm sm:text-base">
+                      <h3 className="font-bold text-[#07152B] text-base">
                         {b.type}
                       </h3>
                       <Badge variant={b.badgeColor} size="sm">
@@ -149,9 +149,9 @@ export function AboutClientContent() {
                       {b.items.map((item, i) => (
                         <li
                           key={i}
-                          className="text-xs text-slate-700 flex items-start gap-2"
+                          className="text-sm text-slate-700 flex items-start gap-2.5 leading-relaxed"
                         >
-                          <span className="text-[#00D1A3] font-bold mt-0.5">•</span>
+                          <span className="text-[#008766] font-bold mt-0.5 select-none" aria-hidden="true">•</span>
                           <span>{item}</span>
                         </li>
                       ))}

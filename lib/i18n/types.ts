@@ -23,6 +23,10 @@ export interface TranslationSchema {
     learn: string;
     pricing: string;
     security: string;
+    platform?: string;
+    howItWorks?: string;
+    about?: string;
+    download?: string;
     watchDemo: string;
     login: string;
     getStarted: string;

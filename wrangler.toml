@@ -1,0 +1,9 @@
+name = "taxoryn-marketing"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "out"
+
+# Preview & Staging Cloudflare D1 Database Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "taxoryn-leads-db"
+database_id = "preview-taxoryn-leads-db"

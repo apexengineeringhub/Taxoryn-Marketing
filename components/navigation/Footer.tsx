@@ -7,18 +7,24 @@ import { Logo } from "./Logo";
 import { SocialLinks } from "./SocialLinks";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { siteConfig } from "@/lib/config/site";
+import { Mail, Globe, Smartphone } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const { t } = useLanguage();
 
   const productLinks = [
-    { label: t.footer.productLinks.product, href: "/product" },
+    { label: "Platform Overview", href: "/platform" },
+    { label: "Web Application", href: siteConfig.appUrl },
+    { label: "Android Mobile App", href: "/download" },
+    { label: "How It Works", href: "/how-it-works" },
     { label: t.footer.productLinks.features, href: "/features" },
     { label: t.footer.productLinks.pricing, href: "/pricing" },
   ];
 
   const connectLinks = [
+    { label: "Early Access", href: siteConfig.links.joinEarlyAccess },
+    { label: "Download App", href: "/download" },
     { label: t.footer.connectLinks.marketplace, href: siteConfig.links.marketplace },
     { label: t.footer.connectLinks.learn, href: "/learn" },
     { label: t.footer.connectLinks.contact, href: siteConfig.links.contact },
@@ -37,12 +43,12 @@ export function Footer() {
       {/* Subtle 1px Top Gradient Transition Accent */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#00D1A3]/30 to-transparent pointer-events-none" />
 
-      <Container className="pt-10 pb-6 sm:pt-11 sm:pb-7 lg:pt-12 lg:pb-8">
-        {/* Main Content Grid: Target ~220-280px Content-Driven Height on Desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 pb-7 sm:pb-8 border-b border-slate-200/90">
-          {/* Column 1: Brand & Socials (~35-40% on Desktop) */}
-          <div className="sm:col-span-2 md:col-span-4 lg:col-span-5 space-y-3.5">
-            <div className="space-y-2">
+      <Container className="pt-10 pb-6 sm:pt-12 sm:pb-8 lg:pt-14 lg:pb-9">
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 pb-8 sm:pb-9 border-b border-slate-200/90">
+          {/* Column 1: Brand & Attribution */}
+          <div className="sm:col-span-2 md:col-span-4 lg:col-span-5 space-y-4">
+            <div className="space-y-2.5">
               <Logo
                 variant="horizontal"
                 theme="light"
@@ -52,12 +58,44 @@ export function Footer() {
                 linkHref="/"
               />
               <p className="text-xs sm:text-sm text-slate-500 max-w-sm leading-relaxed">
-                {t.footer.brandPromise}
+                One connected workspace to organize client relationships, work, documents and practice operations for Indian tax professionals.
               </p>
+              <div className="text-xs text-slate-500 font-medium pt-1 flex items-center gap-1.5">
+                <span>A product of</span>
+                <span className="font-semibold text-slate-700">ORYN Technology</span>
+              </div>
+            </div>
+
+            {/* Direct Contact info */}
+            <div className="pt-1 text-xs text-slate-500 space-y-1.5">
+              <a
+                href={`mailto:${siteConfig.supportEmail}`}
+                className="inline-flex items-center gap-1.5 hover:text-[#009E77] transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5 text-slate-400" />
+                <span>{siteConfig.supportEmail}</span>
+              </a>
+              <div className="flex items-center gap-3 pt-1 text-slate-400">
+                <a
+                  href={siteConfig.appUrl}
+                  className="hover:text-slate-700 transition-colors inline-flex items-center gap-1 text-[11px]"
+                >
+                  <Globe className="w-3 h-3" />
+                  <span>app.taxoryn.com</span>
+                </a>
+                <span>•</span>
+                <Link
+                  href="/download"
+                  className="hover:text-slate-700 transition-colors inline-flex items-center gap-1 text-[11px]"
+                >
+                  <Smartphone className="w-3 h-3" />
+                  <span>Android App (v1.0.0)</span>
+                </Link>
+              </div>
             </div>
 
             {/* Follow Taxoryn Social Links */}
-            <div className="pt-1.5 space-y-2">
+            <div className="pt-2 space-y-2">
               <h3 className="text-[11px] sm:text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
                 {t.footer.followTaxoryn}
               </h3>
@@ -65,7 +103,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Product (~16-18%) */}
+          {/* Column 2: Product */}
           <div className="sm:col-span-1 md:col-span-1 lg:col-span-2 space-y-3">
             <h3 className="text-xs font-mono font-bold text-[#07152B] uppercase tracking-wider">
               {t.footer.productHeading}
@@ -84,7 +122,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Connect (~20-22%) */}
+          {/* Column 3: Connect */}
           <div className="sm:col-span-1 md:col-span-1 lg:col-span-3 space-y-3">
             <h3 className="text-xs font-mono font-bold text-[#07152B] uppercase tracking-wider">
               {t.footer.connectHeading}
@@ -103,7 +141,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Company (~16-18%) */}
+          {/* Column 4: Company */}
           <div className="sm:col-span-1 md:col-span-2 lg:col-span-2 space-y-3">
             <h3 className="text-xs font-mono font-bold text-[#07152B] uppercase tracking-wider">
               {t.footer.companyHeading}
@@ -123,9 +161,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Legal Bar: ~56-64px Height, Single Row on Desktop, Clean Separators */}
+        {/* Bottom Legal Bar */}
         <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-[13px] text-slate-500">
-          <p>© {currentYear} {t.footer.copyright}</p>
+          <p>© {currentYear} Taxoryn. A product of ORYN Technology. All rights reserved.</p>
           <div className="flex items-center gap-4 sm:gap-5 font-medium">
             <Link
               href={siteConfig.links.privacy}

@@ -33,24 +33,24 @@ export function WorkflowDiagram() {
           return (
             <div
               key={`workflow-step-${step.stepNumber}-${index}`}
-              className="relative p-6 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm hover:border-[#00D1A3] hover:shadow-md transition-all duration-200 group flex flex-col justify-between"
+              className="relative p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#00D1A3] hover:shadow-sm transition-all duration-200 group flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B] group-hover:bg-[#00D1A3]/15 group-hover:text-[#009E77] group-hover:border-[#00D1A3]/30 transition-colors">
+                <div className="flex items-center justify-between mb-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B] group-hover:bg-[#00D1A3]/15 group-hover:text-[#008766] group-hover:border-[#00D1A3]/30 transition-colors">
                     <Icon className="w-5 h-5" />
                   </div>
 
-                  <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-[#00D1A3]">
+                  <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-[#008766]">
                     STEP {step.stepNumber}
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-[#07152B] mb-2">
+                <h3 className="text-base font-bold text-[#07152B] mb-1.5">
                   {step.title}
                 </h3>
 
-                <p className="text-sm text-[#475569] leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {step.description}
                 </p>
               </div>

@@ -2,11 +2,16 @@ import { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config/site";
 import { RESOURCE_ARTICLES } from "@/lib/content/resources";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
 
   const staticRoutes = [
     "",
+    "/platform",
+    "/download",
+    "/how-it-works",
     "/product",
     "/features",
     "/solutions",
@@ -31,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
     changeFrequency: route === "" ? "daily" : "weekly",
-    priority: route === "" ? 1.0 : route.startsWith("/solutions") ? 0.8 : 0.7,
+    priority: route === "" ? 1.0 : route === "/platform" || route === "/download" ? 0.9 : route.startsWith("/solutions") ? 0.8 : 0.7,
   }));
 
   // Dynamic public content articles

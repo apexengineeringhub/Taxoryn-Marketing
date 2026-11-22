@@ -18,7 +18,7 @@ export function OriginStorySection() {
       <Container>
         <div className="max-w-4xl mx-auto">
           {/* Story Card Container */}
-          <div className="p-6 sm:p-9 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 shadow-sm space-y-6 relative">
+          <div className="p-5 sm:p-7 lg:p-8 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 shadow-sm space-y-5 relative">
             <div className="space-y-2.5 text-center">
               <div className="inline-flex items-center">
                 <Badge variant="teal" size="md">

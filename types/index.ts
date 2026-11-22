@@ -44,6 +44,9 @@ export interface SiteConfig {
     privacy: string;
     terms: string;
     contact: string;
+    platform?: string;
+    howItWorks?: string;
+    download?: string;
     learn?: string;
     videos?: string;
     ourStory?: string;

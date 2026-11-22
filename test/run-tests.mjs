@@ -333,7 +333,8 @@ describe("Taxoryn Header Layout & Spacing Test Suite", () => {
   test("TEST 18: Header navigation items and actions are distinct flex items with separation", async () => {
     const fs = await import("node:fs");
     const headerContent = fs.readFileSync("components/navigation/Header.tsx", "utf-8");
-    assert.ok(headerContent.includes('href="/#demo-video"'), "Watch Demo CTA link exists");
+    // Per CDO Phase 2A: Header is uncluttered by removing standalone Watch Demo (preserved in Hero)
+    assert.ok(!headerContent.includes('href="/#demo-video"'), "Watch Demo CTA link removed from header to prevent crowding");
     assert.ok(headerContent.includes("siteConfig.links.login"), "Login link exists");
     assert.ok(headerContent.includes("siteConfig.links.joinEarlyAccess"), "Get Started CTA exists");
   });
@@ -649,8 +650,8 @@ describe("Taxoryn Configurable Social Media Links Test Suite", () => {
     const headerContent = fs.readFileSync("components/navigation/Header.tsx", "utf-8");
     const heroContent = fs.readFileSync("components/sections/HeroSection.tsx", "utf-8");
 
-    // Header has Watch Demo (secondary/ghost) and Get Started (primary)
-    assert.ok(headerContent.includes("t.nav.watchDemo"), "Header has Watch Demo secondary action");
+    // Header has Login (secondary/ghost) and Get Started (primary)
+    assert.ok(headerContent.includes("t.nav.login"), "Header has Login secondary action");
     assert.ok(headerContent.includes("t.nav.getStarted"), "Header has Get Started primary action");
 
     // Hero has Get Started (primary) and Watch Demo (secondary)
@@ -683,16 +684,18 @@ describe("Taxoryn Early Access API & Web Form Architecture Test Suite", () => {
 
   test("TEST 44: Early Access API route handler exists and exports POST handler", async () => {
     const fs = await import("node:fs");
-    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+    const routePath = fs.existsSync("app/api/early-access/route.ts") ? "app/api/early-access/route.ts" : "functions/api/early-access.ts";
+    const routeContent = fs.readFileSync(routePath, "utf-8");
 
-    assert.ok(routeContent.includes("export async function POST"), "Exports POST handler");
+    assert.ok(routeContent.includes("export async function POST") || routeContent.includes("export async function onRequestPost"), "Exports POST or onRequestPost handler");
     assert.ok(routeContent.includes("sanitizeInput"), "Implements input sanitization");
     assert.ok(routeContent.includes("emailRegex"), "Validates email format via regex");
   });
 
   test("TEST 45: Early Access API validates required fields and handles bad data safely", async () => {
     const fs = await import("node:fs");
-    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+    const routePath = fs.existsSync("app/api/early-access/route.ts") ? "app/api/early-access/route.ts" : "functions/api/early-access.ts";
+    const routeContent = fs.readFileSync(routePath, "utf-8");
 
     // Validates route structure and error handling
     assert.ok(routeContent.includes("!fullName"), "Validates required fullName");
@@ -770,9 +773,10 @@ describe("Taxoryn Early Access API & Web Form Architecture Test Suite", () => {
 
   test("TEST 52: Early Access API checks for RESEND_API_KEY and fails safe if email service is not configured", async () => {
     const fs = await import("node:fs");
-    const routeContent = fs.readFileSync("app/api/early-access/route.ts", "utf-8");
+    const routePath = fs.existsSync("app/api/early-access/route.ts") ? "app/api/early-access/route.ts" : "functions/api/early-access.ts";
+    const routeContent = fs.readFileSync(routePath, "utf-8");
 
-    assert.ok(routeContent.includes("process.env.RESEND_API_KEY"), "Reads RESEND_API_KEY from environment");
+    assert.ok(routeContent.includes("RESEND_API_KEY"), "Reads RESEND_API_KEY from environment");
     assert.ok(routeContent.includes("https://api.resend.com/emails"), "Calls Resend API endpoint when configured");
   });
 });
@@ -855,6 +859,62 @@ describe("Taxoryn Lighter Premium SaaS Design System & Accessibility Suite", () 
         `${pagePath} has standard padding and light background`
       );
     }
+  });
+
+  test("TEST 60: Button secondary-dark variant and How It Works bottom CTA Sign In button readability", async () => {
+    const fs = await import("node:fs");
+    const buttonContent = fs.readFileSync("components/common/Button.tsx", "utf-8");
+    assert.ok(buttonContent.includes('"secondary-dark"'), "Button supports secondary-dark variant");
+    assert.ok(buttonContent.includes("bg-slate-800/80"), "secondary-dark sets dark slate background");
+
+    const hiwContent = fs.readFileSync("app/how-it-works/page.tsx", "utf-8");
+    assert.ok(hiwContent.includes("siteConfig.links.login"), "How It Works links to login");
+    assert.ok(hiwContent.includes("Sign In to Web App"), "How It Works has Sign In to Web App CTA");
+    assert.ok(hiwContent.includes('variant="secondary-dark"'), "How It Works uses secondary-dark variant");
+    assert.ok(hiwContent.includes("text-white"), "How It Works sets explicit white text");
+    assert.ok(hiwContent.includes("bg-slate-800/80"), "How It Works sets explicit dark slate background");
+    assert.ok(hiwContent.includes("opacity-100"), "How It Works sets explicit opacity-100");
+
+    if (fs.existsSync("out/how-it-works.html")) {
+      const html = fs.readFileSync("out/how-it-works.html", "utf-8");
+      const match = html.match(/<a[^>]*>\s*<span[^>]*>Sign In to Web App<\/span><\/a>/);
+      assert.ok(match, "Sign In to Web App anchor exists in static export");
+      assert.ok(match[0].includes("text-white"), "Anchor has text-white");
+      assert.ok(match[0].includes("bg-slate-800"), "Anchor has dark slate background");
+      assert.ok(!match[0].includes("bg-white"), "Anchor does not have conflicting bg-white");
+    }
+  });
+
+  test("TEST 61: Header and MobileNav responsive handoff breakpoint integrity", async () => {
+    const fs = await import("node:fs");
+    const headerContent = fs.readFileSync("components/navigation/Header.tsx", "utf-8");
+    const mobileNavContent = fs.readFileSync("components/navigation/MobileNav.tsx", "utf-8");
+
+    // Desktop elements activate at lg
+    assert.ok(headerContent.includes("hidden lg:flex"), "Header desktop nav activates at lg breakpoint");
+    // Mobile trigger stays visible up to lg
+    assert.ok(mobileNavContent.includes('className="lg:hidden"'), "MobileNav trigger uses lg:hidden to cover tablets up to 1023px");
+    assert.ok(!mobileNavContent.includes('className="md:hidden"'), "Eliminated md:hidden blackout gap on tablets");
+  });
+
+  test("TEST 62: Header logo refinement and subtext responsive decluttering", async () => {
+    const fs = await import("node:fs");
+    const headerContent = fs.readFileSync("components/navigation/Header.tsx", "utf-8");
+    const logoContent = fs.readFileSync("components/navigation/Logo.tsx", "utf-8");
+    const footerContent = fs.readFileSync("components/navigation/Footer.tsx", "utf-8");
+
+    // Header passes hideSubtextBelow='xl' to eliminate crowding below 1280px
+    assert.ok(headerContent.includes('hideSubtextBelow="xl"'), "Header logo lockup hides subtext below xl (1280px)");
+    
+    // Logo component supports both master and vector mark variants
+    assert.ok(logoContent.includes("renderVectorSymbol"), "Logo component implements 2D vector symbol option");
+    assert.ok(logoContent.includes("renderOriginalSymbol"), "Logo component implements master application symbol");
+    assert.ok(logoContent.includes('markVariant = "master"'), "Logo component defaults to authoritative master application mark per brand governance");
+    
+    // Footer retains full tagline and descriptor without hiding
+    assert.ok(footerContent.includes("tagline={t.brand.tagline}"), "Footer retains tagline");
+    assert.ok(footerContent.includes("descriptor={t.brand.productDescriptor}"), "Footer retains descriptor");
+    assert.ok(!footerContent.includes('hideSubtextBelow="xl"'), "Footer displays full brand information at all viewports");
   });
 });
 

@@ -1,41 +1,83 @@
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-.yarn/install-state.gz
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug logs
+# Dependencies and package managers
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnp
+.pnp.js
+.yarn/install-state.gz
 
-# local env files
-.env*.local
-.env
+# Testing and coverage output
+coverage/
 
-# vercel
-.vercel
+# Next.js and application build outputs
+.next/
+out/
+build/
+dist/
+.cache/
+.turbo/
+.vercel/
+.wrangler/
 
-# typescript
+# TypeScript compiler artifacts
 *.tsbuildinfo
 next-env.d.ts
 
-# IDEs and editors
+# Environment variables and secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Preserve safe environment templates (never ignore)
+!.env.example
+!.env.*.example
+!.env*.example
+
+# Application and server runtime logs
+*.log
+
+# Temporary test runners, scratch files, and browser user data
+.tmp/
+.tmp-*/
+*.tmp
+.temp/
+
+# Disposable scratch scripts (preserving permanent test suites)
+*.scratch.*
+scratch/
+
+# Intermediate and debug screenshots (preserving permanent evidence in docs/screenshots/)
+docs/screenshots/tmp/
+docs/screenshots/.tmp/
+docs/screenshots/*-debug.png
+docs/screenshots/*-scratch.png
+*.screenshot.tmp
+
+# Operating system metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+
+# IDEs and code editor configurations
 .idea/
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+!.vscode/*.example.json
+!.vscode/*.template.json
 *.swp
 *.swo
+*~
+*.sublime-project
+*.sublime-workspace
