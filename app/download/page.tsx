@@ -76,9 +76,9 @@ export default function DownloadPage() {
   return (
     <div className="flex flex-col w-full bg-white">
       {/* Header Banner */}
-      <section className="pt-10 pb-12 sm:pt-14 sm:pb-16 bg-[#F8FAFC] border-b border-slate-200/80">
+      <section className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-[#F8FAFC] border-b border-slate-200/80">
         <Container>
-          <div className="max-w-3xl mx-auto text-center space-y-3.5">
+          <div className="max-w-3xl mx-auto text-center space-y-3">
             <div className="inline-flex items-center">
               <Badge variant="teal" size="md">
                 OFFICIAL APPLICATION ACCESS
@@ -95,11 +95,11 @@ export default function DownloadPage() {
       </section>
 
       {/* Main Download Options Grid */}
-      <section className="py-12 sm:py-16 bg-white border-b border-slate-200/80">
+      <section className="py-10 sm:py-12 bg-white border-b border-slate-200/80">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
             {/* 1. Android App Download Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#07152B] text-white border border-slate-800 flex flex-col justify-between space-y-6 shadow-xl relative overflow-hidden">
+            <div className="p-5 sm:p-7 rounded-2xl bg-[#07152B] text-white border border-slate-800 flex flex-col justify-between space-y-5 shadow-xl relative overflow-hidden">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-[#00D1A3] flex items-center justify-center font-bold">
@@ -129,7 +129,7 @@ export default function DownloadPage() {
                   </div>
                   <div className="flex justify-between border-b border-slate-800 pb-1 text-[11px] text-slate-400">
                     <span>File Size:</span>
-                    <span className="font-semibold text-slate-200">{androidConfig.fileSizeEstimate} (80.8 MB)</span>
+                    <span className="font-semibold text-slate-200">~77 MB download (80.8 MB installed)</span>
                   </div>
                   <div className="flex justify-between border-b border-slate-800 pb-1 text-[11px] text-slate-400">
                     <span>Distribution:</span>
@@ -197,7 +197,7 @@ export default function DownloadPage() {
             </div>
 
             {/* 2. Web Application Card */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between space-y-6 shadow-xs">
+            <div className="p-5 sm:p-7 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between space-y-5 shadow-xs">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-xl bg-[#082E5B] text-[#00D1A3] flex items-center justify-center font-bold shadow-xs">
@@ -220,7 +220,7 @@ export default function DownloadPage() {
                 </p>
 
                 {/* Web Specs */}
-                <div className="p-3.5 rounded-xl bg-white border border-slate-200 space-y-1.5 text-xs text-slate-600">
+                <div className="p-3 rounded-xl bg-white border border-slate-200 space-y-1.5 text-xs text-slate-600">
                   <div className="flex justify-between border-b border-slate-100 pb-1 text-[11px] text-slate-500">
                     <span>Browser Compatibility:</span>
                     <span className="font-semibold text-slate-800">Chrome, Edge, Safari, Firefox</span>
@@ -235,7 +235,7 @@ export default function DownloadPage() {
                   </div>
                 </div>
 
-                <div className="space-y-2 text-xs text-slate-700">
+                <div className="space-y-1.5 text-xs text-slate-700">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#009E77] shrink-0" />
                     <span>Complete Client 360 & Statutory Compliance Hub</span>
@@ -252,7 +252,7 @@ export default function DownloadPage() {
               </div>
 
               {/* Action Button */}
-              <div className="pt-2 border-t border-slate-200 space-y-3">
+              <div className="pt-2 border-t border-slate-200 space-y-2.5">
                 <Button
                   href={siteConfig.links.login}
                   variant="primary"
@@ -277,10 +277,10 @@ export default function DownloadPage() {
       </section>
 
       {/* Step-by-Step Android Installation Guidance */}
-      <section className="py-12 sm:py-16 bg-[#F8FAFC] border-b border-slate-200/80">
+      <section className="py-10 sm:py-12 bg-[#F8FAFC] border-b border-slate-200/80">
         <Container>
-          <div className="max-w-3xl mx-auto space-y-8">
-            <div className="text-center space-y-2">
+          <div className="max-w-3xl mx-auto space-y-6 sm:space-y-7">
+            <div className="text-center space-y-1.5">
               <h2 className="text-2xl sm:text-3xl font-bold text-[#07152B]">
                 How to Install the Android APK
               </h2>
@@ -289,14 +289,14 @@ export default function DownloadPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
               {steps.map((item) => (
                 <div
                   key={item.step}
-                  className="p-5 rounded-xl bg-white border border-slate-200 space-y-2.5 shadow-2xs"
+                  className="p-4 sm:p-5 rounded-xl bg-white border border-slate-200 space-y-2 shadow-2xs"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="w-7 h-7 rounded-lg bg-[#082E5B] text-[#00D1A3] font-bold text-xs flex items-center justify-center">
+                    <span className="w-6 h-6 rounded-lg bg-[#082E5B] text-[#00D1A3] font-bold text-xs flex items-center justify-center">
                       {item.step}
                     </span>
                     <span className="text-[10px] font-mono font-bold text-slate-400 uppercase">
@@ -310,7 +310,7 @@ export default function DownloadPage() {
             </div>
 
             {/* Note on Direct Distribution */}
-            <div className="p-4 rounded-xl bg-slate-100 border border-slate-200/90 text-xs text-slate-600 space-y-1.5">
+            <div className="p-3.5 sm:p-4 rounded-xl bg-slate-100 border border-slate-200/90 text-xs text-slate-600 space-y-1">
               <div className="flex items-center gap-2 font-bold text-slate-800">
                 <Info className="w-4 h-4 text-[#082E5B] shrink-0" />
                 <span>Notice Regarding Direct APK Releases</span>
@@ -324,7 +324,7 @@ export default function DownloadPage() {
       </section>
 
       {/* Need Help Section */}
-      <section className="py-10 bg-white">
+      <section className="py-8 sm:py-9 bg-white">
         <Container>
           <div className="max-w-xl mx-auto text-center space-y-3">
             <h3 className="text-lg font-bold text-[#07152B]">Need Help with Installation?</h3>

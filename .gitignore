@@ -20,6 +20,7 @@ dist/
 .cache/
 .turbo/
 .vercel/
+.wrangler/
 
 # TypeScript compiler artifacts
 *.tsbuildinfo

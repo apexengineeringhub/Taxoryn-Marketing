@@ -70,9 +70,9 @@ export function ModernPracticeSection() {
   ];
 
   return (
-    <section className="py-14 sm:py-16 lg:py-20 bg-white border-b border-slate-200/80" id="solutions">
+    <section className="py-10 sm:py-12 lg:py-14 bg-white border-b border-slate-200/80" id="solutions">
       <Container>
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-10 sm:mb-12">
+        <div className="max-w-3xl mx-auto text-center space-y-2 sm:space-y-2.5 mb-6 sm:mb-8">
           <Badge variant="navy" size="md">
             PRACTICE ARCHITECTURE
           </Badge>
@@ -84,13 +84,13 @@ export function ModernPracticeSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6">
           {segments.map((seg) => {
             const Icon = seg.icon;
             return (
               <div
                 key={seg.id}
-                className="p-6 sm:p-7 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-slate-300 transition-all duration-200 flex flex-col justify-between space-y-5"
+                className="p-5 sm:p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-slate-300 transition-all duration-200 flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

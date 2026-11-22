@@ -35,7 +35,7 @@ export function DemoVideoSection() {
           />
 
           {/* Supporting Callout & Actions */}
-          <div className="mt-8 p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="mt-6 p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6">
             <div className="space-y-1 text-center sm:text-left">
               <h3 className="text-base sm:text-lg font-bold text-[#07152B]">
                 {t.demoVideo.walkthroughTitle}

@@ -62,13 +62,13 @@ export function SecuritySection() {
           description={t.securitySection.subtitle}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-6 sm:mb-7">
           {securityPillars.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
                 key={idx}
-                className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-[#00D1A3] transition-all duration-200 shadow-sm space-y-2.5"
+                className="p-4 sm:p-5 lg:p-6 rounded-2xl bg-white border border-slate-200/90 hover:border-[#00D1A3] transition-all duration-200 shadow-sm space-y-2"
               >
                 <div className="w-9 h-9 rounded-xl bg-[#082E5B]/5 border border-[#082E5B]/10 flex items-center justify-center text-[#082E5B]">
                   <Icon className="w-4 h-4 text-[#008766]" />
@@ -83,7 +83,7 @@ export function SecuritySection() {
         </div>
 
         {/* Informative Disclaimer */}
-        <p className="text-center text-xs text-slate-500 max-w-2xl mx-auto mb-6 leading-relaxed">
+        <p className="text-center text-xs text-slate-500 max-w-2xl mx-auto mb-5 leading-relaxed">
           {t.securitySection.disclaimer}
         </p>
 

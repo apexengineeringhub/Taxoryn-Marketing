@@ -107,10 +107,10 @@ export function SmartProcessesSection() {
   ];
 
   return (
-    <section id="smart-processes" className="py-14 sm:py-16 lg:py-20 bg-white border-b border-slate-200/80">
+    <section id="smart-processes" className="py-10 sm:py-12 lg:py-14 bg-white border-b border-slate-200/80">
       <Container>
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-10 sm:mb-12">
+        <div className="max-w-3xl mx-auto text-center space-y-2 sm:space-y-2.5 mb-6 sm:mb-8">
           <Badge variant="teal" size="md">
             THE TAXORYN ARCHITECTURE
           </Badge>
@@ -123,7 +123,7 @@ export function SmartProcessesSection() {
         </div>
 
         {/* Operating Model Cohesion Ribbon */}
-        <div className="max-w-4xl mx-auto mb-10 p-3 sm:p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm font-semibold text-slate-700">
+        <div className="max-w-4xl mx-auto mb-6 sm:mb-8 p-3 sm:p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm font-semibold text-slate-700">
           <div className="flex items-center gap-2">
             <span className="w-5 h-5 rounded-full bg-[#082E5B] text-[#00D1A3] flex items-center justify-center font-bold text-[10px]">1</span>
             <span>Client 360</span>
@@ -146,26 +146,26 @@ export function SmartProcessesSection() {
         </div>
 
         {/* 4-Pillar Grid (All 4 Processes Visible Simultaneously) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
           {pillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
               <div
                 key={pillar.id}
-                className="rounded-2xl border border-slate-200/90 bg-[#F8FAFC] p-6 sm:p-7 flex flex-col justify-between hover:border-slate-300 transition-all duration-200 shadow-xs"
+                className="rounded-2xl border border-slate-200/90 bg-[#F8FAFC] p-5 sm:p-6 flex flex-col justify-between hover:border-slate-300 transition-all duration-200 shadow-xs"
               >
-                <div className="space-y-4">
+                <div className="space-y-3.5">
                   {/* Top Bar: Badge, Icon, Title */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-[#082E5B] text-[#00D1A3] flex items-center justify-center font-bold shadow-xs">
-                        <Icon className="w-5 h-5" />
+                      <div className="w-9 h-9 rounded-xl bg-[#082E5B] text-[#00D1A3] flex items-center justify-center font-bold shadow-xs">
+                        <Icon className="w-4 h-4" />
                       </div>
                       <div>
                         <span className="text-[10px] font-mono font-bold tracking-wider uppercase text-slate-500">
                           {pillar.badge}
                         </span>
-                        <h3 className="text-lg font-bold text-[#07152B] tracking-tight">
+                        <h3 className="text-base sm:text-lg font-bold text-[#07152B] tracking-tight">
                           {pillar.title}
                         </h3>
                       </div>
@@ -173,7 +173,7 @@ export function SmartProcessesSection() {
                   </div>
 
                   {/* Headline & Description */}
-                  <div className="space-y-1.5">
+                  <div className="space-y-1">
                     <h4 className="text-sm sm:text-base font-semibold text-[#07152B] leading-snug">
                       {pillar.headline}
                     </h4>
@@ -183,7 +183,7 @@ export function SmartProcessesSection() {
                   </div>
 
                   {/* Key Capabilities Checklist */}
-                  <div className="pt-2 border-t border-slate-200/80 space-y-2">
+                  <div className="pt-2 border-t border-slate-200/80 space-y-1.5">
                     {pillar.highlights.map((highlight) => (
                       <div key={highlight} className="flex items-start gap-2 text-xs text-slate-700">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#008766] shrink-0 mt-0.5" />
@@ -193,17 +193,17 @@ export function SmartProcessesSection() {
                   </div>
 
                   {/* Mini Interface Preview */}
-                  <div className="pt-3">
-                    <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-xs space-y-2">
-                      <div className="flex items-center justify-between text-[11px] font-semibold text-slate-500 border-b border-slate-100 pb-1.5">
+                  <div className="pt-2.5">
+                    <div className="rounded-xl border border-slate-200 bg-white p-2.5 sm:p-3 shadow-xs space-y-1.5">
+                      <div className="flex items-center justify-between text-[11px] font-semibold text-slate-500 border-b border-slate-100 pb-1">
                         <span className="text-[#07152B] font-bold">{pillar.previewTitle}</span>
                         <span className="text-[10px] font-mono text-[#008766]">Live Sync</span>
                       </div>
-                      <div className="space-y-1.5">
+                      <div className="space-y-1">
                         {pillar.previewItems.map((item, idx) => (
                           <div
                             key={idx}
-                            className="p-2 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]"
+                            className="p-1.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between text-[11px]"
                           >
                             <div className="min-w-0 pr-2">
                               <div className="font-semibold text-slate-800 truncate">{item.label}</div>
@@ -220,7 +220,7 @@ export function SmartProcessesSection() {
                 </div>
 
                 {/* Bottom Action Link */}
-                <div className="pt-5 mt-4 border-t border-slate-200/80 flex items-center justify-between">
+                <div className="pt-4 mt-3 border-t border-slate-200/80 flex items-center justify-between">
                   <span className="text-xs text-slate-500 font-medium">Part of Taxoryn Practice OS</span>
                   <Link
                     href="/platform"

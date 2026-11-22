@@ -58,10 +58,10 @@ export function ProductExperienceShowcase() {
   ];
 
   return (
-    <section className="py-14 sm:py-16 lg:py-20 bg-[#F8FAFC] border-b border-slate-200/80" id="product-experience">
+    <section className="py-10 sm:py-12 lg:py-14 bg-[#F8FAFC] border-b border-slate-200/80" id="product-experience">
       <Container>
         {/* Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-10 sm:mb-12">
+        <div className="max-w-3xl mx-auto text-center space-y-2 sm:space-y-2.5 mb-5 sm:mb-6">
           <Badge variant="navy" size="md">
             PRODUCT EXPERIENCE
           </Badge>
@@ -74,7 +74,7 @@ export function ProductExperienceShowcase() {
         </div>
 
         {/* Tab Selection */}
-        <div className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto pb-4 mb-6 no-scrollbar">
+        <div className="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto pb-2 mb-4 sm:mb-5 no-scrollbar">
           {screens.map((screen) => {
             const Icon = screen.icon;
             const isActive = activeScreen === screen.id;
@@ -83,13 +83,13 @@ export function ProductExperienceShowcase() {
                 key={screen.id}
                 type="button"
                 onClick={() => setActiveScreen(screen.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all shrink-0 border ${
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all shrink-0 border ${
                   isActive
                     ? "bg-[#07152B] text-white border-[#07152B] shadow-md ring-1 ring-[#00D1A3]/30"
-                    : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50 shadow-xs"
+                    : "bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50 shadow-2xs"
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? "text-[#00D1A3]" : "text-slate-400"}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#00D1A3]" : "text-slate-400"}`} />
                 <span>{screen.label}</span>
               </button>
             );
@@ -97,28 +97,28 @@ export function ProductExperienceShowcase() {
         </div>
 
         {/* Screen Showcase Display Window (Authentic Light Mode) */}
-        <div className="rounded-2xl border border-slate-200/90 bg-white text-slate-800 shadow-2xl shadow-slate-900/10 overflow-hidden max-w-5xl mx-auto">
+        <div className="rounded-2xl border border-slate-200/90 bg-white text-slate-800 shadow-xl shadow-slate-900/5 overflow-hidden max-w-5xl mx-auto">
           {/* Chrome Top Bar */}
-          <div className="flex items-center justify-between px-4 py-2.5 bg-slate-100/80 border-b border-slate-200 text-xs">
+          <div className="flex items-center justify-between px-3 sm:px-4 py-2 bg-slate-100/80 border-b border-slate-200 text-xs">
             <div className="flex items-center gap-2">
               <div className="flex gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-rose-400/90" />
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-400/90" />
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/90" />
               </div>
-              <div className="flex items-center gap-1.5 font-mono text-[11px] text-slate-600 bg-white px-2 py-0.5 rounded-md border border-slate-200 ml-2 shadow-xs">
+              <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] text-slate-600 bg-white px-2 py-0.5 rounded-md border border-slate-200 ml-2 shadow-2xs">
                 <Lock className="w-2.5 h-2.5 text-slate-400" />
                 <span>app.taxoryn.com/{activeScreen}</span>
               </div>
             </div>
-            <div className="text-[11px] text-slate-500 flex items-center gap-2">
+            <div className="text-[10px] sm:text-[11px] text-slate-500 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#00D1A3]" />
               <span className="font-semibold text-slate-700">Taxoryn Practice Workspace</span>
             </div>
           </div>
 
           {/* Body Content based on active screen */}
-          <div className="p-4 sm:p-6 lg:p-7 min-h-[420px] bg-[#F8FAFC]">
+          <div className="p-4 sm:p-5 lg:p-6 min-h-[400px] bg-[#F8FAFC]">
             {/* View 1: Practitioner Dashboard */}
             {activeScreen === "dashboard" && (
               <div className="space-y-5">

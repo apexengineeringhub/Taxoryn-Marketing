@@ -56,7 +56,7 @@ export function AboutClientContent() {
           />
 
           {/* Why We Built Taxoryn */}
-          <div className="max-w-4xl mx-auto space-y-8 mb-10 sm:mb-14 text-slate-700 leading-relaxed">
+          <div className="max-w-4xl mx-auto space-y-6 sm:space-y-7 mb-8 sm:mb-10 text-slate-700 leading-relaxed">
             <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-4">
               <Badge variant="teal" size="sm">
                 {page.storyBadge}

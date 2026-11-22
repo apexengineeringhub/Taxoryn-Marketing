@@ -18,9 +18,9 @@ import {
 
 export function AccessTaxorynSection() {
   return (
-    <section className="py-14 sm:py-16 lg:py-20 bg-white border-b border-slate-200/80" id="access">
+    <section className="py-10 sm:py-12 lg:py-14 bg-white border-b border-slate-200/80" id="access">
       <Container>
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-10 sm:mb-12">
+        <div className="max-w-3xl mx-auto text-center space-y-2 sm:space-y-2.5 mb-6 sm:mb-8">
           <Badge variant="teal" size="md">
             PLATFORM ACCESS
           </Badge>
@@ -32,9 +32,9 @@ export function AccessTaxorynSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 max-w-4xl mx-auto">
           {/* Card 1: Web Application */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-slate-300 transition-all duration-200 flex flex-col justify-between space-y-5 shadow-xs">
+          <div className="p-5 sm:p-7 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-slate-300 transition-all duration-200 flex flex-col justify-between space-y-4 shadow-xs">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="w-12 h-12 rounded-xl bg-[#082E5B] text-[#00D1A3] flex items-center justify-center font-bold shadow-xs">
@@ -70,6 +70,29 @@ export function AccessTaxorynSection() {
                   </div>
                 ))}
               </div>
+
+              {/* Web Practice Interface Frame */}
+              <div className="p-2.5 sm:p-3 rounded-xl bg-white border border-slate-200/90 space-y-1.5 shadow-2xs">
+                <div className="flex items-center justify-between text-[11px] text-slate-500 border-b border-slate-100 pb-1">
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#008766]" />
+                    <span>app.taxoryn.com</span>
+                  </div>
+                  <span className="text-[10px] font-semibold text-[#008766]">Desktop Workspace</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-[10px]">
+                  <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 space-y-0.5">
+                    <span className="text-slate-500 block">Worklists</span>
+                    <span className="font-bold text-slate-800 block truncate">Multi-staff Queue</span>
+                    <span className="text-[#008766] text-[9px]">Live Status</span>
+                  </div>
+                  <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 space-y-0.5">
+                    <span className="text-slate-500 block">Directory</span>
+                    <span className="font-bold text-slate-800 block truncate">Client 360 & PAN</span>
+                    <span className="text-[#008766] text-[9px]">Active</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="pt-3 border-t border-slate-200 space-y-2">
@@ -94,7 +117,7 @@ export function AccessTaxorynSection() {
           </div>
 
           {/* Card 2: Android Application */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#07152B] text-white border border-slate-800 transition-all duration-200 flex flex-col justify-between space-y-5 shadow-xl">
+          <div className="p-5 sm:p-7 rounded-2xl bg-[#07152B] text-white border border-slate-800 transition-all duration-200 flex flex-col justify-between space-y-4 shadow-xl">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-[#00D1A3] flex items-center justify-center font-bold">
@@ -131,6 +154,29 @@ export function AccessTaxorynSection() {
                     <span>{item}</span>
                   </div>
                 ))}
+              </div>
+
+              {/* Mobile Companion Interface Frame (Consistent Device Ratio) */}
+              <div className="p-2.5 sm:p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
+                <div className="flex items-center justify-between text-[11px] text-slate-400 border-b border-slate-800 pb-1">
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-300">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                    <span>Taxoryn Mobile</span>
+                  </div>
+                  <span className="text-[10px] font-semibold text-[#00D1A3]">Android APK</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-[10px]">
+                  <div className="p-2 rounded-lg bg-slate-800/80 border border-slate-700/60 space-y-0.5">
+                    <span className="text-slate-400 block">Filing Alert</span>
+                    <span className="font-bold text-white block truncate">GSTR-3B Today</span>
+                    <span className="text-[#00D1A3] text-[9px]">Apex Logistics</span>
+                  </div>
+                  <div className="p-2 rounded-lg bg-slate-800/80 border border-slate-700/60 space-y-0.5">
+                    <span className="text-slate-400 block">Document Vault</span>
+                    <span className="font-bold text-white block truncate">Invoice Uploaded</span>
+                    <span className="text-[#00D1A3] text-[9px]">Sterling Infotech</span>
+                  </div>
+                </div>
               </div>
             </div>
 
