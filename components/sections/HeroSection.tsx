@@ -11,21 +11,20 @@ import {
   ArrowRight,
   Play,
   CheckCircle2,
-  Sparkles,
 } from "lucide-react";
 
 export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative pt-8 pb-12 lg:pt-12 lg:pb-16 overflow-hidden bg-white border-b border-slate-200/80">
+    <section className="relative pt-6 pb-10 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-14 overflow-hidden bg-white border-b border-slate-200/80">
       {/* Background Subtle Tech Grid */}
       <div className="absolute inset-0 bg-grid-pattern opacity-25 pointer-events-none" />
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-center">
-          {/* LEFT COLUMN: Headline, Narrative, CTAs & Value Proof (5 cols) */}
-          <div className="lg:col-span-5 space-y-4 text-left pt-1 min-w-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+          {/* LEFT COLUMN: Headline, Narrative, CTAs & Value Proof (5 cols: ~42-45%) */}
+          <div className="lg:col-span-5 space-y-4 sm:space-y-5 text-left min-w-0">
             {/* Tagline Badge */}
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-bold text-[#082E5B]">
               <span className="w-2 h-2 rounded-full bg-[#00D1A3]" />
@@ -33,18 +32,18 @@ export function HeroSection() {
             </div>
 
             {/* Primary Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.45rem] xl:text-[2.75rem] font-bold text-[#07152B] tracking-tight leading-[1.14] text-balance">
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] xl:text-[2.85rem] font-bold text-[#07152B] tracking-tight leading-[1.14] text-balance">
               <span>Your Tax Practice. </span>
               <span className="text-[#008766]">Better Organized.</span>
             </h1>
 
             {/* Supporting Copy */}
-            <p className="text-base sm:text-lg text-[#475569] leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal max-w-xl">
               Manage clients, compliance work, documents and practice operations in one connected workspace built for modern tax professionals.
             </p>
 
             {/* Action CTAs */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Button
                 href={siteConfig.links.joinEarlyAccess}
                 variant="primary"
@@ -61,52 +60,51 @@ export function HeroSection() {
                 size="lg"
                 icon={Play}
                 iconPosition="left"
-                className="justify-center font-semibold"
+                className="justify-center font-semibold text-[#07152B] border-slate-300 hover:bg-slate-50"
               >
                 {t.hero.watchDemo}
               </Button>
             </div>
 
             {/* Active Development Grounded Notice */}
-            <p className="text-xs text-slate-500 pt-1 leading-relaxed">
+            <p className="text-xs text-slate-500 pt-0.5 leading-relaxed">
               <a
                 href="#origin-story"
                 className="hover:text-[#008766] transition-colors inline-flex items-center gap-1 font-medium text-slate-600 hover:underline underline-offset-2"
               >
                 <span>{t.hero.devNote || "Built from a real tax-practice problem."}</span>
-                <ArrowRight className="w-3 h-3 text-[#00D1A3]" />
+                <ArrowRight className="w-3 h-3 text-[#008766]" />
               </a>
             </p>
 
             {/* 3 Concise Proof Points Below CTA */}
-            <div className="pt-3 border-t border-slate-200 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#334155] font-semibold">
+            <div className="pt-3 border-t border-slate-200/90 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-700 font-semibold">
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#008766] shrink-0" />
                 <span>Practice Management</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#008766] shrink-0" />
                 <span>Statutory Compliance</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#008766] shrink-0" />
                 <span>Client Document Hub</span>
               </div>
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Clean, Prominent Taxoryn Product Dashboard Preview (7 cols) */}
+          {/* RIGHT COLUMN: Clean, Balanced Taxoryn Product Dashboard Preview (7 cols: ~55-58%) */}
           <div className="lg:col-span-7 relative min-w-0">
             {/* Supporting Workflow Strip Integrated with Product Preview */}
-            <div className="flex items-center gap-1.5 mb-2.5 overflow-x-auto no-scrollbar">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mr-1">Workspaces:</span>
+            <div className="flex items-center gap-1.5 mb-2 overflow-x-auto no-scrollbar">
               {["Clients", "Compliance", "Documents", "Operations"].map((pill) => (
                 <span
                   key={pill}
-                  className="px-2.5 py-0.5 rounded-full bg-slate-100/90 border border-slate-200 text-[11px] font-bold text-[#07152B] flex items-center gap-1.5 whitespace-nowrap shadow-2xs"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-50 border border-slate-200/90 text-[11px] font-semibold text-slate-700 whitespace-nowrap shadow-2xs"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#009E77]" />
-                  {pill}
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#008766]" />
+                  <span>{pill}</span>
                 </span>
               ))}
             </div>
@@ -122,15 +120,15 @@ export function HeroSection() {
             </span>
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-medium text-slate-600">
               <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#008766]" />
                 Independent Practitioners
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#008766]" />
                 Chartered Accountant (CA) Firms
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00D1A3]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#008766]" />
                 Tax Advocates & Consultants
               </span>
             </div>

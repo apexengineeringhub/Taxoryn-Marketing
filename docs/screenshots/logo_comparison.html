@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Taxoryn Brand Mark Comparison — Current vs. Proposed Vector</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: #F8FAFC;
+      color: #07152B;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #07152B;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 32px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1100px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+    .badge-current { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+    .badge-proposed { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+    .card-desc {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .size-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .size-row:last-child { border-bottom: none; }
+    .size-label {
+      width: 70px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      font-family: monospace;
+    }
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wordmark-preview {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: 20px;
+    }
+    .wordmark-text {
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      font-size: 16px;
+      line-height: 1;
+    }
+    .wordmark-prefix { color: #07152B; }
+    .wordmark-suffix { color: #00D1A3; }
+    .specs-table {
+      width: 100%;
+      max-width: 1100px;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 13px;
+    }
+    .specs-table th, .specs-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .specs-table th {
+      background: #F8FAFC;
+      font-weight: 700;
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+  <h1>Taxoryn Brand Mark Architecture — CDO Review</h1>
+  <p class="subtitle">Side-by-side comparison of Current Multi-Layer Mark vs. Proposed Simplified 2D Vector Mark across required rendering sizes.</p>
+
+  <div class="grid">
+    <!-- Current Mark Card -->
+    <div class="card">
+      <div class="card-title">
+        <span>Current Mark</span>
+        <span class="badge badge-current">In Production</span>
+      </div>
+      <p class="card-desc">Multi-layer 3D construction: 3 raster drop-shadow filters, 1mm TAX document glyphs, 3 growth bars, gradient swoop, and verified check badge.</p>
+
+      <div class="size-row">
+        <div class="size-label">64px (Hero)</div>
+        <div class="icon-container"><svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="orig_r_grad" x1="45" y1="20" x2="88" y2="85" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00C495" />
+        <stop offset="40%" stop-color="#009E77" />
+        <stop offset="100%" stop-color="#046A4E" />
+      </linearGradient>
+      <linearGradient id="orig_arrow_grad" x1="16" y1="36" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#38BDF8" />
+        <stop offset="45%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00E5B3" />
+      </linearGradient>
+      <linearGradient id="orig_bars_grad" x1="18" y1="46" x2="38" y2="80" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00B388" />
+      </linearGradient>
+      <linearGradient id="orig_squircle_3d" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#0E274D" />
+        <stop offset="50%" stop-color="#07152B" />
+        <stop offset="100%" stop-color="#030914" />
+      </linearGradient>
+      <filter id="orig_t_shadow" x="8" y="8" width="65" height="60" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_doc_shadow" x="36" y="16" width="50" height="65" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="5" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_r_shadow" x="42" y="16" width="52" height="74" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="1.5" dy="2.5" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.35" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" rx="22" fill="url(#orig_squircle_3d)" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1.2" />
+    <path d="M 18 36 C 10 54, 14 82, 42 88 C 58 91, 70 84, 76 74" stroke="url(#orig_arrow_grad)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="71,66 84,72 75,82" fill="#00FFC2" />
+    <g filter="url(#orig_r_shadow)">
+      <path d="M 50 23 H 68 C 80 23, 88 30, 88 41 C 88 51, 79 57, 65 57 H 52 M 65 57 L 83 83" stroke="url(#orig_r_grad)" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+    <rect x="20" y="66" width="5" height="14" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="27.5" y="56" width="5" height="24" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="35" y="46" width="5" height="34" rx="2" fill="url(#orig_bars_grad)" />
+    <g filter="url(#orig_t_shadow)">
+      <path d="M 14 14 L 64 14 L 58 26 L 43 26 L 33 58 L 18 58 L 28 26 L 14 26 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.6" stroke-linejoin="round" />
+      <line x1="14" y1="14" x2="64" y2="14" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
+    </g>
+    <g filter="url(#orig_doc_shadow)">
+      <path d="M 44 24 H 67 L 76 33 V 66 C 76 68.8 73.8 71 71 71 H 49 C 46.2 71 44 68.8 44 66 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
+      <path d="M 67 24 V 33 H 76 Z" fill="#94A3B8" />
+      <g fill="#07152B">
+        <path d="M 49.2 32.5 H 55.4 V 34.7 H 53.4 V 42.5 H 51.2 V 34.7 H 49.2 Z" />
+        <path d="M 59.2 32.5 H 60.8 L 63.8 42.5 H 61.6 L 61.0 40.3 H 59.0 L 58.4 42.5 H 56.2 Z M 59.5 38.5 H 60.5 L 60.0 35.3 Z" />
+        <path d="M 64.5 32.5 H 66.7 L 68.2 36.0 L 69.7 32.5 H 71.9 L 69.3 37.5 L 72.0 42.5 H 69.8 L 68.2 38.9 L 66.6 42.5 H 64.4 L 67.1 37.5 Z" />
+      </g>
+      <line x1="50" y1="46.5" x2="68" y2="46.5" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <line x1="50" y1="51" x2="65" y2="51" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <circle cx="59" cy="59.5" r="5.5" fill="#00D1A3" />
+      <path d="M 56.2 59.5 L 58.2 61.5 L 62.2 57.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+  </svg></div>
+      </div>
+      <div class="size-row">
+        <div class="size-label">42px (Header)</div>
+        <div class="icon-container"><svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="orig_r_grad" x1="45" y1="20" x2="88" y2="85" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00C495" />
+        <stop offset="40%" stop-color="#009E77" />
+        <stop offset="100%" stop-color="#046A4E" />
+      </linearGradient>
+      <linearGradient id="orig_arrow_grad" x1="16" y1="36" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#38BDF8" />
+        <stop offset="45%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00E5B3" />
+      </linearGradient>
+      <linearGradient id="orig_bars_grad" x1="18" y1="46" x2="38" y2="80" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00B388" />
+      </linearGradient>
+      <linearGradient id="orig_squircle_3d" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#0E274D" />
+        <stop offset="50%" stop-color="#07152B" />
+        <stop offset="100%" stop-color="#030914" />
+      </linearGradient>
+      <filter id="orig_t_shadow" x="8" y="8" width="65" height="60" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_doc_shadow" x="36" y="16" width="50" height="65" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="5" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_r_shadow" x="42" y="16" width="52" height="74" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="1.5" dy="2.5" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.35" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" rx="22" fill="url(#orig_squircle_3d)" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1.2" />
+    <path d="M 18 36 C 10 54, 14 82, 42 88 C 58 91, 70 84, 76 74" stroke="url(#orig_arrow_grad)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="71,66 84,72 75,82" fill="#00FFC2" />
+    <g filter="url(#orig_r_shadow)">
+      <path d="M 50 23 H 68 C 80 23, 88 30, 88 41 C 88 51, 79 57, 65 57 H 52 M 65 57 L 83 83" stroke="url(#orig_r_grad)" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+    <rect x="20" y="66" width="5" height="14" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="27.5" y="56" width="5" height="24" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="35" y="46" width="5" height="34" rx="2" fill="url(#orig_bars_grad)" />
+    <g filter="url(#orig_t_shadow)">
+      <path d="M 14 14 L 64 14 L 58 26 L 43 26 L 33 58 L 18 58 L 28 26 L 14 26 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.6" stroke-linejoin="round" />
+      <line x1="14" y1="14" x2="64" y2="14" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
+    </g>
+    <g filter="url(#orig_doc_shadow)">
+      <path d="M 44 24 H 67 L 76 33 V 66 C 76 68.8 73.8 71 71 71 H 49 C 46.2 71 44 68.8 44 66 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
+      <path d="M 67 24 V 33 H 76 Z" fill="#94A3B8" />
+      <g fill="#07152B">
+        <path d="M 49.2 32.5 H 55.4 V 34.7 H 53.4 V 42.5 H 51.2 V 34.7 H 49.2 Z" />
+        <path d="M 59.2 32.5 H 60.8 L 63.8 42.5 H 61.6 L 61.0 40.3 H 59.0 L 58.4 42.5 H 56.2 Z M 59.5 38.5 H 60.5 L 60.0 35.3 Z" />
+        <path d="M 64.5 32.5 H 66.7 L 68.2 36.0 L 69.7 32.5 H 71.9 L 69.3 37.5 L 72.0 42.5 H 69.8 L 68.2 38.9 L 66.6 42.5 H 64.4 L 67.1 37.5 Z" />
+      </g>
+      <line x1="50" y1="46.5" x2="68" y2="46.5" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <line x1="50" y1="51" x2="65" y2="51" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <circle cx="59" cy="59.5" r="5.5" fill="#00D1A3" />
+      <path d="M 56.2 59.5 L 58.2 61.5 L 62.2 57.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+  </svg></div>
+        <div class="wordmark-preview">
+          <span class="wordmark-text"><span class="wordmark-prefix">TAXO</span><span class="wordmark-suffix">RYN</span></span>
+        </div>
+      </div>
+      <div class="size-row">
+        <div class="size-label">32px (Tablet)</div>
+        <div class="icon-container"><svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="orig_r_grad" x1="45" y1="20" x2="88" y2="85" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00C495" />
+        <stop offset="40%" stop-color="#009E77" />
+        <stop offset="100%" stop-color="#046A4E" />
+      </linearGradient>
+      <linearGradient id="orig_arrow_grad" x1="16" y1="36" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#38BDF8" />
+        <stop offset="45%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00E5B3" />
+      </linearGradient>
+      <linearGradient id="orig_bars_grad" x1="18" y1="46" x2="38" y2="80" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00B388" />
+      </linearGradient>
+      <linearGradient id="orig_squircle_3d" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#0E274D" />
+        <stop offset="50%" stop-color="#07152B" />
+        <stop offset="100%" stop-color="#030914" />
+      </linearGradient>
+      <filter id="orig_t_shadow" x="8" y="8" width="65" height="60" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_doc_shadow" x="36" y="16" width="50" height="65" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="5" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_r_shadow" x="42" y="16" width="52" height="74" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="1.5" dy="2.5" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.35" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" rx="22" fill="url(#orig_squircle_3d)" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1.2" />
+    <path d="M 18 36 C 10 54, 14 82, 42 88 C 58 91, 70 84, 76 74" stroke="url(#orig_arrow_grad)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="71,66 84,72 75,82" fill="#00FFC2" />
+    <g filter="url(#orig_r_shadow)">
+      <path d="M 50 23 H 68 C 80 23, 88 30, 88 41 C 88 51, 79 57, 65 57 H 52 M 65 57 L 83 83" stroke="url(#orig_r_grad)" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+    <rect x="20" y="66" width="5" height="14" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="27.5" y="56" width="5" height="24" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="35" y="46" width="5" height="34" rx="2" fill="url(#orig_bars_grad)" />
+    <g filter="url(#orig_t_shadow)">
+      <path d="M 14 14 L 64 14 L 58 26 L 43 26 L 33 58 L 18 58 L 28 26 L 14 26 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.6" stroke-linejoin="round" />
+      <line x1="14" y1="14" x2="64" y2="14" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
+    </g>
+    <g filter="url(#orig_doc_shadow)">
+      <path d="M 44 24 H 67 L 76 33 V 66 C 76 68.8 73.8 71 71 71 H 49 C 46.2 71 44 68.8 44 66 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
+      <path d="M 67 24 V 33 H 76 Z" fill="#94A3B8" />
+      <g fill="#07152B">
+        <path d="M 49.2 32.5 H 55.4 V 34.7 H 53.4 V 42.5 H 51.2 V 34.7 H 49.2 Z" />
+        <path d="M 59.2 32.5 H 60.8 L 63.8 42.5 H 61.6 L 61.0 40.3 H 59.0 L 58.4 42.5 H 56.2 Z M 59.5 38.5 H 60.5 L 60.0 35.3 Z" />
+        <path d="M 64.5 32.5 H 66.7 L 68.2 36.0 L 69.7 32.5 H 71.9 L 69.3 37.5 L 72.0 42.5 H 69.8 L 68.2 38.9 L 66.6 42.5 H 64.4 L 67.1 37.5 Z" />
+      </g>
+      <line x1="50" y1="46.5" x2="68" y2="46.5" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <line x1="50" y1="51" x2="65" y2="51" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <circle cx="59" cy="59.5" r="5.5" fill="#00D1A3" />
+      <path d="M 56.2 59.5 L 58.2 61.5 L 62.2 57.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+  </svg></div>
+      </div>
+      <div class="size-row">
+        <div class="size-label">24px (Mobile)</div>
+        <div class="icon-container"><svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="orig_r_grad" x1="45" y1="20" x2="88" y2="85" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00C495" />
+        <stop offset="40%" stop-color="#009E77" />
+        <stop offset="100%" stop-color="#046A4E" />
+      </linearGradient>
+      <linearGradient id="orig_arrow_grad" x1="16" y1="36" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#38BDF8" />
+        <stop offset="45%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00E5B3" />
+      </linearGradient>
+      <linearGradient id="orig_bars_grad" x1="18" y1="46" x2="38" y2="80" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00B388" />
+      </linearGradient>
+      <linearGradient id="orig_squircle_3d" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#0E274D" />
+        <stop offset="50%" stop-color="#07152B" />
+        <stop offset="100%" stop-color="#030914" />
+      </linearGradient>
+      <filter id="orig_t_shadow" x="8" y="8" width="65" height="60" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_doc_shadow" x="36" y="16" width="50" height="65" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="5" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_r_shadow" x="42" y="16" width="52" height="74" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="1.5" dy="2.5" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.35" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" rx="22" fill="url(#orig_squircle_3d)" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1.2" />
+    <path d="M 18 36 C 10 54, 14 82, 42 88 C 58 91, 70 84, 76 74" stroke="url(#orig_arrow_grad)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="71,66 84,72 75,82" fill="#00FFC2" />
+    <g filter="url(#orig_r_shadow)">
+      <path d="M 50 23 H 68 C 80 23, 88 30, 88 41 C 88 51, 79 57, 65 57 H 52 M 65 57 L 83 83" stroke="url(#orig_r_grad)" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+    <rect x="20" y="66" width="5" height="14" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="27.5" y="56" width="5" height="24" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="35" y="46" width="5" height="34" rx="2" fill="url(#orig_bars_grad)" />
+    <g filter="url(#orig_t_shadow)">
+      <path d="M 14 14 L 64 14 L 58 26 L 43 26 L 33 58 L 18 58 L 28 26 L 14 26 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.6" stroke-linejoin="round" />
+      <line x1="14" y1="14" x2="64" y2="14" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
+    </g>
+    <g filter="url(#orig_doc_shadow)">
+      <path d="M 44 24 H 67 L 76 33 V 66 C 76 68.8 73.8 71 71 71 H 49 C 46.2 71 44 68.8 44 66 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
+      <path d="M 67 24 V 33 H 76 Z" fill="#94A3B8" />
+      <g fill="#07152B">
+        <path d="M 49.2 32.5 H 55.4 V 34.7 H 53.4 V 42.5 H 51.2 V 34.7 H 49.2 Z" />
+        <path d="M 59.2 32.5 H 60.8 L 63.8 42.5 H 61.6 L 61.0 40.3 H 59.0 L 58.4 42.5 H 56.2 Z M 59.5 38.5 H 60.5 L 60.0 35.3 Z" />
+        <path d="M 64.5 32.5 H 66.7 L 68.2 36.0 L 69.7 32.5 H 71.9 L 69.3 37.5 L 72.0 42.5 H 69.8 L 68.2 38.9 L 66.6 42.5 H 64.4 L 67.1 37.5 Z" />
+      </g>
+      <line x1="50" y1="46.5" x2="68" y2="46.5" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <line x1="50" y1="51" x2="65" y2="51" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <circle cx="59" cy="59.5" r="5.5" fill="#00D1A3" />
+      <path d="M 56.2 59.5 L 58.2 61.5 L 62.2 57.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+  </svg></div>
+      </div>
+      <div class="size-row">
+        <div class="size-label">16px (Favicon)</div>
+        <div class="icon-container"><svg width="16" height="16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="orig_r_grad" x1="45" y1="20" x2="88" y2="85" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00C495" />
+        <stop offset="40%" stop-color="#009E77" />
+        <stop offset="100%" stop-color="#046A4E" />
+      </linearGradient>
+      <linearGradient id="orig_arrow_grad" x1="16" y1="36" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#38BDF8" />
+        <stop offset="45%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00E5B3" />
+      </linearGradient>
+      <linearGradient id="orig_bars_grad" x1="18" y1="46" x2="38" y2="80" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00FFC2" />
+        <stop offset="100%" stop-color="#00B388" />
+      </linearGradient>
+      <linearGradient id="orig_squircle_3d" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#0E274D" />
+        <stop offset="50%" stop-color="#07152B" />
+        <stop offset="100%" stop-color="#030914" />
+      </linearGradient>
+      <filter id="orig_t_shadow" x="8" y="8" width="65" height="60" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_doc_shadow" x="36" y="16" width="50" height="65" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="0" dy="5" stdDeviation="3.5" flood-color="#000000" flood-opacity="0.55" />
+      </filter>
+      <filter id="orig_r_shadow" x="42" y="16" width="52" height="74" filterUnits="userSpaceOnUse">
+        <feDropShadow dx="1.5" dy="2.5" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.35" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" rx="22" fill="url(#orig_squircle_3d)" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1.2" />
+    <path d="M 18 36 C 10 54, 14 82, 42 88 C 58 91, 70 84, 76 74" stroke="url(#orig_arrow_grad)" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="71,66 84,72 75,82" fill="#00FFC2" />
+    <g filter="url(#orig_r_shadow)">
+      <path d="M 50 23 H 68 C 80 23, 88 30, 88 41 C 88 51, 79 57, 65 57 H 52 M 65 57 L 83 83" stroke="url(#orig_r_grad)" stroke-width="11.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+    <rect x="20" y="66" width="5" height="14" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="27.5" y="56" width="5" height="24" rx="2" fill="url(#orig_bars_grad)" />
+    <rect x="35" y="46" width="5" height="34" rx="2" fill="url(#orig_bars_grad)" />
+    <g filter="url(#orig_t_shadow)">
+      <path d="M 14 14 L 64 14 L 58 26 L 43 26 L 33 58 L 18 58 L 28 26 L 14 26 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="0.6" stroke-linejoin="round" />
+      <line x1="14" y1="14" x2="64" y2="14" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.9" />
+    </g>
+    <g filter="url(#orig_doc_shadow)">
+      <path d="M 44 24 H 67 L 76 33 V 66 C 76 68.8 73.8 71 71 71 H 49 C 46.2 71 44 68.8 44 66 Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" />
+      <path d="M 67 24 V 33 H 76 Z" fill="#94A3B8" />
+      <g fill="#07152B">
+        <path d="M 49.2 32.5 H 55.4 V 34.7 H 53.4 V 42.5 H 51.2 V 34.7 H 49.2 Z" />
+        <path d="M 59.2 32.5 H 60.8 L 63.8 42.5 H 61.6 L 61.0 40.3 H 59.0 L 58.4 42.5 H 56.2 Z M 59.5 38.5 H 60.5 L 60.0 35.3 Z" />
+        <path d="M 64.5 32.5 H 66.7 L 68.2 36.0 L 69.7 32.5 H 71.9 L 69.3 37.5 L 72.0 42.5 H 69.8 L 68.2 38.9 L 66.6 42.5 H 64.4 L 67.1 37.5 Z" />
+      </g>
+      <line x1="50" y1="46.5" x2="68" y2="46.5" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <line x1="50" y1="51" x2="65" y2="51" stroke="#00D1A3" stroke-width="2.2" stroke-linecap="round" />
+      <circle cx="59" cy="59.5" r="5.5" fill="#00D1A3" />
+      <path d="M 56.2 59.5 L 58.2 61.5 L 62.2 57.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+  </svg></div>
+      </div>
+    </div>
+
+    <!-- Proposed Vector Mark Card -->
+    <div class="card">
+      <div class="card-title">
+        <span>Proposed 2D Vector Mark</span>
+        <span class="badge badge-proposed">CDO Refinement</span>
+      </div>
+      <p class="card-desc">Distilled vector geometry: pure SVG paths, zero blur filters, zero illegible micro-text, preserved T+R brand silhouette, crisp at all scales.</p>
+
+      <div class="size-row">
+        <div class="size-label">64px (Hero)</div>
+        <div class="icon-container"><svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Deep Navy Squircle Base -->
+    <rect width="100" height="100" rx="22" fill="#07152B" stroke="#0E274D" stroke-width="1.5" />
+    
+    <!-- Dynamic Mint Swoop Arc (Growth / Network trajectory) -->
+    <path d="M 18 36 C 10 54, 14 80, 40 86 C 56 89, 68 83, 76 74" stroke="#00E5B3" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="70,66 84,72 75,82" fill="#00FFC2" />
+    
+    <!-- Iconic Deep Emerald & Mint Letter 'R' -->
+    <path d="M 48 22 H 68 C 80 22, 88 29, 88 40 C 88 50, 80 56, 66 56 H 50 M 64 56 L 82 82" 
+          stroke="#00D1A3" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    
+    <!-- Bold Geometric Slanted 'T' in Pure White -->
+    <path d="M 14 16 L 62 16 L 56 28 L 42 28 L 32 64 L 18 64 L 28 28 L 14 28 Z" 
+          fill="#FFFFFF" />
+    
+    <!-- Subtle Inner Verification Accent on T-arm -->
+    <circle cx="56" cy="22" r="2.5" fill="#00FFC2" />
+  </svg></div>
+      </div>
+      <div class="size-row">
+        <div class="size-label">42px (Header)</div>
+        <div class="icon-container"><svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Deep Navy Squircle Base -->
+    <rect width="100" height="100" rx="22" fill="#07152B" stroke="#0E274D" stroke-width="1.5" />
+    
+    <!-- Dynamic Mint Swoop Arc (Growth / Network trajectory) -->
+    <path d="M 18 36 C 10 54, 14 80, 40 86 C 56 89, 68 83, 76 74" stroke="#00E5B3" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="70,66 84,72 75,82" fill="#00FFC2" />
+    
+    <!-- Iconic Deep Emerald & Mint Letter 'R' -->
+    <path d="M 48 22 H 68 C 80 22, 88 29, 88 40 C 88 50, 80 56, 66 56 H 50 M 64 56 L 82 82" 
+          stroke="#00D1A3" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    
+    <!-- Bold Geometric Slanted 'T' in Pure White -->
+    <path d="M 14 16 L 62 16 L 56 28 L 42 28 L 32 64 L 18 64 L 28 28 L 14 28 Z" 
+          fill="#FFFFFF" />
+    
+    <!-- Subtle Inner Verification Accent on T-arm -->
+    <circle cx="56" cy="22" r="2.5" fill="#00FFC2" />
+  </svg></div>
+        <div class="wordmark-preview">
+          <span class="wordmark-text"><span class="wordmark-prefix">TAXO</span><span class="wordmark-suffix">RYN</span></span>
+        </div>
+      </div>
+      <div class="size-row">
+        <div class="size-label">32px (Tablet)</div>
+        <div class="icon-container"><svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Deep Navy Squircle Base -->
+    <rect width="100" height="100" rx="22" fill="#07152B" stroke="#0E274D" stroke-width="1.5" />
+    
+    <!-- Dynamic Mint Swoop Arc (Growth / Network trajectory) -->
+    <path d="M 18 36 C 10 54, 14 80, 40 86 C 56 89, 68 83, 76 74" stroke="#00E5B3" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="70,66 84,72 75,82" fill="#00FFC2" />
+    
+    <!-- Iconic Deep Emerald & Mint Letter 'R' -->
+    <path d="M 48 22 H 68 C 80 22, 88 29, 88 40 C 88 50, 80 56, 66 56 H 50 M 64 56 L 82 82" 
+          stroke="#00D1A3" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    
+    <!-- Bold Geometric Slanted 'T' in Pure White -->
+    <path d="M 14 16 L 62 16 L 56 28 L 42 28 L 32 64 L 18 64 L 28 28 L 14 28 Z" 
+          fill="#FFFFFF" />
+    
+    <!-- Subtle Inner Verification Accent on T-arm -->
+    <circle cx="56" cy="22" r="2.5" fill="#00FFC2" />
+  </svg></div>
+      </div>
+      <div class="size-row">
+        <div class="size-label">24px (Mobile)</div>
+        <div class="icon-container"><svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Deep Navy Squircle Base -->
+    <rect width="100" height="100" rx="22" fill="#07152B" stroke="#0E274D" stroke-width="1.5" />
+    
+    <!-- Dynamic Mint Swoop Arc (Growth / Network trajectory) -->
+    <path d="M 18 36 C 10 54, 14 80, 40 86 C 56 89, 68 83, 76 74" stroke="#00E5B3" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="70,66 84,72 75,82" fill="#00FFC2" />
+    
+    <!-- Iconic Deep Emerald & Mint Letter 'R' -->
+    <path d="M 48 22 H 68 C 80 22, 88 29, 88 40 C 88 50, 80 56, 66 56 H 50 M 64 56 L 82 82" 
+          stroke="#00D1A3" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    
+    <!-- Bold Geometric Slanted 'T' in Pure White -->
+    <path d="M 14 16 L 62 16 L 56 28 L 42 28 L 32 64 L 18 64 L 28 28 L 14 28 Z" 
+          fill="#FFFFFF" />
+    
+    <!-- Subtle Inner Verification Accent on T-arm -->
+    <circle cx="56" cy="22" r="2.5" fill="#00FFC2" />
+  </svg></div>
+      </div>
+      <div class="size-row">
+        <div class="size-label">16px (Favicon)</div>
+        <div class="icon-container"><svg width="16" height="16" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Deep Navy Squircle Base -->
+    <rect width="100" height="100" rx="22" fill="#07152B" stroke="#0E274D" stroke-width="1.5" />
+    
+    <!-- Dynamic Mint Swoop Arc (Growth / Network trajectory) -->
+    <path d="M 18 36 C 10 54, 14 80, 40 86 C 56 89, 68 83, 76 74" stroke="#00E5B3" stroke-width="4.5" stroke-linecap="round" fill="none" />
+    <polygon points="70,66 84,72 75,82" fill="#00FFC2" />
+    
+    <!-- Iconic Deep Emerald & Mint Letter 'R' -->
+    <path d="M 48 22 H 68 C 80 22, 88 29, 88 40 C 88 50, 80 56, 66 56 H 50 M 64 56 L 82 82" 
+          stroke="#00D1A3" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    
+    <!-- Bold Geometric Slanted 'T' in Pure White -->
+    <path d="M 14 16 L 62 16 L 56 28 L 42 28 L 32 64 L 18 64 L 28 28 L 14 28 Z" 
+          fill="#FFFFFF" />
+    
+    <!-- Subtle Inner Verification Accent on T-arm -->
+    <circle cx="56" cy="22" r="2.5" fill="#00FFC2" />
+  </svg></div>
+      </div>
+    </div>
+  </div>
+
+  <table class="specs-table">
+    <thead>
+      <tr>
+        <th>Design Metric</th>
+        <th>Current Mark</th>
+        <th>Proposed 2D Vector Mark</th>
+        <th>Verdict</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Micro-text Glyphs</strong></td>
+        <td>Includes "TAX" (spelled in 2px vectors)</td>
+        <td>None (pure geometric iconography)</td>
+        <td>Eliminates illegibility at &le; 42px</td>
+      </tr>
+      <tr>
+        <td><strong>Visual Filter Layers</strong></td>
+        <td>3 &times; feDropShadow blur filters</td>
+        <td>0 (pure crisp vector fills &amp; strokes)</td>
+        <td>Zero blurry raster artifacts on Retina</td>
+      </tr>
+      <tr>
+        <td><strong>Visual Elements Count</strong></td>
+        <td>6 overlapping metaphors (Squircle, Arrow, T, R, Bars, Doc)</td>
+        <td>3 harmonious brand elements (Squircle, Bold T, Mint R Swoop)</td>
+        <td>Clear visual hierarchy &amp; instant recall</td>
+      </tr>
+      <tr>
+        <td><strong>Scalability at 16px / 24px</strong></td>
+        <td>High visual noise, muddy overlapping gradients</td>
+        <td>Sharp, high-contrast, recognizable monogram</td>
+        <td>Flawless icon &amp; favicon rendition</td>
+      </tr>
+      <tr>
+        <td><strong>Brand Equity Retention</strong></td>
+        <td>Baseline</td>
+        <td>Preserves exact navy squircle, white T, and mint R identity</td>
+        <td>100% brand continuity</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
