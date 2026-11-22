@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
+import { DownloadQRCode } from "@/components/marketing/DownloadQRCode";
 import { siteConfig, androidConfig } from "@/lib/config/site";
 import {
   Globe,
@@ -202,6 +203,18 @@ export function AccessTaxorynSection() {
                   View Android App Release Details
                 </Button>
               )}
+
+              {/* Scan to Download QR Code for Desktop */}
+              <div className="hidden sm:block pt-1">
+                <DownloadQRCode
+                  url={androidConfig.isAvailable ? androidConfig.downloadUrl : "https://taxoryn.com/download"}
+                  theme="dark"
+                  size={104}
+                  title="Scan with Phone Camera"
+                  subtitle="Open on your mobile device instantly"
+                />
+              </div>
+
               <div className="text-center">
                 <Link
                   href="/download"

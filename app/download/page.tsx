@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/common/Container";
 import { Badge } from "@/components/common/Badge";
 import { Button } from "@/components/common/Button";
+import { DownloadQRCode } from "@/components/marketing/DownloadQRCode";
 import { siteConfig, androidConfig } from "@/lib/config/site";
 import {
   Download,
@@ -97,9 +98,9 @@ export default function DownloadPage() {
       {/* Main Download Options Grid */}
       <section className="py-10 sm:py-12 bg-white border-b border-slate-200/80">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto items-stretch">
             {/* 1. Android App Download Card */}
-            <div className="p-5 sm:p-7 rounded-2xl bg-[#07152B] text-white border border-slate-800 flex flex-col justify-between space-y-5 shadow-xl relative overflow-hidden">
+            <div className="p-5 sm:p-7 rounded-2xl bg-[#07152B] text-white border border-slate-800 flex flex-col justify-between shadow-xl relative overflow-hidden">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 text-[#00D1A3] flex items-center justify-center font-bold">
@@ -117,21 +118,21 @@ export default function DownloadPage() {
                   </p>
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed min-h-[40px]">
                   Companion mobile app designed for practitioners on the move. Monitor filing deadlines, check client GST profiles, and receive instant push updates.
                 </p>
 
                 {/* Compatibility Specs */}
-                <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5 text-xs text-slate-300">
-                  <div className="flex justify-between border-b border-slate-800 pb-1 text-[11px] text-slate-400">
+                <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5 text-xs text-slate-300">
+                  <div className="flex justify-between border-b border-slate-800/80 pb-1 text-[11px] text-slate-400">
                     <span>System Requirement:</span>
                     <span className="font-semibold text-slate-200">{androidConfig.minAndroidVersion}</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800 pb-1 text-[11px] text-slate-400">
+                  <div className="flex justify-between border-b border-slate-800/80 pb-1 text-[11px] text-slate-400">
                     <span>File Size:</span>
                     <span className="font-semibold text-slate-200">~77 MB download (80.8 MB installed)</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800 pb-1 text-[11px] text-slate-400">
+                  <div className="flex justify-between border-b border-slate-800/80 pb-1 text-[11px] text-slate-400">
                     <span>Distribution:</span>
                     <span className="font-semibold text-slate-200">Direct Verified APK (Scheme v2)</span>
                   </div>
@@ -143,6 +144,7 @@ export default function DownloadPage() {
                   </div>
                 </div>
 
+                {/* Features Checklist */}
                 <div className="space-y-2 text-xs text-slate-300">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#00D1A3] shrink-0" />
@@ -157,10 +159,21 @@ export default function DownloadPage() {
                     <span>Biometric fingerprint / face unlock</span>
                   </div>
                 </div>
+
+                {/* Scan to Download QR Code for Desktop / Tablet */}
+                <div className="hidden sm:block pt-1">
+                  <DownloadQRCode
+                    url="https://taxoryn.com/download"
+                    theme="dark"
+                    size={88}
+                    title="Scan on Mobile"
+                    subtitle="Open official download guide directly on your Android phone"
+                  />
+                </div>
               </div>
 
-              {/* Action Button */}
-              <div className="pt-2 border-t border-slate-800 space-y-3">
+              {/* Action Button & Status */}
+              <div className="pt-4 border-t border-slate-800 space-y-2.5 mt-4">
                 {isAvailable ? (
                   <Button
                     href={androidConfig.downloadUrl}
@@ -173,10 +186,10 @@ export default function DownloadPage() {
                   </Button>
                 ) : (
                   <div className="space-y-2">
-                    <div className="p-3 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-200 text-xs flex items-start gap-2">
-                      <AlertTriangle className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" />
-                      <span>
-                        Direct APK download is currently being prepared for official release. Please access the web app or request early access below.
+                    <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/25 text-amber-200 text-xs flex items-center gap-2">
+                      <AlertTriangle className="w-4 h-4 text-amber-300 shrink-0" />
+                      <span className="text-[11px] leading-tight">
+                        Direct APK rollout is currently in early-access. Request access credentials below.
                       </span>
                     </div>
                     <Button
@@ -190,14 +203,15 @@ export default function DownloadPage() {
                     </Button>
                   </div>
                 )}
+
                 <p className="text-[11px] text-center text-slate-400">
-                  Direct APK download from official Taxoryn servers. No Google Play account required.
+                  Direct APK distribution for Indian tax practitioners. No Google Play required.
                 </p>
               </div>
             </div>
 
             {/* 2. Web Application Card */}
-            <div className="p-5 sm:p-7 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between space-y-5 shadow-xs">
+            <div className="p-5 sm:p-7 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between shadow-xs relative overflow-hidden">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="w-12 h-12 rounded-xl bg-[#082E5B] text-[#00D1A3] flex items-center justify-center font-bold shadow-xs">
@@ -215,27 +229,32 @@ export default function DownloadPage() {
                   </p>
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed min-h-[40px]">
                   Full practice management experience on your computer. Create client profiles, bulk-generate tasks, manage staff assignments, and oversee operations.
                 </p>
 
                 {/* Web Specs */}
-                <div className="p-3 rounded-xl bg-white border border-slate-200 space-y-1.5 text-xs text-slate-600">
+                <div className="p-3 rounded-xl bg-white border border-slate-200 space-y-1.5 text-xs text-slate-600 shadow-2xs">
                   <div className="flex justify-between border-b border-slate-100 pb-1 text-[11px] text-slate-500">
                     <span>Browser Compatibility:</span>
                     <span className="font-semibold text-slate-800">Chrome, Edge, Safari, Firefox</span>
                   </div>
                   <div className="flex justify-between border-b border-slate-100 pb-1 text-[11px] text-slate-500">
                     <span>Installation Required:</span>
-                    <span className="font-semibold text-slate-800">None (Cloud-native)</span>
+                    <span className="font-semibold text-slate-800">None (Cloud-native SaaS)</span>
                   </div>
-                  <div className="flex justify-between text-[11px] text-slate-500">
+                  <div className="flex justify-between border-b border-slate-100 pb-1 text-[11px] text-slate-500">
+                    <span>Architecture:</span>
+                    <span className="font-semibold text-slate-800">Tenant Isolation & Auto Backups</span>
+                  </div>
+                  <div className="flex justify-between text-[11px] text-slate-500 pt-0.5">
                     <span>Security:</span>
-                    <span className="font-semibold text-slate-800">MFA & Tenant Data Isolation</span>
+                    <span className="font-semibold text-slate-800">MFA & TLS 1.3 Bank-grade Encryption</span>
                   </div>
                 </div>
 
-                <div className="space-y-1.5 text-xs text-slate-700">
+                {/* Features Checklist */}
+                <div className="space-y-2 text-xs text-slate-700">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#009E77] shrink-0" />
                     <span>Complete Client 360 & Statutory Compliance Hub</span>
@@ -249,10 +268,40 @@ export default function DownloadPage() {
                     <span>Bulk data import from Tally, Excel, and CSV</span>
                   </div>
                 </div>
+
+                {/* Desktop Workspace Preview Frame */}
+                <div className="hidden sm:block p-2.5 sm:p-3 rounded-xl bg-white border border-slate-200/90 space-y-2 shadow-2xs">
+                  <div className="flex items-center justify-between text-[11px] text-slate-500 border-b border-slate-100 pb-1.5">
+                    <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-700">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#008766]" />
+                      <span>app.taxoryn.com</span>
+                    </div>
+                    <span className="text-[10px] font-semibold text-[#008766]">Desktop Workspace</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-[10px]">
+                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 space-y-0.5">
+                      <span className="text-slate-500 block">Worklists</span>
+                      <span className="font-bold text-slate-800 block truncate">Multi-staff Queue</span>
+                      <span className="text-[#008766] text-[9px] font-medium">Live Operational</span>
+                    </div>
+                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-100 space-y-0.5">
+                      <span className="text-slate-500 block">Compliance Hub</span>
+                      <span className="font-bold text-slate-800 block truncate">GST & ITR Workflows</span>
+                      <span className="text-[#008766] text-[9px] font-medium">Continuous Sync</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Action Button */}
-              <div className="pt-2 border-t border-slate-200 space-y-2.5">
+              {/* Action Button & Status */}
+              <div className="pt-4 border-t border-slate-200 space-y-2.5 mt-4">
+                <div className="p-2.5 rounded-lg bg-slate-100/90 border border-slate-200/80 text-slate-700 text-xs flex items-center justify-between">
+                  <span className="font-medium text-[11px] text-slate-600">Browser-Based Architecture</span>
+                  <span className="text-[11px] font-semibold text-slate-700">
+                    No Installation Required
+                  </span>
+                </div>
+
                 <Button
                   href={siteConfig.links.login}
                   variant="primary"
@@ -262,10 +311,11 @@ export default function DownloadPage() {
                 >
                   Sign In to Web App
                 </Button>
+
                 <div className="text-center">
                   <Link
                     href={siteConfig.links.joinEarlyAccess}
-                    className="text-xs font-semibold text-slate-500 hover:text-[#082E5B] transition-colors"
+                    className="text-[11px] font-semibold text-slate-500 hover:text-[#082E5B] transition-colors"
                   >
                     New practice? Request Early Access credentials →
                   </Link>
